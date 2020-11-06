@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class EnemyHealthBar : MonoBehaviour
 {
     [SerializeField] private GameObject healthBarUI;
-    [SerializeField] private GameObject slider;
-    [SerializeField] private Slider sliderFunction;
+    [SerializeField] private Transform bar;
     private float xScaleUI;
 
     private void Awake()
@@ -17,13 +16,10 @@ public class EnemyHealthBar : MonoBehaviour
     }
 
     public void UpdateHealthBar(float currentHP, float maxHP)
-    {       
-        /*if (!slider.activeSelf)
-        {
-            StartCoroutine(HealthBarAnimation());
-        }*/
-
-        sliderFunction.value = currentHP / maxHP;       
+    {
+        var hp = currentHP / maxHP;
+        if (hp < 0) { hp = 0; }
+        bar.localScale = new Vector3(hp, bar.localScale.y);          
     }
 
     public void ScaleRightUI(Rigidbody rb)
@@ -36,12 +32,4 @@ public class EnemyHealthBar : MonoBehaviour
         healthBarUI.transform.localScale = new Vector3((Mathf.Sign(rb.velocity.x)) * xScaleUI, healthBarUI.transform.localScale.y);
     }
 
-    /*private IEnumerator HealthBarAnimation()
-    {
-        slider.SetActive(true);
-
-        yield return new WaitForSeconds(1f);
-
-        slider.SetActive(false);
-    }*/
 }

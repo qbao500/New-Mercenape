@@ -70,7 +70,7 @@ public class MowerBehaviour : EnemyBehaviour
 
     private void Update()
     {
-        MowerCheck();
+        MowerCheck();        
     }
 
     #region Generator State

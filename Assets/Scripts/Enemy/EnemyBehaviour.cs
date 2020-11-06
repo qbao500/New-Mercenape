@@ -68,6 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
         speed = stat.runningSpeed;
         currentHP = stat.maxHP;
         barHealth.UpdateHealthBar(currentHP, stat.maxHP);
+        barHealth.ScaleRightUI(rb);
     }
 
     // Movement
@@ -98,13 +99,13 @@ public class EnemyBehaviour : MonoBehaviour
         if (isNewBorn) { return; }  // Don't check if new born
 
         groundInfo = Physics.Raycast(frontDetection.position, Vector3.down, 15f, LayerMask.GetMask("Ground"));
-        wallInfo = Physics.Raycast(frontDetection.position, transform.right, 3.75f, LayerMask.GetMask("Wall", "Border"));
+        wallInfo = Physics.Raycast(frontDetection.position, transform.right, 4f, LayerMask.GetMask("Wall", "Border"));
        
         if (!groundInfo || wallInfo)
         {
             enemyRotation += new Vector3(0, -(Mathf.Sign(rb.velocity.x)) * 180, 0);
             transform.rotation = Quaternion.Euler(0, enemyRotation.y, 0);
-            barHealth.ScaleLeftUI(rb);
+            barHealth.ScaleRightUI(rb);
         }        
     }
 
