@@ -180,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
             isGrabWall = false;
             PlayerRigid2d.velocity = Vector3.zero;
             PlayerRigid2d.velocity = (Vector3.up * PlayerJumpPow);
-                print(PlayerRigid2d.velocity);                      
+
         }
 
        
