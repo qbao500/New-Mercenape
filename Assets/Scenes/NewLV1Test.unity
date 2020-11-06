@@ -2493,7 +2493,7 @@ PrefabInstance:
     - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
       propertyPath: PlayerJumpPow
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
@@ -2518,7 +2518,7 @@ PrefabInstance:
     - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
       propertyPath: PlayerClimbSpeed
-      value: 25
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7007741340744387839, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
@@ -2968,8 +2968,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.108124, y: 5.8008094, z: 3.6884003}
-  m_Center: {x: 6.3559933, y: 12.675747, z: 0.81396484}
+  m_Size: {x: 20.440811, y: 22.246826, z: 3.6884003}
+  m_Center: {x: 4.67852, y: 26.460598, z: 0.81396484}
 --- !u!4 &643541286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 218534711846987639, guid: 2006131109cb8414685c0e00b47c6127,

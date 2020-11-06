@@ -345,8 +345,8 @@ public class PlayerMovement : MonoBehaviour
     void PlayerClimbWal()
     {
         float xSpeed = 2f;
-        float offsetX = 2.5f;
-        float offsetY = 5f;
+        float offsetX = 3f;
+        float offsetY = 6f;
 
 
         if (inputV == 0)
