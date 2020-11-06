@@ -155,8 +155,7 @@ public class mainMenu : MonoBehaviour
         
     public void startGame()
     {
-        SceneManager.LoadScene("Bao_Enemy");
-        //Load game Scene
+        SceneManager.LoadScene("NewLevel1Test");
     }
 
     public void quitGame()

@@ -13,9 +13,7 @@ public class menuButton : MonoBehaviour
     {
         Menu menu = transform.parent.transform.parent.GetComponent<Menu>();
         if(menu != null)
-        {
-            Debug.Log("Menu component found " + paneltoOpen.name);
-            //Checking pause           
+        {       
             menu.switchPanel(paneltoOpen);
         }
     }
@@ -26,14 +24,11 @@ public class menuButton : MonoBehaviour
         if(sceneToload != null)
         {
             SceneManager.LoadScene(sceneToload.name);
-        }
-        
+        } 
     }
 
     public void closeGame()
     {
         Application.Quit();
     }
-
-
 }

@@ -30,7 +30,6 @@ public class sceneButton : MonoBehaviour
         //place holder
         else
         {
-
             print("cant go to next scene");
         }
     }

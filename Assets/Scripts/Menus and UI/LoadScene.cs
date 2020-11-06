@@ -12,14 +12,14 @@ public class LoadScene : MonoBehaviour
 
     void Awake()
     {
-        playerCurrency = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCurrency>();
-        gamemaster = GameObject.FindGameObjectWithTag("Player").GetComponent<GameMaster>();
+        playerCurrency = GetComponent<PlayerCurrency>();
+        gamemaster = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
         spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawnerScript>();
     }
 
     public void GoTolevel1()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 0.95f;
         SceneManager.LoadScene("NewLV1Test");
     }
 
