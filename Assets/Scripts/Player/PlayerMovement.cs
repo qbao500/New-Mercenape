@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         SetAnimatorPara();
 
         CheckKnockDown();
-        CheckPlayerGrounded();
+        CheckGrounded();
         CheckCollideWall();
         CheckOnTop();
         CheckGrabWall();
@@ -196,12 +196,13 @@ public class PlayerMovement : MonoBehaviour
         }     
     }
 
-    void CheckPlayerGrounded()
-    {      
+    void CheckGrounded()
+    {
+        Vector3 boxColliderCheckPoint = new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y+boxCollider.bounds.size.y, boxCollider.bounds.center.z);
         float distance = 1f;
         Debug.DrawRay(boxCollider.bounds.center, Vector3.down * distance, Color.red);
 
-        if (Physics.Raycast(boxCollider.bounds.center, Vector3.down, distance, groundlayermask))
+        if (Physics.BoxCast(boxColliderCheckPoint, boxCollider.bounds.size/2,Vector3.down, transform.rotation, distance, groundlayermask))
         {
             isGrounded = true;
         }
@@ -209,6 +210,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+       
     }
 
     void CheckPlayerBlock()
@@ -250,9 +252,10 @@ public class PlayerMovement : MonoBehaviour
     {
         float distance = 2f;
         Debug.DrawRay(PlayerAbovePos.position, Vector3.up * distance, Color.yellow);
-        return Physics.Raycast(PlayerAbovePos.position, Vector3.up, distance, walllayermask);
+        return (Physics.Raycast(PlayerAbovePos.position, Vector3.up, distance, walllayermask) || Physics.Raycast(PlayerAbovePos.position, Vector3.up, distance, groundlayermask));
 
     }
+   
 
 
     void InputVertical()
@@ -347,70 +350,87 @@ public class PlayerMovement : MonoBehaviour
         float xSpeed = 2f;
         float offsetX = 3f;
         float offsetY = 6f;
-
-
         if (inputV == 0)
         {
-
-            PlayerRigid2d.velocity = new Vector3(0, 0, 0);
+            PlayerRigid2d.velocity = Vector3.zero;
         }
         else
         {
-            if (!CheckOnTop())
+
+
+            if (!CheckColliderAbove())
             {
-                  if(inputV != 0)
+
+                if (!CheckOnTop())
+                {
+                    if (inputV != 0)
                     {
-                        PlayerRigid2d.MovePosition((Vector3)transform.position + Vector3.up * inputV * PlayerClimbSpeed * Time.deltaTime + Vector3.right * xSpeed*transform.localScale.z * Time.deltaTime);
+                        PlayerRigid2d.MovePosition((Vector3)transform.position + Vector3.up * inputV * PlayerClimbSpeed * Time.deltaTime + Vector3.right * xSpeed * transform.localScale.z * Time.deltaTime);
                     }
 
                     if (isGrounded && inputV < 0)
                     {
                         isGrabWall = false;
                     }
-               
-            }
-            else
-            {
-                if (!isCollidePlatform)
-                {
-                    if (inputV > 0)
-                    {
-                        PlayerRigid2d.velocity = new Vector3(0, 0, 0);
-                    }
-                    else if (inputV < 0)
-                    {
-                        PlayerRigid2d.MovePosition((Vector3)transform.position + Vector3.up * inputV * PlayerClimbSpeed * Time.deltaTime + Vector3.right * xSpeed * transform.localScale.z * Time.deltaTime);
 
-                    }
                 }
                 else
                 {
-                    canLedgeClimb = true;
-                    if (FaceRight)
+                    if (!isCollidePlatform)
                     {
-                        ledgePosX = transform.position.x + offsetX;
-                        ledgePosY = transform.position.y + offsetY;
+                        if (inputV > 0)
+                        {
+                            PlayerRigid2d.velocity = new Vector3(0, 0, 0);
+                        }
+                        else if (inputV < 0)
+                        {
+                            PlayerRigid2d.MovePosition((Vector3)transform.position + Vector3.up * inputV * PlayerClimbSpeed * Time.deltaTime + Vector3.right * xSpeed * transform.localScale.z * Time.deltaTime);
 
+                        }
                     }
                     else
                     {
-                        ledgePosX = transform.position.x - offsetX;
-                        ledgePosY = transform.position.y + offsetY;
-                    }
-                    destination = new Vector3(ledgePosX, ledgePosY, 0);
+                        canLedgeClimb = true;
+                        if (FaceRight)
+                        {
+                            ledgePosX = transform.position.x + offsetX;
+                            ledgePosY = transform.position.y + offsetY;
 
-                    if (Input.GetKey(KeyCode.W) || inputV > 0)
-                    {
-                        transform.position = destination;
+                        }
+                        else
+                        {
+                            ledgePosX = transform.position.x - offsetX;
+                            ledgePosY = transform.position.y + offsetY;
+                        }
+                        destination = new Vector3(ledgePosX, ledgePosY, 0);
 
-                    }
-                    else if (inputV < 0)
-                    {
-                        PlayerRigid2d.MovePosition((Vector3)transform.position + Vector3.up * inputV * PlayerClimbSpeed * Time.deltaTime + Vector3.right * xSpeed * transform.localScale.z * Time.deltaTime);
+                        if (Input.GetKey(KeyCode.W) || inputV > 0)
+                        {
+                            transform.position = destination;
+
+                        }
+                        else if (inputV < 0)
+                        {
+                            PlayerRigid2d.MovePosition((Vector3)transform.position + Vector3.up * inputV * PlayerClimbSpeed * Time.deltaTime + Vector3.right * xSpeed * transform.localScale.z * Time.deltaTime);
+
+                        }
 
                     }
 
                 }
+            }
+
+            else
+            {
+                if (inputV < 0)
+                {
+                    PlayerRigid2d.MovePosition((Vector3)transform.position + Vector3.up * inputV * PlayerClimbSpeed * Time.deltaTime + Vector3.right * xSpeed * transform.localScale.z * Time.deltaTime);
+                }
+                else if (inputV > 0)
+                {
+                    PlayerRigid2d.velocity = Vector3.zero;
+                }
+
 
             }
         }
