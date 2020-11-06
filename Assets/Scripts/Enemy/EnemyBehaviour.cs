@@ -98,7 +98,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (isNewBorn) { return; }  // Don't check if new born
 
         groundInfo = Physics.Raycast(frontDetection.position, Vector3.down, 15f, LayerMask.GetMask("Ground"));
-        wallInfo = Physics.Raycast(frontDetection.position, transform.right, 3.75f, LayerMask.GetMask("Wall"));
+        wallInfo = Physics.Raycast(frontDetection.position, transform.right, 3.75f, LayerMask.GetMask("Wall", "Border"));
        
         if (!groundInfo || wallInfo)
         {
