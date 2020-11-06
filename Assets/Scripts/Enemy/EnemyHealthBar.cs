@@ -11,7 +11,7 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private Slider sliderFunction;
     private float xScaleUI;
 
-    private void Start()
+    private void Awake()
     {
         xScaleUI = healthBarUI.transform.localScale.x;
     }

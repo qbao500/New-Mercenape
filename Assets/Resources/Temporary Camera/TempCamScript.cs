@@ -6,6 +6,12 @@ using Cinemachine;
 public class TempCamScript : MonoBehaviour
 {
     public CinemachineVirtualCamera cineVirtual;
+    private CinemachineFramingTransposer framingTransposer;
+
+    private void Awake()
+    {
+        framingTransposer = cineVirtual.GetCinemachineComponent<CinemachineFramingTransposer>();
+    }
 
     private void Update()
     {
@@ -14,10 +20,15 @@ public class TempCamScript : MonoBehaviour
         if (cineVirtual.m_Lens.OrthographicSize > 29)
         {
             cineVirtual.m_Lens.OrthographicSize = 29;
+            framingTransposer.m_TrackedObjectOffset.y = -45;
         }
         else if (cineVirtual.m_Lens.OrthographicSize < 5)
         {
             cineVirtual.m_Lens.OrthographicSize = 5;
+        }
+        else if (cineVirtual.m_Lens.OrthographicSize == 15)
+        {
+            framingTransposer.m_TrackedObjectOffset.y = 3;
         }
     }
 }
