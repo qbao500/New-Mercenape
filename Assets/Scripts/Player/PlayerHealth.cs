@@ -14,11 +14,9 @@ public class PlayerHealth : MonoBehaviour
     public int PlayerHP, PlayerMaxHP, newHP;
 
     private GameObject playerUI;
-    private Slider hpBar;
-    private Image hpFill;
-    public Gradient hpGradient;
-    Transform hpText;
-    TextMeshProUGUI currentHPText, maxHPText;
+    [SerializeField] private Slider hpBar;
+    // Transform hpText;
+    // TextMeshProUGUI currentHPText, maxHPText;
 
     [HideInInspector] public Transform spaceTextGrid;
     [HideInInspector] public Text currentSpace;
@@ -34,11 +32,10 @@ public class PlayerHealth : MonoBehaviour
 
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI");
         hpBar = playerUI.transform.Find("hpBar").GetComponent<Slider>();
-        hpFill = playerUI.transform.Find("hpBar").Find("hpFill").GetComponent<Image>();
-        hpText = playerUI.transform.Find("hpBar").Find("hpText").transform;
+        // hpText = playerUI.transform.Find("hpBar").Find("hpText").transform;
        
-        currentHPText = hpText.GetChild(0).GetComponent<TextMeshProUGUI>();
-        maxHPText = hpText.GetChild(1).GetComponent<TextMeshProUGUI>();
+        // currentHPText = hpText.GetChild(0).GetComponent<TextMeshProUGUI>();
+        // maxHPText = hpText.GetChild(1).GetComponent<TextMeshProUGUI>();
 
 
         SetHP();
@@ -53,9 +50,8 @@ public class PlayerHealth : MonoBehaviour
         PlayerHP = PlayerMaxHP;
         hpBar.maxValue = PlayerMaxHP;
         hpBar.value = PlayerHP;
-        currentHPText.SetText(PlayerHP.ToString());
-        maxHPText.SetText(PlayerMaxHP.ToString());
-        hpFill.color = hpGradient.Evaluate(1f);
+        // currentHPText.SetText(PlayerHP.ToString());
+        // maxHPText.SetText(PlayerMaxHP.ToString());
     }
 
     // This can be handled by the UpdateHealth().
@@ -76,8 +72,7 @@ public class PlayerHealth : MonoBehaviour
     void SetCurrentHP(float HP)
     {
         hpBar.value = HP;
-        currentHPText.SetText(HP.ToString());
-        hpFill.color = hpGradient.Evaluate(hpBar.normalizedValue);
+        // currentHPText.SetText(HP.ToString());
     }
 
     void CheckPlayerDeath()

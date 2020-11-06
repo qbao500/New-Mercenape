@@ -17,7 +17,6 @@ public class PlayerCurrency : MonoBehaviour
     public Text moneyText, upgradeText, karmaText;
 
     public Slider karmaBar, moneyBar, upgradeBar;
-    public Image karmaFill;
 
     private bool gainedGold, gainedKarma, gainedUpgrade;
 
