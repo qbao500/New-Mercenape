@@ -155,14 +155,12 @@ public class mainMenu : MonoBehaviour
         
     public void startGame()
     {
-        Debug.Log("Starting game");
         SceneManager.LoadScene("Bao_Enemy");
         //Load game Scene
     }
 
     public void quitGame()
     {
-        Debug.Log("Closing game...");
         Application.Quit();
     }
 
