@@ -9,7 +9,7 @@ public class PlayerSpeech: MonoBehaviour
     GameObject bubbleObject;
     TextMeshProUGUI speechBubble;
 
-    public string howToAttack, howToBlock;
+    public string howToAttack, howToBlock, cameraScroll;
     public float startMessageWait, waitBetweenMessages;
 
     void Awake()
@@ -29,10 +29,10 @@ public class PlayerSpeech: MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        StartCoroutine(SpawnMessage(speechBubble, howToAttack, howToBlock, waitBetweenMessages));
+        StartCoroutine(SpawnMessage(speechBubble, howToAttack, howToBlock, cameraScroll, waitBetweenMessages));
     }
 
-    IEnumerator SpawnMessage(TextMeshProUGUI messageObject, string message1, string message2, float time)
+    IEnumerator SpawnMessage(TextMeshProUGUI messageObject, string message1, string message2, string message3, float time)
     {
         messageObject.text = message1;
 
@@ -43,6 +43,14 @@ public class PlayerSpeech: MonoBehaviour
         yield return new WaitForSeconds(time);
 
         messageObject.text = message2;
+
+        yield return new WaitForSeconds(time);
+
+        messageObject.text = "";
+
+        yield return new WaitForSeconds(time);
+
+        messageObject.text = message3;
 
         yield return new WaitForSeconds(time);
 

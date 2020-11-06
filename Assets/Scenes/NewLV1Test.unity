@@ -4959,6 +4959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   howToAttack: '"I can attack by pressing Mouse 1, wink wink."'
   howToBlock: '"Here''s a hint: by holding Mouse 2, I can block enemy attacks." '
+  cameraScroll: '"With mouse scroll I can change the camera view. It''s a neat trick
+    I use to outmaneuver my enemies."'
   startMessageWait: 3
   waitBetweenMessages: 3
 --- !u!1 &1131350942
