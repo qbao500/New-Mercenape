@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3417982164426582268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3417982164426582265}
+  - component: {fileID: 3417982164426582271}
+  - component: {fileID: 3417982164426582270}
+  - component: {fileID: 3417982164426582269}
+  - component: {fileID: 3417982164426582266}
+  - component: {fileID: 4568174137475337834}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: GameManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3417982164426582265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417982164426582268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.81110615, y: 2.0599627, z: -13.592962}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3417982164426582271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417982164426582268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf9353344ac8204b92a1b8e2cf530d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownedWeaponsList: 
+  upgradedWeaponsList: 
+  savedSpeedAmountsList: 
+  weaponSpeed: 0
+  weaponImpactDamage: 0
+  bleedDamage: 0
+  bleedDuration: 0
+--- !u!114 &3417982164426582270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417982164426582268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9495335238a314c45ac2a582f2f2b169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponWeight: 0
+  weaponSpeed: 0
+  weaponImpactDamage: 0
+--- !u!114 &3417982164426582269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417982164426582268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b2a11342aebd349a926d27c6b6b763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponImages: []
+  chosenWeaponImages: []
+  upgradeImages: []
+  weaponModels: []
+  soundAudioclipArray: []
+--- !u!114 &3417982164426582266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417982164426582268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642cab6a2db41604ebda80301d23bd52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4568174137475337834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417982164426582268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c9412376516ae4aaffb93137567bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePopUp: {fileID: 4761182716779327914, guid: 3b3485ce14494ee47b0affa91afff539,
+    type: 3}

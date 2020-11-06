@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Money
+  - WeaponName
+  - WeaponDescription
+  - BuyScreenWeaponImage
+  - WeaponCost
+  - Killbox
+  - Enemy
+  - Kill
+  - wall
+  - UpgradeScreenWeaponName
+  - UpgradeScreenWeaponImage
+  - UpgradeName
+  - UpgradeDescription
+  - UpgradeImage
+  - UpgradeScreenWeaponDescription
+  - inputButton
+  - UpgradeCost
+  - WeaponStats
+  - WeaponSpeed
+  - WeaponWeight
+  - ImpactDamage
+  - ground
+  - WeaponInUse
+  - GameManager
+  - Loot
+  - VineAnchor
+  - UpgradesMainScreen
+  - UpgradesUpgradeScreen
+  - gamemaster
+  - AmountText
+  - UpgradeImageHolder
+  - EnemyHealthBar
+  - Ladder
+  - Loot/Gold
+  - Loot/HPDrop
+  - Loot/Karma
+  - Loot/UpgradeDrop
+  - MoneyUpgrade
+  - EnemySpawner
+  - UpgradeHolder
+  - UpgradeComponentScreen
+  - ChosenWeaponHolder
+  - WeaponHolder
+  - Shop
+  - Forge
+  - PlayerUI
+  - ResourceDestination
+  - PlayerSpeechBubble
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Wall
+  - Enemy
+  - Ladder
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: EnemyUI
+    uniqueID: 3091510769
+    locked: 0

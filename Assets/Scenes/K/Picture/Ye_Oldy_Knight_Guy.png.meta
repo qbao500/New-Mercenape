@@ -1,0 +1,848 @@
+fileFormatVersion: 2
+guid: 2255c4987a3b6ca4fa36f1d7d5f7aafc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2808909919374882672
+    second: Ye_Oldy_Knight_Guy_0
+  - first:
+      213: 2590477325003600472
+    second: Ye_Oldy_Knight_Guy_1
+  - first:
+      213: -6320301798994190360
+    second: Ye_Oldy_Knight_Guy_2
+  - first:
+      213: 3349328359285187001
+    second: Ye_Oldy_Knight_Guy_3
+  - first:
+      213: 5090171305827858575
+    second: Ye_Oldy_Knight_Guy_4
+  - first:
+      213: -4378304826768260338
+    second: Ye_Oldy_Knight_Guy_5
+  - first:
+      213: -6636862142283238380
+    second: Ye_Oldy_Knight_Guy_6
+  - first:
+      213: 6251188229243695464
+    second: Ye_Oldy_Knight_Guy_7
+  - first:
+      213: 2252061915019757257
+    second: Ye_Oldy_Knight_Guy_8
+  - first:
+      213: -4876066666263350521
+    second: Ye_Oldy_Knight_Guy_9
+  - first:
+      213: 8526504067925983547
+    second: Ye_Oldy_Knight_Guy_10
+  - first:
+      213: 4565785384786611986
+    second: Ye_Oldy_Knight_Guy_11
+  - first:
+      213: 1014712472210354125
+    second: Ye_Oldy_Knight_Guy_12
+  - first:
+      213: -1653038666562115985
+    second: Ye_Oldy_Knight_Guy_13
+  - first:
+      213: 5326041296605793802
+    second: Ye_Oldy_Knight_Guy_14
+  - first:
+      213: -4480023302814374006
+    second: Ye_Oldy_Knight_Guy_15
+  - first:
+      213: -2565250176058826566
+    second: Ye_Oldy_Knight_Guy_16
+  - first:
+      213: -3669399991080607739
+    second: Ye_Oldy_Knight_Guy_17
+  - first:
+      213: -3341619221649702264
+    second: Ye_Oldy_Knight_Guy_18
+  - first:
+      213: 1354689723171983148
+    second: Ye_Oldy_Knight_Guy_19
+  - first:
+      213: -8563348715992851987
+    second: Ye_Oldy_Knight_Guy_20
+  - first:
+      213: -1576769691520724758
+    second: Ye_Oldy_Knight_Guy_21
+  - first:
+      213: -3098711058211094510
+    second: Ye_Oldy_Knight_Guy_22
+  - first:
+      213: 5203128783412101342
+    second: Ye_Oldy_Knight_Guy_23
+  - first:
+      213: 6824026066801645258
+    second: Ye_Oldy_Knight_Guy_24
+  - first:
+      213: -505872593848531235
+    second: Ye_Oldy_Knight_Guy_25
+  - first:
+      213: -3144796107531245366
+    second: Ye_Oldy_Knight_Guy_26
+  - first:
+      213: 6984181842803205064
+    second: Ye_Oldy_Knight_Guy_27
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 19
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 117
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077396e70b04bf620800000000000000
+      internalID: 2808909919374882672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 117
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8523b83f66933f320800000000000000
+      internalID: 2590477325003600472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 117
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ef50bd0007c948a0800000000000000
+      internalID: -6320301798994190360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_3
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 117
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b1e553b5643b7e20800000000000000
+      internalID: 3349328359285187001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_4
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 119
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8871c175dbe3a640800000000000000
+      internalID: 5090171305827858575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 117
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03891215f22d33c0800000000000000
+      internalID: -4378304826768260338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_6
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 95
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41438f19b0125e3a0800000000000000
+      internalID: -6636862142283238380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_7
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 96
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8617c24039ea0c650800000000000000
+      internalID: 6251188229243695464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_8
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 95
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c640f8316ee04f10800000000000000
+      internalID: 2252061915019757257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_9
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 95
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 703ff38933bb45cb0800000000000000
+      internalID: -4876066666263350521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_10
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 96
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31c6a0464a345670800000000000000
+      internalID: 8526504067925983547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_11
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 95
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f40eced9dec5f30800000000000000
+      internalID: 4565785384786611986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 72
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcfa1470e9bf41e00800000000000000
+      internalID: 1014712472210354125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_13
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 72
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f666497471a3f09e0800000000000000
+      internalID: -1653038666562115985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_14
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 71
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0ecf373756e9e940800000000000000
+      internalID: 5326041296605793802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_15
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 72
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a87e642da82c3d1c0800000000000000
+      internalID: -4480023302814374006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_16
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 72
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab061006e86666cd0800000000000000
+      internalID: -2565250176058826566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_17
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 48
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 500a1d0462ca31dc0800000000000000
+      internalID: -3669399991080607739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_18
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 50
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 882c3f6c50f20a1d0800000000000000
+      internalID: -3341619221649702264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_19
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 52
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2fc9823023dcc210800000000000000
+      internalID: 1354689723171983148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_20
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 49
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de9d27f96bfd82980800000000000000
+      internalID: -8563348715992851987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_21
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 50
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae01e44d1503e1ae0800000000000000
+      internalID: -1576769691520724758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_22
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 52
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 210c0c1d5ba2ff4d0800000000000000
+      internalID: -3098711058211094510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_23
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 25
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed083e7af0a353840800000000000000
+      internalID: 5203128783412101342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_24
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 25
+        width: 24
+        height: 18
+      alignment: 9
+      pivot: {x: 0.29809508, y: 0.50000024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac6d7b17d8fc3be50800000000000000
+      internalID: 6824026066801645258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_25
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 25
+        width: 27
+        height: 18
+      alignment: 9
+      pivot: {x: 0.2800033, y: 0.4826319}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd68d0e5e87caf8f0800000000000000
+      internalID: -505872593848531235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_26
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 3
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac8a19f1a907b54d0800000000000000
+      internalID: -3144796107531245366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ye_Oldy_Knight_Guy_27
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 3
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c3a40bd16ccce060800000000000000
+      internalID: 6984181842803205064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

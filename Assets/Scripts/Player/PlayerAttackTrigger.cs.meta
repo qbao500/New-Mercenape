@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3a1cd6b92c187704699e85bb498f5224
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Attackpos: {instanceID: 0}
+  - edgePos: {instanceID: 0}
+  - frontPlayerPosition: {instanceID: 0}
+  - PlayerAnimator: {instanceID: 0}
+  - attackAnim: {fileID: 7400000, guid: 95644a34a0937784ab05ddba6e5fbf57, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
