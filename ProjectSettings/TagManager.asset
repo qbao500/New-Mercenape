@@ -64,7 +64,7 @@ TagManager:
   - Ground
   - Wall
   - Enemy
-  - Ladder
+  - Border
   - Player
   - 
   - 
