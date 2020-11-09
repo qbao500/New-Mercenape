@@ -26,7 +26,7 @@ public class TempCamScript : MonoBehaviour
         {
             cineVirtual.m_Lens.OrthographicSize = 5;
         }
-        else if (cineVirtual.m_Lens.OrthographicSize == 15)
+        else if (cineVirtual.m_Lens.OrthographicSize == 20)
         {
             framingTransposer.m_TrackedObjectOffset.y = 3;
         }

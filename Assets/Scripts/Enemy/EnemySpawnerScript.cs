@@ -26,7 +26,7 @@ public class EnemySpawnerScript : MonoBehaviour
     public float timeBetweenGroups = 3f;
 
     private float groupCountdown;        // Count down to next group
-    private float searchCountdown = 1f;  // Count down for searching any alive enemy
+    private float searchCountdown = 2f;  // Count down for searching any alive enemy
 
     public string[] enemies = new string[2];
     private List<string> spawnList = new List<string>();
@@ -117,7 +117,7 @@ public class EnemySpawnerScript : MonoBehaviour
         if (searchCountdown <= 0f)
         {
             searchCountdown = 2f;   // Check every 2 seconds
-            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            if (!ObjectPooler.Instance.IsAnyActiveObject(enemies))
             {
                 return false;
             }
@@ -152,7 +152,6 @@ public class EnemySpawnerScript : MonoBehaviour
         yield break;
     }
 
-    // Use this in SpawnWave
     void SpawnEnemy(string enemy, Vector3 pos)
     {
         ObjectPooler.Instance.SpawnFromPool(enemy, pos, Quaternion.Euler(0, -180, 0));
@@ -177,12 +176,10 @@ public class EnemySpawnerScript : MonoBehaviour
 
         MakeSpawnList();
 
-        // Increase enemy HP and Damage
         group.enemyIncreasedHP += 2;
         group.enemyIncreasedDamage += 1;
     }
 
-    // Make a list to spawn
     private void MakeSpawnList()
     {
         spawnList.Clear();
@@ -200,7 +197,6 @@ public class EnemySpawnerScript : MonoBehaviour
         }
     }
 
-    // Random Mower generator
     private int RandomMower()
     {
         if (Random.value > 0.85f)   // 85%

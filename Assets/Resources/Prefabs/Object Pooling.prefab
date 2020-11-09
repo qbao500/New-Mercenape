@@ -56,3 +56,17 @@ MonoBehaviour:
     prefab: {fileID: 3296232098054200585, guid: 0bf43a7844054ab4b98a0d2d02adb2ba,
       type: 3}
     amount: 2
+  - tag: HealthDrop
+    prefab: {fileID: 1894584535332837582, guid: fd655d8535685a043a4244e1d452097f,
+      type: 3}
+    amount: 5
+  - tag: KarmaDrop
+    prefab: {fileID: 36694609116318791, guid: c7b817aa513cc444493381df220e730c, type: 3}
+    amount: 5
+  - tag: GoldDrop
+    prefab: {fileID: 527335478913631627, guid: ead8c60982af82b498448d1a2008be07, type: 3}
+    amount: 5
+  - tag: UpgradeDrop
+    prefab: {fileID: 4190288013318672064, guid: 40ea508804c230f44a289e7a6e88172d,
+      type: 3}
+    amount: 3

@@ -19,29 +19,26 @@ public class EnemyLootDrop : MonoBehaviour
 
     void InstantiateKarmaDrop()
     {
-        Instantiate(floatKarma, transform.position, Quaternion.identity);
+        ObjectPooler.Instance.SpawnFromPool("KarmaDrop", transform.position, Quaternion.identity);
     }
 
     void InstantiateGoldDrop()
     {
-        Instantiate(floatMoney, transform.position, Quaternion.identity);
-    }
-    
-    void InstantiateUpgrade()
-    {
-        int randomSpawn = Random.Range(0, 101);
-        if (randomSpawn <= upgradeChance)
-        {
-            Instantiate(floatUpgrade, transform.position, Quaternion.identity);
-        } 
+        ObjectPooler.Instance.SpawnFromPool("GoldDrop", transform.position, Quaternion.identity);
     }
 
+    void InstantiateUpgrade()
+    {
+        if (Random.Range(0, 101) <= upgradeChance)
+        {
+            ObjectPooler.Instance.SpawnFromPool("UpgradeDrop", transform.position, Quaternion.identity);
+        }
+    }
     void InstantiateHealthDrop()
     {
-        int randomSpawn = Random.Range(0, 101);
-        if(randomSpawn <= healthChance)
+        if(Random.Range(0, 101) <= healthChance)
         {
-            Instantiate(healthDrop, transform.position, Quaternion.identity);
+            ObjectPooler.Instance.SpawnFromPool("HealthDrop", transform.position, Quaternion.identity);
         }
     }
 

@@ -204,7 +204,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     
     protected IEnumerator EnemyDeath()
-    {
+    {        
         speed = 0;
         rb.velocity = Vector3.zero;
         rb.useGravity = false;

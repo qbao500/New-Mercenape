@@ -18,7 +18,7 @@ public class HealthDrop : MonoBehaviour
         if (playerHealth.PlayerHP != playerHealth.PlayerMaxHP && collision.CompareTag("Player"))
         {
             playerHealth.GainHealth(healingAmount);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -163,6 +163,7 @@ public class MowerBehaviour : EnemyBehaviour
             {
                 capsuleCollider.enabled = false;
 
+                animatorMower.SetBool("IsDestroyed", false);
                 animatorMower.SetTrigger("Death");
             }
 

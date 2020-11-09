@@ -10,24 +10,27 @@ public class FloatingMoney: MonoBehaviour
 
     private int moneyAmount, sortingOrder;
 
-    public GameObject destination;
+    //public GameObject destination;
     public float speed, destroyTime;
 
 
-    void Start()
+    void Awake()
     {
         playerCurrency = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerCurrency>();
-        destination = GameObject.FindGameObjectWithTag("ResourceDestination");
+        //destination = GameObject.FindGameObjectWithTag("ResourceDestination");
 
         moneyAmount = Random.Range(10, 100);
 
         textMesh = textMesh = transform.GetChild(0).GetComponent<TextMeshPro>();
         sortingOrder = 15;
         textMesh.sortingOrder = sortingOrder;
-        textMesh.SetText(moneyAmount.ToString());
+        textMesh.SetText(moneyAmount.ToString());     
+    }
 
+    private void OnEnable()
+    {
         AddMoney();
-        Destroy(gameObject, destroyTime);
+        Invoke("Off", destroyTime);
     }
 
     void Update()
@@ -38,5 +41,10 @@ public class FloatingMoney: MonoBehaviour
     void AddMoney()
     {
         playerCurrency.AddGold(moneyAmount);
+    }
+
+    void Off()
+    {
+        gameObject.SetActive(false);
     }
 }

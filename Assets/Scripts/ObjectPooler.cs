@@ -41,6 +41,7 @@ public class ObjectPooler : MonoBehaviour
                 GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
+                MakeParent(pool, obj);
             }
 
             poolDictionary.Add(pool.tag, objectPool);
@@ -66,4 +67,25 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 
+    public bool IsAnyActiveObject(string[] tag)
+    {
+        for (int i = 0; i < tag.Length; i++)
+        {
+            foreach (var obj in poolDictionary[tag[i]])
+            {
+                // Return true if there is an active object
+                if (obj.activeSelf) { return true; }
+            }
+        }
+        
+        return false; // If nothing return true, just return false
+    }
+
+    private void MakeParent(Pool pool, GameObject go)
+    {        
+        if (pool.tag != "Shred" && pool.tag != "Mower")
+        {
+            go.transform.SetParent(transform, false);
+        }
+    }
 }

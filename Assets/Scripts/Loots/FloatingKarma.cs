@@ -14,17 +14,20 @@ public class FloatingKarma : MonoBehaviour
 
     private int sortingOrder;
 
-    void Start()
+    void Awake()
     {
         playerCurrency = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerCurrency>();
         
         textMesh = textMesh = transform.GetChild(0).GetComponent<TextMeshPro>();
         sortingOrder = 15;
         textMesh.sortingOrder = sortingOrder;
-        textMesh.SetText(karmaAmount.ToString());
+        textMesh.SetText(karmaAmount.ToString());        
+    }
 
+    private void OnEnable()
+    {
         AddKarma();
-        Destroy(gameObject, destroyTime);
+        Invoke("Off", destroyTime);
     }
 
     void Update()
@@ -35,5 +38,10 @@ public class FloatingKarma : MonoBehaviour
     void AddKarma()
     { 
         playerCurrency.AddKarma(karmaAmount);
+    }
+
+    void Off()
+    {
+        gameObject.SetActive(false);
     }
 }

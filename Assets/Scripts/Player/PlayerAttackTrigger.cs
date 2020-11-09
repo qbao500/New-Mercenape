@@ -32,8 +32,8 @@ public class PlayerAttackTrigger : MonoBehaviour
     
     private bool IsPlayerAttack = false;
     
-    public event Action<bool, bool, Collider, float> OnHitEnemy;  // 1st bool is Mower backside, 2nd bool is generator
-    public event Action<float, float, int, Collider> OnBleedEnemy;  // weaponBleedDamage, weaponBleedDuration, bleedTicks
+    public event Action<bool, bool, Collider, float> OnHitEnemy = delegate { };  // 1st bool is Mower backside, 2nd bool is generator
+    public event Action<float, float, int, Collider> OnBleedEnemy = delegate { };  // weaponBleedDamage, weaponBleedDuration, bleedTicks
 
     void Awake()
     {
@@ -112,23 +112,23 @@ public class PlayerAttackTrigger : MonoBehaviour
             if (enemiesToDamage[i].GetType() == typeof(CapsuleCollider)) // Mower's back
             {
                 // Hit backside but not generator
-                OnHitEnemy?.Invoke(true, false, enemiesToDamage[i], PlayerDamage);
+                OnHitEnemy(true, false, enemiesToDamage[i], PlayerDamage);
             }
             else if (enemiesToDamage[i].GetType() == typeof(SphereCollider)) // Mower's generator
             {
                 // Hit generator but not backside
-                OnHitEnemy?.Invoke(false, true, enemiesToDamage[i], PlayerDamage);
+                OnHitEnemy(false, true, enemiesToDamage[i], PlayerDamage);
             }
             else  // Not Mower, meaning Shred
             {
                 // None of generator nor backside
-                OnHitEnemy?.Invoke(false, false, enemiesToDamage[i], PlayerDamage);
+                OnHitEnemy(false, false, enemiesToDamage[i], PlayerDamage);
             }
 
             // Then bleed enemy (Mower script make sure the generator don't bleed)
             if (weaponBleedDamage > 0 && bleedTicks > 0)
             {
-                OnBleedEnemy?.Invoke(weaponBleedDamage, weaponBleedDuration, bleedTicks, enemiesToDamage[i]);
+                OnBleedEnemy(weaponBleedDamage, weaponBleedDuration, bleedTicks, enemiesToDamage[i]);
             }
         }
     }  

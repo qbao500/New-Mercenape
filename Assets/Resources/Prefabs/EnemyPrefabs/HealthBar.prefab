@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarUI: {fileID: 6264346053042711896}
   bar: {fileID: 2379743593786807032}
+  updateSpdSecs: 0.2
 --- !u!1 &6374168685028289340
 GameObject:
   m_ObjectHideFlags: 0

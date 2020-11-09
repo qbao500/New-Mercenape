@@ -13,7 +13,7 @@ public class LoadScene : MonoBehaviour
     void Awake()
     {
         playerCurrency = GetComponent<PlayerCurrency>();
-        gamemaster = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
+        gamemaster = GameObject.FindGameObjectWithTag("gamemaster").GetComponent<GameMaster>();
         spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawnerScript>();
     }
 
