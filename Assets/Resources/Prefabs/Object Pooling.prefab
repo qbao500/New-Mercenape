@@ -70,3 +70,7 @@ MonoBehaviour:
     prefab: {fileID: 4190288013318672064, guid: 40ea508804c230f44a289e7a6e88172d,
       type: 3}
     amount: 3
+  - tag: Sound
+    prefab: {fileID: 5582196222795653158, guid: 80f8d8a20370e2640bf81340f12f5966,
+      type: 3}
+    amount: 10

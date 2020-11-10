@@ -16,19 +16,9 @@ public class TempCamScript : MonoBehaviour
     private void Update()
     {
         cineVirtual.m_Lens.OrthographicSize -= Input.mouseScrollDelta.y;
+        cineVirtual.m_Lens.OrthographicSize = Mathf.Clamp(cineVirtual.m_Lens.OrthographicSize, 5, 29);
 
-        if (cineVirtual.m_Lens.OrthographicSize > 29)
-        {
-            cineVirtual.m_Lens.OrthographicSize = 29;
-            framingTransposer.m_TrackedObjectOffset.y = -45;
-        }
-        else if (cineVirtual.m_Lens.OrthographicSize < 5)
-        {
-            cineVirtual.m_Lens.OrthographicSize = 5;
-        }
-        else if (cineVirtual.m_Lens.OrthographicSize == 20)
-        {
-            framingTransposer.m_TrackedObjectOffset.y = 3;
-        }
+        framingTransposer.m_TrackedObjectOffset.y += Input.mouseScrollDelta.y * 2;
+        framingTransposer.m_TrackedObjectOffset.y = Mathf.Clamp(framingTransposer.m_TrackedObjectOffset.y, -29, 3);       
     }
 }

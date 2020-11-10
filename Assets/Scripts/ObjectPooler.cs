@@ -38,7 +38,16 @@ public class ObjectPooler : MonoBehaviour
 
             for (int i = 0; i < pool.amount; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj;
+                if (pool.prefab == null)
+                {
+                    obj = new GameObject(pool.tag);
+                }
+                else
+                {
+                    obj = Instantiate(pool.prefab);
+                }
+                
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
                 MakeParent(pool, obj);
@@ -87,5 +96,17 @@ public class ObjectPooler : MonoBehaviour
         {
             go.transform.SetParent(transform, false);
         }
+    }
+
+    public void TurnSoundOff(GameObject go, AudioSource audio)
+    {
+        StartCoroutine(SoundOff(go, audio));
+    }
+
+    private IEnumerator SoundOff(GameObject go, AudioSource audio)
+    {
+        yield return new WaitForSeconds(audio.clip.length);
+
+        go.SetActive(false);
     }
 }

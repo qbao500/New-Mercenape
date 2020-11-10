@@ -40,7 +40,7 @@ public class AssetManager : MonoBehaviour
         SetUpModels();
         SetUpWeaponsAndUpgrades();
         SetUpListsForOtherScripts();
-        soundManager.Initialize();
+        soundManager.Initialize(this);
     }
 
     // Function for getting all the other scripts needed by this script. 
