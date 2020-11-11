@@ -48,6 +48,7 @@ public class ScreenNavigation : MonoBehaviour
     public void OpenForge()
     {
         panels[0].SetActive(false);
+        shop.SetActive(false);
         forge.SetActive(true);
         forgeTitle.SetActive(true);
     }
