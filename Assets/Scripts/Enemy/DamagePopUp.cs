@@ -7,9 +7,7 @@ public class DamagePopUp : MonoBehaviour
 {  
     // Create a Damage Popup
     public static DamagePopUp Create(Vector3 pos, float damage, Color color, int size)
-    {
-        //Transform dmgPopUpTransform = Instantiate(GameAssets.instance.damagePopUp, pos, Quaternion.identity);
-
+    {        
         GameObject dmgPopUpObj = ObjectPooler.Instance.SpawnFromPool("DamagePopUp", pos, Quaternion.identity);
 
         DamagePopUp damagePopUp = dmgPopUpObj.GetComponent<DamagePopUp>();
