@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrabWall = false;
     public bool isJumping = false;
 
-    Text climbPrompt;
+    TextMeshProUGUI climbPrompt;
     bool isCollidePlatform;
     bool canLedgeClimb = true;
     Vector3 playerClimbPos;
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         boxCollider = transform.GetComponent<BoxCollider>();
         capsuleCollider = transform.GetComponent<CapsuleCollider>();
         PlayerRigid2d.centerOfMass = Vector3.zero;
-        climbPrompt = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("climbPrompt").GetComponent<Text>();
+        climbPrompt = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("climbPrompt").GetComponent<TextMeshProUGUI>();
 
 
         //HashID animator parameters for performances
@@ -141,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         if (isCollideWall && !isGrabWall && !isKnockDown)
         {
             climbPrompt.gameObject.SetActive(true);
-            climbPrompt.text = "Press E to Grab the Vine";
+            climbPrompt.SetText("Press E to Grab the Vine");
         }
         else
         {
@@ -163,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerRigid2d.useGravity = false;
             PlayerRigid2d.rotation = Quaternion.Euler(5, 90, 0);
             climbPrompt.gameObject.SetActive(true);
-            climbPrompt.text = "Press W or S to Move Up or Down";
+            climbPrompt.SetText("Press W or S to Move Up or Down");
             PlayerClimbWal();
         }
         else

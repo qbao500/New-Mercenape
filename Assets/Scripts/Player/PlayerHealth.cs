@@ -15,8 +15,8 @@ public class PlayerHealth : MonoBehaviour
 
     private GameObject playerUI;
     [SerializeField] private Slider hpBar;
-    // Transform hpText;
-    // TextMeshProUGUI currentHPText, maxHPText;
+    Transform hpText;
+    TextMeshProUGUI currentHPText, maxHPText;
 
     [HideInInspector] public Transform spaceTextGrid;
     [HideInInspector] public Text currentSpace;
@@ -32,10 +32,10 @@ public class PlayerHealth : MonoBehaviour
 
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI");
         hpBar = playerUI.transform.Find("hpBar").GetComponent<Slider>();
-        // hpText = playerUI.transform.Find("hpBar").Find("hpText").transform;
+        hpText = playerUI.transform.Find("hpBar").Find("hpText").transform;
        
-        // currentHPText = hpText.GetChild(0).GetComponent<TextMeshProUGUI>();
-        // maxHPText = hpText.GetChild(1).GetComponent<TextMeshProUGUI>();
+        currentHPText = hpText.GetChild(0).GetComponent<TextMeshProUGUI>();
+        maxHPText = hpText.GetChild(1).GetComponent<TextMeshProUGUI>();
 
 
         SetHP();
@@ -50,8 +50,8 @@ public class PlayerHealth : MonoBehaviour
         PlayerHP = PlayerMaxHP;
         hpBar.maxValue = PlayerMaxHP;
         hpBar.value = PlayerHP;
-        // currentHPText.SetText(PlayerHP.ToString());
-        // maxHPText.SetText(PlayerMaxHP.ToString());
+        currentHPText.SetText(PlayerHP.ToString());
+        maxHPText.SetText(PlayerMaxHP.ToString());
     }
 
     // This can be handled by the UpdateHealth().
@@ -72,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
     void SetCurrentHP(float HP)
     {
         hpBar.value = HP;
-        // currentHPText.SetText(HP.ToString());
+        currentHPText.SetText(HP.ToString());
     }
 
     void CheckPlayerDeath()

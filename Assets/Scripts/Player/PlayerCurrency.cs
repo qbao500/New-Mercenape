@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
@@ -14,7 +15,8 @@ public class PlayerCurrency : MonoBehaviour
     private int gainedGoldAmount, gainedKarmaAmount, gainedSpeedAmount;
     private int goldCount, karmaCount, speedCount;
     
-    public Text moneyText, upgradeText, karmaText;
+    
+    public TextMeshProUGUI moneyText, upgradeText, karmaText;
 
     public Slider karmaBar, moneyBar, upgradeBar;
 
@@ -35,9 +37,9 @@ public class PlayerCurrency : MonoBehaviour
 
     void LateUpdate()
     {
-        moneyText.text = moneyBar.value.ToString();
-        karmaText.text = karmaBar.value.ToString();
-        upgradeText.text = upgradeBar.value.ToString();
+        moneyText.SetText(moneyBar.value.ToString());
+        karmaText.SetText(karmaBar.value.ToString());
+        upgradeText.SetText(upgradeBar.value.ToString());
 
         if (gainedGold) { FillTheCoffers(); }
         if (gainedKarma) { FillKarma(); }
@@ -47,10 +49,10 @@ public class PlayerCurrency : MonoBehaviour
     void SetTexts()
     {
         moneyBar.value = gold;
-        moneyText.text = moneyBar.value.ToString();
+        moneyText.SetText(moneyBar.value.ToString());
 
         upgradeBar.value = speedUpgrades;
-        upgradeText.text = upgradeBar.value.ToString();
+        upgradeText.SetText(upgradeBar.value.ToString());
     }
 
     public void SetKarmaBar()
@@ -66,7 +68,7 @@ public class PlayerCurrency : MonoBehaviour
         }
 
         karmaBar.value = karma;
-        karmaText.text = karma.ToString();
+        karmaText.SetText(karma.ToString());
     }
 
     public void AddGold(int amount)
@@ -90,13 +92,13 @@ public class PlayerCurrency : MonoBehaviour
     public void LoseGold(int amount)
     {
         gold -= amount;
-        moneyText.text = gold.ToString();
+        moneyText.SetText(gold.ToString());
     }
 
     public void LoseKarma(int amount)
     {
         karma -= amount;
-        karmaText.text = karma.ToString();
+        karmaText.SetText(karma.ToString());
     }
 
     void FillTheCoffers()
