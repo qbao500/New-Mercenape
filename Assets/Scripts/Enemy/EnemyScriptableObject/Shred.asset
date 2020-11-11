@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shred
   m_EditorClassIdentifier: 
   name: Shred
-  damage: 10
+  damage: 5
   maxHP: 30
-  runningSpeed: 30
+  runningSpeed: 20
   spaceToGetUp: 5

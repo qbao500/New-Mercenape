@@ -72,10 +72,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Movement
-    protected void FixedUpdate()
-    {
-        Movement();
-    }
+    protected void FixedUpdate() => Movement();
 
     protected bool IsFacingRight()
     {
@@ -99,7 +96,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (isNewBorn) { return; }  // Don't check if new born
 
         groundInfo = Physics.Raycast(frontDetection.position, Vector3.down, 15f, LayerMask.GetMask("Ground"));
-        wallInfo = Physics.Raycast(frontDetection.position, transform.right, 4f, LayerMask.GetMask("Wall", "Border"));
+        wallInfo = Physics.Raycast(frontDetection.position, transform.right, 4.25f, LayerMask.GetMask("Wall", "Border"));
        
         if (!groundInfo || wallInfo)
         {
@@ -238,6 +235,6 @@ public class EnemyBehaviour : MonoBehaviour
         return selfCol.gameObject.transform.root.gameObject.GetInstanceID() == this.gameObject.GetInstanceID();
     }
 
-    protected virtual Vector3 PopUpPos(Transform trans) { return Vector3.zero; }
-    
+    protected virtual Vector3 PopUpPos(Transform trans) => Vector3.zero;
+
 }

@@ -2690,7 +2690,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skinnedMesh
       value: 
-      objectReference: {fileID: 1818607754}
+      objectReference: {fileID: 0}
     - target: {fileID: 7007741340744387824, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
       propertyPath: skinnedMeshII
@@ -2703,23 +2703,8 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 43aca1ad25f647549b666b7e30424096, type: 2}
     - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
-      propertyPath: PlayerSpeed
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
-        type: 3}
-      propertyPath: PlayerJumpPow
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
-        type: 3}
       propertyPath: PlayerDoubleJumpPow
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
-        type: 3}
-      propertyPath: MidAirSpeed
-      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
@@ -2731,15 +2716,10 @@ PrefabInstance:
       propertyPath: offsetY
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
-        type: 3}
-      propertyPath: PlayerClimbSpeed
-      value: 35
-      objectReference: {fileID: 0}
     - target: {fileID: 7007741340744387839, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
-      propertyPath: m_Mass
-      value: 75
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7007741340924021431, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
@@ -7296,12 +7276,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!137 &1818607754 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2099890258548948532, guid: 68b0754ba15f8744a8d1c6c6649a986d,
-    type: 3}
-  m_PrefabInstance: {fileID: 630555029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1818891436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7312,12 +7286,12 @@ PrefabInstance:
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.713044
+      value: 0.21260262
       objectReference: {fileID: 0}
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.722341
+      value: 5.635959
       objectReference: {fileID: 0}
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
@@ -7332,7 +7306,7 @@ PrefabInstance:
     - target: {fileID: 8761000508740270329, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2581072
+      value: 0.25810814
       objectReference: {fileID: 0}
     - target: {fileID: 8761000508740270329, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}

@@ -143,7 +143,7 @@ public class EnemySpawnerScript : MonoBehaviour
         {                    
             if (spawnList[i] == enemies[0]) // Shred
             {
-                SpawnEnemy(spawnList[i], transform.position + (Vector3.left * 10));
+                SpawnEnemy(spawnList[i], transform.position + (Vector3.left * 5));
                 yield return new WaitForSeconds(1f / RandomSpawnRate());
             }
             else // Mower
@@ -158,7 +158,7 @@ public class EnemySpawnerScript : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(string enemy, Vector3 pos)
+    private void SpawnEnemy(string enemy, Vector3 pos)
     {
         ObjectPooler.Instance.SpawnFromPool(enemy, pos, Quaternion.Euler(0, -180, 0));
     }
@@ -217,7 +217,7 @@ public class EnemySpawnerScript : MonoBehaviour
         }
     }
 
-    private float RandomSpawnRate() { return Random.Range(0.2f, 0.5f); }
+    private float RandomSpawnRate() => Random.Range(0.2f, 0.5f);
 
 
     public void NextWaveButton()

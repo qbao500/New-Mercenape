@@ -43,7 +43,7 @@ public class ShredBehaviour : EnemyBehaviour
         if (isNewBorn || currentHP <= 0 || isStaggering) { return; }
         
         // If player is not in front of Shred's peak, don't attack
-        if(!Physics.Raycast(frontDetection.position, transform.right, 4.75f, LayerMask.GetMask("Player"))) { return; }
+        if(!Physics.Raycast(frontDetection.position, transform.right, 4.5f, LayerMask.GetMask("Player"))) { return; }
 
         // If player face against Shred and is blocking
         if (IsFacingRight() != playerMovement.FaceRight && playerMovement.isPlayerBlock)
@@ -154,7 +154,7 @@ public class ShredBehaviour : EnemyBehaviour
     private void NormalHitBox()
     {
         boxCollier.center = new Vector3(-0.37f, boxCollier.center.y, boxCollier.center.z);
-        boxCollier.size = new Vector3(5.75f, boxCollier.size.y, boxCollier.size.z);
+        boxCollier.size = new Vector3(6f, boxCollier.size.y, boxCollier.size.z);
     }
 
     private void StaggerHitBox()

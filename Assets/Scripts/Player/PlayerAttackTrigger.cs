@@ -23,7 +23,7 @@ public class PlayerAttackTrigger : MonoBehaviour
     [SerializeField] private Transform edgePos;
 
     public Transform frontPlayerPosition;
-    private int weaponID;
+    [SerializeField] private int weaponID;
     [SerializeField] private float weaponSpeed, weaponBleedDamage, weaponBleedDuration;
     [SerializeField] private int bleedTicks;
 

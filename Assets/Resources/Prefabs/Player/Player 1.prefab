@@ -3515,6 +3515,7 @@ MonoBehaviour:
   PlayerDamage: 5
   edgePos: {fileID: 1234815713281456676}
   frontPlayerPosition: {fileID: 7007741340632427131}
+  weaponID: 0
   weaponSpeed: 0
   weaponBleedDamage: 0
   weaponBleedDuration: 0
@@ -3533,9 +3534,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d7318d2b344b64a8acafbf4c1a159c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 30
-  PlayerJumpPow: 40
-  MidAirSpeed: 20
+  PlayerSpeed: 40
+  PlayerJumpPow: 45
+  MidAirSpeed: 35
   groundlayermask:
     serializedVersion: 2
     m_Bits: 1280
@@ -3556,7 +3557,7 @@ MonoBehaviour:
   PlayerUnderPos: {fileID: 7007741340943696650}
   PlayerAbovePos: {fileID: 7007741339604969432}
   CheckRadius: 0.3
-  PlayerClimbSpeed: 15
+  PlayerClimbSpeed: 25
   isPlayerBlock: 0
   isKnockDown: 0
   getUpCount: 0
