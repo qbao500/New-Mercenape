@@ -155,7 +155,7 @@ public class PlayerAttackTrigger : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(Attackpos.position, Attackpos.localScale);
+        // Gizmos.DrawWireCube(Attackpos.position, Attackpos.localScale);
         Gizmos.DrawWireCube(Attackpos.position, Attackpos.localScale * 2); // This shows correct OverlapBox
         //Gizmos.DrawSphere(edgePos.position, 0.5f);
     }
