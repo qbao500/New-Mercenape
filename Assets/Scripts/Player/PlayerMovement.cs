@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         if (isCollideWall && !isGrabWall && !isKnockDown)
         {
             climbPrompt.gameObject.SetActive(true);
-            climbPrompt.SetText("Press E to Grab the Vine");
+            climbPrompt.SetText("Press W to Grab the Vine");
         }
         else
         {
@@ -323,7 +323,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrabWall == false)
             {
-                if (Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
                 {
                     isGrabWall = true;
                     isJumping = false;
@@ -331,7 +331,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if(Input.GetKey(KeyCode.E)&& Input.GetKey(KeyCode.S))
+                if(Input.GetKey(KeyCode.W)&& Input.GetKey(KeyCode.S))
                 {
                     isGrabWall = false;
                     isJumping = true;
