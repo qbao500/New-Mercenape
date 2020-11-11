@@ -31,7 +31,7 @@ public class EnemySpawnerScript : MonoBehaviour
     public string[] enemies = new string[2];
     private List<string> spawnList = new List<string>();
 
-    public SpawnState state = SpawnState.Counting;
+    public SpawnState state;
 
     [SerializeField] private GameObject completeWaveScreen;
 
@@ -40,6 +40,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private void Start()
     {
+        state = SpawnState.Counting;
+
         playerCurrency = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerCurrency>();
         gameMaster = GameObject.FindGameObjectWithTag("gamemaster").GetComponent<GameMaster>();
 
@@ -92,8 +94,6 @@ public class EnemySpawnerScript : MonoBehaviour
         CheckWaveEnd();
         
         IncreaseDifficulty();
-
-        Debug.Log("Going to group: " + currentGroup);
     }
 
     // When player get enough karma
@@ -129,7 +129,6 @@ public class EnemySpawnerScript : MonoBehaviour
     // Spawn enemies one by one with rate
     IEnumerator SpawnWave()
     {
-        Debug.Log("Spawning group: " + currentGroup);
         state = SpawnState.Spawning;
 
         // Spawn

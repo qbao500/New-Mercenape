@@ -28,17 +28,21 @@ public class ObjectPooler : MonoBehaviour
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
+    private Dictionary<string, GameObject> prefabDictionary;
+
     void Start()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        prefabDictionary = new Dictionary<string, GameObject>();
 
         foreach (Pool pool in pools)
         {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
+            Queue<GameObject> objectQueue = new Queue<GameObject>();
 
             for (int i = 0; i < pool.amount; i++)
             {
                 GameObject obj;
+
                 if (pool.prefab == null)
                 {
                     obj = new GameObject(pool.tag);
@@ -49,11 +53,12 @@ public class ObjectPooler : MonoBehaviour
                 }
                 
                 obj.SetActive(false);
-                objectPool.Enqueue(obj);
-                MakeParent(pool, obj);
+                objectQueue.Enqueue(obj);
+                MakeParent(pool, obj);  // For cleaner hierarchy
             }
 
-            poolDictionary.Add(pool.tag, objectPool);
+            poolDictionary.Add(pool.tag, objectQueue);
+            prefabDictionary.Add(pool.tag, pool.prefab);
         }
     }
 
@@ -65,12 +70,21 @@ public class ObjectPooler : MonoBehaviour
             return null;
         }
 
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        GameObject objectToSpawn;
 
-        objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
-        objectToSpawn.transform.rotation = rotation;
+        if (poolDictionary[tag].Count == 0 || poolDictionary[tag].Peek().activeSelf)
+        {
+            objectToSpawn = Instantiate(prefabDictionary[tag], position, rotation);
+        }
+        else
+        {
+            objectToSpawn = poolDictionary[tag].Dequeue();
 
+            objectToSpawn.SetActive(true);
+            objectToSpawn.transform.position = position;
+            objectToSpawn.transform.rotation = rotation;
+        }
+       
         poolDictionary[tag].Enqueue(objectToSpawn);
         
         return objectToSpawn;
@@ -98,15 +112,4 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public void TurnSoundOff(GameObject go, AudioSource audio)
-    {
-        StartCoroutine(SoundOff(go, audio));
-    }
-
-    private IEnumerator SoundOff(GameObject go, AudioSource audio)
-    {
-        yield return new WaitForSeconds(audio.clip.length);
-
-        go.SetActive(false);
-    }
 }
