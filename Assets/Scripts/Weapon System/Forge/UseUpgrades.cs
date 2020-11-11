@@ -24,17 +24,12 @@ public class UseUpgrades : MonoBehaviour
     private Image weaponImage, upgradeImage;
     private Image upgradeImagesHolder;
    
-    private GameObject upgradeComponentScreen;
+    private GameObject upgradeScreen, upgradeComponentScreen;
 
     void Awake()
     {
         GetRequiredObjects();
         SetScreensInactive();
-    }
-
-    void Start()
-    {
-        SetUpUpgradeScreen();
     }
 
     void Update()
@@ -50,7 +45,7 @@ public class UseUpgrades : MonoBehaviour
         weaponStates = GetComponent<WeaponStates>();
         money = GetComponent<Money>();
         calculator = GetComponent<StatsCalculator>();
-        playerCurrency = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCurrency>();
+        playerCurrency = GetComponent<PlayerCurrency>();
 
         weaponName = GameObject.FindGameObjectWithTag("UpgradeScreenWeaponName").GetComponent<Text>();
         weaponDescription = GameObject.FindGameObjectWithTag("UpgradeScreenWeaponDescription").GetComponent<Text>();
@@ -62,6 +57,7 @@ public class UseUpgrades : MonoBehaviour
         upgradeImagesHolder = GameObject.FindGameObjectWithTag("UpgradeImageHolder").GetComponent<Image>();
         amountTexts = GameObject.FindGameObjectWithTag("AmountText").GetComponentInChildren<Text>();
 
+        upgradeScreen = GameObject.FindGameObjectWithTag("Forge");
         upgradeComponentScreen = GameObject.FindGameObjectWithTag("UpgradeImage");
         upgradeName = GameObject.FindGameObjectWithTag("UpgradeName").GetComponent<Text>();
         upgradeDescription = GameObject.FindGameObjectWithTag("UpgradeDescription").GetComponent<Text>();
@@ -72,6 +68,11 @@ public class UseUpgrades : MonoBehaviour
     void SetScreensInactive()
     {
         upgradeComponentScreen.SetActive(false);
+    }
+
+    public void OpenUpgradeScreen()
+    {
+        upgradeScreen.SetActive(true);
     }
     
     // This function sets up the upgrade screen based on what weapon player has chosen from his owned weapons inventory. 

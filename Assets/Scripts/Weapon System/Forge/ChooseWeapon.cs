@@ -16,7 +16,7 @@ public class ChooseWeapon : MonoBehaviour
 
     private string buttonName;
 
-    private List<Image> ownedWeapons = new List<Image>();
+    [SerializeField] private List<Image> ownedWeapons;
 
     void Awake()
     {
@@ -27,10 +27,9 @@ public class ChooseWeapon : MonoBehaviour
     void Start()
     {
         GetChodenHolders();
-        SetOwnedWeaponImages();
     }
 
-    void GetChodenHolders()
+    public void GetChodenHolders()
     {
         GameObject[] holderObjects = GameObject.FindGameObjectsWithTag("ChosenWeaponHolder");
         Image[] holderImage = new Image[holderObjects.Length];
@@ -40,7 +39,7 @@ public class ChooseWeapon : MonoBehaviour
         ownedWeapons.InsertRange(0, holderImage);
     }
 
-    void SetOwnedWeaponImages()
+    public void SetOwnedWeaponImages()
     {
         List<bool> ownedBools = weaponStates.GetOwnedWeapons();
 
