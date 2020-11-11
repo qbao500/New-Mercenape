@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 // Created by Bao: Only script for spawning enemies
 public class EnemySpawnerScript : MonoBehaviour
@@ -22,6 +23,9 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private int currentGroup = 0;
     private int currentWave = 1;
+
+    [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI groupText;
 
     public float timeBetweenGroups = 3f;
 
@@ -107,6 +111,9 @@ public class EnemySpawnerScript : MonoBehaviour
             currentWave++;
             currentGroup = 0;   // Reset group
             groupCountdown = timeBetweenGroups * 2; // Wait a bit longer than normal
+
+            groupText.SetText("Group " + currentGroup);
+            waveText.SetText("Wave " + currentWave);
         }
     }    
 
@@ -160,6 +167,8 @@ public class EnemySpawnerScript : MonoBehaviour
     void IncreaseDifficulty()
     {
         currentGroup++;
+        groupText.SetText("Group " + currentGroup);
+        waveText.SetText("Wave " + currentWave);
 
         if (currentGroup == 1) { group.shredCount = 2; group.mowerCount = 0; }
 

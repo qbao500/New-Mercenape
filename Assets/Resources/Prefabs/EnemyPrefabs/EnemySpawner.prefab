@@ -50,6 +50,8 @@ MonoBehaviour:
     mowerCount: 0
     enemyIncreasedHP: 0
     enemyIncreasedDamage: 0
+  waveText: {fileID: 9032253689322311937}
+  groupText: {fileID: 8194676806224783874}
   timeBetweenGroups: 3
   enemies:
   - Shred
