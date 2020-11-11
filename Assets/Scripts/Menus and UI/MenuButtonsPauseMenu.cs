@@ -4,31 +4,43 @@ using UnityEngine;
 
 public class MenuButtonsPauseMenu : MonoBehaviour
 {
-    public GameObject panel;
+    public GameObject[] panels;
 
     void Start()
     {
-        panel.SetActive(false);
+        panels[0].SetActive(false);
+        panels[1].SetActive(false);
     }
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && panel.activeSelf)
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            CloseSettings();
+            OpenPauseMenu();
         }
+
+        //if (Input.GetKeyDown(KeyCode.Escape) && panels[0].activeSelf)
+        //{
+        //    CloseSettings();
+        //}
+    }
+
+    public void OpenPauseMenu()
+    {
+        panels[0].SetActive(true);
     }
 
     public void ToSettingsPanel()
     {
-        Time.timeScale = 0;
-        panel.SetActive(true);
+        panels[0].SetActive(false);
+        panels[1].SetActive(true);
     }
 
     void CloseSettings()
     {
         Time.timeScale = 0.95f;
-        panel.SetActive(false);
+        panels[1].SetActive(false);
+        panels[0].SetActive(false);
     }
 
     public void QuitGame()

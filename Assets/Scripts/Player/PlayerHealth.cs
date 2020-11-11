@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     private GameObject playerUI;
     [SerializeField] private Slider hpBar;
     Transform hpText;
-    TextMeshProUGUI currentHPText, maxHPText;
+    [SerializeField] TextMeshProUGUI currentHPText, maxHPText;
 
     [HideInInspector] public Transform spaceTextGrid;
     [HideInInspector] public Text currentSpace;

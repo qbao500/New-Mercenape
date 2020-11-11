@@ -15,7 +15,7 @@ public class Money : MonoBehaviour
 
     void Awake()
     {
-        playerCurrency = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCurrency>();
+        playerCurrency = GetComponent<PlayerCurrency>();
         
         currencyHolderShop = GameObject.FindGameObjectWithTag("Money").GetComponentInChildren<Text>();
         currencyHolderForge = GameObject.FindGameObjectWithTag("MoneyUpgrade").GetComponentInChildren<Text>();
@@ -32,14 +32,7 @@ public class Money : MonoBehaviour
     // Function to set the starting money.
     void SetStartingCurrency()
     {
-        if(playerCurrency.gold > 0)
-        {
-            currency = playerCurrency.gold;
-        }
-        else
-        {
-            currency = 500;
-        } 
+        currency = playerCurrency.gold;
         
         if(currencyHolderShop != null) { currencyHolderShop.text = "Money: " + currency; }
         if(currencyHolderForge != null) { currencyHolderForge.text = "Money: " + currency; }
