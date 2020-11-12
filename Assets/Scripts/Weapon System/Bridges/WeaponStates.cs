@@ -72,10 +72,7 @@ public class WeaponStates: MonoBehaviour
     {
         weaponModels = assetManager.GetWeaponModels();
 
-        for (int i = 0; i < weaponModels.Count; i++)
-        {
-             weaponModels[i].SetActive(false);
-        }
+        for (int i = 0; i < weaponModels.Count; i++) { weaponModels[i].SetActive(false); }
 
         weaponModels[weaponID].SetActive(true);
     }
