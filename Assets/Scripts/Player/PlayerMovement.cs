@@ -112,7 +112,8 @@ public class PlayerMovement : MonoBehaviour
         CheckOnTop();
         CheckGrabWall();
         CheckCollidePlatform();
-        TimePressButton();
+        
+
         if (isGrounded)
         {
 
@@ -195,7 +196,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!isPlayerBlock && !isKnockDown)// when player is not blocking they can move
-        {          
+        {
+            TimePressButton();
             PlayerMove();
         }     
     }
@@ -212,12 +214,13 @@ public class PlayerMovement : MonoBehaviour
         {
             delta = 0;
         }
-        if (delta > 0.2f)
+        if (delta >= 0.1f)
         {
             PlayerSpeed = fastSpeed;
-        }else if(delta>0.1f && delta<0.2f)
+        }
+        else if (delta > 0.05f && delta < 0.1f)
         {
-            PlayerSpeed = slowSpeed +10;
+            PlayerSpeed = slowSpeed + 10;
 
         }
         else
@@ -388,7 +391,7 @@ public class PlayerMovement : MonoBehaviour
     //player climb on wall
     void PlayerClimbWal()
     {
-        float xSpeed = 2f;
+        float xSpeed = 2.5f;
         float offsetX = 3f;
         float offsetY = 5f;
         if (inputV == 0)
