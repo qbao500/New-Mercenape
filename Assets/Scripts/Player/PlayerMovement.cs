@@ -323,7 +323,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrabWall == false)
             {
-                if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.W) && !Input.GetKey(KeyCode.S))
                 {
                     isGrabWall = true;
                     isJumping = false;
@@ -350,7 +350,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float xSpeed = 2f;
         float offsetX = 3f;
-        float offsetY = 6f;
+        float offsetY = 5f;
         if (inputV == 0)
         {
             PlayerRigid2d.velocity = Vector3.zero;
@@ -407,6 +407,7 @@ public class PlayerMovement : MonoBehaviour
 
                         if (Input.GetKey(KeyCode.W) || inputV > 0)
                         {
+                            PlayerRigid2d.velocity = Vector3.zero;
                             transform.position = destination;
 
                         }
