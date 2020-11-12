@@ -47,14 +47,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping = false;
 
     TextMeshProUGUI climbPrompt;
-    bool isCollidePlatform;
-    bool canLedgeClimb = true;
+    public bool isCollidePlatform;
+    public bool canLedgeClimb = true;
     Vector3 playerClimbPos;
     Vector3 destination;
-    float ledgePosX = 3.7f;
-    float ledgePosY = 4.4f;
+    float ledgePosX;
+    float ledgePosY;
 
-  
+
 
     //Start Hash ID 
     [HideInInspector]
@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-    
+
 
 
         if (isCollideWall && !isGrabWall && !isKnockDown)
@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canLedgeClimb = false;
         }
-        if(canLedgeClimb==true)
+        if (canLedgeClimb == true)
         {
             playerClimbPos = transform.position;
         }
@@ -171,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerRigid2d.useGravity = true;
             PlayerRigid2d.rotation = Quaternion.Euler(0, 90, 0);
-            
+
         }
 
         if (isGrabWall && Input.GetKeyDown(KeyCode.Space))
@@ -184,26 +184,26 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-       
-       
-        
+
+
+
     }
 
     void FixedUpdate()
     {
         if (!isPlayerBlock && !isKnockDown)// when player is not blocking they can move
-        {          
+        {
             PlayerMove();
-        }     
+        }
     }
 
     void CheckGrounded()
     {
-        Vector3 boxColliderCheckPoint = new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y+boxCollider.bounds.size.y, boxCollider.bounds.center.z);
+        Vector3 boxColliderCheckPoint = new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y + boxCollider.bounds.size.y, boxCollider.bounds.center.z);
         float distance = 1f;
         Debug.DrawRay(boxCollider.bounds.center, Vector3.down * distance, Color.red);
 
-        if (Physics.BoxCast(boxColliderCheckPoint, boxCollider.bounds.size/2,Vector3.down, transform.rotation, distance, groundlayermask))
+        if (Physics.BoxCast(boxColliderCheckPoint, boxCollider.bounds.size / 2, Vector3.down, transform.rotation, distance, groundlayermask))
         {
             isGrounded = true;
         }
@@ -211,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
-       
+
     }
 
     void CheckPlayerBlock()
@@ -250,10 +250,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     bool CheckColliderAbove()
-    {
+    { 
         float distance = 2f;
-        Debug.DrawRay(PlayerAbovePos.position, Vector3.up * distance, Color.yellow);
-        return (Physics.Raycast(PlayerAbovePos.position, Vector3.up, distance, walllayermask) || Physics.Raycast(PlayerAbovePos.position, Vector3.up, distance, groundlayermask));
+        Vector3 checkPnts = new Vector3(capsuleCollider.bounds.center.x, capsuleCollider.bounds.max.y, capsuleCollider.bounds.center.z);
+        //Debug.DrawRay(checkPnts, Vector3.up * distance, Color.yellow);
+        return (Physics.Raycast(checkPnts, Vector3.up, distance, walllayermask) || Physics.Raycast(checkPnts, Vector3.up, distance, groundlayermask));
 
     }
    
@@ -267,33 +268,35 @@ public class PlayerMovement : MonoBehaviour
     // check collide with wall  
     void CheckCollideWall()
     {
-        float distance= 1.8f;
+            
+        float distance = 2f;
         if (FaceRight)
         {
            isCollideWall=Physics.Raycast(capsuleCollider.bounds.center, Vector3.right, distance, walllayermask);
-            Debug.DrawRay(capsuleCollider.bounds.center, Vector3.right * distance, Color.yellow);
+            //Debug.DrawRay(capsuleCollider.bounds.center, Vector3.right * distance, Color.yellow);
         }
         else
         {
             isCollideWall=Physics.Raycast(capsuleCollider.bounds.center, Vector3.left, distance, walllayermask);
-            Debug.DrawRay(capsuleCollider.bounds.center, Vector3.left * distance, Color.yellow);
+           //Debug.DrawRay(capsuleCollider.bounds.center, Vector3.left * distance, Color.yellow);
 
         }
     }
 
     bool CheckOnTop()
     {
+       
         float distance = 2f;
         if (FaceRight)
         {
-            Debug.DrawRay(PlayerAbovePos.position, Vector3.right * distance, Color.yellow);
+            //Debug.DrawRay(PlayerAbovePos.position, Vector3.right * distance, Color.yellow);
             return (!Physics.Raycast(PlayerAbovePos.position , Vector3.right, distance, walllayermask)&& Physics.Raycast(capsuleCollider.bounds.center, Vector3.right, distance, walllayermask));
 
 
         }
         else
         {
-            Debug.DrawRay(PlayerAbovePos.position, Vector3.left * distance, Color.yellow);
+            //Debug.DrawRay(PlayerAbovePos.position, Vector3.left * distance, Color.yellow);
             return (!Physics.Raycast(PlayerAbovePos.position, Vector3.left, distance, walllayermask) && Physics.Raycast(capsuleCollider.bounds.center, Vector3.left, distance, walllayermask));
 
         }
@@ -302,15 +305,17 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckCollidePlatform()
     {
-        float distance = 2f;
+        Vector3 checkPntsAbove = new Vector3(capsuleCollider.bounds.center.x, capsuleCollider.bounds.max.y, capsuleCollider.bounds.center.z);
+        Vector3 checkPntsBellow = new Vector3(capsuleCollider.bounds.center.x, capsuleCollider.bounds.min.y, capsuleCollider.bounds.center.z);
+        float distance = 3f;
         if (FaceRight)
         {
-            isCollidePlatform = Physics.Raycast(PlayerAbovePos.position, Vector3.right, distance, groundlayermask);
+            isCollidePlatform = Physics.CapsuleCast(checkPntsBellow,checkPntsAbove,capsuleCollider.radius, Vector3.right, distance, groundlayermask);
            
         }
         else
         {
-            isCollidePlatform = Physics.Raycast(PlayerAbovePos.position, Vector3.left, distance, groundlayermask);
+            isCollidePlatform = Physics.CapsuleCast(checkPntsBellow, checkPntsAbove, capsuleCollider.radius, Vector3.left, distance, groundlayermask);
           
 
         }
@@ -323,20 +328,13 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrabWall == false)
             {
-                if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)|| Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.S))
                 {
                     isGrabWall = true;
                     isJumping = false;
                 }
             }
-            else
-            {
-                if(Input.GetKey(KeyCode.W)&& Input.GetKey(KeyCode.S))
-                {
-                    isGrabWall = false;
-                    isJumping = true;
-                }
-            }
+           
         }
         if (!isCollideWall)
         {
@@ -419,6 +417,7 @@ public class PlayerMovement : MonoBehaviour
                     }
 
                 }
+                print(PlayerRigid2d.velocity);
             }
 
             else
