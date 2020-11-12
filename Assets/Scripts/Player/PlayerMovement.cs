@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 boxColliderCheckPoint = new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y+boxCollider.bounds.size.y, boxCollider.bounds.center.z);
         float distance = 1f;
-        Debug.DrawRay(boxCollider.bounds.center, Vector3.down * distance, Color.red);
+        //Debug.DrawRay(boxCollider.bounds.center, Vector3.down * distance, Color.red);
 
         if (Physics.BoxCast(boxColliderCheckPoint, boxCollider.bounds.size/2,Vector3.down, transform.rotation, distance, groundlayermask))
         {
@@ -252,7 +252,7 @@ public class PlayerMovement : MonoBehaviour
     bool CheckColliderAbove()
     {
         float distance = 2f;
-        Debug.DrawRay(PlayerAbovePos.position, Vector3.up * distance, Color.yellow);
+        //Debug.DrawRay(PlayerAbovePos.position, Vector3.up * distance, Color.yellow);
         return (Physics.Raycast(PlayerAbovePos.position, Vector3.up, distance, walllayermask) || Physics.Raycast(PlayerAbovePos.position, Vector3.up, distance, groundlayermask));
 
     }
@@ -271,12 +271,12 @@ public class PlayerMovement : MonoBehaviour
         if (FaceRight)
         {
            isCollideWall=Physics.Raycast(capsuleCollider.bounds.center, Vector3.right, distance, walllayermask);
-            Debug.DrawRay(capsuleCollider.bounds.center, Vector3.right * distance, Color.yellow);
+            //Debug.DrawRay(capsuleCollider.bounds.center, Vector3.right * distance, Color.yellow);
         }
         else
         {
             isCollideWall=Physics.Raycast(capsuleCollider.bounds.center, Vector3.left, distance, walllayermask);
-            Debug.DrawRay(capsuleCollider.bounds.center, Vector3.left * distance, Color.yellow);
+            //Debug.DrawRay(capsuleCollider.bounds.center, Vector3.left * distance, Color.yellow);
 
         }
     }
@@ -286,14 +286,14 @@ public class PlayerMovement : MonoBehaviour
         float distance = 2f;
         if (FaceRight)
         {
-            Debug.DrawRay(PlayerAbovePos.position, Vector3.right * distance, Color.yellow);
+            //Debug.DrawRay(PlayerAbovePos.position, Vector3.right * distance, Color.yellow);
             return (!Physics.Raycast(PlayerAbovePos.position , Vector3.right, distance, walllayermask)&& Physics.Raycast(capsuleCollider.bounds.center, Vector3.right, distance, walllayermask));
 
 
         }
         else
         {
-            Debug.DrawRay(PlayerAbovePos.position, Vector3.left * distance, Color.yellow);
+            //Debug.DrawRay(PlayerAbovePos.position, Vector3.left * distance, Color.yellow);
             return (!Physics.Raycast(PlayerAbovePos.position, Vector3.left, distance, walllayermask) && Physics.Raycast(capsuleCollider.bounds.center, Vector3.left, distance, walllayermask));
 
         }
@@ -302,17 +302,17 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckCollidePlatform()
     {
-        float distance = 2f;
+        float distance = 3f;
+        Vector3 ptn1 = new Vector3(capsuleCollider.bounds.center.x, capsuleCollider.bounds.max.y, capsuleCollider.bounds.center.z);
+        Vector3 ptn2 = new Vector3(capsuleCollider.bounds.center.x, capsuleCollider.bounds.min.y, capsuleCollider.bounds.center.z);
         if (FaceRight)
         {
-            isCollidePlatform = Physics.Raycast(PlayerAbovePos.position, Vector3.right, distance, groundlayermask);
+            isCollidePlatform = Physics.CapsuleCast(ptn1, ptn2, capsuleCollider.radius, Vector3.right, distance, groundlayermask);
            
         }
         else
         {
-            isCollidePlatform = Physics.Raycast(PlayerAbovePos.position, Vector3.left, distance, groundlayermask);
-          
-
+            isCollidePlatform = Physics.CapsuleCast(ptn1, ptn2, capsuleCollider.radius,Vector3.left, distance, groundlayermask);
         }
     }
 
