@@ -53,6 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
         // Subscribe to the OnHitEnemy event in PlayerAttack
         playerMovement.playerAttack.OnHitEnemy += EnemyGetHit;
         playerMovement.playerAttack.OnBleedEnemy += ApplyBleeding;
+        playerMovement.playerAttack.StaggerEnemy += WeaponStagger;
         playerMovement.OnBounceUp += PlayerUp;
     }
 
@@ -169,6 +170,11 @@ public class EnemyBehaviour : MonoBehaviour
             yield return new WaitForSeconds(weaponBleedDuration);
             currentBleedTicks++;
         }
+    }
+
+    // Mainly for the Shred, so gonna leave this as an empty virtual. 
+    public virtual void WeaponStagger(float duration, Collider selfCol)
+    {
     }
     #endregion
 

@@ -14,6 +14,8 @@ public class ShredBehaviour : EnemyBehaviour
 
     private bool isStaggering, isAttacking;
 
+    private float staggerTime;
+
     protected override void Awake()
     {
         base.Awake();
@@ -127,7 +129,7 @@ public class ShredBehaviour : EnemyBehaviour
         rb.isKinematic = true;
         speed = 0;
 
-        yield return new WaitForSeconds(shredStat.staggerDuration);
+        yield return new WaitForSeconds(staggerTime = shredStat.staggerDuration + staggerTime);
 
         isStaggering = false;
         animatorShred.SetBool("Staggering", isStaggering);
@@ -137,6 +139,16 @@ public class ShredBehaviour : EnemyBehaviour
         NormalHitBox();
         rb.isKinematic = false;
         speed = stat.runningSpeed;
+    }
+
+    public override void WeaponStagger(float duration, Collider selfCol)
+    {
+        if (!IsSelf(selfCol)) { return; }
+
+        staggerTime = duration;
+
+        StopCoroutine("StaggerShred");
+        StartCoroutine("StaggerShred");
     }
 
     public override void TakeDamage(float playerDamage)
