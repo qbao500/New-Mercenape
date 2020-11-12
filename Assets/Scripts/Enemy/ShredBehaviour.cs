@@ -14,7 +14,7 @@ public class ShredBehaviour : EnemyBehaviour
 
     private bool isStaggering, isAttacking;
 
-    private float staggerTime;
+    [SerializeField] private float staggerTime;
 
     protected override void Awake()
     {
@@ -139,6 +139,7 @@ public class ShredBehaviour : EnemyBehaviour
         NormalHitBox();
         rb.isKinematic = false;
         speed = stat.runningSpeed;
+        staggerTime = 0;
     }
 
     public override void WeaponStagger(float duration, Collider selfCol)
