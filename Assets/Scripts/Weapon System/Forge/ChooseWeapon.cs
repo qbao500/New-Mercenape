@@ -7,40 +7,34 @@ using UnityEngine.EventSystems;
 // Created by Arttu Paldán 16.9.2020: This class allows the player to choose his weapon from among the ones he has unlocked. 
 public class ChooseWeapon : MonoBehaviour
 {
+    private AssetManager assetManager;
     private WeaponStates weaponStates;
     private UseUpgrades useUpgrades;
    
     private List<AbstractWeapon> weapons;
 
-    private int chosenWeaponID, buttonID;
+    private int chosenWeaponID;
 
     private string buttonName;
 
-    [SerializeField] private List<Image> ownedWeapons;
+    [SerializeField] private List<GameObject> ownedWeapons;
 
     void Awake()
     {
+        assetManager = GetComponent<AssetManager>();
         weaponStates = GetComponent<WeaponStates>();
         useUpgrades = GetComponent<UseUpgrades>();
     }
 
     void Start()
     {
-        GetChodenHolders();
-        SetOwnedWeaponImages();
+        GetChosenHolders();
+        SetOwnedWeaponModels();
     }
 
-    public void GetChodenHolders()
-    {
-        GameObject[] holderObjects = GameObject.FindGameObjectsWithTag("ChosenWeaponHolder");
-        Image[] holderImage = new Image[holderObjects.Length];
-        
-        for (int i = 0; i < holderImage.Length; i++) { holderImage[i] = holderObjects[i].GetComponent<Image>(); }
+    public void GetChosenHolders() { ownedWeapons.InsertRange(0, assetManager.GetWeaponModels()); }
 
-        ownedWeapons.InsertRange(0, holderImage);
-    }
-
-    public void SetOwnedWeaponImages()
+    public void SetOwnedWeaponModels()
     {
         List<bool> ownedBools = weaponStates.GetOwnedWeapons();
 
@@ -51,16 +45,18 @@ public class ChooseWeapon : MonoBehaviour
             switch (ownedBools[i])
             {
                 case true:
-                    ownedWeapons[i].sprite = weapons[i].GetWeaponImage();
+                    ownedWeapons[i].AddComponent<MeshFilter>().mesh = weapons[i].GetWeaponModel().GetComponent<Mesh>();
+                    ownedWeapons[1].AddComponent<MeshRenderer>().material = null;
                     break;
 
                 case false:
-                    ownedWeapons[i].sprite = null;
+                    ownedWeapons[i].AddComponent<MeshFilter>().mesh = null;
+                    ownedWeapons[1].AddComponent<MeshRenderer>().material = null;
                     break;
             }
         }
 
-        ownedWeapons[chosenWeaponID].sprite = weapons[chosenWeaponID].GetChosenWeaponImage();
+        //ownedWeapons[chosenWeaponID].sprite = weapons[chosenWeaponID].GetChosenWeaponImage();
     }
 
 
@@ -73,27 +69,27 @@ public class ChooseWeapon : MonoBehaviour
 
         if (buttonName == "ChooseButton1" && ownedWeaponsList[0])
         {
-            buttonID = 0;
+            // buttonID = 0;
             chosenWeaponID = weapons[0].GetID();
-            SwitchImages();
+            SwitchModels();
         }
         else if (buttonName == "ChooseButton2" && ownedWeaponsList[1])
         {
-            buttonID = 1;
+            // buttonID = 1;
             chosenWeaponID = weapons[1].GetID();
-            SwitchImages();
+            SwitchModels();
         }
         else if (buttonName == "ChooseButton3" && ownedWeaponsList[2])
         {
-            buttonID = 2;
+            // buttonID = 2;
             chosenWeaponID = weapons[2].GetID();
-            SwitchImages();
+            SwitchModels();
         }
         else if (buttonName == "ChooseButton4" && ownedWeaponsList[3])
         {
-            buttonID = 3;
+            // buttonID = 3;
             chosenWeaponID = weapons[3].GetID();
-            SwitchImages();
+            SwitchModels();
         }
 
         weaponStates.SetChosenWeaponID(chosenWeaponID);
@@ -103,7 +99,7 @@ public class ChooseWeapon : MonoBehaviour
     }
 
     // Function that simply changes the image of an weapon to indicate, that this one is one the player is equipping. 
-    void SwitchImages()
+    void SwitchModels()
     {
         List<bool> ownedWeaponsList = weaponStates.GetOwnedWeapons();
 
@@ -112,19 +108,21 @@ public class ChooseWeapon : MonoBehaviour
               switch (ownedWeaponsList[i])
               {
                 case true:
-                    ownedWeapons[i].sprite = weapons[i].GetWeaponImage();
+                    ownedWeapons[i].AddComponent<MeshFilter>().mesh = weapons[i].GetWeaponModel().GetComponent<Mesh>();
+                    ownedWeapons[1].AddComponent<MeshRenderer>().material = null;
                     break;
 
                 case false:
-                    ownedWeapons[i].sprite = null;
+                    ownedWeapons[i].AddComponent<MeshFilter>().mesh = null;
+                    ownedWeapons[1].AddComponent<MeshRenderer>().material = null;
                     break;
               }
         }
 
-        ownedWeapons[buttonID].sprite = weapons[chosenWeaponID].GetChosenWeaponImage();
+        // ownedWeapons[buttonID] = weapons[chosenWeaponID].GetChosenWeaponImage();
     }
 
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
 
-    public List<Image> GetOwnedWeaponsList() { return ownedWeapons; }
+    public List<GameObject> GetOwnedWeaponsList() { return ownedWeapons; }
 }
