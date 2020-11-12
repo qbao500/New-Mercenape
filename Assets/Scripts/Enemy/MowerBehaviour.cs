@@ -24,8 +24,6 @@ public class MowerBehaviour : EnemyBehaviour
     private bool isBackSideHit, isGeneratorHit;
 
     [SerializeField] private Transform backside;
-    private float ridePos;
-    [SerializeField] private Transform rideHeight;
 
     private CapsuleCollider capsuleCollider;
     private SphereCollider generatorCollider;
@@ -263,7 +261,7 @@ public class MowerBehaviour : EnemyBehaviour
         capsuleCollider.isTrigger = true;
         speed = stat.runningSpeed / 1.8f;
 
-        dmgCoroutine = StartCoroutine(ApplyDamage(5, stat.damage));
+        dmgCoroutine = StartCoroutine(ApplyDamage(6, stat.damage));
 
         yield return new WaitForSeconds(6f);
 
@@ -278,7 +276,7 @@ public class MowerBehaviour : EnemyBehaviour
         while (currentCount < damageCount)
         {
             playerHealth.PlayerTakeDamage(damageAmount);
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(1f);
             currentCount++;
         }
     }
