@@ -5,7 +5,9 @@ using UnityEngine;
 // Created by Arttu Paldán 17.9.2020: A script that handles the ownership issues of this system and sets up the weapon for level scene. 
 public class WeaponStates: MonoBehaviour
 {
+    private AssetManager assetManager;
     private StatsCalculator calculator;
+    private PlayerAttackTrigger playerAttack;
 
     private List<AbstractWeapon> weapons;
     [SerializeField] private List<bool> ownedWeaponsList , upgradedWeaponsList;
@@ -16,9 +18,13 @@ public class WeaponStates: MonoBehaviour
     [SerializeField] private float weaponSpeed, weaponImpactDamage, bleedDamage, bleedDuration;
     private int bleedTicks;
 
+    [SerializeField] private List<GameObject> weaponModels;
+
     void Awake()
     {
+        assetManager = GetComponent<AssetManager>();
         calculator = GetComponent<StatsCalculator>();
+        playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttackTrigger>();
         SetUpBoolLists();
         LoadWeaponData();
     }
@@ -46,13 +52,9 @@ public class WeaponStates: MonoBehaviour
     public void UpdateStats(float speed, float damage) { weaponSpeed = speed; weaponImpactDamage = damage; }
 
     // This function sets up the weapon to be used in level scenes. 
-    private void SetUpWeapon()
+    public void SetUpWeapon()
     {
         AbstractWeapon weaponsArray = weapons[weaponID];
-
-        GameObject weaponModel = weaponsArray.GetWeaponModel();
-
-        weaponModel.SetActive(true);
 
         calculator.SetRequestFromActualWeapon(true);
         calculator.CalculateStats();
@@ -60,6 +62,22 @@ public class WeaponStates: MonoBehaviour
         bleedDamage = weaponsArray.GetBleedDamage();
         bleedDuration = weaponsArray.GetBleedDuration();
         bleedTicks = weaponsArray.GetBleedTicks();
+
+        playerAttack.SetWeaponStats();
+
+        SwitchModels();
+    }
+
+    void SwitchModels()
+    {
+        weaponModels = assetManager.GetWeaponModels();
+
+        for (int i = 0; i < weaponModels.Count; i++)
+        {
+             weaponModels[i].SetActive(false);
+        }
+
+        weaponModels[weaponID].SetActive(true);
     }
 
     // Function for loading necessary data.

@@ -233,6 +233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642cab6a2db41604ebda80301d23bd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &22354652 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3851863383310878653, guid: f93036b307a85ce41a9309d1aab1bdaa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1193375481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &26276238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,6 +1655,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &566038900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6449757331467477612, guid: a354f73203f37f84ca507be25b9bfe0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1342686540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &581231395
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,6 +3572,12 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &738941718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6449757330087133459, guid: a354f73203f37f84ca507be25b9bfe0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1342686540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &755889920 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 755889920, guid: 0ec01022eb00a404eb858d936bdba09b,
@@ -4315,21 +4333,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4305665}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1097010481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097010480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4c1c6719e4258439d1d9aa3f78db39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panels:
-  - {fileID: 1193375482}
-  - {fileID: 1448398876}
 --- !u!114 &1097010482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4389,6 +4392,29 @@ MonoBehaviour:
   karmaBar: {fileID: 1957784562}
   moneyBar: {fileID: 1729063583}
   upgradeBar: {fileID: 1493541657}
+--- !u!114 &1097010486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097010480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb73df0b472084c42861d98e404b08e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPaused: 0
+  mainCanvas: {fileID: 22354652}
+  panels:
+  - {fileID: 1827671740}
+  - {fileID: 1193375482}
+  - {fileID: 1448398876}
+  - {fileID: 738941718}
+  - {fileID: 566038900}
+  startPos: []
+  currentPanel: {fileID: 0}
+  pausepanel: {fileID: 1193375482}
 --- !u!114 &1097010488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4407,6 +4433,20 @@ MonoBehaviour:
     I use to outmaneuver my enemies."'
   startMessageWait: 3
   waitBetweenMessages: 3
+--- !u!114 &1097010490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097010480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2790cce1074b1c14e9bd75bd62427382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencyHolderShop: {fileID: 0}
+  currencyHolderForge: {fileID: 0}
 --- !u!1 &1131350942
 GameObject:
   m_ObjectHideFlags: 0
@@ -4937,26 +4977,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1097010486}
     - target: {fileID: 3851863382559976301, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToSettingsPanel
+      value: ButtonPress
       objectReference: {fileID: 0}
     - target: {fileID: 3851863382559976301, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3851863382624704267, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2
+      value: 4296
       objectReference: {fileID: 0}
     - target: {fileID: 3851863382624704267, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: -1176
       objectReference: {fileID: 0}
     - target: {fileID: 3851863382624704267, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
@@ -4966,17 +5006,17 @@ PrefabInstance:
     - target: {fileID: 3851863382749724860, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3851863382749724860, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1097010481}
+      objectReference: {fileID: 1097010486}
     - target: {fileID: 3851863382749724860, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenForge
+      value: ButtonPress
       objectReference: {fileID: 0}
     - target: {fileID: 3851863382749724860, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
@@ -4997,11 +5037,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1097010483}
+      objectReference: {fileID: 1097010482}
     - target: {fileID: 3851863382749724860, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetUpUpgradeScreen
+      value: GetChodenHolders
       objectReference: {fileID: 0}
     - target: {fileID: 3851863382749724860, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
@@ -5062,11 +5102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1097010481}
+      objectReference: {fileID: 1097010486}
     - target: {fileID: 3851863382876645052, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToGame
+      value: pauseGame
       objectReference: {fileID: 0}
     - target: {fileID: 3851863383300707667, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
@@ -5535,6 +5575,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: WeaponButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6449757330087133458, guid: a354f73203f37f84ca507be25b9bfe0e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449757330087133458, guid: a354f73203f37f84ca507be25b9bfe0e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4933
+      objectReference: {fileID: 0}
     - target: {fileID: 6449757330152872636, guid: a354f73203f37f84ca507be25b9bfe0e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5585,6 +5635,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ConfirmUpgrade
       objectReference: {fileID: 0}
+    - target: {fileID: 6449757330617686326, guid: a354f73203f37f84ca507be25b9bfe0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6449757330766201448, guid: a354f73203f37f84ca507be25b9bfe0e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5609,7 +5664,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1097010481}
+      objectReference: {fileID: 0}
     - target: {fileID: 6449757331115894508, guid: a354f73203f37f84ca507be25b9bfe0e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -5639,11 +5694,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1097010481}
+      objectReference: {fileID: 1097010486}
     - target: {fileID: 6449757331194220348, guid: a354f73203f37f84ca507be25b9bfe0e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenShop
+      value: ButtonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449757331467477615, guid: a354f73203f37f84ca507be25b9bfe0e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4317
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449757331467477615, guid: a354f73203f37f84ca507be25b9bfe0e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3635
       objectReference: {fileID: 0}
     - target: {fileID: 6449757331473959007, guid: a354f73203f37f84ca507be25b9bfe0e,
         type: 3}
@@ -5655,6 +5720,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 6449757331590925496, guid: a354f73203f37f84ca507be25b9bfe0e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4308
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449757331590925496, guid: a354f73203f37f84ca507be25b9bfe0e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4568
+      objectReference: {fileID: 0}
     - target: {fileID: 6449757331590925497, guid: a354f73203f37f84ca507be25b9bfe0e,
         type: 3}
       propertyPath: m_TagString
@@ -5664,11 +5739,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1097010481}
+      objectReference: {fileID: 1097010486}
     - target: {fileID: 6449757331652833582, guid: a354f73203f37f84ca507be25b9bfe0e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenForge
+      value: ButtonPress
       objectReference: {fileID: 0}
     - target: {fileID: 6449757331745738136, guid: a354f73203f37f84ca507be25b9bfe0e,
         type: 3}
@@ -5882,7 +5957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: 4302, y: -2426}
   m_SizeDelta: {x: 0.0053710938, y: 0.00048828125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1448566300 stripped
@@ -7296,7 +7371,7 @@ PrefabInstance:
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.6358504
+      value: 5.6344514
       objectReference: {fileID: 0}
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
@@ -7551,6 +7626,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819740841}
   m_CullTransparentMesh: 0
+--- !u!1 &1827671740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3851863383891389878, guid: f93036b307a85ce41a9309d1aab1bdaa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1193375481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1847133681 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1867145593168115386, guid: 0ec01022eb00a404eb858d936bdba09b,

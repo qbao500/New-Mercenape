@@ -16,7 +16,7 @@ public class ChooseWeapon : MonoBehaviour
 
     private string buttonName;
 
-    [SerializeField]private List<Image> ownedWeapons;
+    [SerializeField] private List<Image> ownedWeapons;
 
     void Awake()
     {
@@ -24,10 +24,11 @@ public class ChooseWeapon : MonoBehaviour
         useUpgrades = GetComponent<UseUpgrades>();
     }
 
-    //void Start()
-    //{
-    //    GetChodenHolders();
-    //}
+    void Start()
+    {
+        GetChodenHolders();
+        SetOwnedWeaponImages();
+    }
 
     public void GetChodenHolders()
     {
@@ -96,6 +97,7 @@ public class ChooseWeapon : MonoBehaviour
         }
 
         weaponStates.SetChosenWeaponID(chosenWeaponID);
+        weaponStates.SetUpWeapon();
         SaveManager.SaveWeapons(weaponStates);
         useUpgrades.SetUpUpgradeScreen();
     }

@@ -44,19 +44,13 @@ public class PlayerAttackTrigger : MonoBehaviour
         playerMovement = gameObject.GetComponent<PlayerMovement>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {      
-        SetWeaponStats();
-    }
-
     void FixedUpdate()
     {      
         if (!playerMovement.isPlayerBlock)
         { PlayerAttack(); }       
     }
 
-    void SetWeaponStats()
+    public void SetWeaponStats()
     {
         weaponID = weaponStates.GetChosenWeaponID();
         PlayerDamage = weaponStates.GetWeaponImpactDamage();
@@ -134,7 +128,7 @@ public class PlayerAttackTrigger : MonoBehaviour
                 OnBleedEnemy(weaponBleedDamage, weaponBleedDuration, bleedTicks, enemiesToDamage[i]);
             }
 
-            // Increase stagger time, if weapon has 
+            // Apply stagger on enemy and increase stagger time, if weapon has stagger effect. 
             if(weaponStaggerDuration > 0)
             {
                 StaggerEnemy(weaponStaggerDuration, enemiesToDamage[i]);

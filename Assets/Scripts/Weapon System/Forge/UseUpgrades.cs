@@ -32,6 +32,11 @@ public class UseUpgrades : MonoBehaviour
         SetScreensInactive();
     }
 
+    void Start()
+    {
+        SetUpUpgradeScreen();
+    }
+
     void Update()
     {
         if(upgradeComponentScreen.activeSelf && Input.GetKeyDown(KeyCode.Escape))

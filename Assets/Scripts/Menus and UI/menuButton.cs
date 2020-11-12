@@ -14,7 +14,7 @@ public class menuButton : MonoBehaviour
         Menu menu = transform.parent.transform.parent.GetComponent<Menu>();
         if(menu != null)
         {       
-            menu.switchPanel(paneltoOpen);
+            // menu.switchPanel(paneltoOpen);
         }
     }
 

@@ -91,4 +91,6 @@ public class AssetManager : MonoBehaviour
         if (chooseWeapon != null) { chooseWeapon.SetWeaponList(weapons); }
         if (playerAttack != null) { playerAttack.SetWeaponList(weapons); }
     }
+
+    public List<GameObject> GetWeaponModels() { return weaponModels; }
 }

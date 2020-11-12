@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour
 {
@@ -22,9 +22,7 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
-
-
-        mainCanvas = transform.GetComponent<Canvas>();
+        // mainCanvas = transform.GetComponent<Canvas>();
         startPos = new Vector2[panels.Length];
         for(int i = 0; i < startPos.Length; i++)
         {
@@ -41,12 +39,9 @@ public class Menu : MonoBehaviour
         //Pauses or resumes the game if the pause panel is on/off
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Pause pressed");
             pauseGame();
         }
     }
-
-
 
     //This returns the current panel to its starting position when a new panel is put up. 
     private void returnPanel(GameObject panelReturn)
@@ -88,20 +83,16 @@ public class Menu : MonoBehaviour
                 currentPanel = null;
             }
         }
-
     }
 
-    public void switchPanel(GameObject newPanel)
+    void switchPanel(GameObject newPanel)
     {
-        Debug.Log("Changing panel");
-
         if (newPanel.name.Contains("options") || newPanel.name.Contains("level"))
         {
             GameObject backBtn = newPanel.transform.Find("back").gameObject;
             menuButton btnScript;
             if (backBtn != null)
             {
-                Debug.Log("Back button found.");
                 btnScript = backBtn.GetComponent<menuButton>();
                 if (btnScript != null)
                 {
@@ -124,7 +115,27 @@ public class Menu : MonoBehaviour
         currentPanel = newPanel;
     }
 
+    public void ButtonPress()
+    {
+        string buttonName = EventSystem.current.currentSelectedGameObject.name;
 
+        if(buttonName == "options")
+        {
+            switchPanel(panels[2]);
+        }
+        else if(buttonName == "weapon")
+        {
+            switchPanel(panels[3]);
+        }
+        else if(buttonName == "ToShop")
+        {
+            switchPanel(panels[4]);
+        }
+        else if(buttonName == "GoToUpgrades")
+        {
+            switchPanel(panels[3]);
+        }
+    }
 
     public void backButton()
     {
@@ -133,7 +144,6 @@ public class Menu : MonoBehaviour
         {
             if (panels[i] == currentPanel.transform.parent.gameObject)
             {
-                Debug.Log("Panel parent found: " + panels[i]);
                 panels[i].transform.position = mainCanvas.transform.position;
                 currentPanel = panels[i];
                 break;

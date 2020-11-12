@@ -10,7 +10,7 @@ public class Money : MonoBehaviour
     
     private int currency, newCurrency;
 
-    private Text currencyHolderShop, currencyHolderForge;
+    [SerializeField] private Text currencyHolderShop, currencyHolderForge;
     
 
     void Awake()
