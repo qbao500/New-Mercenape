@@ -4,14 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Created by Bao: store enemy basic stats
-[CreateAssetMenu(fileName = "New Enemy", menuName = "Enemy Stats")]
-public class EnemyStats : ScriptableObject
+public class EnemyStatsSO : ScriptableObject
 {
+    [Header("Base stats")]
     public new string name;
-
     public int damage;
     public float maxHP;
     public float runningSpeed;
     public int spaceToGetUp;
-
 }

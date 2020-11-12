@@ -7,7 +7,7 @@ using UnityEngine;
 // Edited by Arttu Paldán on 23.10.2020: Added an virtual function for player to add bleed on enemies. 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] protected EnemyStats stat;
+    [SerializeField] protected EnemyStatsSO stat;
 
     protected bool isNewBorn;
 

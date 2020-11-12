@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363460aebb4388e4c8c6812c971fcf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 11400000, guid: 6a1f442a4594d83488089502f1b2307a, type: 2}
+  stat: {fileID: 11400000, guid: 13147237c60549a4daa81e73c2628980, type: 2}
   currentHP: 0
   frontDetection: {fileID: 1417960429150828320}
   bleedChance: 30
