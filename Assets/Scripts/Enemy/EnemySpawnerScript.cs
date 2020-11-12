@@ -22,7 +22,7 @@ public class EnemySpawnerScript : MonoBehaviour
     //public List<Group> groups = new List<Group>();
 
     private int currentGroup = 0;
-    private int currentWave = 1;
+    public int currentWave = 1;
 
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI groupText;
@@ -44,6 +44,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private void Start()
     {
+        LoadSpawner();
+
         state = SpawnState.Counting;
 
         playerCurrency = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerCurrency>();
@@ -109,6 +111,8 @@ public class EnemySpawnerScript : MonoBehaviour
             completeWaveScreen.SetActive(true);
 
             currentWave++;
+            SaveManager.SaveSpawner(this);
+
             currentGroup = 0;   // Reset group
             groupCountdown = timeBetweenGroups * 2; // Wait a bit longer than normal
 
@@ -218,6 +222,13 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
     private float RandomSpawnRate() => Random.Range(0.2f, 0.5f);
+
+    private void LoadSpawner()
+    {
+        SpawnerData spawnerData = SaveManager.LoadSpawner();
+
+        currentWave = spawnerData.currentWave;
+    }
 
 
     public void NextWaveButton()

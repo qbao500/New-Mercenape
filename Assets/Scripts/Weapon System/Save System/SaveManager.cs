@@ -86,6 +86,39 @@ public static class SaveManager
         string currencyPath = Application.persistentDataPath + "/Currency.data";
         File.Delete(currencyPath);
     }
+
+    // Function for saving the data we want to save. It uses the binary formatter to save data. 
+    public static void SaveSpawner(EnemySpawnerScript enemySpawner)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string spawnerPath = Application.persistentDataPath + "/Spawner.data";
+        FileStream stream = new FileStream(spawnerPath, FileMode.Create);
+
+        SpawnerData spawnerData = new SpawnerData(enemySpawner);
+
+        formatter.Serialize(stream, spawnerData);
+        stream.Close();
+    }
+
+    // Load function.
+    public static SpawnerData LoadSpawner()
+    {
+        string spawnerPath = Application.persistentDataPath + "/Spawner.data";
+        if (File.Exists(spawnerPath))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(spawnerPath, FileMode.Open);
+
+            SpawnerData spawnerData = formatter.Deserialize(stream) as SpawnerData;
+            stream.Close();
+
+            return spawnerData;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
 
 // Save data class, which contains the infor we want to save. 
@@ -117,5 +150,16 @@ public class CurrencyData
         playerMoney = playerCurrency.gold;
         playerKarma = playerCurrency.karma;
         speedUpgrades = playerCurrency.speedUpgrades;
+    }
+}
+
+[System.Serializable]
+public class SpawnerData
+{
+    public int currentWave;
+
+    public SpawnerData(EnemySpawnerScript enemySpawner)
+    {
+        currentWave = enemySpawner.currentWave;
     }
 }
