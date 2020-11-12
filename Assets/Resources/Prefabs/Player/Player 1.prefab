@@ -3519,6 +3519,7 @@ MonoBehaviour:
   weaponSpeed: 0
   weaponBleedDamage: 0
   weaponBleedDuration: 0
+  weaponStaggerDuration: 0
   bleedTicks: 0
   PlayerAnimator: {fileID: 3470843985174671672}
   attackAnim: {fileID: 7400000, guid: 95644a34a0937784ab05ddba6e5fbf57, type: 2}
@@ -4008,17 +4009,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f2f3f4c97ea4c4e46b44ef499d1a37da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0017575145
+      value: 0.00134
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2f3f4c97ea4c4e46b44ef499d1a37da,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00028756866
+      value: -0.00045
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2f3f4c97ea4c4e46b44ef499d1a37da,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.011885736
+      value: -0.01022
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2f3f4c97ea4c4e46b44ef499d1a37da,
         type: 3}
@@ -4063,17 +4064,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f2f3f4c97ea4c4e46b44ef499d1a37da,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.011848749
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2f3f4c97ea4c4e46b44ef499d1a37da,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.01184875
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2f3f4c97ea4c4e46b44ef499d1a37da,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.01184875
+      value: 0.0095
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f2f3f4c97ea4c4e46b44ef499d1a37da,
         type: 3}

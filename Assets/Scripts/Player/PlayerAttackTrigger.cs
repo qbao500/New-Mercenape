@@ -24,7 +24,7 @@ public class PlayerAttackTrigger : MonoBehaviour
 
     public Transform frontPlayerPosition;
     [SerializeField] private int weaponID;
-    [SerializeField] private float weaponSpeed, weaponBleedDamage, weaponBleedDuration;
+    [SerializeField] private float weaponSpeed, weaponBleedDamage, weaponBleedDuration, weaponStaggerDuration;
     [SerializeField] private int bleedTicks;
 
     public Animator PlayerAnimator;
@@ -34,6 +34,7 @@ public class PlayerAttackTrigger : MonoBehaviour
     
     public event Action<bool, bool, Collider, float> OnHitEnemy = delegate { };  // 1st bool is Mower backside, 2nd bool is generator
     public event Action<float, float, int, Collider> OnBleedEnemy = delegate { };  // weaponBleedDamage, weaponBleedDuration, bleedTicks
+    public event Action<float, Collider> StaggerEnemy = delegate { }; // For increasing the stagger duration. 
 
     void Awake()
     {
@@ -65,6 +66,8 @@ public class PlayerAttackTrigger : MonoBehaviour
         weaponBleedDamage = weaponStates.GetWeaponBleedDamage();
         weaponBleedDuration = weaponStates.GetBleedDuration();
         bleedTicks = weaponStates.GetWeaponBleedTicks();
+
+        weaponStaggerDuration = weapons[weaponID].GetStaggerDuration();
 
         positionChange = weapons[weaponID].GetHitBoxLocation();
         scaleChange = weapons[weaponID].GetHitBoxSize();
@@ -129,6 +132,12 @@ public class PlayerAttackTrigger : MonoBehaviour
             if (weaponBleedDamage > 0 && bleedTicks > 0)
             {
                 OnBleedEnemy(weaponBleedDamage, weaponBleedDuration, bleedTicks, enemiesToDamage[i]);
+            }
+
+            // Increase stagger time, if weapon has 
+            if(weaponStaggerDuration > 0)
+            {
+                StaggerEnemy(weaponStaggerDuration, enemiesToDamage[i]);
             }
         }
     }  
