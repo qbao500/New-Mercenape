@@ -6,7 +6,7 @@ using UnityEngine;
 // Created by Bao: Mower's Behaviour, child of EnemyBehaviour
 public class MowerBehaviour : EnemyBehaviour
 {
-    [SerializeField] private EnemyStats fieldStat;
+    [SerializeField] private EnemyStatsSO fieldStat;
     private float fieldHP;
     private SpriteRenderer fieldSprite;
 

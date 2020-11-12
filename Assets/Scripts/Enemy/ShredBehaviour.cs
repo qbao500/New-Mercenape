@@ -5,8 +5,8 @@ using UnityEngine;
 // Created by Bao: Shred's Behaviour, child of EnemyBehaviour
 // Edited by Arttu Paldán on 22-23.10.2020: Made some changes to the knockdown effect to implement knocked down animations. Also implemented the weapon bleed damage. 
 public class ShredBehaviour : EnemyBehaviour
-{      
-    [SerializeField] private float bleedChance;   
+{
+    private ShredStatsSO shredStat;
 
     private Coroutine co;
 
@@ -17,6 +17,8 @@ public class ShredBehaviour : EnemyBehaviour
     protected override void Awake()
     {
         base.Awake();
+
+        shredStat = (ShredStatsSO)stat;
 
         animatorShred = GetComponent<Animator>();
     }
@@ -72,13 +74,13 @@ public class ShredBehaviour : EnemyBehaviour
         playerHealth.PlayerTakeDamage(stat.damage);
 
         // Check bleed chance of Shred, then apply 
-        if (Random.Range(0f, 100f) < bleedChance)
+        if (Random.Range(0f, 100f) < shredStat.bleedChance) 
         {
             if (co != null)
             {
                 StopCoroutine(co);
             }
-            co = StartCoroutine(ApplyBleedDamage(1, 3, 2));
+            co = StartCoroutine(ApplyBleedDamage(shredStat.bleedTick, shredStat.bleedDamage));
         }
     }
 
@@ -99,14 +101,14 @@ public class ShredBehaviour : EnemyBehaviour
     }
 
     // Do bleed damage (per sec for now)
-    private IEnumerator ApplyBleedDamage(float damageDuration, int damageCount, int damageAmount)
+    private IEnumerator ApplyBleedDamage(int tick, int damageAmount)
     {
         int currentCount = 1;
     
-        while(currentCount <= damageCount)
+        while(currentCount <= tick)
         {
             playerHealth.PlayerHP -= damageAmount;
-            yield return new WaitForSeconds(damageDuration);
+            yield return new WaitForSeconds(1f);
             currentCount++;
         }       
     }
@@ -125,7 +127,7 @@ public class ShredBehaviour : EnemyBehaviour
         rb.isKinematic = true;
         speed = 0;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(shredStat.staggerDuration);
 
         isStaggering = false;
         animatorShred.SetBool("Staggering", isStaggering);
