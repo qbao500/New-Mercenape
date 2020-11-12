@@ -53,8 +53,11 @@ public class PlayerMovement : MonoBehaviour
     Vector3 destination;
     float ledgePosX = 3.7f;
     float ledgePosY = 4.4f;
+    float startPressTime;
+    float delta;
+    float fastSpeed = 40f;
+    float slowSpeed=10f;
 
-  
 
     //Start Hash ID 
     [HideInInspector]
@@ -109,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         CheckOnTop();
         CheckGrabWall();
         CheckCollidePlatform();
-
+        TimePressButton();
         if (isGrounded)
         {
 
@@ -196,6 +199,33 @@ public class PlayerMovement : MonoBehaviour
             PlayerMove();
         }     
     }
+
+    void TimePressButton()
+    {
+        if(Input.GetKeyDown(KeyCode.A)|| Input.GetKeyDown(KeyCode.D))
+        {
+            startPressTime = Time.time;
+           
+        }
+        delta = Time.time - startPressTime;
+        if (Input.GetKeyUp(KeyCode.A)|| Input.GetKeyUp(KeyCode.D))
+        {
+            delta = 0;
+        }
+        if (delta > 0.2f)
+        {
+            PlayerSpeed = fastSpeed;
+        }else if(delta>0.1f && delta<0.2f)
+        {
+            PlayerSpeed = slowSpeed +10;
+
+        }
+        else
+        {
+            PlayerSpeed = slowSpeed;
+        }
+    }
+
 
     void CheckGrounded()
     {
@@ -323,20 +353,30 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrabWall == false)
             {
-                if (Input.GetKeyDown(KeyCode.W) && !Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+                  {
+                      isGrabWall = true;
+                      isJumping = false;
+                  }
+                if (FaceRight)
                 {
-                    isGrabWall = true;
-                    isJumping = false;
+                    if (Input.GetKey(KeyCode.D))
+                    {
+                        isGrabWall = true;
+                        isJumping = false;
+                    }
+
+                }
+                else
+                {
+                    if (Input.GetKey(KeyCode.A))
+                    {
+                        isGrabWall = true;
+                        isJumping = false;
+                    }
                 }
             }
-            else
-            {
-                if(Input.GetKey(KeyCode.W)&& Input.GetKey(KeyCode.S))
-                {
-                    isGrabWall = false;
-                    isJumping = true;
-                }
-            }
+         
         }
         if (!isCollideWall)
         {
