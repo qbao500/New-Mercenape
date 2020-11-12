@@ -55,9 +55,18 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // This can be handled by the UpdateHealth().
-    public void PlayerTakeDamage(int EnemyDamage)
+    public void PlayerTakeDamage(int enemyDamage, bool isBleed = false)
     {
-        PlayerHP -= EnemyDamage;
+        if (!isBleed)
+        {
+            DamagePopUp.Create(transform.position + (Vector3.up * 3.5f), enemyDamage, Color.red, 15);
+        }
+        else
+        {
+            DamagePopUp.Create(transform.position + (Vector3.up * 2.5f), enemyDamage, Color.yellow, 10);
+
+        }
+        PlayerHP -= enemyDamage;
         SetCurrentHP(PlayerHP);
         CheckPlayerDeath();
     }

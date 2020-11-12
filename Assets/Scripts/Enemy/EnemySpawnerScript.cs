@@ -114,10 +114,7 @@ public class EnemySpawnerScript : MonoBehaviour
             SaveManager.SaveSpawner(this);
 
             currentGroup = 0;   // Reset group
-            groupCountdown = timeBetweenGroups * 2; // Wait a bit longer than normal
-
-            groupText.SetText("Group " + currentGroup);
-            waveText.SetText("Wave " + currentWave);
+            groupCountdown = timeBetweenGroups * 2; // Wait a bit longer than normal          
         }
     }    
 
@@ -235,8 +232,12 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         Time.timeScale = 1;
         completeWaveScreen.SetActive(false);
+        groupText.SetText("Group " + currentGroup);
+        waveText.SetText("Wave " + currentWave);
+
         playerCurrency.karma = 0;
         playerCurrency.SetKarmaBar();
+        SaveManager.SaveCurrency(playerCurrency);
     }
 
     public void ForgeButton()

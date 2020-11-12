@@ -32,7 +32,7 @@ public class DamagePopUp : MonoBehaviour
     private static int sortingOrder = 0;
 
     private TextMeshPro textMesh;
-    private Color textColor; 
+    private Color textColor;
 
     private void Awake()
     {

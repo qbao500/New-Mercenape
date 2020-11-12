@@ -137,7 +137,7 @@ public class EnemyBehaviour : MonoBehaviour
         currentHP -= bleedDmg;
         barHealth.UpdateHealthBar(currentHP, stat.maxHP);
 
-        DamagePopUp.Create(PopUpPos(transform), bleedDmg, Color.yellow, 10);
+        DamagePopUp.Create(PopUpPos(transform), bleedDmg, Color.magenta, 10);
 
         // If dead
         if (currentHP <= 0)

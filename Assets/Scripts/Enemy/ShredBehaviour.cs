@@ -105,11 +105,13 @@ public class ShredBehaviour : EnemyBehaviour
     // Do bleed damage (per sec for now)
     private IEnumerator ApplyBleedDamage(int tick, int damageAmount)
     {
+        yield return new WaitForSeconds(.2f);
+
         int currentCount = 1;
     
         while(currentCount <= tick)
         {
-            playerHealth.PlayerHP -= damageAmount;
+            playerHealth.PlayerTakeDamage(damageAmount, true);
             yield return new WaitForSeconds(1f);
             currentCount++;
         }       
