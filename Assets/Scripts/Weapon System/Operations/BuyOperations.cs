@@ -58,12 +58,12 @@ public static class BuyOperations
             switch (ownedBools[i + 1])
             {
                 case true:
-                    weaponImagesHolder[i].sprite = null;
+                    weaponImagesHolder[i] = null;
                     weaponImagesHolder[i].enabled = false;
                     break;
 
                 case false:
-                    weaponImagesHolder[i].sprite = weapons[i + 1].GetWeaponImage();
+                    weaponImagesHolder[i] = weapons[i + 1].GetWeaponModel());
                     break;
             }
         }
