@@ -5,34 +5,35 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 // Created by Arttu Paldán on 13.11.2020: Made this replace all of the screen setups scattered into other scripts and made this more centralized system. 
-public class SetUpScreens : MonoBehaviour
+public abstract class SetUpScreens : MonoBehaviour
 {
-    WeaponStates weaponStates;
-    StatsCalculator statsCalculator;
-    PlayerCurrency playerCurrency;
+    protected WeaponStates weaponStates;
+    protected StatsCalculator statsCalculator;
+    protected PlayerCurrency playerCurrency;
 
-    List<AbstractWeapon> weapons;
+    protected List<AbstractWeapon> weapons;
 
-    [SerializeField] List<GameObject> weaponInventory, weaponImages;
-    GameObject toShopButton, toForgeButton;
+    [SerializeField] protected List<GameObject> weaponInventory, weaponImages;
 
-    [SerializeField] GameObject shopTitleInactive, shopTitleActive, forgeTitleInactive, forgeTitleActive;
-    Text costText, upgradeText;
+    protected Text costText, upgradeText;
 
-    [SerializeField] List<Text> weaponStatTexts;
+    [SerializeField] protected List<Text> weaponStatTexts;
     public int amountOfTexts;
 
-    int weaponID, upgradeCost;
+    public string weaponHolderTag, chosenWeaponTag, costTag, upgradeTag, weaponStatsTag;
 
-    void Awake()
+    [SerializeField] protected int weaponID, cost;
+
+
+    protected virtual void Awake()
     {
         GetScripts();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         GetRequiredComponents();
-        SetForgeScreen();
+        SetScreen();
     }
 
     void GetScripts()
@@ -44,23 +45,13 @@ public class SetUpScreens : MonoBehaviour
 
     void GetRequiredComponents()
     {
-        weaponID = weaponStates.GetChosenWeaponID();
+        weaponInventory.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponHolderTag));
+        weaponImages.InsertRange(0, GameObject.FindGameObjectsWithTag(chosenWeaponTag));
 
-        weaponInventory.InsertRange(0, GameObject.FindGameObjectsWithTag("WeaponHolder"));
-        weaponImages.InsertRange(0, GameObject.FindGameObjectsWithTag("ChosenWeaponHolder"));
+        costText = GameObject.FindGameObjectWithTag(costTag).GetComponent<Text>();
+        upgradeText = GameObject.FindGameObjectWithTag(upgradeTag).GetComponent<Text>();
 
-        toShopButton = GameObject.FindGameObjectWithTag("ToShop");
-        toForgeButton = GameObject.FindGameObjectWithTag("ToForge");
-
-        shopTitleInactive = GameObject.FindGameObjectWithTag("ShopTitleInactive");
-        shopTitleActive = GameObject.FindGameObjectWithTag("ShopTitleActive");
-        forgeTitleInactive = GameObject.FindGameObjectWithTag("ForgeTitleInactive");
-        forgeTitleActive = GameObject.FindGameObjectWithTag("ForgeTitleActive");
-
-        costText = GameObject.FindGameObjectWithTag("CostText").GetComponent<Text>();
-        upgradeText = GameObject.FindGameObjectWithTag("UpgradeText").GetComponent<Text>();
-
-        GameObject[] statTextObjects = GameObject.FindGameObjectsWithTag("WeaponStatText");
+        GameObject[] statTextObjects = GameObject.FindGameObjectsWithTag(weaponStatsTag);
         Text[] statTexts = new Text[amountOfTexts];
 
         for(int i = 0; i < statTextObjects.Length; i++)
@@ -71,102 +62,35 @@ public class SetUpScreens : MonoBehaviour
         weaponStatTexts.InsertRange(0, statTexts);
     }
 
-    public void SetForgeScreen()
+    public virtual void SetScreen()
     {
         SwitchModels();
         UpdateWeaponStats();
         UpdateTexts();
     }
 
-    public void UpdateWeaponStats()
+    public virtual void UpdateWeaponStats()
     {
         statsCalculator.SetRequestFromUpgrades(true);
         statsCalculator.CalculateStats();
     }
 
-    void UpdateTexts()
+    protected virtual void UpdateTexts()
     {
         AbstractWeapon weaponsArray = weapons[weaponID];
 
         weaponStatTexts[0].text = weaponsArray.GetName();
         weaponStatTexts[1].text = weaponsArray.GetDescription();
-        weaponStatTexts[2].text = weaponsArray.GetWeight().ToString();
-        weaponStatTexts[3].text = weaponsArray.GetSpeed().ToString();
-        weaponStatTexts[4].text = statsCalculator.GetSpeed().ToString();
-        weaponStatTexts[5].text = statsCalculator.GetImpactDamage().ToString();
-        weaponStatTexts[6].text = weaponsArray.GetBleedDamage().ToString();
-        weaponStatTexts[7].text = weaponsArray.GetBleedDuration().ToString();
-        weaponStatTexts[8].text = weaponsArray.GetStaggerDuration().ToString();
-
-        costText.text = "Upgrade Cost: " + upgradeCost;
-        upgradeText.text = "Speed Upgrades: " + playerCurrency.speedUpgrades;
+        weaponStatTexts[2].text = "Weight: " + weaponsArray.GetWeight().ToString();
+        weaponStatTexts[3].text = "Default Speed: " + weaponsArray.GetSpeed().ToString();
+        weaponStatTexts[4].text = "Upgrades speed: " + statsCalculator.GetSpeed().ToString();
+        weaponStatTexts[5].text = "Impact Damage: " + statsCalculator.GetImpactDamage().ToString();
+        weaponStatTexts[6].text = "Bleed Damage: " + weaponsArray.GetBleedDamage().ToString();
+        weaponStatTexts[7].text = "Bleed Duration: " + weaponsArray.GetBleedDuration().ToString();
+        weaponStatTexts[8].text = "Stagger Duration Increase: " + weaponsArray.GetStaggerDuration().ToString();
     }
 
-    void SwitchModels()
-    {
-        List<bool> ownedWeaponsList = weaponStates.GetOwnedWeapons();
-
-        for (int i = 0; i < weaponInventory.Count; i++)
-        {
-            switch (ownedWeaponsList[i])
-            {
-                case true:
-                    weaponInventory[i].SetActive(true);
-                    break;
-
-                case false:
-                    weaponInventory[i].SetActive(false);
-                    break;
-            }
-        }
-
-        for (int i = 0; i < weaponImages.Count; i++)
-        {
-            weaponImages[i].SetActive(false);
-        }
-
-        weaponImages[weaponID].SetActive(true);
-    }
-
-    public void ChangeTitleImages()
-    {
-        string buttonName = EventSystem.current.currentSelectedGameObject.name;
-
-        if(buttonName == "weapon")
-        {
-            shopTitleActive.SetActive(false);
-            shopTitleInactive.SetActive(true);
-
-            forgeTitleActive.SetActive(true);
-            forgeTitleInactive.SetActive(false);
-
-            toShopButton.SetActive(true);
-            toForgeButton.SetActive(false);
-
-        }
-        else if(buttonName == "ToShop")
-        {
-            shopTitleActive.SetActive(true);
-            shopTitleInactive.SetActive(false);
-
-            forgeTitleActive.SetActive(false);
-            forgeTitleInactive.SetActive(true);
-
-            toShopButton.SetActive(false);
-            toForgeButton.SetActive(true);
-        }
-        else if (buttonName == "ToForge")
-        {
-            shopTitleActive.SetActive(false);
-            shopTitleInactive.SetActive(true);
-
-            forgeTitleActive.SetActive(true);
-            forgeTitleInactive.SetActive(false);
-
-            toShopButton.SetActive(true);
-            toForgeButton.SetActive(false);
-        }
-    }
+    protected abstract void SwitchModels();
 
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
 }

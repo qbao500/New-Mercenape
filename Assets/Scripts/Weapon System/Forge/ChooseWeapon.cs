@@ -58,7 +58,7 @@ public class ChooseWeapon : MonoBehaviour
         weaponStates.SetChosenWeaponID(chosenWeaponID);
         weaponStates.SetUpWeapon();
         SaveManager.SaveWeapons(weaponStates);
-        setUp.SetForgeScreen();
+        // setUp.SetForgeScreen(chosenWeaponID);
     }
 
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }

@@ -137,7 +137,7 @@ public class Menu : MonoBehaviour
         {
             switchPanel(panels[4]);
         }
-        else if(buttonName == "GoToUpgrades")
+        else if(buttonName == "ToForge")
         {
             switchPanel(panels[3]);
         }

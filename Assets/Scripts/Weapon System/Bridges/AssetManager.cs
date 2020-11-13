@@ -6,8 +6,9 @@ using UnityEngine;
 public class AssetManager : MonoBehaviour
 {
     // Scripts
-    private SetUpScreens setUp;
     private WeaponStates weaponStates;
+    private SetUpForge setUpForge;
+    private SetUpShop setUpShop;
     private BuyWeapons buyWeapons;
     private UseUpgrades useUpgrades;
     private StatsCalculator calculator;
@@ -47,7 +48,8 @@ public class AssetManager : MonoBehaviour
     // Function for getting all the other scripts needed by this script. 
     void GetNecessaryScripts()
     {
-        setUp = GetComponent<SetUpScreens>();
+        setUpForge = GetComponent<SetUpForge>();
+        setUpShop = GetComponent<SetUpShop>();
         weaponStates = GetComponent<WeaponStates>();
         buyWeapons = GetComponent<BuyWeapons>();
         useUpgrades = GetComponent<UseUpgrades>();
@@ -90,7 +92,8 @@ public class AssetManager : MonoBehaviour
         if (calculator != null) { calculator.SetWeaponList(weapons); }
         if (chooseWeapon != null) { chooseWeapon.SetWeaponList(weapons); }
         if (playerAttack != null) { playerAttack.SetWeaponList(weapons); }
-        if(setUp != null) { setUp.SetWeaponList(weapons); }
+        if(setUpForge != null) { setUpForge.SetWeaponList(weapons); }
+        if (setUpShop!= null) { setUpShop.SetWeaponList(weapons); }
     }
 
     public List<GameObject> GetWeaponModels() { return weaponModels; }

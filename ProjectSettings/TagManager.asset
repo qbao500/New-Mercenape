@@ -58,6 +58,11 @@ TagManager:
   - CostText
   - UpgradeText
   - WeaponStatText
+  - SelectionHolder
+  - WeaponStatShop
+  - WeaponImageShop
+  - UpgradeTextShop
+  - CostTextShop
   layers:
   - Default
   - TransparentFX
