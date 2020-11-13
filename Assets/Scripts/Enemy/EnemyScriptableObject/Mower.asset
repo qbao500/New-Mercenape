@@ -7,9 +7,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed0327bdfa538e4ca2acaa7c25c6533, type: 3}
+  m_Script: {fileID: 11500000, guid: 78eeb77df3d907440845a0442c4e57df, type: 3}
   m_Name: Mower
   m_EditorClassIdentifier: 
   name: Mower
@@ -17,3 +17,6 @@ MonoBehaviour:
   maxHP: 80
   runningSpeed: 8
   spaceToGetUp: 9
+  fieldMaxHP: 40
+  fieldDamage: 20
+  currentState: 3

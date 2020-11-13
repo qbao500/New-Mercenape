@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     private GameObject playerUI;
     [SerializeField] private Slider hpBar;
     Transform hpText;
-    [SerializeField] TextMeshProUGUI currentHPText, maxHPText;
+    TextMeshProUGUI currentHPText, maxHPText;
 
     [HideInInspector] public Transform spaceTextGrid;
     [HideInInspector] public Text currentSpace;
@@ -59,12 +59,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isBleed)
         {
-            DamagePopUp.Create(transform.position + (Vector3.up * 3.5f), enemyDamage, Color.red, 15);
+            DamagePopUp.Create(PopUpPos(3.5f), enemyDamage, Color.red, 15);
         }
         else
         {
-            DamagePopUp.Create(transform.position + (Vector3.up * 2.5f), enemyDamage, Color.yellow, 10);
-
+            DamagePopUp.Create(PopUpPos(2.5f), enemyDamage, Color.yellow, 10);
         }
         PlayerHP -= enemyDamage;
         SetCurrentHP(PlayerHP);
@@ -114,5 +113,10 @@ public class PlayerHealth : MonoBehaviour
     public void SetNeededSpace(int count)
     {
         neededSpace.text = count.ToString();
+    }
+
+    private Vector3 PopUpPos(float y, float z = -10)
+    {
+        return (transform.position + (Vector3.up * y) + (Vector3.forward * z));
     }
 }

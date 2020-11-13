@@ -31,12 +31,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4705ad16fab6a394f8b5bb5cf8149ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 11400000, guid: f09a6823e23331d4e9d64518ab236504, type: 2}
+  stat: {fileID: 11400000, guid: 4866132ae8414f34da26c03d0ae45314, type: 2}
   currentHP: 0
   frontDetection: {fileID: 649199917329479996}
-  fieldStat: {fileID: 11400000, guid: 7f9af77152693424fa66935d41e465d3, type: 2}
+  fieldStat: {fileID: 0}
   backside: {fileID: 1918139384883286889}
-  rideHeight: {fileID: 1407792994820828579}
 --- !u!1 &7155445766896419891
 GameObject:
   m_ObjectHideFlags: 0

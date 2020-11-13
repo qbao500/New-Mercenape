@@ -37,8 +37,7 @@ public class EnemyBehaviour : MonoBehaviour
     {       
         enemyRotation = transform.rotation.eulerAngles;
 
-        healthBarUI = transform.GetChild(1).gameObject;
-        barHealth = healthBarUI.GetComponent<EnemyHealthBar>();
+        barHealth = transform.GetChild(1).GetComponent<EnemyHealthBar>();
             
         boxCollier = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
