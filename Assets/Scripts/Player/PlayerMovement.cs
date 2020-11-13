@@ -76,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
         runSpeed_animFloat;
     //end Hash ID
 
+    [HideInInspector] public float bounceBuffer = 1;
+
     public event Action OnBounceUp;
 
     void Awake()
@@ -524,7 +526,7 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerJump() 
                               // side note could handle jump power by * with the character height. at the moment the vector in middle of the character so 7pixel long
     {       
-        if (IsBouncingBack()) { return; }
+        if (IsJumpable) { return; }
 
         if (isGrounded)
         {
@@ -591,10 +593,9 @@ public class PlayerMovement : MonoBehaviour
         OnBounceUp();
     }
 
-    public bool IsBouncingBack()
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).IsTag("KnockedDown") || animator.GetCurrentAnimatorStateInfo(0).IsTag("BounceBack");
-    }
+    private bool IsJumpable => animator.GetCurrentAnimatorStateInfo(0).IsTag("KnockedDown") || IsStillBouncing;
+
+    public bool IsStillBouncing => bounceBuffer < 0.8f;
 
     void SetAnimatorPara()
     {       
