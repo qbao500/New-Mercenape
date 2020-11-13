@@ -5,15 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Money
-  - WeaponName
-  - WeaponDescription
-  - BuyScreenWeaponImage
-  - WeaponCost
   - Killbox
   - Enemy
   - Kill
   - wall
-  - UpgradeScreenWeaponName
   - UpgradeScreenWeaponImage
   - UpgradeName
   - UpgradeDescription
@@ -44,7 +39,6 @@ TagManager:
   - MoneyUpgrade
   - EnemySpawner
   - UpgradeHolder
-  - UpgradeComponentScreen
   - ChosenWeaponHolder
   - WeaponHolder
   - Shop
@@ -53,6 +47,17 @@ TagManager:
   - ResourceDestination
   - PlayerSpeechBubble
   - ForgeTitle
+  - WeaponImage
+  - ToShop
+  - ToForge
+  - UpgradeScreenWeaponName
+  - ShopTitleInactive
+  - ShopTitleActive
+  - ForgeTitleInactive
+  - ForgeTitleActive
+  - CostText
+  - UpgradeText
+  - WeaponStatText
   layers:
   - Default
   - TransparentFX

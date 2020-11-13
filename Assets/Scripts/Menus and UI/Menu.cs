@@ -18,6 +18,8 @@ public class Menu : MonoBehaviour
     public GameObject[] panels;
     public Vector2[] startPos;
     public GameObject currentPanel, pausepanel;
+
+    public GameObject[] cameras;
     // Add a panel you want to be the "pause menu" on the editor
 
     void Start()
@@ -70,6 +72,8 @@ public class Menu : MonoBehaviour
                     returnPanel(currentPanel);
                 }
                 pausepanel.transform.position = mainCanvas.transform.position;
+                cameras[0].SetActive(false);
+                cameras[1].SetActive(true);
                 isPaused = true;
                 Time.timeScale = 0;
                 currentPanel = pausepanel;
@@ -81,6 +85,8 @@ public class Menu : MonoBehaviour
                 isPaused = false;
                 Time.timeScale = 1;
                 currentPanel = null;
+                cameras[0].SetActive(true);
+                cameras[1].SetActive(false);
             }
         }
     }
