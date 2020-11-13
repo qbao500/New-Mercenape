@@ -72,7 +72,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public int inputH_animFloat,
         inputV_animFloat,
-        vSpeed_animafloat;
+        vSpeed_animafloat,
+        runSpeed_animFloat;
     //end Hash ID
 
     public event Action OnBounceUp;
@@ -100,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         inputH_animFloat = Animator.StringToHash("inputH");
         inputV_animFloat = Animator.StringToHash("inputV");
         vSpeed_animafloat = Animator.StringToHash("vSpeed");
+        runSpeed_animFloat = Animator.StringToHash("RunningSpeed");
     }
 
     void Update()
@@ -599,6 +601,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat(inputH_animFloat, Mathf.Abs(inputH));
         animator.SetFloat(inputV_animFloat, Mathf.Abs(inputV));
         animator.SetFloat(vSpeed_animafloat, PlayerRigid2d.velocity.y);
+        animator.SetFloat(runSpeed_animFloat, PlayerSpeed / fastSpeed);
 
         animator.SetBool(isJumping_animBool, isJumping);
         animator.SetBool(isGrounded_animBool, isGrounded);

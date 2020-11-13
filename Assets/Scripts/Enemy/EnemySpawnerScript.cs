@@ -20,14 +20,11 @@ public class EnemySpawnerScript : MonoBehaviour
         public int enemyIncreasedDamage;
     }
 
-    public Group group = new Group();
+    private Group group = new Group();
 
     private int currentGroup = 0;
     public int currentWave = 1;
-
-    [SerializeField] private TextMeshProUGUI waveText;
-    [SerializeField] private TextMeshProUGUI groupText;
-
+    
     public float timeBetweenGroups = 3f;
 
     private float groupCountdown;        // Count down to next group
@@ -38,6 +35,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public SpawnState state;
 
+    [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI groupText;
     [SerializeField] private GameObject completeWaveScreen;
 
     private PlayerCurrency playerCurrency;
