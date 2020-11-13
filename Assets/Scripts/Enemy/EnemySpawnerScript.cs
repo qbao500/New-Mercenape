@@ -53,7 +53,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         groupCountdown = timeBetweenGroups;
 
-        IncreaseDifficulty();
+        Setup();
     }
 
     private void Update()
@@ -99,7 +99,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         CheckWaveEnd();
         
-        IncreaseDifficulty();
+        Setup();
     }
 
     // When player get enough karma
@@ -165,28 +165,70 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
     // Next group more difficult, spawn pattern
-    void IncreaseDifficulty()
+    private void Setup()
     {
         currentGroup++;
         groupText.SetText("Group " + currentGroup);
         waveText.SetText("Wave " + currentWave);
 
-        if (currentGroup == 1) { group.shredCount = 2; group.mowerCount = 0; }
-
-        if (currentGroup == 2) { group.shredCount = 3; group.mowerCount = 0; }
-
-        if (currentGroup == 3) { group.shredCount = 4; group.mowerCount = 1; }
-        
-        if (currentGroup >= 4)
-        {
-            group.shredCount = Random.Range(4, 6 + 1);
-            group.mowerCount = RandomMower();
-        }
+        EnemySpawnPattern();
 
         MakeSpawnList();
 
         group.enemyIncreasedHP += 2;
         group.enemyIncreasedDamage += 1;
+    }
+
+    private void EnemySpawnPattern()
+    {
+        switch (currentWave)
+        {
+            case 1:
+                {
+                    if (CheckAndSet(1, 1, 0)) { break; }
+                    if (CheckAndSet(2, 2, 0)) { break; }
+                    if (CheckAndSet(3, 3, 1)) { break; }
+                    if (CheckAndSet(4, 5, 1)) { break; }
+                    break;
+                }
+            case 2:
+                {
+                    if (CheckAndSet(1, 2, 0)) { break; }
+                    if (CheckAndSet(2, 4, 0)) { break; }
+                    if (CheckAndSet(3, 4, 1)) { break; }
+                    if (CheckAndSet(4, 6, 1)) { break; }
+                    break;
+                }
+            case 3:
+                {
+                    if (CheckAndSet(1, 4, 0)) { break; }
+                    if (CheckAndSet(2, 4, 1)) { break; }
+                    if (CheckAndSet(3, 5, 1)) { break; }
+                    if (CheckAndSet(4, 5, 2)) { break; }
+                    break;
+                }
+            default:
+                {
+                    CheckAndSet(0, 0, 0);   // This will go to the else statement and random spawn
+                    break;
+                }                
+        }
+    }
+
+    private bool CheckAndSet(int groupCheck, int shred, int mower)
+    {
+        if (currentGroup == groupCheck)
+        {
+            group.shredCount = shred;
+            group.mowerCount = mower;
+            return true;
+        }
+        else
+        {
+            group.shredCount = Random.Range(4, 6 + 1);
+            group.mowerCount = RandomMower();
+            return false;
+        }        
     }
 
     private void MakeSpawnList()
@@ -204,7 +246,7 @@ public class EnemySpawnerScript : MonoBehaviour
             // Add Mower
             spawnList.Add(enemies[1]);
         }
-    }
+    }  
 
     private int RandomMower()
     {

@@ -71,20 +71,16 @@ public class EnemyBehaviour : MonoBehaviour
         barHealth.ScaleRightUI(rb);
     }
 
-    // Movement
     protected void FixedUpdate() => Movement();
 
-    protected bool IsFacingRight()
-    {
-        return (int)transform.rotation.eulerAngles.y == 0;
-    }
+    protected bool IsFacingRight => (int)transform.rotation.eulerAngles.y == 0;
 
     protected virtual void Movement()
     {
         if (currentHP <= 0) { return; } // Don't move if dead
 
         // Check direction facing and adjust to velocity according to that
-        if (IsFacingRight())
+        if (IsFacingRight)
         {
             rb.velocity = new Vector3(speed, rb.velocity.y, 0);
         }
@@ -234,11 +230,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Check to make sure only the enemy get hit is called, not every enemy
-    protected bool IsSelf(Collider selfCol)
-    {
-        // Get root because Mower's backside and generator are not actually Mower itself
-        return selfCol.gameObject.transform.root.gameObject.GetInstanceID() == this.gameObject.GetInstanceID();
-    }
+    protected bool IsSelf(Collider selfCol) => selfCol.gameObject.transform.root.gameObject.GetInstanceID() == this.gameObject.GetInstanceID();
 
     protected virtual Vector3 PopUpPos(Transform trans) => Vector3.zero;
 

@@ -72,42 +72,39 @@ public class MowerBehaviour : EnemyBehaviour
     #region Generator State
     private void Generating()
     {
-        if (!mowerStat.IsDestroyed)
-        {
-            mowerStat.ChangeToGenerating();
-            animatorMower.SetTrigger("Generating");
+        if (mowerStat.IsDestroyed) { return; }
 
-            fieldSprite.color = Color.yellow;
-            speed = 0;
-            isGenerating = false;
+        mowerStat.ChangeToGenerating();
+        animatorMower.SetTrigger("Generating");
 
-            Invoke("Active", 2f);
-        }
+        fieldSprite.color = Color.yellow;
+        speed = 0;
+        isGenerating = false;
+
+        Invoke("Active", 2f);
     }
 
     private void Active()
     {
-        if (!mowerStat.IsDestroyed)
-        {
-            mowerStat.ChangeToActive();
-            animatorMower.SetBool("IsActive", true);
+        if (mowerStat.IsDestroyed) { return; }
 
-            fieldSprite.color = Color.red;
-            speed = stat.runningSpeed;
+        mowerStat.ChangeToActive();
+        animatorMower.SetBool("IsActive", true);
 
-            Invoke("Inactive", 5f);
-        }
+        fieldSprite.color = Color.red;
+        speed = stat.runningSpeed;
+
+        Invoke("Inactive", 5f);
     }
 
     private void Inactive()
     {
-        if (!mowerStat.IsDestroyed)
-        {
-            mowerStat.ChangeToInactive();
-            animatorMower.SetBool("IsActive", false);
+        if (mowerStat.IsDestroyed) { return; }
 
-            fieldSprite.color = Color.white;
-        }
+        mowerStat.ChangeToInactive();
+        animatorMower.SetBool("IsActive", false);
+
+        fieldSprite.color = Color.white;
     }
 
     private void Destroyed()

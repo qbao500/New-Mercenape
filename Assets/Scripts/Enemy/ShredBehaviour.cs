@@ -50,7 +50,7 @@ public class ShredBehaviour : EnemyBehaviour
         if(!Physics.Raycast(frontDetection.position, transform.right, 4.5f, LayerMask.GetMask("Player"))) { return; }
 
         // If player face against Shred and is blocking
-        if (IsFacingRight() != playerMovement.FaceRight && playerMovement.isPlayerBlock)
+        if (IsFacingRight!= playerMovement.FaceRight && playerMovement.isPlayerBlock)
         {
             playerMovement.animator.SetTrigger("TakingHitBlocking");
 
