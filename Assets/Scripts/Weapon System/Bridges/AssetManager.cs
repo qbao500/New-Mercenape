@@ -10,10 +10,10 @@ public class AssetManager : MonoBehaviour
     private SetUpForge setUpForge;
     private SetUpShop setUpShop;
     private BuyWeapons buyWeapons;
-    private UseUpgrades useUpgrades;
     private StatsCalculator calculator;
     private ChooseWeapon chooseWeapon;
     private PlayerAttackTrigger playerAttack;
+    private UseUpgrades useUpgrades;
 
     // Abstract object lists
     private List<AbstractWeapon> weapons = new List<AbstractWeapon>();
@@ -52,9 +52,9 @@ public class AssetManager : MonoBehaviour
         setUpShop = GetComponent<SetUpShop>();
         weaponStates = GetComponent<WeaponStates>();
         buyWeapons = GetComponent<BuyWeapons>();
-        useUpgrades = GetComponent<UseUpgrades>();
         calculator = GetComponent<StatsCalculator>();
         chooseWeapon = GetComponent<ChooseWeapon>();
+        useUpgrades = GetComponent<UseUpgrades>();
 
         playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttackTrigger>();
     }
@@ -88,12 +88,12 @@ public class AssetManager : MonoBehaviour
     { 
         if (weaponStates != null) { weaponStates.SetWeaponList(weapons); }
         if (buyWeapons != null) { buyWeapons.SetWeaponList(weapons); }
-        if (useUpgrades != null) { useUpgrades.SetWeaponList(weapons); useUpgrades.SetUpgradeList(upgrades); }
         if (calculator != null) { calculator.SetWeaponList(weapons); }
         if (chooseWeapon != null) { chooseWeapon.SetWeaponList(weapons); }
         if (playerAttack != null) { playerAttack.SetWeaponList(weapons); }
         if(setUpForge != null) { setUpForge.SetWeaponList(weapons); }
-        if (setUpShop!= null) { setUpShop.SetWeaponList(weapons); }
+        if (setUpShop != null) { setUpShop.SetWeaponList(weapons); }
+        if(useUpgrades != null) { useUpgrades.SetUpgradeList(upgrades); }
     }
 
     public List<GameObject> GetWeaponModels() { return weaponModels; }

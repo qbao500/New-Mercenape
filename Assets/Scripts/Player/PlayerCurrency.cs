@@ -15,7 +15,6 @@ public class PlayerCurrency : MonoBehaviour
     private int gainedGoldAmount, gainedKarmaAmount, gainedSpeedAmount;
     private int goldCount, karmaCount, speedCount;
     
-    
     public TextMeshProUGUI moneyText, upgradeText, karmaText;
 
     public Slider karmaBar, moneyBar, upgradeBar;
@@ -33,6 +32,7 @@ public class PlayerCurrency : MonoBehaviour
     {
         SetTexts();
         SetKarmaBar();
+        speedUpgrades = 5;
     }
 
     void LateUpdate()
@@ -75,18 +75,21 @@ public class PlayerCurrency : MonoBehaviour
     {
         gainedGold = true;
         gainedGoldAmount = amount;
+        SaveManager.SaveCurrency(this);
     }
 
     public void AddKarma(int amount)
     {
         gainedKarma = true;
         gainedKarmaAmount = amount;
+        SaveManager.SaveCurrency(this);
     }
 
     public void AddUpgrades(int amount)
     {
         gainedUpgrade = true;
         gainedSpeedAmount = amount;
+        SaveManager.SaveCurrency(this);
     }
 
     public void LoseGold(int amount)

@@ -6,25 +6,27 @@ using UnityEngine.UI;
 // Created by Arttu Paldán 16.9.2020: This script allows the player to place upgrades into his weapon. 
 public class UseUpgrades : MonoBehaviour
 {
-    private SetUpScreens setUp;
+    private SetUpForge setUpForge;
     private WeaponStates weaponStates;
     private Money money;
     private StatsCalculator calculator;
     private PlayerCurrency playerCurrency;
    
-    private List<AbstractWeapon> weapons;
     private List<AbstractUpgrades> upgrades;
 
     private int upgradeID, upgradeCost;
 
+    public Text amountText;
+
     void Awake()
     {
         SetUpScripts();
+        upgradeID = upgrades[0].GetID();
     }
 
     void SetUpScripts()
     {
-        setUp = GetComponent<SetUpScreens>();
+        setUpForge = GetComponent<SetUpForge>();
         weaponStates = GetComponent<WeaponStates>();
         money = GetComponent<Money>();
         calculator = GetComponent<StatsCalculator>();
@@ -32,37 +34,34 @@ public class UseUpgrades : MonoBehaviour
     }
 
     // Button function for selecting the amount of upgrades to be inserted into the weapon.
-    //public void SelectUpgradeComponentsAmount()
-    //{
-    //    arrowButtonName = EventSystem.current.currentSelectedGameObject.name;
+    public void SelectUpgradeComponentsAmount()
+    {
+        string arrowButtonName = EventSystem.current.currentSelectedGameObject.name;
 
-    //    int speedAmount = calculator.GetSpeedAmount();
+        int speedAmount = calculator.GetSpeedAmount();
 
-    //    if (arrowButtonName == "Arrow1" && playerCurrency.speedUpgrades > 0)
-    //    {
-    //        upgradeID = upgrades[0].GetID();
+        if (arrowButtonName == "Arrow1" && playerCurrency.speedUpgrades > 0)
+        {
+            speedAmount++;
+            amountText.text = "" + speedAmount;
+            upgradeCost = upgrades[upgradeID].GetUpgradeCost() * speedAmount;
+            setUpForge.SetUpgradeCost(upgradeCost);
+            playerCurrency.speedUpgrades--;
+        }
+        else if (arrowButtonName == "Arrow2" && speedAmount > 0)
+        {
+            upgradeID = upgrades[0].GetID();
 
-    //        speedAmount++;
-    //        amountTexts.text = "" + speedAmount;
-    //        upgradeCost = upgrades[upgradeID].GetUpgradeCost() * speedAmount;
-    //        playerCurrency.speedUpgrades--;
-    //    }
-    //    else if (arrowButtonName == "Arrow2" && speedAmount > 0)
-    //    {
-    //        upgradeID = upgrades[0].GetID();
+            speedAmount--;
+            amountText.text = "" + speedAmount;
+            upgradeCost = upgrades[upgradeID].GetUpgradeCost() * speedAmount;
+            setUpForge.SetUpgradeCost(upgradeCost);
+            playerCurrency.speedUpgrades++;
+        }
 
-    //        speedAmount--;
-    //        amountTexts.text = "" + speedAmount;
-    //        upgradeCost = upgrades[upgradeID].GetUpgradeCost() * speedAmount;
-    //        playerCurrency.speedUpgrades++;
-    //    }
-
-    //    weaponCostText.text = "Upgrade Cost: " + upgradeCost;
-    //    upgradeHolderUpgradeScreen.text = "Speed: " + playerCurrency.speedUpgrades;
-
-    //    calculator.SetSpeedAmount(speedAmount);
-    //    UpdateWeaponStats();
-    //}
+        calculator.SetSpeedAmount(speedAmount);
+        setUpForge.SetScreen();
+    }
 
     // Confirm button function for confirming the updates. 
     public void ConfirmUpgrade()
@@ -75,15 +74,16 @@ public class UseUpgrades : MonoBehaviour
             money.ChangeCurrencyAmount(upgradeCost);
             weaponStates.WhatWeaponWasUpgraded(weaponID);
 
-            setUp.UpdateWeaponStats();
+            amountText.text = "" + 0;
+            setUpForge.SetUpgradeCost(0);
+
+            setUpForge.SetScreen();
             calculator.SaveStats();
-            
             calculator.SetSpeedAmount(0);
 
             SaveManager.SaveCurrency(playerCurrency);
         }
     }
 
-    public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
     public void  SetUpgradeList(List<AbstractUpgrades> list) { upgrades = list; }
 }

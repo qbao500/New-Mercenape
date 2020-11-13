@@ -38,11 +38,11 @@ public class ChooseWeapon : MonoBehaviour
 
         List<bool> ownedWeaponsList = weaponStates.GetOwnedWeapons();
 
-        if (buttonName == "ChooseButton1" && ownedWeaponsList[0])
+        if (buttonName == "OwnedWeaponSword" && ownedWeaponsList[0])
         {
             chosenWeaponID = weapons[0].GetID();
         }
-        else if (buttonName == "ChooseButton2" && ownedWeaponsList[1])
+        else if (buttonName == "OwnedWeaponMace" && ownedWeaponsList[1])
         {
             chosenWeaponID = weapons[1].GetID();
         }
@@ -58,7 +58,7 @@ public class ChooseWeapon : MonoBehaviour
         weaponStates.SetChosenWeaponID(chosenWeaponID);
         weaponStates.SetUpWeapon();
         SaveManager.SaveWeapons(weaponStates);
-        // setUp.SetForgeScreen(chosenWeaponID);
+        setUp.SetScreen();
     }
 
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }

@@ -93,4 +93,5 @@ public abstract class SetUpScreens : MonoBehaviour
     protected abstract void SwitchModels();
 
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
+    public void SetUpgradeCost(int loss) { cost = loss; }
 }
