@@ -45,11 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807928a36459de14c864c4a8d71b02e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavesInfo:
+  - {fileID: 11400000, guid: f96a053721c57154fb9f7a9324897208, type: 2}
+  - {fileID: 11400000, guid: 9ac294fbc8d204c4b8714725b12a2c3d, type: 2}
+  - {fileID: 11400000, guid: dc7929a653e963d4aa89816df87d7e23, type: 2}
   group:
     shredCount: 0
     mowerCount: 0
     enemyIncreasedHP: 0
     enemyIncreasedDamage: 0
+  currentWave: 1
   waveText: {fileID: 9032253689322311937}
   groupText: {fileID: 8194676806224783874}
   timeBetweenGroups: 3

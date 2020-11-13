@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Mower", menuName = "Mower Stats")]
+[CreateAssetMenu(fileName = "New Mower", menuName = "Enemy Stats/Mower Stats")]
 public class MowerStatsSO : EnemyStatsSO
 {
     [Header("Generator stats")]

@@ -9,14 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78eeb77df3d907440845a0442c4e57df, type: 3}
-  m_Name: Mower
+  m_Script: {fileID: 11500000, guid: fe8e1231dc3c54f468a9a7e5a237bb82, type: 3}
+  m_Name: Wave 1
   m_EditorClassIdentifier: 
-  name: Mower
-  damage: 10
-  maxHP: 80
-  runningSpeed: 8
-  spaceToGetUp: 9
-  fieldMaxHP: 40
-  fieldDamage: 20
-  currentState: 0
+  groups:
+  - group: Group 1
+    shred: 1
+    mower: 0
+  - group: Group 2
+    shred: 2
+    mower: 0
+  - group: Group 3
+    shred: 3
+    mower: 1
+  - group: Group 4
+    shred: 5
+    mower: 1

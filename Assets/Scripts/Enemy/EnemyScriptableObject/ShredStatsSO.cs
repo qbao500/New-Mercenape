@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Shred", menuName = "Shred Stats")]
+[CreateAssetMenu(fileName = "New Shred", menuName = "Enemy Stats/Shred Stats")]
 public class ShredStatsSO : EnemyStatsSO
 {
     [Header("Shred stagger")]

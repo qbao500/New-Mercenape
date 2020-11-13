@@ -9,6 +9,8 @@ public class EnemySpawnerScript : MonoBehaviour
 {
     public enum SpawnState { Spawning, Waiting, Counting }
 
+    [SerializeField] private List<WaveSO> wavesInfo;
+
     [System.Serializable]
     public class Group
     {
@@ -19,7 +21,6 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
     public Group group = new Group();
-    //public List<Group> groups = new List<Group>();
 
     private int currentGroup = 0;
     public int currentWave = 1;
@@ -181,54 +182,16 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private void EnemySpawnPattern()
     {
-        switch (currentWave)
+        if (currentWave > wavesInfo.Count || currentGroup > wavesInfo[currentWave - 1].groups.Count)
         {
-            case 1:
-                {
-                    if (CheckAndSet(1, 1, 0)) { break; }
-                    if (CheckAndSet(2, 2, 0)) { break; }
-                    if (CheckAndSet(3, 3, 1)) { break; }
-                    if (CheckAndSet(4, 5, 1)) { break; }
-                    break;
-                }
-            case 2:
-                {
-                    if (CheckAndSet(1, 2, 0)) { break; }
-                    if (CheckAndSet(2, 4, 0)) { break; }
-                    if (CheckAndSet(3, 4, 1)) { break; }
-                    if (CheckAndSet(4, 6, 1)) { break; }
-                    break;
-                }
-            case 3:
-                {
-                    if (CheckAndSet(1, 4, 0)) { break; }
-                    if (CheckAndSet(2, 4, 1)) { break; }
-                    if (CheckAndSet(3, 5, 1)) { break; }
-                    if (CheckAndSet(4, 5, 2)) { break; }
-                    break;
-                }
-            default:
-                {
-                    CheckAndSet(0, 0, 0);   // This will go to the else statement and random spawn
-                    break;
-                }                
-        }
-    }
-
-    private bool CheckAndSet(int groupCheck, int shred, int mower)
-    {
-        if (currentGroup == groupCheck)
-        {
-            group.shredCount = shred;
-            group.mowerCount = mower;
-            return true;
-        }
-        else
-        {
+            // It current wave/group is not in pattern, randomize spawn
             group.shredCount = Random.Range(4, 6 + 1);
             group.mowerCount = RandomMower();
-            return false;
-        }        
+            return;
+        }
+
+        group.shredCount = wavesInfo[currentWave - 1].groups[currentGroup - 1].shred;
+        group.mowerCount = wavesInfo[currentWave - 1].groups[currentGroup - 1].mower;
     }
 
     private void MakeSpawnList()
@@ -274,9 +237,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         Time.timeScale = 1;
         completeWaveScreen.SetActive(false);
-        groupText.SetText("Group " + currentGroup);
-        waveText.SetText("Wave " + currentWave);
-
+        
         playerCurrency.karma = 0;
         playerCurrency.SetKarmaBar();
         SaveManager.SaveCurrency(playerCurrency);
