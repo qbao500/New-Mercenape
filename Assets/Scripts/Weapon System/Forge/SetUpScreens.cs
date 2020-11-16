@@ -39,9 +39,9 @@ public abstract class SetUpScreens : MonoBehaviour
 
     protected void GetRequiredComponents()
     {
-        // weaponInventory.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponHolderTag));
-        // weaponImages.InsertRange(0, GameObject.FindGameObjectsWithTag(chosenWeaponTag));
-        // chooseButtons.InsertRange(0, GameObject.FindGameObjectsWithTag(chooseButtonTag));
+        weaponInventory.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponHolderTag));
+        weaponImages.InsertRange(0, GameObject.FindGameObjectsWithTag(chosenWeaponTag));
+        chooseButtons.InsertRange(0, GameObject.FindGameObjectsWithTag(chooseButtonTag));
 
         costText = GameObject.FindGameObjectWithTag(costTag).GetComponent<Text>();
         upgradeText = GameObject.FindGameObjectWithTag(upgradeTag).GetComponent<Text>();

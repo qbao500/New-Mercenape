@@ -68,7 +68,7 @@ public class AssetManager : MonoBehaviour
 
     public void SetUpModels()
     {
-        // weaponModels.InsertRange(0, new List<GameObject>(GameObject.FindGameObjectsWithTag("WeaponInUse")));
+        weaponModels.InsertRange(0, new List<GameObject>(GameObject.FindGameObjectsWithTag("WeaponInUse")));
 
         foreach (GameObject weapon in weaponModels) { weapon.SetActive(false); }
     }
