@@ -44,4 +44,9 @@ public class LoadScene : MonoBehaviour
         SaveManager.SaveCurrency(playerCurrency);
         SceneManager.LoadScene("mainMenu");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

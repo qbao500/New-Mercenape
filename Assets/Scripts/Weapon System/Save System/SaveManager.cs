@@ -127,7 +127,7 @@ public class WeaponsData
 {
     public int weaponID;
 
-    public List<bool> ownedWeaponsList, upgradedWeaponsList;
+    public List<bool> ownedWeaponsList, bougthWeaponList, upgradedWeaponsList;
     public List<int> savedSpeedAmountsList;
 
     public WeaponsData(WeaponStates weaponStates)
@@ -135,6 +135,7 @@ public class WeaponsData
         weaponID = weaponStates.GetChosenWeaponID();
 
         ownedWeaponsList = weaponStates.GetOwnedWeapons();
+        bougthWeaponList = weaponStates.GetBoughtWeapons();
         upgradedWeaponsList = weaponStates.GetUpgradedWeapons();
         savedSpeedAmountsList = weaponStates.GetSavedSpeeds();
     }

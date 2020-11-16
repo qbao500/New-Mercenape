@@ -10,15 +10,14 @@ public class WeaponStates: MonoBehaviour
     private PlayerAttackTrigger playerAttack;
 
     private List<AbstractWeapon> weapons;
-    [SerializeField] private List<bool> ownedWeaponsList , upgradedWeaponsList;
+    [SerializeField] private List<bool> ownedWeaponsList, boughtWeaponsList, upgradedWeaponsList;
     [SerializeField] private List<int> savedSpeedAmountsList;
+    [SerializeField] private List<GameObject> weaponModels;
 
     private int weaponID;
 
-    [SerializeField] private float weaponSpeed, weaponImpactDamage, bleedDamage, bleedDuration;
+    private float weaponSpeedForge, weaponImpactDamageForge, weaponSpeedShop, weaponImpactDamageShop, bleedDamage, bleedDuration;
     private int bleedTicks;
-
-    [SerializeField] private List<GameObject> weaponModels;
 
     void Awake()
     {
@@ -37,6 +36,7 @@ public class WeaponStates: MonoBehaviour
     void SetUpBoolLists()
     {
         ownedWeaponsList = new List<bool>(new bool[weapons.Count]);
+        boughtWeaponsList = new List<bool>(new bool[3]);
         upgradedWeaponsList = new List<bool>(new bool[weapons.Count]);
         savedSpeedAmountsList = new List<int>(new int[weapons.Count]);
 
@@ -44,12 +44,29 @@ public class WeaponStates: MonoBehaviour
     }
 
     // Function for setting the ownership status of a weapon.
-    public void WhatWeaponWasBought(int id) { ownedWeaponsList[id] = true; }
+    public void WhatWeaponWasBought(int id) 
+    {
+        if(id == 0)
+        {
+            boughtWeaponsList[0] = true;
+            ownedWeaponsList[1] = true;
+        }
+        else if (id == 1)
+        {
+            boughtWeaponsList[1] = true;
+            ownedWeaponsList[2] = true;
+        }
+        else if (id == 2)
+        {
+            boughtWeaponsList[2] = true;
+            ownedWeaponsList[3] = true;
+        }
+    }
 
     // Function for setting the upgrade status of a weapon. 
     public void WhatWeaponWasUpgraded(int id) { upgradedWeaponsList[id] = true; }
-
-    public void UpdateStats(float speed, float damage) { weaponSpeed = speed; weaponImpactDamage = damage; }
+    public void UpdateStatsForge(float speed, float damage) { weaponSpeedForge = speed; weaponImpactDamageForge = damage; }
+    public void UpdateStatsShop(float speed, float damage) { weaponSpeedShop = speed; weaponImpactDamageShop = damage; }
 
     // This function sets up the weapon to be used in level scenes. 
     public void SetUpWeapon()
@@ -72,10 +89,7 @@ public class WeaponStates: MonoBehaviour
     {
         weaponModels = assetManager.GetWeaponModels();
 
-        for (int i = 0; i < weaponModels.Count; i++)
-        {
-             weaponModels[i].SetActive(false);
-        }
+        for (int i = 0; i < weaponModels.Count; i++) { weaponModels[i].SetActive(false); }
 
         weaponModels[weaponID].SetActive(true);
     }
@@ -89,6 +103,7 @@ public class WeaponStates: MonoBehaviour
         {
             weaponID = data.weaponID;
             ownedWeaponsList = data.ownedWeaponsList;
+            boughtWeaponsList = data.bougthWeaponList;
             upgradedWeaponsList = data.upgradedWeaponsList;
             savedSpeedAmountsList = data.savedSpeedAmountsList;
         }
@@ -103,10 +118,13 @@ public class WeaponStates: MonoBehaviour
     // Get Functions
     public int GetChosenWeaponID() { return weaponID; }
     public List<bool> GetOwnedWeapons() { return ownedWeaponsList; }
+    public List<bool> GetBoughtWeapons() { return boughtWeaponsList; }
     public List<bool> GetUpgradedWeapons() { return upgradedWeaponsList; }
     public List<int> GetSavedSpeeds() { return savedSpeedAmountsList; }
-    public float GetWeaponSpeed() { return weaponSpeed; }
-    public float GetWeaponImpactDamage() { return weaponImpactDamage; }
+    public float GetWeaponSpeedForge() { return weaponSpeedForge; }
+    public float GetWeaponImpactDamageForge() { return weaponImpactDamageForge; }
+    public float GetWeaponSpeedShop() { return weaponSpeedShop; }
+    public float GetWeaponImpactDamageShop() { return weaponImpactDamageShop; }
     public float GetWeaponBleedDamage() { return bleedDamage; }
     public float GetBleedDuration() { return bleedDuration; }
     public int GetWeaponBleedTicks() { return bleedTicks; }

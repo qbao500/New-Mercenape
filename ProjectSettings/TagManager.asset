@@ -5,15 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Money
-  - WeaponName
-  - WeaponDescription
-  - BuyScreenWeaponImage
-  - WeaponCost
   - Killbox
   - Enemy
   - Kill
   - wall
-  - UpgradeScreenWeaponName
   - UpgradeScreenWeaponImage
   - UpgradeName
   - UpgradeDescription
@@ -22,9 +17,6 @@ TagManager:
   - inputButton
   - UpgradeCost
   - WeaponStats
-  - WeaponSpeed
-  - WeaponWeight
-  - ImpactDamage
   - ground
   - WeaponInUse
   - GameManager
@@ -37,14 +29,9 @@ TagManager:
   - UpgradeImageHolder
   - EnemyHealthBar
   - Ladder
-  - Loot/Gold
-  - Loot/HPDrop
-  - Loot/Karma
-  - Loot/UpgradeDrop
   - MoneyUpgrade
   - EnemySpawner
   - UpgradeHolder
-  - UpgradeComponentScreen
   - ChosenWeaponHolder
   - WeaponHolder
   - Shop
@@ -53,6 +40,28 @@ TagManager:
   - ResourceDestination
   - PlayerSpeechBubble
   - ForgeTitle
+  - WeaponImage
+  - ToShop
+  - ToForge
+  - UpgradeScreenWeaponName
+  - ShopTitleInactive
+  - ShopTitleActive
+  - ForgeTitleInactive
+  - ForgeTitleActive
+  - CostText
+  - UpgradeText
+  - WeaponStatText
+  - SelectionHolder
+  - WeaponStatShop
+  - WeaponImageShop
+  - UpgradeTextShop
+  - CostTextShop
+  - ChooseButton
+  - WeaponSpeed
+  - ImpactDamage
+  - WeaponWeight
+  - Loot/HPDrop
+  - ArrowButton
   layers:
   - Default
   - TransparentFX

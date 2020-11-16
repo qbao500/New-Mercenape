@@ -7,19 +7,16 @@ using UnityEngine.EventSystems;
 // Created by Arttu Paldán 11.9.2020: This script will handle buying or unlocking component pieces.
 public class BuyWeapons : MonoBehaviour
 {
-    private ChooseWeapon chooseWeapon;
+    private SetUpShop setUpShop;
     private Money money;
     private WeaponStates weaponStates;
+    private PlayerCurrency playerCurrency;
 
     private List<AbstractWeapon> weapons;
+    private List<bool> boughtWeapons;
 
-    private int weaponID;
-
-    private List<Image> weaponImagesHolder = new List<Image>();
-
-    private GameObject buyWeaponScreen;
-    private Text weaponName, weaponDescription, weaponCostText;
-    private Image weaponImageBuyScreen;
+    [SerializeField] private int weaponID;
+    [SerializeField] private List<int> forbiddenID;
 
     private bool cantBuy;
 
@@ -28,15 +25,7 @@ public class BuyWeapons : MonoBehaviour
 
     void Awake()
     {
-        BuyOperations.SetUpImportantComponents(this, counterStart);
-        BuyOperations.GetWeaponHolders(this, weaponImagesHolder);
-
-        buyWeaponScreen.SetActive(false);
-    }
-
-    void Start()
-    {
-        SetWeaponsHolder();
+        SetUpImportantComponents();
     }
 
     void Update()
@@ -45,87 +34,103 @@ public class BuyWeapons : MonoBehaviour
         {
             CantBuyCounter();
         }
+    }
 
-        if (buyWeaponScreen.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+    void SetUpImportantComponents()
+    {
+        setUpShop = GetComponent<SetUpShop>();
+        money = GetComponent<Money>();
+        weaponStates = GetComponent<WeaponStates>();
+        playerCurrency = GetComponent<PlayerCurrency>();
+
+        boughtWeapons = weaponStates.GetBoughtWeapons();
+        InitializeForbiddenID();
+        originalStart = counterStart;
+    }
+
+    // Handles the buying action.
+    public void BuyWeapon()
+    {
+        int weaponCost = weapons[weaponID].GetCost();
+        int currency = money.GetCurrentCurrency();
+
+        if (currency >= weaponCost)
         {
-            CloseWeapon();
+            money.ChangeCurrencyAmount(weaponCost);
+            weaponStates.WhatWeaponWasBought(weaponID);
+            
+            SaveManager.SaveWeapons(weaponStates);
+            SaveManager.SaveCurrency(playerCurrency);
+            
+            AddForbiddenID();
+            weaponID = weaponID + 1;
+            CheckID();
+            setUpShop.SetScreen(weaponID);
+        }
+        else
+        {
+            cantBuy = true;
         }
     }
 
-    // Function for setting up images in the shop.
-    void SetWeaponsHolder()
-    {
-        List<bool> ownedWeapons = weaponStates.GetOwnedWeapons();
-
-        BuyOperations.SetWeaponsHolder(weapons, ownedWeapons, weaponImagesHolder);
-    }
-
-    // Sets the sprites and texts in the buy screen. These things are gotten from the abstract components.
-    void SetBuyWeaponScreen()
-    {
-        BuyOperations.SetBuyScreen(weapons, weaponID, weaponImageBuyScreen, weaponName, weaponDescription, weaponCostText);
-    }
-    
-    // Button function that recognizes, which button has been pressed and based on this gives out the weaponID we need to execute rest of the code. 
-    public void WeaponButton()
+    public void ScrollCatalogue()
     {
         string buttonName = EventSystem.current.currentSelectedGameObject.name;
 
-        BuyOperations.WeaponButtonPress(this, buttonName, weapons);
+        CheckID();
 
-        OpenWeapon();
+        if (buttonName == "ScrollArrowRight")
+        {
+            weaponID = weaponID + 1;
+
+            if (weaponID == forbiddenID[weaponID]) { weaponID = weaponID - 1; }
+        }
+        else if (buttonName == "ScrollArrowLeft" && weaponID >= 0)
+        {
+            weaponID = weaponID - 1;
+
+            if (weaponID == forbiddenID[weaponID]) { weaponID = weaponID + 1; }
+        }
+
+        setUpShop.SetScreen(weaponID);
     }
-    
-    // Function for buying the components.
-    public void Buy()
+
+    void InitializeForbiddenID()
     {
-        BuyOperations.BuyWeapon(this, weaponStates, money, weapons, weaponImagesHolder, chooseWeapon.GetOwnedWeaponsList(), buyWeaponScreen, weaponID); 
+        forbiddenID = new List<int>(new int[boughtWeapons.Count]);
+
+        for(int i = 0; i < forbiddenID.Count; i++) { forbiddenID[i] = -1; }
+
+        if (boughtWeapons[0]) { forbiddenID.Insert(0, 0); }
+        if (boughtWeapons[1]) { forbiddenID.Insert(1, 1); }
+        if (boughtWeapons[2]) { forbiddenID.Insert(2, 2); }
+    }
+
+    void AddForbiddenID() { forbiddenID.Insert(weaponID, weaponID); }
+
+    public void CheckID()
+    {
+        if (boughtWeapons[0]) { weaponID = 1; }
+        if (boughtWeapons[1]) { weaponID = 2; }
+        if (boughtWeapons[2]) { weaponID = 0; }
     }
 
     // Function that announces, that player can't buy component and keeps this message going for couple of frames. 
     void CantBuyCounter()
     {
-        weaponDescription.text = "Don't have enough money for this component";
+        //weaponDescription.text = "Don't have enough money for this component";
 
         counterStart += Time.deltaTime;
         if (counterStart >= counterEnd)
         {
-            SetCantBuy(false);
+            cantBuy = false;
 
-            weaponDescription.text = weapons[weaponID].GetDescription();
-            SetCounterStart(originalStart);
+            // weaponDescription.text = weapons[weaponID].GetDescription();
+            counterStart = originalStart;
         }
     }
 
-    // Function to open the buy component screen.
-    void OpenWeapon()
-    {
-        buyWeaponScreen.SetActive(true);
-
-        SetBuyWeaponScreen();
-    }
-
-    // Function to close the buy component screen.
-    public void CloseWeapon()
-    {
-        buyWeaponScreen.SetActive(false);
-
-        SetWeaponID(-1);
-    }
-
-    // Set functions
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
-    public void SetChooseWeapon(ChooseWeapon thisChoose) { chooseWeapon = thisChoose; }
-    public void SetMoney(Money thisMoney) { money = thisMoney; }
-    public void SetWeaponStates(WeaponStates weapon) { weaponStates = weapon; }
-    public void SetCantBuy(bool cant) { cantBuy = cant; }
-    public void SetWeaponID(int id) { weaponID = id; }
-    public void SetCounterStart(float start) { counterStart = start; }
-    public void SetOriginalCounterStart(float start) { originalStart = start; }
-    public void SetWeaponNameText(Text name) { weaponName = name; }
-    public void SetWeaponDescText(Text desc) { weaponDescription = desc; }
-    public void SetWeaponCostText(Text cost) { weaponCostText = cost; }
-    public void SetBuyScreenWeaponImage(Image weapon) { weaponImageBuyScreen = weapon; }
-    public void SetWeaponHolders(List<Image> weaponHolder) { weaponImagesHolder = weaponHolder; }
-    public void SetBuyScreen(GameObject screen) { buyWeaponScreen = screen;}
+
+    public int GetWeaponID() { return weaponID; }
 }
