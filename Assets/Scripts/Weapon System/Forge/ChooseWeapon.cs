@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 // Created by Arttu Paldán 16.9.2020: This class allows the player to choose his weapon from among the ones he has unlocked. 
 public class ChooseWeapon : MonoBehaviour
 {
-    private SetUpScreens setUp;
+    private SetUpForge setUpForge;
     private WeaponStates weaponStates;
    
     private List<AbstractWeapon> weapons;
@@ -26,7 +26,7 @@ public class ChooseWeapon : MonoBehaviour
 
     void SetUpScripts()
     {
-        setUp = GetComponent<SetUpScreens>();
+        setUpForge = GetComponent<SetUpForge>();
         weaponStates = GetComponent<WeaponStates>();
     }
 
@@ -38,11 +38,11 @@ public class ChooseWeapon : MonoBehaviour
 
         List<bool> ownedWeaponsList = weaponStates.GetOwnedWeapons();
 
-        if (buttonName == "OwnedWeaponSword" && ownedWeaponsList[0])
+        if (buttonName == "ChooseButton1" && ownedWeaponsList[0])
         {
             chosenWeaponID = weapons[0].GetID();
         }
-        else if (buttonName == "OwnedWeaponMace" && ownedWeaponsList[1])
+        else if (buttonName == "ChooseButton2" && ownedWeaponsList[1])
         {
             chosenWeaponID = weapons[1].GetID();
         }
@@ -58,7 +58,7 @@ public class ChooseWeapon : MonoBehaviour
         weaponStates.SetChosenWeaponID(chosenWeaponID);
         weaponStates.SetUpWeapon();
         SaveManager.SaveWeapons(weaponStates);
-        setUp.SetScreen();
+        setUpForge.SetScreen(chosenWeaponID);
     }
 
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }

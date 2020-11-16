@@ -21,21 +21,18 @@ public class Money : MonoBehaviour
         currencyHolderForge = GameObject.FindGameObjectWithTag("MoneyUpgrade").GetComponentInChildren<Text>();
     }
 
-    void Start()
-    {
-        SetStartingCurrency();
-    }
+    void Update(){ GetCurrency(); }
 
     // Public function for the other scripts to get how much player has money.
     public int GetCurrentCurrency(){ return currency;}
 
     // Function to set the starting money.
-    void SetStartingCurrency()
+    void GetCurrency()
     {
         currency = playerCurrency.gold;
         
-        if(currencyHolderShop != null) { currencyHolderShop.text = "Money: " + currency; }
-        if(currencyHolderForge != null) { currencyHolderForge.text = "Money: " + currency; }
+        if(currencyHolderShop != null) { currencyHolderShop.text = currency.ToString(); }
+        if(currencyHolderForge != null) { currencyHolderForge.text = currency.ToString(); }
     }
     
     // Function for changing amount of money, for example when buying components. 
@@ -47,7 +44,9 @@ public class Money : MonoBehaviour
 
         playerCurrency.gold = currency;
 
-        if (currencyHolderShop != null) { currencyHolderShop.text = "Money: " + currency; }
-        if (currencyHolderForge != null) { currencyHolderForge.text = "Money: " + currency; }
+        playerCurrency.UpdateCurrencies();
+
+        if (currencyHolderShop != null) { currencyHolderShop.text = currency.ToString(); }
+        if (currencyHolderForge != null) { currencyHolderForge.text = currency.ToString(); }
     }
 }

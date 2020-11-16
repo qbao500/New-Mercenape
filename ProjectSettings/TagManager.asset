@@ -17,9 +17,6 @@ TagManager:
   - inputButton
   - UpgradeCost
   - WeaponStats
-  - WeaponSpeed
-  - WeaponWeight
-  - ImpactDamage
   - ground
   - WeaponInUse
   - GameManager
@@ -32,10 +29,6 @@ TagManager:
   - UpgradeImageHolder
   - EnemyHealthBar
   - Ladder
-  - Loot/Gold
-  - Loot/HPDrop
-  - Loot/Karma
-  - Loot/UpgradeDrop
   - MoneyUpgrade
   - EnemySpawner
   - UpgradeHolder
@@ -63,6 +56,12 @@ TagManager:
   - WeaponImageShop
   - UpgradeTextShop
   - CostTextShop
+  - ChooseButton
+  - WeaponSpeed
+  - ImpactDamage
+  - WeaponWeight
+  - Loot/HPDrop
+  - ArrowButton
   layers:
   - Default
   - TransparentFX

@@ -32,7 +32,6 @@ public class PlayerCurrency : MonoBehaviour
     {
         SetTexts();
         SetKarmaBar();
-        speedUpgrades = 5;
     }
 
     void LateUpdate()
@@ -147,6 +146,12 @@ public class PlayerCurrency : MonoBehaviour
             gainedUpgrade = false;
             speedCount = 0;
         }
+    }
+
+    public void UpdateCurrencies()
+    {
+        karmaText.SetText(karma.ToString());
+        SetTexts();
     }
 
     void LoadSaveFile()

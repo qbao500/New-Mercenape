@@ -6,30 +6,36 @@ using UnityEngine;
 public class StatsCalculator : MonoBehaviour
 {
     private WeaponStates weaponStates;
-    
-    private List<AbstractWeapon> weapons;
+    private BuyWeapons buyWeapons;
 
-    private bool requestCameFromUseUpgrades, requestCameFromSetActualWeapon;
+    private List<AbstractWeapon> weapons, weaponsShop;
+
+    private bool requestCameFromForge, requestCameFromShop, requestCameFromSetActualWeapon;
 
     private int weaponID;
 
     private int amountOfSpeed, savedAmountOfSpeed;
 
-    [SerializeField] private float weaponWeight, weaponSpeed, weaponImpactDamage;
+    private float weaponWeight, weaponSpeed, weaponImpactDamage;
 
     private float actualWeaponSpeed, actualWeaponImpactDamage;
 
     void Awake()
     {
         weaponStates = GetComponent<WeaponStates>();
+        buyWeapons = GetComponent<BuyWeapons>();
     }
 
     // Public function that other scripts can call to handle the weapon stat calculations.
     public void CalculateStats()
     {
-        if (requestCameFromUseUpgrades)
+        if (requestCameFromForge)
         {
             weaponID = weaponStates.GetChosenWeaponID();
+        }
+        else if(requestCameFromShop)
+        {
+            weaponID = buyWeapons.GetWeaponID();
         }
         else if (requestCameFromSetActualWeapon)
         {
@@ -55,9 +61,13 @@ public class StatsCalculator : MonoBehaviour
         {
             CalculateWithSavedStats();
         }
-        else
+        else if(requestCameFromForge || requestCameFromSetActualWeapon)
         {
             CalculateNormally();
+        }
+        else if (requestCameFromShop)
+        {
+            CalculateForShop();
         }
     }
 
@@ -76,7 +86,10 @@ public class StatsCalculator : MonoBehaviour
         actualWeaponSpeed = weaponSpeed + (savedAmountOfSpeed * 0.1f) - (weaponWeight * 0.1f);
         actualWeaponImpactDamage = weaponImpactDamage + weaponWeight;
 
-        weaponStates.UpdateStats(actualWeaponSpeed, actualWeaponImpactDamage);
+        weaponStates.UpdateStatsForge(actualWeaponSpeed, actualWeaponImpactDamage);
+
+        requestCameFromForge = false;
+        requestCameFromSetActualWeapon = false;
     }
 
     // Function for calculating weapon stats when changes have not been made or when player upgrades the weapon.
@@ -88,11 +101,29 @@ public class StatsCalculator : MonoBehaviour
         weaponSpeed = weaponsArray.GetSpeed();
         weaponImpactDamage = weaponsArray.GetImpactDamage();
 
-        actualWeaponSpeed = weaponSpeed + (amountOfSpeed * 0.1f) - (weaponWeight/10);
-      
+        actualWeaponSpeed = weaponSpeed + (amountOfSpeed * 0.1f) - (weaponWeight * 0.1f);
         actualWeaponImpactDamage =  weaponImpactDamage + weaponWeight;
 
-        weaponStates.UpdateStats(actualWeaponSpeed, actualWeaponImpactDamage);
+        weaponStates.UpdateStatsForge(actualWeaponSpeed, actualWeaponImpactDamage);
+
+        requestCameFromForge = false;
+        requestCameFromSetActualWeapon = false;
+    }
+
+    void CalculateForShop()
+    {
+        AbstractWeapon weaponsArray = weaponsShop[weaponID];
+
+        weaponWeight = weaponsArray.GetWeight();
+        weaponSpeed = weaponsArray.GetSpeed();
+        weaponImpactDamage = weaponsArray.GetImpactDamage();
+
+        actualWeaponSpeed = weaponSpeed + (amountOfSpeed * 0.1f) - (weaponWeight * 0.1f);
+        actualWeaponImpactDamage = weaponImpactDamage + weaponWeight;
+
+        weaponStates.UpdateStatsShop(actualWeaponSpeed, actualWeaponImpactDamage);
+
+        requestCameFromShop = false;
     }
 
     // Function for saving the amount of upgrades.
@@ -157,13 +188,14 @@ public class StatsCalculator : MonoBehaviour
 
 
     // Set functions.
-    public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
+    public void SetWeaponList(List<AbstractWeapon> list, List<AbstractWeapon> listII) { weapons = list; weaponsShop = listII; }
     public void SetSpeedAmount(int amount) { amountOfSpeed = amount; }
     public void SetSavedSpeedAmount(int amount) { savedAmountOfSpeed = amount; }
 
     public void SetSpeed(float speed) { actualWeaponSpeed = speed; }
     public void SetImpactDamage(float damage) { actualWeaponImpactDamage = damage; }
 
-    public void SetRequestFromUpgrades(bool request) { requestCameFromUseUpgrades = request; }
+    public void SetRequestFromForge(bool request) { requestCameFromForge = request; }
+    public void SetRequestFromShop(bool request) { requestCameFromShop = request; }
     public void SetRequestFromActualWeapon(bool request) { requestCameFromSetActualWeapon = request; }
 }

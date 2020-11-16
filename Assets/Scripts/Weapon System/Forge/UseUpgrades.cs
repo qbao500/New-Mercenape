@@ -6,15 +6,15 @@ using UnityEngine.UI;
 // Created by Arttu Paldán 16.9.2020: This script allows the player to place upgrades into his weapon. 
 public class UseUpgrades : MonoBehaviour
 {
-    private SetUpForge setUpForge;
-    private WeaponStates weaponStates;
-    private Money money;
-    private StatsCalculator calculator;
-    private PlayerCurrency playerCurrency;
+    SetUpForge setUpForge;
+    WeaponStates weaponStates;
+    Money money;
+    StatsCalculator calculator;
+    PlayerCurrency playerCurrency;
    
-    private List<AbstractUpgrades> upgrades;
+    List<AbstractUpgrades> upgrades;
 
-    private int upgradeID, upgradeCost;
+    [SerializeField] int upgradeID, upgradeCost;
 
     public Text amountText;
 
@@ -37,7 +37,6 @@ public class UseUpgrades : MonoBehaviour
     public void SelectUpgradeComponentsAmount()
     {
         string arrowButtonName = EventSystem.current.currentSelectedGameObject.name;
-
         int speedAmount = calculator.GetSpeedAmount();
 
         if (arrowButtonName == "Arrow1" && playerCurrency.speedUpgrades > 0)
@@ -60,7 +59,7 @@ public class UseUpgrades : MonoBehaviour
         }
 
         calculator.SetSpeedAmount(speedAmount);
-        setUpForge.SetScreen();
+        setUpForge.SetScreen(weaponStates.GetChosenWeaponID());
     }
 
     // Confirm button function for confirming the updates. 
@@ -73,14 +72,16 @@ public class UseUpgrades : MonoBehaviour
         {
             money.ChangeCurrencyAmount(upgradeCost);
             weaponStates.WhatWeaponWasUpgraded(weaponID);
+            weaponStates.SetUpWeapon();
 
             amountText.text = "" + 0;
             setUpForge.SetUpgradeCost(0);
 
-            setUpForge.SetScreen();
+            setUpForge.SetScreen(weaponStates.GetChosenWeaponID());
             calculator.SaveStats();
             calculator.SetSpeedAmount(0);
 
+            SaveManager.SaveWeapons(weaponStates);
             SaveManager.SaveCurrency(playerCurrency);
         }
     }

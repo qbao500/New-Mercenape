@@ -53,8 +53,8 @@ public class PlayerAttackTrigger : MonoBehaviour
     public void SetWeaponStats()
     {
         weaponID = weaponStates.GetChosenWeaponID();
-        PlayerDamage = weaponStates.GetWeaponImpactDamage();
-        weaponSpeed = weaponStates.GetWeaponSpeed();
+        PlayerDamage = weaponStates.GetWeaponImpactDamageForge();
+        weaponSpeed = weaponStates.GetWeaponSpeedForge();
         PlayerAnimator.SetFloat("AttackSpeed", weaponSpeed);
         
         weaponBleedDamage = weaponStates.GetWeaponBleedDamage();
