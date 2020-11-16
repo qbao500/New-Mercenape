@@ -90,9 +90,9 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 
-    public bool IsAnyActiveObject(string[] tag)
+    public bool IsAnyActiveObject(List<string> tag)
     {
-        for (int i = 0; i < tag.Length; i++)
+        for (int i = 0; i < tag.Count; i++)
         {
             foreach (var obj in poolDictionary[tag[i]])
             {
@@ -105,11 +105,10 @@ public class ObjectPooler : MonoBehaviour
     }
 
     private void MakeParent(Pool pool, GameObject go)
-    {        
-        if (pool.tag != "Shred" && pool.tag != "Mower")
-        {
-            go.transform.SetParent(transform, false);
-        }
+    {
+        if (pool.tag == "Shred" || pool.tag == "Mower") { return; }
+
+        go.transform.SetParent(transform, false);
     }
 
 }

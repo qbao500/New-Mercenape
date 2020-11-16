@@ -49,19 +49,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f96a053721c57154fb9f7a9324897208, type: 2}
   - {fileID: 11400000, guid: 9ac294fbc8d204c4b8714725b12a2c3d, type: 2}
   - {fileID: 11400000, guid: dc7929a653e963d4aa89816df87d7e23, type: 2}
-  group:
-    shredCount: 0
-    mowerCount: 0
-    enemyIncreasedHP: 0
-    enemyIncreasedDamage: 0
+  enemyInfo:
+  - {fileID: 11400000, guid: 13147237c60549a4daa81e73c2628980, type: 2}
+  - {fileID: 11400000, guid: 4866132ae8414f34da26c03d0ae45314, type: 2}
   currentWave: 1
+  timeBetweenGroups: 3
+  state: 2
   waveText: {fileID: 9032253689322311937}
   groupText: {fileID: 8194676806224783874}
-  timeBetweenGroups: 3
-  enemies:
-  - Shred
-  - Mower
-  state: 2
   completeWaveScreen: {fileID: 0}
 --- !u!212 &6331950252151063595
 SpriteRenderer:

@@ -196,10 +196,7 @@ public class EnemyBehaviour : MonoBehaviour
         playerHealth.SetCurrentSpace(playerMovement.getUpCount);        
     }
 
-    protected virtual void PlayerUp()    // Mainly for Mower now
-    {
-        
-    }
+    protected virtual void PlayerUp() { }   // Mainly for Mower now
     
     protected IEnumerator EnemyDeath()
     {        
