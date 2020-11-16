@@ -24,7 +24,7 @@ public class EnemySpawnerScript : MonoBehaviour
     private float groupCountdown;        // Count down to next group
     private float searchCountdown = 2f;  // Count down for searching any alive enemy
 
-    [SerializeField] private AnimationCurve maxKarmaEachWave;
+    private AnimationCurve maxKarmaEachWave;
 
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI groupText;
@@ -198,6 +198,20 @@ public class EnemySpawnerScript : MonoBehaviour
     private void SpawnEnemy(string enemy, Vector3 pos)
     {
         ObjectPooler.Instance.SpawnFromPool(enemy, pos, Quaternion.Euler(0, -180, 0));
+    }
+
+    private void SetMaxKarma()
+    {
+        maxKarmaEachWave = new AnimationCurve();
+        // Shred: 50  Mower: 100
+        maxKarmaEachWave.AddKey(1, 350);    // 5S  1M = 350
+        maxKarmaEachWave.AddKey(2, 900);    // 7S  2M = 550  (+ 350  =  900)
+        maxKarmaEachWave.AddKey(3, 2000);   // 16S 4M = 1200 (+ 900  = 2100)
+        maxKarmaEachWave.AddKey(4, 3300);   // 15S 6M = 1350 (+ 2000 = 3450)
+        maxKarmaEachWave.AddKey(5, 5000);   // Random = 1550 (+ 3450 = 5000)
+
+        maxKarmaEachWave.AddKey(90, 175000);    // +2000 each wave 
+        maxKarmaEachWave.AddKey(100, 200000);   // +2500 each wave
     }
 
     private int RandomMower => Random.value > 0.85f ? 1 : 2;    // 85% => 1 Mower, otherwise 2

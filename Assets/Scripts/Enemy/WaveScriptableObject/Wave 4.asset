@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe8e1231dc3c54f468a9a7e5a237bb82, type: 3}
-  m_Name: Wave 3
+  m_Name: Wave 4
   m_EditorClassIdentifier: 
   groups:
   - group: Group 1
-    shred: 3
-    mower: 0
+    shred: 1
+    mower: 2
   - group: Group 2
-    shred: 4
-    mower: 1
+    shred: 3
+    mower: 2
   - group: Group 3
-    shred: 5
-    mower: 1
+    shred: 6
+    mower: 0
   - group: Group 4
     shred: 5
     mower: 2

@@ -15,7 +15,7 @@ public class EnemyLootDrop : MonoBehaviour
     public int upgradeChance = 30;
 
     //The value of HP and upgrade orbs. I'm thinking that each enemy has a different multiplier on the value of the orbs they spawn upon death. Something that's swirling in my noggin'.
-    public int HPvalue = 15, UPvalue = 1;
+    public int HPValue = 15, UPValue = 1;
 
     void InstantiateKarmaDrop()
     {

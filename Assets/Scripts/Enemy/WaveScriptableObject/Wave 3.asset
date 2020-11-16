@@ -23,5 +23,5 @@ MonoBehaviour:
     shred: 5
     mower: 1
   - group: Group 4
-    shred: 5
+    shred: 4
     mower: 2

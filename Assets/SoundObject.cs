@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundObject : MonoBehaviour
 {
-    public AudioSource audioSource;
+    [HideInInspector] public AudioSource audioSource;
     
     private void Awake()
     {
