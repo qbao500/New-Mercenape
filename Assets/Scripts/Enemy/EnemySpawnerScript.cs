@@ -8,24 +8,23 @@ using TMPro;
 public class EnemySpawnerScript : MonoBehaviour
 {
     public enum SpawnState { Spawning, Waiting, Counting }
+    public SpawnState state;
 
     [SerializeField] private List<WaveSO> wavesInfo;
     [SerializeField] private List<EnemyStatsSO> enemyInfo;
 
     private int shredCount = 0;
     private int mowerCount = 0;
-        
+    private List<string> spawnList = new List<string>();
+
     private int currentGroup = 0;
     [HideInInspector] public int currentWave = 1;
     
     [SerializeField] private float timeBetweenGroups = 3f;
-
     private float groupCountdown;        // Count down to next group
     private float searchCountdown = 2f;  // Count down for searching any alive enemy
 
-    private List<string> spawnList = new List<string>();
-
-    public SpawnState state;
+    [SerializeField] private AnimationCurve maxKarmaEachWave;
 
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI groupText;
@@ -46,7 +45,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         groupCountdown = timeBetweenGroups;
 
-        Setup();
+        SetupGroup();
     }
 
     private void SetupEnemyStats()
@@ -111,7 +110,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         CheckWaveEnd();
         
-        Setup();
+        SetupGroup();
     }
 
     // When player get enough karma and finish wave
@@ -131,7 +130,7 @@ public class EnemySpawnerScript : MonoBehaviour
     }    
 
     // Check for spawn pattern and set
-    private void Setup()
+    private void SetupGroup()
     {
         currentGroup++;
         groupText.SetText("Group " + currentGroup);

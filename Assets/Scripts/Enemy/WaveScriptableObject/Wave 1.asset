@@ -20,8 +20,8 @@ MonoBehaviour:
     shred: 2
     mower: 0
   - group: Group 3
-    shred: 3
+    shred: 2
     mower: 1
   - group: Group 4
-    shred: 4
+    shred: 3
     mower: 1
