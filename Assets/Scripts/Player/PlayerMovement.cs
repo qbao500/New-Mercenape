@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     float startPressTime;
     float delta;
     float fastSpeed = 40f;
-    float slowSpeed=10f;
+    float slowSpeed = 5f;
 
 
     //Start Hash ID 

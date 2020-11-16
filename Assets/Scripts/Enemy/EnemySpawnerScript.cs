@@ -37,11 +37,7 @@ public class EnemySpawnerScript : MonoBehaviour
     private void Start()
     {
         LoadSpawner();
-
-        for (int i = 0; i < enemyInfo.Count; i++)
-        {
-            enemyInfo[i].SetupStats(currentWave);
-        }
+        SetupEnemyStats();
 
         state = SpawnState.Counting;
 
@@ -51,6 +47,14 @@ public class EnemySpawnerScript : MonoBehaviour
         groupCountdown = timeBetweenGroups;
 
         Setup();
+    }
+
+    private void SetupEnemyStats()
+    {
+        for (int i = 0; i < enemyInfo.Count; i++)
+        {
+            enemyInfo[i].SetupStats(currentWave);
+        }
     }
 
     private void Update()
@@ -83,32 +87,6 @@ public class EnemySpawnerScript : MonoBehaviour
               
     }
 
-    // Group completed and prepare new group
-    void GroupCompleted()
-    {
-        state = SpawnState.Counting;
-        groupCountdown = timeBetweenGroups;
-
-        CheckWaveEnd();
-        
-        Setup();
-    }
-
-    // When player get enough karma
-    void CheckWaveEnd()
-    {
-        if (playerCurrency.karma >= gameMaster.lvMaxKarma)
-        {
-            Time.timeScale = 0;
-            completeWaveScreen.SetActive(true);
-
-            currentWave++;
-            SaveManager.SaveSpawner(this);
-
-            currentGroup = 0;   // Reset group          
-        }
-    }    
-
     // Check if enemies are still alive
     bool EnemyIsAlive()
     {
@@ -121,38 +99,36 @@ public class EnemySpawnerScript : MonoBehaviour
                 return false;
             }
         }
-              
+
         return true;
     }
 
-    // Spawn enemies one by one with rate
-    IEnumerator SpawnWave()
+    // Group completed and prepare new group
+    void GroupCompleted()
     {
-        state = SpawnState.Spawning;
+        state = SpawnState.Counting;
+        groupCountdown = timeBetweenGroups;
 
-        for (int i = 0; i < spawnList.Count; i++)
-        {                    
-            if (spawnList[i] == enemyInfo[0].name) // Shred
-            {
-                SpawnEnemy(spawnList[i], transform.position + (Vector3.left * 5));
-                yield return new WaitForSeconds(1f / RandomSpawnRate);
-            }
-            else // Mower
-            {
-                SpawnEnemy(spawnList[i], transform.position + (Vector3.left * 20));
-                yield return new WaitForSeconds(5f);
-            }
+        CheckWaveEnd();
+        
+        Setup();
+    }
+
+    // When player get enough karma and finish wave
+    void CheckWaveEnd()
+    {
+        if (playerCurrency.karma >= gameMaster.lvMaxKarma)
+        {
+            Time.timeScale = 0;
+            completeWaveScreen.SetActive(true);
+
+            currentWave++;
+            SaveManager.SaveSpawner(this);
+
+            SetupEnemyStats();  // Re-setup enemy stats
+            currentGroup = 0;   // Reset group          
         }
-
-        state = SpawnState.Waiting; // Move to Waiting state after finishing spawning
-
-        yield break;
-    }
-
-    private void SpawnEnemy(string enemy, Vector3 pos)
-    {
-        ObjectPooler.Instance.SpawnFromPool(enemy, pos, Quaternion.Euler(0, -180, 0));
-    }
+    }    
 
     // Check for spawn pattern and set
     private void Setup()
@@ -195,7 +171,36 @@ public class EnemySpawnerScript : MonoBehaviour
             spawnList.Add(enemyInfo[1].name); // Add Mower
         }
     }
-   
+
+    // Spawn enemies one by one with rate
+    IEnumerator SpawnWave()
+    {
+        state = SpawnState.Spawning;
+
+        for (int i = 0; i < spawnList.Count; i++)
+        {
+            if (spawnList[i] == enemyInfo[0].name) // Shred
+            {
+                SpawnEnemy(spawnList[i], transform.position + (Vector3.left * 8));
+                yield return new WaitForSeconds(1f / RandomSpawnRate);
+            }
+            else // Mower
+            {
+                SpawnEnemy(spawnList[i], transform.position + (Vector3.left * 20));
+                yield return new WaitForSeconds(5f);
+            }
+        }
+
+        state = SpawnState.Waiting; // Move to Waiting state after finishing spawning
+
+        yield break;
+    }
+
+    private void SpawnEnemy(string enemy, Vector3 pos)
+    {
+        ObjectPooler.Instance.SpawnFromPool(enemy, pos, Quaternion.Euler(0, -180, 0));
+    }
+
     private int RandomMower => Random.value > 0.85f ? 1 : 2;    // 85% => 1 Mower, otherwise 2
 
     private float RandomSpawnRate => Random.Range(0.2f, 0.5f);

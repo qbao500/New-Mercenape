@@ -6,30 +6,53 @@ using UnityEngine;
 public class MowerStatsSO : EnemyStatsSO
 {
     [Header("Generator stats")]
-    public float fieldMaxHP;
-    public int fieldDamage;
+    [SerializeField] private AnimationCurve fieldHPEachWave;
+    [SerializeField] private AnimationCurve fieldDamageEachWave;
+
+    [HideInInspector] public float fieldMaxHP;
+    [HideInInspector] public int fieldDamage;
 
     [Header("Generator states")]
     public ForceFieldState currentState;
     public enum ForceFieldState { Inactive, Generating, Active, Destroyed }
 
+    public override void SetupStats(int currentWave)
+    {
+        base.SetupStats(currentWave);
+
+        fieldMaxHP = (int)fieldHPEachWave.Evaluate(currentWave);
+        fieldDamage = (int)fieldDamageEachWave.Evaluate(currentWave);
+    }
+
+    protected override void AddKeys()
+    {
+        base.AddKeys();
+
+        AddFieldHealthKey();
+        AddFieldDamageKey();
+    }
+
+    protected override void ClearKeys()
+    {
+        base.ClearKeys();
+
+        fieldHPEachWave = new AnimationCurve();
+        fieldDamageEachWave = new AnimationCurve();
+    }
+
     protected override void AddHealthKey()
     {
-        base.AddHealthKey();
-
-        maxHPEachWave.AddKey(1, 80);        // Start with 80 HP
-        maxHPEachWave.AddKey(15, 150);      // +5 each wave
-        maxHPEachWave.AddKey(20, 200);      // +10 each wave
-        maxHPEachWave.AddKey(60, 1000);     // +20 each wave
-        maxHPEachWave.AddKey(100, 2000);    // +25 each wave
+        maxHPEachWave.AddKey(1, 80);            // Start with 80 HP
+        maxHPEachWave.AddKey(15, 150);          // +5 each wave
+        maxHPEachWave.AddKey(20, 200);          // +10 each wave
+        maxHPEachWave.AddKey(60, 1000);         // +20 each wave
+        maxHPEachWave.AddKey(100, 2000);        // +25 each wave
     }
 
     protected override void AddDamgeKey()
-    {
-        base.AddDamgeKey();
-        
-        damageEachWave.AddKey(1, 10);       // Start with 10 damage
-        damageEachWave.AddKey(100, 1000);   // +10 each wave
+    {     
+        damageEachWave.AddKey(1, 10);           // Start with 10 damage
+        damageEachWave.AddKey(100, 1000);       // +10 each wave
     }
 
     protected override void AddSpeedKey()
@@ -38,6 +61,21 @@ public class MowerStatsSO : EnemyStatsSO
         speedEachWave.AddKey(30, 9);
         speedEachWave.AddKey(50, 10);       
         base.AddSpeedKey();
+    }
+
+    private void AddFieldHealthKey()
+    {
+        fieldHPEachWave.AddKey(1, 40);          // Start with 40 (half scale of Mower HP)
+        fieldHPEachWave.AddKey(15, 75);         // +2.5 each wave
+        fieldHPEachWave.AddKey(20, 100);        // +5 each wave
+        fieldHPEachWave.AddKey(60, 500);        // +10 each wave
+        fieldHPEachWave.AddKey(100, 1000);      // +12.5 each wave
+    }
+
+    private void AddFieldDamageKey()
+    {
+        fieldDamageEachWave.AddKey(1, 20);      // Start with 20 damage (double scale of Mower damage)
+        fieldDamageEachWave.AddKey(100, 2000);  // +20 each wave
     }
 
     #region State Functions
