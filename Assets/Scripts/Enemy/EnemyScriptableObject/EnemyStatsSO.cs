@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 // Created by Bao: store enemy basic stats
 public class EnemyStatsSO : ScriptableObject
@@ -62,7 +61,10 @@ public class EnemyStatsSO : ScriptableObject
     {
         for (int i = 0; i < curve.length; i++)
         {
-            AnimationUtility.SetKeyRightTangentMode(curve, i, AnimationUtility.TangentMode.Constant);
+            Keyframe key = curve[i];
+            key.inTangent = Mathf.Infinity;
+            key.outTangent = Mathf.Infinity;
+            curve.MoveKey(i, key);
         }
-    }  
+    }   
 }
