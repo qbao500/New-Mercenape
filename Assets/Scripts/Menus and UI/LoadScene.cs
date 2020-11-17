@@ -7,13 +7,11 @@ using UnityEngine.SceneManagement;
 public class LoadScene : MonoBehaviour
 {
     private PlayerCurrency playerCurrency;
-    GameMaster gamemaster;
     private EnemySpawnerScript spawner;
 
     void Awake()
     {
         playerCurrency = GetComponent<PlayerCurrency>();
-        gamemaster = GameObject.FindGameObjectWithTag("gamemaster").GetComponent<GameMaster>();
         spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawnerScript>();
     }
 
@@ -25,7 +23,7 @@ public class LoadScene : MonoBehaviour
 
     public void GoToForge()
     { //check if player have enough karma
-        if (playerCurrency.karma >= gamemaster.lvMaxKarma && spawner.state == EnemySpawnerScript.SpawnState.Counting)
+        if (playerCurrency.karma >= spawner.GetMaxKarma() && spawner.state == EnemySpawnerScript.SpawnState.Counting)
         {
             Time.timeScale = 1;
             SaveManager.SaveCurrency(playerCurrency);

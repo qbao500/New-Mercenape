@@ -9,8 +9,6 @@ using UnityEngine.UI;
 // Edited by Arttu Paldán 29.10.2020: Basically I just merged all the diffrent counting script into a one. 
 public class PlayerCurrency : MonoBehaviour
 {
-    private GameMaster gameMaster;
-
     public int karma, gold, speedUpgrades;
     private int gainedGoldAmount, gainedKarmaAmount, gainedSpeedAmount;
     private int goldCount, karmaCount, speedCount;
@@ -21,9 +19,11 @@ public class PlayerCurrency : MonoBehaviour
 
     private bool gainedGold, gainedKarma, gainedUpgrade;
 
+    private EnemySpawnerScript spawner;
+
     void Awake()
     {
-        gameMaster = GetComponent<GameMaster>();
+        spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawnerScript>();
 
         LoadSaveFile();
     }
@@ -56,16 +56,11 @@ public class PlayerCurrency : MonoBehaviour
 
     public void SetKarmaBar()
     {
-        if (gameMaster != null)
+        if (spawner != null)
         {
-            karmaBar.maxValue = gameMaster.lvMaxKarma;
+            karmaBar.maxValue = spawner.GetMaxKarma(); ;
         }
-        else
-        {
-            karmaBar.maxValue = 1000;
-
-        }
-
+        
         karmaBar.value = karma;
         karmaText.SetText(karma.ToString());
     }

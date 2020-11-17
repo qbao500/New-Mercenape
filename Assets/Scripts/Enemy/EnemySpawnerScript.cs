@@ -31,17 +31,16 @@ public class EnemySpawnerScript : MonoBehaviour
     [SerializeField] private GameObject completeWaveScreen;
 
     private PlayerCurrency playerCurrency;
-    private GameMaster gameMaster;
 
     private void Start()
     {
         LoadSpawner();
+        SetMaxKarma();
         SetupEnemyStats();
 
         state = SpawnState.Counting;
 
         playerCurrency = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerCurrency>();
-        gameMaster = GameObject.FindGameObjectWithTag("gamemaster").GetComponent<GameMaster>();
 
         groupCountdown = timeBetweenGroups;
 
@@ -116,7 +115,7 @@ public class EnemySpawnerScript : MonoBehaviour
     // When player get enough karma and finish wave
     void CheckWaveEnd()
     {
-        if (playerCurrency.karma >= gameMaster.lvMaxKarma)
+        if (playerCurrency.karma >= GetMaxKarma())
         {
             Time.timeScale = 0;
             completeWaveScreen.SetActive(true);
@@ -210,8 +209,13 @@ public class EnemySpawnerScript : MonoBehaviour
         maxKarmaEachWave.AddKey(4, 3300);   // 15S 6M = 1350 (+ 2000 = 3450)
         maxKarmaEachWave.AddKey(5, 5000);   // Random = 1550 (+ 3450 = 5000)
 
-        maxKarmaEachWave.AddKey(90, 175000);    // +2000 each wave 
-        maxKarmaEachWave.AddKey(100, 200000);   // +2500 each wave
+        maxKarmaEachWave.AddKey(60, 115000);    // +2000 each wave 
+        maxKarmaEachWave.AddKey(100, 215000);   // +2500 each wave
+    }
+
+    public int GetMaxKarma()
+    {
+        return (int)maxKarmaEachWave.Evaluate(currentWave);
     }
 
     private int RandomMower => Random.value > 0.85f ? 1 : 2;    // 85% => 1 Mower, otherwise 2
@@ -242,7 +246,6 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         Time.timeScale = 1;
         SaveManager.SaveCurrency(playerCurrency);
-        playerCurrency.karma = 0;
         SceneManager.LoadScene("Forge");
     }
 
