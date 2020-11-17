@@ -161,6 +161,6 @@ public class SpawnerData
 
     public SpawnerData(EnemySpawnerScript enemySpawner)
     {
-        currentWave = enemySpawner.currentWave;
+        currentWave = enemySpawner.spawnerData.CurrentWave;
     }
 }

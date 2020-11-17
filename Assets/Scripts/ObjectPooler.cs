@@ -25,8 +25,8 @@ public class ObjectPooler : MonoBehaviour
 
     #endregion
 
-    public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    [SerializeField] private List<Pool> pools;
+    private Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private Dictionary<string, GameObject> prefabDictionary;
 

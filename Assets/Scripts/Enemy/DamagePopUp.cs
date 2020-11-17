@@ -8,20 +8,18 @@ public class DamagePopUp : MonoBehaviour
     // Create a Damage Popup
     public static DamagePopUp Create(Vector3 pos, float damage, Color color, int size)
     {        
-        GameObject dmgPopUpObj = ObjectPooler.Instance.SpawnFromPool("DamagePopUp", pos, Quaternion.identity);
+        ObjectPooler.Instance.SpawnFromPool("DamagePopUp", pos, Quaternion.identity);
 
-        DamagePopUp damagePopUp = dmgPopUpObj.GetComponent<DamagePopUp>();
+        staticPopUp.Setup(damage, color, size);
 
-        damagePopUp.Setup(damage, color, size);
-
-        return damagePopUp;
+        return staticPopUp;
     }
 
     public void Setup(float damage, Color color, int size)
     {
         textMesh.SetText(damage.ToString());
         textMesh.fontSize = size;
-
+        
         if(color == Color.clear) { textMesh.color = textColor; }
         else { textMesh.color = color; }
        
@@ -34,6 +32,8 @@ public class DamagePopUp : MonoBehaviour
     private TextMeshPro textMesh;
     private Color textColor;
 
+    private static DamagePopUp staticPopUp;
+
     private void Awake()
     {
         textMesh = transform.GetChild(0).GetComponent<TextMeshPro>();
@@ -42,6 +42,7 @@ public class DamagePopUp : MonoBehaviour
 
     private void OnEnable()
     {
+        staticPopUp = this;
         Invoke("Sleep", 1.1f);
     }
  

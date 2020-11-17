@@ -58,7 +58,7 @@ public class PlayerCurrency : MonoBehaviour
     {
         if (spawner != null)
         {
-            karmaBar.maxValue = spawner.GetMaxKarma(); ;
+            karmaBar.maxValue = spawner.spawnerData.MaxKarma; ;
         }
         
         karmaBar.value = karma;
