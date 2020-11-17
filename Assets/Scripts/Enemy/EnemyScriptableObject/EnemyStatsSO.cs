@@ -14,25 +14,24 @@ public class EnemyStatsSO : ScriptableObject
     [SerializeField] protected AnimationCurve maxHPEachWave;
     [SerializeField] protected AnimationCurve speedEachWave;
 
-    // Get value from animation curves and set to these for real usage
-    [HideInInspector] public int damage;
-    [HideInInspector] public float maxHP;
-    [HideInInspector] public float runningSpeed;
+    public int Damage { get; private set; }
+    public float MaxHP { get; private set; }
+    public float RunningSpeed { get; private set; }
 
     // Call in spawner in the beginning and after complete a wave
     public virtual void SetupStats(int currentWave)
     {
         AddKeys();
 
-        damage = (int)damageEachWave.Evaluate(currentWave);
-        maxHP = (int)maxHPEachWave.Evaluate(currentWave);
-        runningSpeed = (int)speedEachWave.Evaluate(currentWave);
+        Damage = (int)damageEachWave.Evaluate(currentWave);
+        MaxHP = (int)maxHPEachWave.Evaluate(currentWave);
+        RunningSpeed = (int)speedEachWave.Evaluate(currentWave);
     }
 
     // Set up values
     protected virtual void AddKeys()
     {
-        ClearKeys();        // For safety
+        ClearCurves();        // For safety
 
         AddHealthKey();
         AddDamgeKey();
@@ -40,7 +39,7 @@ public class EnemyStatsSO : ScriptableObject
     }
 
     // Reset value (in case if there's a change in pattern design)
-    protected virtual void ClearKeys()
+    protected virtual void ClearCurves()
     {
         damageEachWave = new AnimationCurve();
         maxHPEachWave = new AnimationCurve();
@@ -51,10 +50,7 @@ public class EnemyStatsSO : ScriptableObject
 
     protected virtual void AddDamgeKey() { }
 
-    protected virtual void AddSpeedKey()
-    {
-        MakeConstantValue(speedEachWave);
-    }
+    protected virtual void AddSpeedKey() => MakeConstantValue(speedEachWave);
 
     // Make value constant until it get changed (in specific wave), and keep constant with the new changed value
     protected void MakeConstantValue(AnimationCurve curve)

@@ -8,15 +8,15 @@ public class MowerBehaviour : EnemyBehaviour
 {
     private MowerStatsSO mowerStat;
 
+    public enum ForceFieldState { Inactive, Generating, Active, Destroyed }
+    private ForceFieldState currentState;
+
     [SerializeField] private Transform backside;
 
     private float fieldHP;
 
     private SpriteRenderer fieldSprite;
     private EnemyHealthBar fieldBarHealth;
-
-    //private enum ForceFieldState { Inactive, Generating, Active, Destroyed }
-    //private ForceFieldState currentState;
 
     private Coroutine dmgCoroutine;
 
@@ -48,13 +48,13 @@ public class MowerBehaviour : EnemyBehaviour
     {
         base.OnEnable();
 
-        mowerStat.ChangeToInactive();
+        ChangeToInactive();
         Inactive();
 
         isAttacking = false; isGenerating = false;
 
-        fieldHP = mowerStat.fieldMaxHP;
-        fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.fieldMaxHP);       
+        fieldHP = mowerStat.FieldMaxHP;
+        fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);       
 
         animatorMower.SetBool("IsDestroyed", false); ;
 
@@ -72,9 +72,9 @@ public class MowerBehaviour : EnemyBehaviour
     #region Generator State
     private void Generating()
     {
-        if (mowerStat.IsDestroyed) { return; }
+        if (IsDestroyed) { return; }
 
-        mowerStat.ChangeToGenerating();
+        ChangeToGenerating();
         animatorMower.SetTrigger("Generating");
 
         fieldSprite.color = Color.yellow;
@@ -86,22 +86,22 @@ public class MowerBehaviour : EnemyBehaviour
 
     private void Active()
     {
-        if (mowerStat.IsDestroyed) { return; }
+        if (IsDestroyed) { return; }
 
-        mowerStat.ChangeToActive();
+        ChangeToActive();
         animatorMower.SetBool("IsActive", true);
 
         fieldSprite.color = Color.red;
-        speed = stat.runningSpeed;
+        speed = stat.RunningSpeed;
 
         Invoke("Inactive", 5f);
     }
 
     private void Inactive()
     {
-        if (mowerStat.IsDestroyed) { return; }
+        if (IsDestroyed) { return; }
 
-        mowerStat.ChangeToInactive();
+        ChangeToInactive();
         animatorMower.SetBool("IsActive", false);
 
         fieldSprite.color = Color.white;
@@ -109,10 +109,10 @@ public class MowerBehaviour : EnemyBehaviour
 
     private void Destroyed()
     {
-        mowerStat.ChangeToDestroyed();
+        ChangeToDestroyed();
         animatorMower.SetBool("IsDestroyed", true);
 
-        speed = stat.runningSpeed;
+        speed = stat.RunningSpeed;
         fieldSprite.enabled = false;
         generatorCollider.enabled = false;
         fieldBarHealth.gameObject.SetActive(false);
@@ -146,11 +146,11 @@ public class MowerBehaviour : EnemyBehaviour
     // Backside main mechanic
     public void DamagingBackside(Action TakeDamage)
     {      
-        if (mowerStat.IsInactive|| mowerStat.IsDestroyed)
+        if (IsInactive|| IsDestroyed)
         {           
             TakeDamage();
 
-            if (mowerStat.IsInactive) { speed = stat.runningSpeed / 2; }
+            if (IsInactive) { speed = stat.RunningSpeed / 2; }
             
             if (currentHP <= 0)
             {
@@ -168,15 +168,15 @@ public class MowerBehaviour : EnemyBehaviour
             }
         }
 
-        if (mowerStat.IsGenerating)
+        if (IsGenerating)
         {
 
         }
 
-        if (mowerStat.IsActive)
+        if (IsActive)
         {
             // Field Generator will damage back the player and push upward
-            playerHealth.PlayerTakeDamage(mowerStat.fieldDamage);
+            playerHealth.PlayerTakeDamage(mowerStat.FieldDamage);
             playerMovement.PlayerRigid2d.AddForce(new Vector3(Mathf.Sign(player.transform.localScale.x) * -2000, 100), ForceMode.Impulse);
         }
     }
@@ -187,7 +187,7 @@ public class MowerBehaviour : EnemyBehaviour
         fieldBarHealth.gameObject.SetActive(true);
 
         fieldHP -= playerDmg;
-        fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.fieldMaxHP);
+        fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);
 
         DamagePopUp.Create(PopUpPos(backside), playerDmg, Color.clear, 14);
 
@@ -206,7 +206,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (!isBackSideHit) { return; }
 
         // Only bleed when Inactive or Destroyed
-        if (mowerStat.IsInactive|| mowerStat.IsDestroyed)
+        if (IsInactive|| IsDestroyed)
         {
             base.ApplyBleeding(damage, duration, ticks, selfCol);
         }
@@ -227,7 +227,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (!horizontalDetect && !verticalDetect) { return; }
 
         // Then attack player if not generating
-        if (!mowerStat.IsGenerating)
+        if (!IsGenerating)
         {
             playerMovement.isPlayerBlock = false;   // Cancel block if player is
 
@@ -254,9 +254,9 @@ public class MowerBehaviour : EnemyBehaviour
         rb.useGravity = false;
         boxCollier.isTrigger = true;
         capsuleCollider.isTrigger = true;
-        speed = stat.runningSpeed / 1.8f;
+        speed = stat.RunningSpeed / 1.8f;
 
-        dmgCoroutine = StartCoroutine(ApplyDamage(6, stat.damage));
+        dmgCoroutine = StartCoroutine(ApplyDamage(6, stat.Damage));
 
         yield return new WaitForSeconds(6f);
 
@@ -299,7 +299,7 @@ public class MowerBehaviour : EnemyBehaviour
         boxCollier.isTrigger = false;
         capsuleCollider.isTrigger = false;
         rb.useGravity = true;
-        speed = stat.runningSpeed;
+        speed = stat.RunningSpeed;
         isAttacking = false;
     }
 
@@ -307,7 +307,7 @@ public class MowerBehaviour : EnemyBehaviour
     {
         base.Movement();
 
-        animatorMower.SetFloat("MovementSpeed", speed / stat.runningSpeed);
+        animatorMower.SetFloat("MovementSpeed", speed / stat.RunningSpeed);
 
         if (isNewBorn) { return; }
 
@@ -324,4 +324,16 @@ public class MowerBehaviour : EnemyBehaviour
 
         return pos;
     }
+
+    #region State Functions
+    public void ChangeToInactive() => currentState = ForceFieldState.Inactive;
+    public void ChangeToGenerating() => currentState = ForceFieldState.Generating;
+    public void ChangeToActive() => currentState = ForceFieldState.Active;
+    public void ChangeToDestroyed() => currentState = ForceFieldState.Destroyed;
+
+    public bool IsInactive => currentState == ForceFieldState.Inactive;
+    public bool IsGenerating => currentState == ForceFieldState.Generating;
+    public bool IsActive => currentState == ForceFieldState.Active;
+    public bool IsDestroyed => currentState == ForceFieldState.Destroyed;
+    #endregion
 }

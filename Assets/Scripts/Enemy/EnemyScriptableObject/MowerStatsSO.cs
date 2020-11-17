@@ -9,19 +9,15 @@ public class MowerStatsSO : EnemyStatsSO
     [SerializeField] private AnimationCurve fieldHPEachWave;
     [SerializeField] private AnimationCurve fieldDamageEachWave;
 
-    [HideInInspector] public float fieldMaxHP;
-    [HideInInspector] public int fieldDamage;
-
-    [Header("Generator states")]
-    public ForceFieldState currentState;
-    public enum ForceFieldState { Inactive, Generating, Active, Destroyed }
+    public float FieldMaxHP { get; private set; }
+    public int FieldDamage { get; private set; }
 
     public override void SetupStats(int currentWave)
     {
         base.SetupStats(currentWave);
 
-        fieldMaxHP = (int)fieldHPEachWave.Evaluate(currentWave);
-        fieldDamage = (int)fieldDamageEachWave.Evaluate(currentWave);
+        FieldMaxHP = (int)fieldHPEachWave.Evaluate(currentWave);
+        FieldDamage = (int)fieldDamageEachWave.Evaluate(currentWave);
     }
 
     protected override void AddKeys()
@@ -32,9 +28,9 @@ public class MowerStatsSO : EnemyStatsSO
         AddFieldDamageKey();
     }
 
-    protected override void ClearKeys()
+    protected override void ClearCurves()
     {
-        base.ClearKeys();
+        base.ClearCurves();
 
         fieldHPEachWave = new AnimationCurve();
         fieldDamageEachWave = new AnimationCurve();
@@ -78,21 +74,4 @@ public class MowerStatsSO : EnemyStatsSO
         fieldDamageEachWave.AddKey(100, 2000);  // +20 each wave
     }
 
-    #region State Functions
-    public void ChangeToInactive() => currentState = ForceFieldState.Inactive;
-
-    public void ChangeToGenerating() => currentState = ForceFieldState.Generating;
-
-    public void ChangeToActive() => currentState = ForceFieldState.Active;
-
-    public void ChangeToDestroyed() => currentState = ForceFieldState.Destroyed;
-
-    public bool IsInactive => currentState == ForceFieldState.Inactive;
-
-    public bool IsGenerating => currentState == ForceFieldState.Generating;
-
-    public bool IsActive => currentState == ForceFieldState.Active;
-
-    public bool IsDestroyed => currentState == ForceFieldState.Destroyed;
-    #endregion
 }

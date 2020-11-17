@@ -13,16 +13,15 @@ public class ShredStatsSO : EnemyStatsSO
     [SerializeField] private AnimationCurve bleedDamageEachWave;
     [SerializeField] private AnimationCurve bleedTickEachWave;
 
-    // Get value from animation curves and set to these for real usage
-    [HideInInspector] public int bleedDamage;
-    [HideInInspector] public int bleedTick;
+    public int BleedDamage { get; private set; }
+    public int BleedTick { get; private set; }
 
     public override void SetupStats(int currentWave)
     {
         base.SetupStats(currentWave);
 
-        bleedDamage = (int)bleedDamageEachWave.Evaluate(currentWave);
-        bleedTick = (int)bleedTickEachWave.Evaluate(currentWave);
+        BleedDamage = (int)bleedDamageEachWave.Evaluate(currentWave);
+        BleedTick = (int)bleedTickEachWave.Evaluate(currentWave);
     }
 
     protected override void AddKeys()
@@ -33,9 +32,9 @@ public class ShredStatsSO : EnemyStatsSO
         AddBleedTickKey();
     }
 
-    protected override void ClearKeys()
+    protected override void ClearCurves()
     {
-        base.ClearKeys();
+        base.ClearCurves();
 
         bleedDamageEachWave = new AnimationCurve();
         bleedTickEachWave = new AnimationCurve();

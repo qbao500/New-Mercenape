@@ -73,7 +73,7 @@ public class ShredBehaviour : EnemyBehaviour
         KnockPlayerDown();
 
         StartCoroutine("Attacking");
-        playerHealth.PlayerTakeDamage(stat.damage);
+        playerHealth.PlayerTakeDamage(stat.Damage);
 
         // Check bleed chance of Shred, then apply 
         if (Random.Range(0f, 100f) < shredStat.bleedChance) 
@@ -82,7 +82,7 @@ public class ShredBehaviour : EnemyBehaviour
             {
                 StopCoroutine(co);
             }
-            co = StartCoroutine(ApplyBleedDamage(shredStat.bleedTick, shredStat.bleedDamage));
+            co = StartCoroutine(ApplyBleedDamage(shredStat.BleedTick, shredStat.BleedDamage));
         }
     }
 
@@ -123,7 +123,7 @@ public class ShredBehaviour : EnemyBehaviour
         isStaggering = true;
         animatorShred.SetBool("Staggering", isStaggering);
 
-        speed = -stat.runningSpeed / 1.5f;
+        speed = -stat.RunningSpeed / 1.5f;
 
         yield return new WaitForSeconds(0.15f);
 
@@ -140,7 +140,7 @@ public class ShredBehaviour : EnemyBehaviour
 
         NormalHitBox();
         rb.isKinematic = false;
-        speed = stat.runningSpeed;
+        speed = stat.RunningSpeed;
         staggerTime = 0;
     }
 

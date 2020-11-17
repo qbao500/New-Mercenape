@@ -19,12 +19,10 @@ public class PlayerCurrency : MonoBehaviour
 
     private bool gainedGold, gainedKarma, gainedUpgrade;
 
-    private EnemySpawnerScript spawner;
+    [SerializeField] private SpawnerDataSO spawner;
 
     void Awake()
     {
-        spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawnerScript>();
-
         LoadSaveFile();
     }
 
@@ -58,7 +56,7 @@ public class PlayerCurrency : MonoBehaviour
     {
         if (spawner != null)
         {
-            karmaBar.maxValue = spawner.spawnerData.MaxKarma; ;
+            karmaBar.maxValue = spawner.MaxKarma;
         }
         
         karmaBar.value = karma;

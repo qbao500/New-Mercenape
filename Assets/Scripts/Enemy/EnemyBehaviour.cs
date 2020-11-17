@@ -65,9 +65,9 @@ public class EnemyBehaviour : MonoBehaviour
         boxCollier.enabled = true;
         boxCollier.isTrigger = false;
 
-        speed = stat.runningSpeed;
-        currentHP = stat.maxHP;
-        barHealth.UpdateHealthBar(currentHP, stat.maxHP);
+        speed = stat.RunningSpeed;
+        currentHP = stat.MaxHP;
+        barHealth.UpdateHealthBar(currentHP, stat.MaxHP);
         barHealth.ScaleRightUI(rb);
     }
 
@@ -115,7 +115,7 @@ public class EnemyBehaviour : MonoBehaviour
     public virtual void TakeDamage(float playerDamage)
     {      
         currentHP -= playerDamage;
-        barHealth.UpdateHealthBar(currentHP, stat.maxHP);
+        barHealth.UpdateHealthBar(currentHP, stat.MaxHP);
 
         DamagePopUp.Create(PopUpPos(transform), playerDamage, Color.clear, 15); 
 
@@ -130,7 +130,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void TakeBleedDammage(float bleedDmg)
     {
         currentHP -= bleedDmg;
-        barHealth.UpdateHealthBar(currentHP, stat.maxHP);
+        barHealth.UpdateHealthBar(currentHP, stat.MaxHP);
 
         DamagePopUp.Create(PopUpPos(transform), bleedDmg, Color.magenta, 10);
 

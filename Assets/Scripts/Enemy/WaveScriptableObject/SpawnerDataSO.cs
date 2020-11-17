@@ -8,16 +8,17 @@ public class SpawnerDataSO : ScriptableObject
 {
     [SerializeField] private List<WaveSO> wavesInfo;
     [SerializeField] private List<EnemyStatsSO> enemyInfo;
-    [HideInInspector] public TextMeshProUGUI waveText;
-    [HideInInspector] public TextMeshProUGUI groupText;
+
+    public TextMeshProUGUI WaveText { get; set; }
+    public TextMeshProUGUI GroupText { get; set; }
 
     private AnimationCurve maxKarmaEachWave;
     public int MaxKarma => (int)maxKarmaEachWave.Evaluate(CurrentWave);
 
-    public int CurrentWave { get; set; } = 1;
-    public int CurrentGroup { get; set; } = 0;
-    public int ShredCount { get; set; } = 0;
-    public int MowerCount { get; set; } = 0;
+    public int CurrentWave { get; private set; } = 1;
+    public int CurrentGroup { get; private set; } = 0;
+    public int ShredCount { get; private set; } = 0;
+    public int MowerCount { get; private set; } = 0;
     public float TimeBetweenGroups { get; private set; } = 3f;
     public List<string> SpawnList { get; set; } = new List<string>();
 
@@ -40,14 +41,18 @@ public class SpawnerDataSO : ScriptableObject
     }
 
     // Setup for spawn list and pattern
-    public void SetupGroup()
+    public void PrepareGroup()
     {
         CurrentGroup++;
-        groupText.SetText("Group " + CurrentGroup);
-        waveText.SetText("Wave " + CurrentWave);
+        GroupText.SetText("Group " + CurrentGroup);
+        WaveText.SetText("Wave " + CurrentWave);
 
         MakeSpawnList();
     }
+
+    public void SetWave(int wave) => CurrentWave = wave;
+
+    public void SetGroup(int group) => CurrentGroup = group;
 
     private void MakeSpawnList()
     {

@@ -32,7 +32,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         groupCountdown = spawnerData.TimeBetweenGroups;
 
-        spawnerData.SetupGroup();
+        spawnerData.PrepareGroup();
     }
 
     private void Update()
@@ -89,7 +89,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         CheckWaveEnd();
         
-        spawnerData.SetupGroup();
+        spawnerData.PrepareGroup();
     }
 
     // When player get enough karma and finish wave
@@ -100,11 +100,11 @@ public class EnemySpawnerScript : MonoBehaviour
             Time.timeScale = 0;
             completeWaveScreen.SetActive(true);
 
-            spawnerData.CurrentWave++;
+            spawnerData.SetWave(spawnerData.CurrentWave + 1);
             SaveManager.SaveSpawner(this);
 
             spawnerData.SetupEnemyStats();  // Re-setup enemy stats
-            spawnerData.CurrentGroup = 0;   // Reset group          
+            spawnerData.SetGroup(0);   // Reset group          
         }
     }       
 
@@ -145,13 +145,13 @@ public class EnemySpawnerScript : MonoBehaviour
 
         if (waveData == null) { return; }
 
-        spawnerData.CurrentWave = waveData.currentWave;
+        spawnerData.SetWave(waveData.currentWave);
     }
 
     private void SetTextRef()
     {
-        spawnerData.waveText = transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-        spawnerData.groupText = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+        spawnerData.WaveText = transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        spawnerData.GroupText = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
     #region Buttons

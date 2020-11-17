@@ -12,3 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37483060fbcf1d642b65ecc56ae834cb, type: 3}
   m_Name: Spawn Data
   m_EditorClassIdentifier: 
+  wavesInfo:
+  - {fileID: 11400000, guid: f96a053721c57154fb9f7a9324897208, type: 2}
+  - {fileID: 11400000, guid: 9ac294fbc8d204c4b8714725b12a2c3d, type: 2}
+  - {fileID: 11400000, guid: dc7929a653e963d4aa89816df87d7e23, type: 2}
+  - {fileID: 11400000, guid: 05d6b38af8b985c4cb747e5cab7bbad8, type: 2}
+  enemyInfo:
+  - {fileID: 11400000, guid: 13147237c60549a4daa81e73c2628980, type: 2}
+  - {fileID: 11400000, guid: 4866132ae8414f34da26c03d0ae45314, type: 2}
+  waveText: {fileID: 0}
+  groupText: {fileID: 0}
