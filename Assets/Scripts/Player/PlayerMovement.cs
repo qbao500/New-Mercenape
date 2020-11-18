@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float PlayerSpeed; // for move left and right
     public float PlayerJumpPow; // for jump
     public float MidAirSpeed; // for move left and right while mid air
-    [SerializeField] private LayerMask groundlayermask, walllayermask, ladderlayermask;
+    [SerializeField] private LayerMask groundlayermask, walllayermask;
 
     [HideInInspector] public PlayerHealth playerHealth;
     [HideInInspector] public PlayerAttackTrigger playerAttack;
@@ -51,8 +51,8 @@ public class PlayerMovement : MonoBehaviour
     bool canLedgeClimb = true;
     Vector3 playerClimbPos;
     Vector3 destination;
-    float ledgePosX = 3.7f;
-    float ledgePosY = 4.4f;
+    float ledgePosX;
+    float ledgePosY ;
     float startPressTime;
     float delta;
     float fastSpeed = 40f;
