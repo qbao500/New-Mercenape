@@ -1,25 +1,25 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 
 // Created by Thuyet Pham.
 // Edited by Arttu Paldán 29.10.2020: Basically I just merged all the diffrent counting script into a one. 
+// Edited by Bao 18.11.20: Remove "animation" and clean up
 public class PlayerCurrency : MonoBehaviour
 {
-    public int karma, gold, speedUpgrades;
-    private int gainedGoldAmount, gainedKarmaAmount, gainedSpeedAmount;
-    private int goldCount, karmaCount, speedCount;
+    public int karma, gold, speedUpgrades;    
     
     public TextMeshProUGUI moneyText, upgradeText, karmaText;
 
-    public Slider karmaBar, moneyBar, upgradeBar;
-
-    private bool gainedGold, gainedKarma, gainedUpgrade;
+    public Slider karmaBar;  
 
     [SerializeField] private SpawnerDataSO spawner;
+
+    public static event Action<int> OnAddKarma = delegate { };
+    public static event Action<int> OnAddGold = delegate { };
 
     void Awake()
     {
@@ -32,56 +32,41 @@ public class PlayerCurrency : MonoBehaviour
         SetKarmaBar();
     }
 
-    void LateUpdate()
-    {
-        moneyText.SetText(moneyBar.value.ToString());
-        karmaText.SetText(karmaBar.value.ToString());
-        upgradeText.SetText(upgradeBar.value.ToString());
-
-        if (gainedGold) { FillTheCoffers(); }
-        if (gainedKarma) { FillKarma(); }
-        if (gainedUpgrade) { FillUpgrades();  }
-    }
-
     void SetTexts()
     {
-        moneyBar.value = gold;
-        moneyText.SetText(moneyBar.value.ToString());
-
-        upgradeBar.value = speedUpgrades;
-        upgradeText.SetText(upgradeBar.value.ToString());
+        karmaText.SetText(karma.ToString());
+        moneyText.SetText(gold.ToString());       
+        upgradeText.SetText(speedUpgrades.ToString());
     }
 
     public void SetKarmaBar()
     {
-        if (spawner != null)
-        {
-            karmaBar.maxValue = spawner.MaxKarma;
-        }
-        
+        karmaBar.maxValue = spawner.MaxKarma;
         karmaBar.value = karma;
-        karmaText.SetText(karma.ToString());
     }
 
     public void AddGold(int amount)
     {
-        gainedGold = true;
-        gainedGoldAmount = amount;
+        gold += amount;
         SaveManager.SaveCurrency(this);
+        OnAddGold(amount);
+        moneyText.SetText(gold.ToString());
     }
 
     public void AddKarma(int amount)
     {
-        gainedKarma = true;
-        gainedKarmaAmount = amount;
+        karma += amount;   
         SaveManager.SaveCurrency(this);
+        OnAddKarma(amount);
+        SetKarmaBar();
+        karmaText.SetText(karma.ToString());
     }
 
     public void AddUpgrades(int amount)
     {
-        gainedUpgrade = true;
-        gainedSpeedAmount = amount;
+        speedUpgrades += amount; 
         SaveManager.SaveCurrency(this);
+        upgradeText.SetText(speedUpgrades.ToString());
     }
 
     public void LoseGold(int amount)
@@ -96,50 +81,6 @@ public class PlayerCurrency : MonoBehaviour
         karmaText.SetText(karma.ToString());
     }
 
-    void FillTheCoffers()
-    {
-        if(goldCount != gainedGoldAmount)
-        {
-            gold++;
-            goldCount++;
-            moneyBar.value++;
-        }
-        else
-        {
-            gainedGold = false;
-            goldCount = 0;
-        }
-    }
-
-    void FillKarma()
-    {
-        if (karmaCount != gainedKarmaAmount)
-        {
-            karma++;
-            karmaCount++;
-            karmaBar.value++;
-        }
-        else
-        {
-            gainedKarma = false;
-            karmaCount = 0;
-        }
-    }
-
-    void FillUpgrades()
-    {
-        if (speedCount != gainedSpeedAmount)
-        {
-            speedUpgrades++;
-            speedCount++;
-            upgradeBar.value++;
-        }
-        else
-        {
-            gainedUpgrade = false;
-            speedCount = 0;
-        }
-    }
 
     public void UpdateCurrencies()
     {

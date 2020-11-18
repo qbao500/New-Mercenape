@@ -5,45 +5,30 @@ using TMPro;
 
 public class FloatingUpgrade : MonoBehaviour
 {
-    PlayerCurrency playerCurrency;
-    TextMeshPro textMesh;
+    private TextMeshPro textMesh;
 
-    private int upgradeAmount, sortingOrder;
+    [SerializeField] private int speed, destroyTime;
 
-    //public GameObject destination;
-    public float speed, destroyTime;
-
-    void Awake()
-    {
-        playerCurrency = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerCurrency>();
-        //destination = GameObject.FindGameObjectWithTag("ResourceDestination");
-
-        textMesh = textMesh = transform.GetChild(0).GetComponent<TextMeshPro>();
-        sortingOrder = 15;
-        textMesh.sortingOrder = sortingOrder;
-        textMesh.SetText("You found a rare weapon upgrade!");
-
-    }
-
-    private void OnEnable()
-    {
-        AddUpgrades();
-        Invoke("Off", destroyTime);
-    }
-
-    void Update()
+    protected virtual void Update()
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
-    void AddUpgrades()
+    protected void Off() => gameObject.SetActive(false);
+
+    private void Awake()
     {
-        upgradeAmount = 1;
-        playerCurrency.AddUpgrades(upgradeAmount);
+        
+        textMesh = transform.GetChild(0).GetComponent<TextMeshPro>();
+        textMesh.SetText("You found a rare weapon upgrade!");
+        textMesh.sortingOrder = 15;
     }
 
-    void Off()
+   private void OnEnable()
     {
-        gameObject.SetActive(false);
+        Invoke("Off", destroyTime);
     }
+
+   
+
 }

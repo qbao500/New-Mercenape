@@ -25,11 +25,7 @@ public class SpawnerDataSO : ScriptableObject
     public List<WaveSO> WavesInfo { get => wavesInfo; }
     public List<EnemyStatsSO> EnemyInfo { get => enemyInfo; }
 
-    private void OnEnable()
-    {
-        CurrentGroup = 0;
-        SetMaxKarma();
-    }
+    private void OnEnable() => SetMaxKarma();
 
     // Call in the beginning and when wave completed
     public void SetupEnemyStats()

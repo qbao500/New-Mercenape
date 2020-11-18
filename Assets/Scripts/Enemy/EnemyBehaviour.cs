@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Created by Bao: main enemy behaviour (maybe change name later), parent of ShredBehaviour and MowerBehaviour
+// Created by Bao: main enemy behaviour, parent of ShredBehaviour and MowerBehaviour
 // Edited by Arttu Paldán on 23.10.2020: Added an virtual function for player to add bleed on enemies. 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -32,6 +32,8 @@ public class EnemyBehaviour : MonoBehaviour
     protected PlayerMovement playerMovement;
 
     private EnemyLootDrop enemyLoot;
+
+    //public event Action OnEnemyDie = delegate { };
 
     protected virtual void Awake()
     {       

@@ -5,43 +5,31 @@ using TMPro;
 
 public class FloatingKarma : MonoBehaviour
 {
-    PlayerCurrency playerCurrency;
-    TextMeshPro textMesh;
+    private TextMeshPro textMesh;
 
-    public int karmaAmount;
-
-    public float speed, destroyTime;
-
-    private int sortingOrder;
-
-    void Awake()
+    [SerializeField] private int speed, destroyTime;
+  
+    private void Awake()
     {
-        playerCurrency = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PlayerCurrency>();
-        
-        textMesh = textMesh = transform.GetChild(0).GetComponent<TextMeshPro>();
-        sortingOrder = 15;
-        textMesh.sortingOrder = sortingOrder;
-        textMesh.SetText(karmaAmount.ToString());        
+        textMesh = transform.GetChild(0).GetComponent<TextMeshPro>();
+        textMesh.sortingOrder = 15;
+        PlayerCurrency.OnAddKarma += SetKarmaText;
+    }
+
+    private void SetKarmaText(int karma)
+    {
+        textMesh.SetText(karma.ToString());
     }
 
     private void OnEnable()
-    {
-        AddKarma();
+    {        
         Invoke("Off", destroyTime);
     }
 
-    void Update()
+    private void Update()
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime); 
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
-    void AddKarma()
-    { 
-        playerCurrency.AddKarma(karmaAmount);
-    }
-
-    void Off()
-    {
-        gameObject.SetActive(false);
-    }
+    private void Off() => gameObject.SetActive(false);
 }

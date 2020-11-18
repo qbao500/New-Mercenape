@@ -14,6 +14,7 @@ public class EnemyStatsSO : ScriptableObject
     [SerializeField] protected AnimationCurve maxHPEachWave;
     [SerializeField] protected AnimationCurve speedEachWave;
 
+    // Properties
     public int Damage { get; private set; }
     public float MaxHP { get; private set; }
     public float RunningSpeed { get; private set; }

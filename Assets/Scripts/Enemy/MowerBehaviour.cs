@@ -64,10 +64,7 @@ public class MowerBehaviour : EnemyBehaviour
         fieldBarHealth.gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        MowerCheck();        
-    }
+    private void Update() => MowerCheck();
 
     #region Generator State
     private void Generating()
@@ -217,8 +214,8 @@ public class MowerBehaviour : EnemyBehaviour
     #region Mower attack 
     private void MowerCheck()
     {
-        // Don't check if dead or is staggering
-        if (currentHP <= 0 || isAttacking) { return; }
+        // Don't check if dead or attacking or just new born
+        if (currentHP <= 0 || isAttacking || isNewBorn) { return; }
 
         var horizontalDetect = Physics.Raycast(frontDetection.position, transform.right, 3f, LayerMask.GetMask("Player"));
         var verticalDetect = Physics.Raycast(frontDetection.position + (transform.right * 3f), Vector3.down, 3f, LayerMask.GetMask("Player"));

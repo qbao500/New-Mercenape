@@ -34,7 +34,6 @@ MonoBehaviour:
   stat: {fileID: 11400000, guid: 4866132ae8414f34da26c03d0ae45314, type: 2}
   currentHP: 0
   frontDetection: {fileID: 649199917329479996}
-  fieldStat: {fileID: 0}
   backside: {fileID: 1918139384883286889}
 --- !u!1 &7155445766896419891
 GameObject:
@@ -317,7 +316,7 @@ PrefabInstance:
     - target: {fileID: 4739630094514872579, guid: d561ebe5499b33446a3ba906ed062674,
         type: 3}
       propertyPath: m_Mass
-      value: 3000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 5157450744152267618, guid: d561ebe5499b33446a3ba906ed062674,
         type: 3}
@@ -401,6 +400,16 @@ PrefabInstance:
         type: 3}
       propertyPath: karmaQuantity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152132314532048145, guid: d561ebe5499b33446a3ba906ed062674,
+        type: 3}
+      propertyPath: karmaValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152132314532048145, guid: d561ebe5499b33446a3ba906ed062674,
+        type: 3}
+      propertyPath: goldValue
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7237859923948144612, guid: d561ebe5499b33446a3ba906ed062674,
         type: 3}

@@ -32,6 +32,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         groupCountdown = spawnerData.TimeBetweenGroups;
 
+        spawnerData.SetGroup(0);
         spawnerData.PrepareGroup();
     }
 
@@ -160,8 +161,6 @@ public class EnemySpawnerScript : MonoBehaviour
         Time.timeScale = 1;
         completeWaveScreen.SetActive(false);
         
-        playerCurrency.karma = 0;
-        playerCurrency.SetKarmaBar();
         SaveManager.SaveCurrency(playerCurrency);
     }
 
