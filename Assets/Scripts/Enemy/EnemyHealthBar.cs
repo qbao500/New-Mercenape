@@ -19,14 +19,14 @@ public class EnemyHealthBar : MonoBehaviour
     public void UpdateHealthBar(float currentHP, float maxHP)
     {
         var hpPct = currentHP / maxHP;
-        hpPct = Mathf.Clamp(hpPct, 0, maxHP);
+        hpPct = Mathf.Clamp(hpPct, 0, 1);
         if (hpPct < 1)
         {
             StartCoroutine(ChangeToPct(hpPct));
         }  
         else
         {   // Don't start coroutine animation when enemy is full HP
-            bar.localScale = new Vector3(hpPct, bar.localScale.y);
+            bar.localScale = new Vector3(1, bar.localScale.y);
         }
     }
 

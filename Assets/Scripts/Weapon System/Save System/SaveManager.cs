@@ -5,15 +5,31 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 // Created by Arttu Paldán 17.9.2020: Static class that handles the saving of weapon related data. 
+// Edited by Bao 19.11.20: Add functions for slot-save system
 public static class SaveManager
 {
+    private static int slotIndex;
+    private static string slotPath = "Slot";
+    private static DirectoryInfo dirInf;
+
+    // Change to chosen slot number. This must be called first before doing anything
+    public static void ShiftSlotPath(int slot)
+    {
+        slotIndex = slot;
+        dirInf = new DirectoryInfo(Path.Combine(Application.persistentDataPath, slotPath + slotIndex.ToString()));
+
+        if (!dirInf.Exists) { dirInf.Create(); }    // First time will create slot folder                     
+    }
+
+    public static void DeleteSavedPath() => Directory.Delete(dirInf.FullName, true);
+
     // Function for saving the data we want to save. It uses the binary formatter to save data. 
     public static void SaveWeapons(WeaponStates weaponStates)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string weaponsPath = Application.persistentDataPath + "/Weapons.data";
+        string weaponsPath = Path.Combine(dirInf.FullName, "Weapons.data");
         FileStream stream = new FileStream(weaponsPath, FileMode.Create);
-
+        
         WeaponsData weaponsData = new WeaponsData(weaponStates);
 
         formatter.Serialize(stream, weaponsData);
@@ -23,7 +39,7 @@ public static class SaveManager
     // Load function.
     public static WeaponsData LoadWeapons()
     {
-        string weaponsPath = Application.persistentDataPath + "/Weapons.data";
+        string weaponsPath = Path.Combine(dirInf.FullName, "Weapons.data");
         if (File.Exists(weaponsPath))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -43,7 +59,7 @@ public static class SaveManager
     // Delete data function. 
     public static void DeleteWeapons()
     {
-        string weaponsPath = Application.persistentDataPath + "/Weapons.data";
+        string weaponsPath = Path.Combine(dirInf.FullName, "Weapons.data");
         File.Delete(weaponsPath);
     }
 
@@ -51,7 +67,7 @@ public static class SaveManager
     public static void SaveCurrency(PlayerCurrency playerCurrency)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string currencyPath = Application.persistentDataPath + "/Currency.data";
+        string currencyPath = Path.Combine(dirInf.FullName, "Currency.data");
         FileStream stream = new FileStream(currencyPath, FileMode.Create);
 
         CurrencyData currencyData = new CurrencyData(playerCurrency);
@@ -63,7 +79,7 @@ public static class SaveManager
     // Load function.
     public static CurrencyData LoadCurrency()
     {
-        string currencyPath = Application.persistentDataPath + "/Currency.data";
+        string currencyPath = Path.Combine(dirInf.FullName, "Currency.data");
         if (File.Exists(currencyPath))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -83,7 +99,7 @@ public static class SaveManager
     // Delete data function. 
     public static void DeleteCurrency()
     {
-        string currencyPath = Application.persistentDataPath + "/Currency.data";
+        string currencyPath = Path.Combine(dirInf.FullName, "Currency.data");
         File.Delete(currencyPath);
     }
 
@@ -91,7 +107,7 @@ public static class SaveManager
     public static void SaveSpawner(EnemySpawnerScript enemySpawner)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string spawnerPath = Application.persistentDataPath + "/Spawner.data";
+        string spawnerPath = Path.Combine(dirInf.FullName, "Spawner.data");
         FileStream stream = new FileStream(spawnerPath, FileMode.Create);
 
         SpawnerData spawnerData = new SpawnerData(enemySpawner);
@@ -103,7 +119,7 @@ public static class SaveManager
     // Load function.
     public static SpawnerData LoadSpawner()
     {
-        string spawnerPath = Application.persistentDataPath + "/Spawner.data";
+        string spawnerPath = Path.Combine(dirInf.FullName, "Spawner.data");
         if (File.Exists(spawnerPath))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -119,8 +135,29 @@ public static class SaveManager
             return null;
         }
     }
+
+    // Extension methods
+    public static void SetButtonsActive(this LoadGameManager loadGameManager)
+    {
+        for (int i = 0; i < loadGameManager.slotButtons.Count; i++)
+        {
+            dirInf = new DirectoryInfo(Path.Combine(Application.persistentDataPath, slotPath + i.ToString()));
+
+            if (dirInf.Exists)
+            {
+                loadGameManager.slotButtons[i].interactable = true;
+                loadGameManager.deleteButtons[i].gameObject.SetActive(true);
+            }            
+            else
+            {
+                loadGameManager.slotButtons[i].interactable = false;
+                loadGameManager.deleteButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
 }
 
+#region Save Data Classes
 // Save data class, which contains the infor we want to save. 
 [System.Serializable]
 public class WeaponsData
@@ -164,3 +201,4 @@ public class SpawnerData
         currentWave = enemySpawner.spawnerData.CurrentWave;
     }
 }
+#endregion

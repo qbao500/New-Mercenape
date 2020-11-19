@@ -144,7 +144,11 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         SpawnerData waveData = SaveManager.LoadSpawner();
 
-        if (waveData == null) { return; }
+        if (waveData == null) 
+        {
+            spawnerData.SetWave(1); // Set wave = 1 if no saved data
+            return; 
+        }
 
         spawnerData.SetWave(waveData.currentWave);
     }

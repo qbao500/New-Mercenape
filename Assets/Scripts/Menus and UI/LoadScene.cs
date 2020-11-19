@@ -17,7 +17,6 @@ public class LoadScene : MonoBehaviour
 
     public void GoTolevel1()
     {
-        Time.timeScale = 0.95f;
         SceneManager.LoadScene("NewLV1Test");
     }
 
