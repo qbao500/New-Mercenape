@@ -11,7 +11,7 @@ public class LoadGameManager : MonoBehaviour
 
     private void Start()
     {        
-        this.SetButtonsActive();
+        this.SetButtonsActive();       
     }
 
     public void LoadGameChosen(Button loadButton)
