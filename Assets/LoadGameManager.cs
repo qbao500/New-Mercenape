@@ -52,14 +52,12 @@ public class LoadGameManager : MonoBehaviour
     {
         levelCounter++;
         StartCoroutine(LevelAnim(-350f));
-        SetArrowInteractable();
     }
 
     public void BackArrow()
     {
         levelCounter--;
         StartCoroutine(LevelAnim(350f));
-        SetArrowInteractable();
     }
 
     private void SetArrowInteractable()
@@ -73,18 +71,22 @@ public class LoadGameManager : MonoBehaviour
 
     private IEnumerator LevelAnim(float distance)
     {
+        backArrow.interactable = false;
+        nextArrow.interactable = false;
+
         float startPoint = levelsHolder.transform.localPosition.x;
         float destination = levelsHolder.transform.localPosition.x + distance;
         float elapsed = 0f;
 
-        while (elapsed < .3f)
+        while (elapsed < .2f)
         {
             elapsed += Time.deltaTime;
-            levelsHolder.transform.localPosition = new Vector2(Mathf.Lerp(startPoint, destination, elapsed / .3f), levelsHolder.transform.localPosition.y);
+            levelsHolder.transform.localPosition = new Vector2(Mathf.Lerp(startPoint, destination, elapsed / .2f), levelsHolder.transform.localPosition.y);
             yield return null;
         }
 
         levelsHolder.transform.localPosition = new Vector2(destination, levelsHolder.transform.localPosition.y);
+        SetArrowInteractable();
     }
 
 }
