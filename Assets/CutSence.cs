@@ -7,44 +7,59 @@ using UnityEngine.SceneManagement;
 //Prototype made by thuyet to handle cutscenes
 public class CutSence : MonoBehaviour
 {
-    public int imageCount;
-    float startWaitTime=1f ;
-    float delta;
-    // Start is called before the first frame update
+    public int backgroundIndex;
+    
+    public Dialogue dialogue;
    
-    void Start()
+    DialogueManager dm;
+    BubbleTalkManager bm;
+    public int counter = 0;
+
+
+
+    void Awake()
     {
-        imageCount = 0;
-        delta = startWaitTime - Time.deltaTime;
-        if (delta <= 0)
-        {
-            gameObject.transform.GetChild(imageCount).gameObject.SetActive(true);
-            print("hello");
-        }
+		dm = this.GetComponent<DialogueManager>();
+        bm = this.GetComponent<BubbleTalkManager>();
 
-    }
-    
-    
-
- 
+	}
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-                imageCount++;
+            backgroundIndex++;
 
-                if (imageCount < gameObject.transform.childCount)
+                if (backgroundIndex < gameObject.transform.childCount)
                 {
-                gameObject.transform.GetChild(imageCount).gameObject.SetActive(true);
+                gameObject.transform.GetChild(backgroundIndex).gameObject.SetActive(true);
                  }
-                if (imageCount > 0)
+                if (backgroundIndex > 0)
                 {
-                    gameObject.transform.GetChild(imageCount - 1).gameObject.SetActive(false);
+                    gameObject.transform.GetChild(backgroundIndex - 1).gameObject.SetActive(false);
                 }
+
+
+            if (counter == 0)
+            {
+                dm.StartDialogue(dialogue);
+                counter++;
+            }
+            else
+            {
+                dm.DisplayNextSentence();
+                counter++;
+            }
+            if (counter %2 == 1)
+            {
+                bm.setBubbleTalk(3);
+            }else if(counter % 2 == 0)
+            {
+                bm.setBubbleTalk(4);
+            }
            
         }
-        if(imageCount >= gameObject.transform.childCount || Input.GetKeyDown(KeyCode.Escape))
+        if(backgroundIndex >= gameObject.transform.childCount || Input.GetKeyDown(KeyCode.Escape))
         {
             Scene currentScene = SceneManager.GetActiveScene();
             int buildIndex = currentScene.buildIndex;
