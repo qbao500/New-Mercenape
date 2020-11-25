@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EnemySpawnerScript">
+    <Position X="1" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="EnemySpawnerScript.SpawnState">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Enemy\EnemySpawnerScript.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAACEACAEAABAIAAgAAAAKAgAOAIAAQAASAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemySpawnerScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyBehaviour">
+    <Position X="5.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>smAAQCQAAgAQABIEDgAQCgSQACAAC0QBhAABgAAEGEg=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShredBehaviour">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <InheritanceLine Type="EnemyBehaviour" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="0.5" />
+        <Point X="6.25" Y="0.24" />
+        <Point X="4.062" Y="0.24" />
+        <Point X="4.062" Y="0.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAUCAAAAGAAAAAIIMAAGAQAAAAAAAAAAAAABkAQACEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\ShredBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MowerBehaviour">
+    <Position X="7.5" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="MowerBehaviour.ForceFieldState">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Enemy\MowerBehaviour.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <InheritanceLine Type="EnemyBehaviour" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="0.5" />
+        <Point X="6.25" Y="0.24" />
+        <Point X="8.438" Y="0.24" />
+        <Point X="8.438" Y="0.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>MAUACCQAAAjAAAgYNAAKBAAGAcEAAAAwiAAIwEIECMA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\MowerBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyStatsSO">
+    <Position X="5.25" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAgAAECAAACCAAAAAAAAkIAACQAEQIAAAAAQAAAAAAE=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyScriptableObject\EnemyStatsSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyHealthBar">
+    <Position X="3.25" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAQAAAAAAAAAAAJAAAAEAAEBBAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyHealthBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShredStatsSO">
+    <Position X="3.25" Y="12.75" Width="1.5" />
+    <InheritanceLine Type="EnemyStatsSO" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.188" Y="14.532" />
+        <Point X="6.188" Y="14.812" />
+        <Point X="4.75" Y="14.812" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAAAIEAAAAAIAFCQAAQAAAAAAQEAIAEAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyScriptableObject\ShredStatsSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MowerStatsSO">
+    <Position X="7.75" Y="12.75" Width="1.5" />
+    <InheritanceLine Type="EnemyStatsSO" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.188" Y="14.532" />
+        <Point X="6.188" Y="14.812" />
+        <Point X="7.75" Y="14.812" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAgADAAAAAEAAAAIAACQAAQAAAEAAQAAAABAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyScriptableObject\MowerStatsSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpawnerDataSO">
+    <Position X="1" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AJCAACAAACCAQAEAAAAARgAAAAIMQAgAAECAQAJCCAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\WaveScriptableObject\SpawnerDataSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WaveSO">
+    <Position X="3.25" Y="9" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="WaveSO.Group">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Enemy\WaveScriptableObject\WaveSO.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\WaveScriptableObject\WaveSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9.22" />
+</ClassDiagram>

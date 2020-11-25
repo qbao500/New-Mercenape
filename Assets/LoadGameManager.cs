@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadGameManager : MonoBehaviour
 {
-    public List<Button> slotButtons;
-    public List<Button> deleteButtons;
+    public Button[] slotButtons;
+    public Button[] deleteButtons;
 
     private void Start()
     {        
@@ -29,7 +29,7 @@ public class LoadGameManager : MonoBehaviour
 
     public int IsAvailableSLot()
     {
-        for (int i = 0; i < slotButtons.Count; i++)
+        for (int i = 0; i < slotButtons.Length; i++)
         {
             if (!slotButtons[i].interactable)
             {

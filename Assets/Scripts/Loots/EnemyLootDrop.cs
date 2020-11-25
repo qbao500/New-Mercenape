@@ -68,8 +68,8 @@ public class EnemyLootDrop : MonoBehaviour
     void AddMoney()
     {
         if (currency == null) { return; }
-        
-        currency.AddGold(goldValue);
+
+        currency.AddGold((int)Random.Range(goldValue * 0.9f, goldValue * 1.1f));
     }
 
     void AddUpgrades()

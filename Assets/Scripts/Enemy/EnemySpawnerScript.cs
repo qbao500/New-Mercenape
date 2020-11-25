@@ -67,7 +67,7 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
     // Check if enemies are still alive
-    bool EnemyIsAlive()
+    private bool EnemyIsAlive()
     {
         searchCountdown -= Time.deltaTime;
         if (searchCountdown <= 0f)
@@ -83,7 +83,7 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
     // Group completed and prepare new group
-    void GroupCompleted()
+    private void GroupCompleted()
     {
         state = SpawnState.Counting;
         groupCountdown = spawnerData.TimeBetweenGroups;
@@ -94,12 +94,11 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
     // When player get enough karma and finish wave
-    void CheckWaveEnd()
+    private void CheckWaveEnd()
     {
         if (playerCurrency.karma >= spawnerData.MaxKarma)
         {
-            Time.timeScale = 0;
-            completeWaveScreen.SetActive(true);
+            Invoke("ShowScreen", 1.5f);
 
             spawnerData.SetWave(spawnerData.CurrentWave + 1);
             SaveManager.SaveSpawner(this);
@@ -107,10 +106,16 @@ public class EnemySpawnerScript : MonoBehaviour
             spawnerData.SetupEnemyStats();  // Re-setup enemy stats
             spawnerData.SetGroup(0);   // Reset group          
         }
-    }       
+    }
+
+    private void ShowScreen()
+    {
+        Time.timeScale = 0;
+        completeWaveScreen.SetActive(true);
+    }
 
     // Spawn enemies one by one with rate
-    IEnumerator SpawnWave()
+    private IEnumerator SpawnWave()
     {
         state = SpawnState.Spawning;
 
@@ -164,7 +169,8 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         Time.timeScale = 1;
         completeWaveScreen.SetActive(false);
-        
+
+        playerCurrency.SetKarmaBar();
         SaveManager.SaveCurrency(playerCurrency);
     }
 

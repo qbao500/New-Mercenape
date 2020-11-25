@@ -139,7 +139,7 @@ public static class SaveManager
     // Extension methods
     public static void SetButtonsActive(this LoadGameManager loadGameManager)
     {
-        for (int i = 0; i < loadGameManager.slotButtons.Count; i++)
+        for (int i = 0; i < loadGameManager.slotButtons.Length; i++)
         {
             dirInf = new DirectoryInfo(Path.Combine(Application.persistentDataPath, slotPath + i.ToString()));
 
