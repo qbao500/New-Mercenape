@@ -99,12 +99,14 @@ public class EnemySpawnerScript : MonoBehaviour
         if (playerCurrency.karma >= spawnerData.MaxKarma)
         {
             Invoke("ShowScreen", 1.5f);
+            spawnerData.GroupText.gameObject.SetActive(false);
+            spawnerData.WaveText.gameObject.SetActive(false);
 
             spawnerData.SetWave(spawnerData.CurrentWave + 1);
             SaveManager.SaveSpawner(this);
 
             spawnerData.SetupEnemyStats();  // Re-setup enemy stats
-            spawnerData.SetGroup(0);   // Reset group          
+            spawnerData.SetGroup(0);        // Reset group          
         }
     }
 
@@ -152,10 +154,10 @@ public class EnemySpawnerScript : MonoBehaviour
         if (waveData == null) 
         {
             spawnerData.SetWave(1); // Set wave = 1 if no saved data
-            return; 
+            return;                 // That's it
         }
 
-        spawnerData.SetWave(waveData.currentWave);
+        spawnerData.SetWave(waveData.currentWave);  // Otherwise, set to saved wave
     }
 
     private void SetTextRef()
@@ -169,6 +171,8 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         Time.timeScale = 1;
         completeWaveScreen.SetActive(false);
+        spawnerData.GroupText.gameObject.SetActive(true);
+        spawnerData.WaveText.gameObject.SetActive(true);
 
         playerCurrency.SetKarmaBar();
         SaveManager.SaveCurrency(playerCurrency);

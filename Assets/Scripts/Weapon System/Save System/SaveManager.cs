@@ -10,7 +10,7 @@ public static class SaveManager
 {
     private static int slotIndex;
     private static string slotPath = "Slot";
-    private static DirectoryInfo dirInf;
+    private static DirectoryInfo dirInf = new DirectoryInfo(Path.Combine(Application.persistentDataPath, slotPath + slotIndex.ToString()));
 
     // Change to chosen slot number. This must be called first before doing anything
     public static void ShiftSlotPath(int slot)
