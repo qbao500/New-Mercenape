@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class MenuButtons : MonoBehaviour
 {
     public GameObject[] panels;
+
     private LoadGameManager load;
 
     void Start()
     {
         load = GetComponent<LoadGameManager>();
-        ToMainPanel();
+        ToMainPanel();       
     }
 
     void LateUpdate()
@@ -60,9 +61,8 @@ public class MenuButtons : MonoBehaviour
         else
         {
             print("There's no more slot to save!");
-        }
-        
-    }
+        }      
+    }  
 
     public void QuitGame()
     {
