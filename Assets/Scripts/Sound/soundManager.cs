@@ -7,18 +7,31 @@ public static class soundManager
     //Written by Ossi Uusitalo, guide to it by Code Monkey, https://www.youtube.com/watch?v=QL29aTa7J5Q&t=323s
     public enum Sound
     {
-        playerMove,
-        playerJump,
-        playerAttack,
-        playerDie,
-        enemyAttack,
-        enemyDie,
-        heal,
+        //26.11 update by Ossi: Now all sounds will have either SFX, Audio or Music before the sound name to sort them in their audio mixer groups.
+
+        //Sound effects
+        SFX_playerMove,
+        SFX_playerJump,
+        SFX_playerAttack,
+        SFX_playerDie,
+        SFX_enemyAttack,
+        SFX_enemyDie,
+        SFX_heal,
+
+        //Audio/Voice lines
+        Audio_playerHurt,
+        Audio_playerDie,
+        Audio_enemyPain,
+
+        //Music
+        Music_Menu,
+        Music_Level
     }
 
     //This is for sound we want to play at different intervals such as footsteps
     private static Dictionary<Sound, float> soundtimerDictionary;
 
+    public static Sound chosenSound;
     private static AudioClip audioClip; // for saving clip to play
 
     private static AssetManager assetManager;
@@ -27,7 +40,7 @@ public static class soundManager
     {
         //This method is called by the Asset Manager script upon Awake()
         soundtimerDictionary = new Dictionary<Sound, float>();
-        soundtimerDictionary[Sound.playerMove] = 0f;
+        soundtimerDictionary[Sound.SFX_playerMove] = 0f;
         assetManager = aManager;
     }
 
@@ -40,6 +53,7 @@ public static class soundManager
             {
                 // Edit by Bao 10.11.20: use object pooling to play sound instead of Instansiate/Destroy
                 audioClip = GetAudioClip(sound);
+                chosenSound = sound;
                 ObjectPooler.Instance.SpawnFromPool("Sound", position, Quaternion.identity);
 
                 // Most of the below code are moved to SoundObject script, which is attached to a prefab that already has AudioSource component
@@ -72,7 +86,7 @@ public static class soundManager
         //This checks if the requested sound is in the Asset Manager array
         switch(sound)
         {
-            case Sound.playerMove:
+            case Sound.SFX_playerMove:
                 {
                     if (soundtimerDictionary.ContainsKey(sound))
                     {
