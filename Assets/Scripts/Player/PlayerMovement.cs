@@ -129,12 +129,7 @@ public class PlayerMovement : MonoBehaviour
             isPlayerBlock = false;
         }
 
-        if (!isKnockDown)
-        {
-            CheckPlayerBlock();
-            InputHorrizontal(); // Included player flip
-            InputVertical();
-        }
+       
 
         if (!isKnockDown && !CheckColliderAbove())
         {
@@ -147,6 +142,27 @@ public class PlayerMovement : MonoBehaviour
     
 
 
+       
+
+       
+       
+        
+    }
+
+    void FixedUpdate()
+    {
+        if (!isKnockDown)
+        {
+            CheckPlayerBlock();
+            InputHorrizontal(); // Included player flip
+            InputVertical();
+        }
+
+        if (!isPlayerBlock && !isKnockDown)// when player is not blocking they can move
+        {
+            TimePressButton();
+            PlayerMove();
+        }
         if (isCollideWall && !isGrabWall && !isKnockDown)
         {
             climbPrompt.gameObject.SetActive(true);
@@ -161,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canLedgeClimb = false;
         }
-        if(canLedgeClimb==true)
+        if (canLedgeClimb == true)
         {
             playerClimbPos = transform.position;
         }
@@ -179,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerRigid2d.useGravity = true;
             PlayerRigid2d.rotation = Quaternion.Euler(0, 90, 0);
-            
+
         }
 
         if (isGrabWall && Input.GetKeyDown(KeyCode.Space))
@@ -191,19 +207,6 @@ public class PlayerMovement : MonoBehaviour
             PlayerRigid2d.velocity = (Vector3.up * PlayerJumpPow);
 
         }
-
-       
-       
-        
-    }
-
-    void FixedUpdate()
-    {
-        if (!isPlayerBlock && !isKnockDown)// when player is not blocking they can move
-        {
-            TimePressButton();
-            PlayerMove();
-        }     
     }
 
     void TimePressButton()
@@ -365,7 +368,7 @@ public class PlayerMovement : MonoBehaviour
                       isGrabWall = true;
                       isJumping = false;
                   }
-                if (FaceRight)
+               /* if (FaceRight)
                 {
                     if (Input.GetKey(KeyCode.D))
                     {
@@ -381,7 +384,7 @@ public class PlayerMovement : MonoBehaviour
                         isGrabWall = true;
                         isJumping = false;
                     }
-                }
+                }*/
             }
          
         }

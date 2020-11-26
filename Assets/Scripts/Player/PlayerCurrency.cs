@@ -24,6 +24,11 @@ public class PlayerCurrency : MonoBehaviour
     void Awake()
     {
         LoadSaveFile();
+        karmaBar= GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("karmaBar").GetComponent<Slider>();
+        karmaText = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("karmaImage").transform.Find("karmaText").GetComponent<TextMeshProUGUI>();
+        moneyText = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("moneyImage").transform.Find("moneyText").GetComponent<TextMeshProUGUI>();
+        upgradeText = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("upgradeImage").transform.Find("upgradeText").GetComponent<TextMeshProUGUI>();
+
     }
 
     void Start()
