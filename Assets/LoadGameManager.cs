@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
+// Created by Bao 19.11.20: Load saved slots
 public class LoadGameManager : MonoBehaviour
 {
     public Button[] slotButtons;
     public Button[] deleteButtons;
+    [HideInInspector] public TextMeshProUGUI[] dateTexts;
+    [HideInInspector] public TextMeshProUGUI[] waveTexts;
 
     public GameObject levelsHolder;
     private Button nextArrow;
@@ -15,7 +19,9 @@ public class LoadGameManager : MonoBehaviour
     private int levelCounter = 1;
 
     private void Start()
-    {        
+    {
+        SetTextRef();
+
         this.SetButtonsActive();
 
         nextArrow = levelsHolder.transform.parent.gameObject.transform.parent.Find("Next Arrow").GetComponent<Button>();
@@ -89,4 +95,15 @@ public class LoadGameManager : MonoBehaviour
         SetArrowInteractable();
     }
 
+    private void SetTextRef()
+    {
+        dateTexts = new TextMeshProUGUI[slotButtons.Length];
+        waveTexts = new TextMeshProUGUI[slotButtons.Length];
+
+        for (int i = 0; i < slotButtons.Length; i++)
+        {
+            dateTexts[i] = slotButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            waveTexts[i] = slotButtons[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        }
+    }
 }

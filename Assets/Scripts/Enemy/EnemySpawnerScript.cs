@@ -153,11 +153,14 @@ public class EnemySpawnerScript : MonoBehaviour
 
         if (waveData == null) 
         {
-            spawnerData.SetWave(1); // Set wave = 1 if no saved data
-            return;                 // That's it
+            spawnerData.SetWave(1); // Set wave = 1 if no saved data          
         }
-
-        spawnerData.SetWave(waveData.currentWave);  // Otherwise, set to saved wave
+        else
+        {
+            spawnerData.SetWave(waveData.currentWave);  // Otherwise, set to saved wave
+        }
+       
+        SaveManager.SaveSpawner(this);  // Then save (useful for fist time)
     }
 
     private void SetTextRef()

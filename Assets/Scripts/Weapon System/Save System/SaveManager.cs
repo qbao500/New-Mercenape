@@ -18,7 +18,7 @@ public static class SaveManager
         slotIndex = slot;
         dirInf = new DirectoryInfo(Path.Combine(Application.persistentDataPath, slotPath + slotIndex.ToString()));
 
-        if (!dirInf.Exists) { dirInf.Create(); }    // First time will create slot folder                     
+        if (!dirInf.Exists) { dirInf.Create(); }    // First time will create slot folder
     }
 
     public static void DeleteSavedPath() => Directory.Delete(dirInf.FullName, true);
@@ -34,6 +34,8 @@ public static class SaveManager
 
         formatter.Serialize(stream, weaponsData);
         stream.Close();
+
+        SetModifiedDate(weaponsPath);
     }
 
     // Load function.
@@ -74,6 +76,8 @@ public static class SaveManager
 
         formatter.Serialize(stream, currencyData);
         stream.Close();
+
+        SetModifiedDate(currencyPath);
     }
 
     // Load function.
@@ -114,6 +118,8 @@ public static class SaveManager
 
         formatter.Serialize(stream, spawnerData);
         stream.Close();
+
+        SetModifiedDate(spawnerPath);
     }
 
     // Load function.
@@ -136,25 +142,37 @@ public static class SaveManager
         }
     }
 
+    private static void SetModifiedDate(string path)
+    {
+        Directory.SetLastWriteTime(dirInf.FullName, File.GetLastWriteTime(path));
+    }
+
     // Extension methods
     public static void SetButtonsActive(this LoadGameManager loadGameManager)
-    {
+    {     
         for (int i = 0; i < loadGameManager.slotButtons.Length; i++)
         {
             dirInf = new DirectoryInfo(Path.Combine(Application.persistentDataPath, slotPath + i.ToString()));
-
+            
             if (dirInf.Exists)
             {
                 loadGameManager.slotButtons[i].interactable = true;
                 loadGameManager.deleteButtons[i].gameObject.SetActive(true);
+                loadGameManager.dateTexts[i].gameObject.SetActive(true);
+                loadGameManager.waveTexts[i].gameObject.SetActive(true);
+                loadGameManager.dateTexts[i].SetText(dirInf.LastWriteTime.ToString("dd/MM/yyyy"));
+                loadGameManager.waveTexts[i].SetText(LoadSpawner()?.currentWave.ToString());              
             }            
             else
             {
                 loadGameManager.slotButtons[i].interactable = false;
                 loadGameManager.deleteButtons[i].gameObject.SetActive(false);
+                loadGameManager.dateTexts[i].gameObject.SetActive(false);
+                loadGameManager.waveTexts[i].gameObject.SetActive(false);
             }
         }
     }
+
 }
 
 #region Save Data Classes
