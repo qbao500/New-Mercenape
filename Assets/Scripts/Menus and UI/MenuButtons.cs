@@ -17,7 +17,7 @@ public class MenuButtons : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && (panels[1].activeSelf || panels[2].activeSelf || panels[3].activeSelf))
+        if (Input.GetKeyDown(KeyCode.Escape) && CheckActivePanels())
         {
             ToMainPanel();
         }
@@ -41,12 +41,19 @@ public class MenuButtons : MonoBehaviour
         panels[3].SetActive(true);
     }
 
+    public void ToCreditsPanel()
+    {
+        panels[0].SetActive(false);
+        panels[4].SetActive(true);
+    }
+
     public void ToMainPanel()
     {
         panels[0].SetActive(true);
         panels[1].SetActive(false);
         panels[2].SetActive(false);
         panels[3].SetActive(false);
+        panels[4].SetActive(false);
     }
 
     public void GoTolevel1()
@@ -67,5 +74,10 @@ public class MenuButtons : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    private bool CheckActivePanels()
+    {
+        return panels[1].activeSelf || panels[2].activeSelf || panels[3].activeSelf || panels[4].activeSelf;
     }
 }
