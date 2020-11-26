@@ -84,7 +84,7 @@ public class PlayerAttackTrigger : MonoBehaviour
         {
             IsPlayerAttack = true;
             PlayerAnimator.SetTrigger("Attack");
-            soundManager.PlaySound(soundManager.Sound.playerAttack, transform.position);
+            soundManager.PlaySound(soundManager.Sound.SFX_playerAttack, transform.position);
 
             // (Holding mouse) When attack anim finish, it continues the next one, not standing still as before
             // weaponSpeed = 1 is normal, = 2 is fast double, etc. (could be less than 1 for slower speed)

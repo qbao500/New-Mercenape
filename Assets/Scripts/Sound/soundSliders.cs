@@ -18,22 +18,6 @@ public class soundSliders : MonoBehaviour
         Music.value = PlayerPrefs.GetFloat("musicVolume", 0);
     }
 
-    private void Update()
-    {
-        //For testing the mixers
-        if(Input.GetKeyDown(KeyCode.U))
-        {
-            Debug.Log("U pressed");
-            soundManager.PlaySound(soundManager.Sound.Audio_enemyPain, transform.position);
-
-        }
-
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            Debug.Log("I pressed.");
-            soundManager.PlaySound(soundManager.Sound.Music_Level, transform.position);
-        }
-    }
 
     public void setMasterVolume(float volume)
     {

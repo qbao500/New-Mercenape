@@ -55,16 +55,15 @@ public class SoundObject : MonoBehaviour
         AudioMixer mixer = Resources.Load("AudioMixer") as AudioMixer;
         if (mixer != null)
         {
-            Debug.Log("Mixer found");
             if (soundManager.chosenSound.ToString().Contains("SFX"))
             {
-                Debug.Log("SFX found");
+                //Debug.Log("SFX found");
                 audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFX")[0];
                 audioSource.spatialBlend = 1f;
             }
             else if (soundManager.chosenSound.ToString().Contains("Audio"))
             {
-                Debug.Log("Audio found");
+                //Debug.Log("Audio found");
                 audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("Audio")[0];
                 audioSource.spatialBlend = 0f;
             }
@@ -72,7 +71,7 @@ public class SoundObject : MonoBehaviour
             {
                 audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("Music")[0];
                 audioSource.spatialBlend = 0f;
-                Debug.Log("Music found");
+               // Debug.Log("Music found");
             }
             this.PlayObject();
         }

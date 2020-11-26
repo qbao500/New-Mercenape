@@ -617,7 +617,7 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayRunningSound()
     {
-        soundManager.PlaySound(soundManager.Sound.playerMove, transform.position);
+        soundManager.PlaySound(soundManager.Sound.SFX_playerMove, transform.position);
     }
 }
 
