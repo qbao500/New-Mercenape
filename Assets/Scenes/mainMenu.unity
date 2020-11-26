@@ -240,6 +240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &944370068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1722842594744210747, guid: abd5edf636aafbd4a9307832f3a873d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5296866466245433696}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &998458730 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3809374377616190546, guid: abd5edf636aafbd4a9307832f3a873d8,
@@ -1397,7 +1403,7 @@ PrefabInstance:
         type: 3}
       propertyPath: panels.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 944370068}
     - target: {fileID: 6931998348344599037, guid: e673366906282fa40b837be3d1536573,
         type: 3}
       propertyPath: levelButtons.Array.data[0]
