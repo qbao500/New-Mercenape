@@ -160,7 +160,7 @@ public static class SaveManager
                 loadGameManager.deleteButtons[i].gameObject.SetActive(true);
                 loadGameManager.dateTexts[i].gameObject.SetActive(true);
                 loadGameManager.waveTexts[i].gameObject.SetActive(true);
-                loadGameManager.dateTexts[i].SetText(dirInf.LastWriteTime.ToString("dd/MM/yyyy"));
+                loadGameManager.dateTexts[i].SetText(dirInf.LastWriteTime.ToString("dd.MM.yy"));
                 loadGameManager.waveTexts[i].SetText(LoadSpawner()?.currentWave.ToString());              
             }            
             else
