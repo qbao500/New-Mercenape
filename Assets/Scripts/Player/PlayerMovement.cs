@@ -109,7 +109,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         SetAnimatorPara();
-
         CheckKnockDown();
         CheckGrounded();
         CheckCollideWall();
@@ -145,14 +144,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-    
-
-
-       
-
-       
-       
-        
     }
 
     void FixedUpdate()
@@ -369,7 +360,10 @@ public class PlayerMovement : MonoBehaviour
                       isGrabWall = true;
                       isJumping = false;
                   }
-               /* if (FaceRight)
+               
+                // start using A and D to grab as well
+                
+                if (FaceRight)
                 {
                     if (Input.GetKey(KeyCode.D))
                     {
@@ -385,7 +379,7 @@ public class PlayerMovement : MonoBehaviour
                         isGrabWall = true;
                         isJumping = false;
                     }
-                }*/
+                } // end 
             }
          
         }
