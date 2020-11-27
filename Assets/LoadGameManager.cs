@@ -24,6 +24,7 @@ public class LoadGameManager : MonoBehaviour
     {
         SetTextRef();
 
+        IsAvailableSLot();
         this.SetButtonsActive();
 
         nextArrow = levelsHolder.transform.parent.gameObject.transform.parent.Find("Next Arrow").GetComponent<Button>();
@@ -52,11 +53,13 @@ public class LoadGameManager : MonoBehaviour
             if (!slotButtons[i].interactable)
             {
                 newLevelButton.interactable = true;
+                newLevelButton.GetComponent<TooltipTrigger>().enabled = false;
                 return i;
             }
         }
 
         newLevelButton.interactable = false;
+        newLevelButton.GetComponent<TooltipTrigger>().enabled = true;
         return -1;
     }
 
@@ -79,8 +82,6 @@ public class LoadGameManager : MonoBehaviour
 
         if (levelCounter >= levelsHolder.transform.childCount) { nextArrow.interactable = false; }
         else { nextArrow.interactable = true; }
-
-        if (IsAvailableSLot() == -1) {  }
     }
 
     private IEnumerator LevelAnim(float distance)
