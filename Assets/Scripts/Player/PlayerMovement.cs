@@ -129,7 +129,13 @@ public class PlayerMovement : MonoBehaviour
             isPlayerBlock = false;
         }
 
-       
+        if (!isKnockDown)
+        {
+            CheckPlayerBlock();
+            InputHorrizontal(); // Included player flip
+            InputVertical();
+        }
+
 
         if (!isKnockDown && !CheckColliderAbove())
         {
@@ -151,12 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isKnockDown)
-        {
-            CheckPlayerBlock();
-            InputHorrizontal(); // Included player flip
-            InputVertical();
-        }
+      
 
         if (!isPlayerBlock && !isKnockDown)// when player is not blocking they can move
         {
@@ -459,6 +460,7 @@ public class PlayerMovement : MonoBehaviour
                         {
                             PlayerRigid2d.velocity = Vector3.zero;
                             transform.position = destination;
+                            PlayerRigid2d.velocity = Vector3.zero;
 
                         }
                         else if (inputV < 0)
