@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
         if (isCollideWall && !isGrabWall && !isKnockDown)
         {
             climbPrompt.gameObject.SetActive(true);
-            climbPrompt.SetText("Press W to Grab the Vine");
+           // climbPrompt.SetText("Press W to Grab the Vine");
         }
         else
         {
@@ -180,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerRigid2d.useGravity = false;
             PlayerRigid2d.rotation = Quaternion.Euler(5, 90, 0);
             climbPrompt.gameObject.SetActive(true);
-            climbPrompt.SetText("Press W or S to Move Up or Down");
+            //climbPrompt.SetText("Press W or S to Move Up or Down");
             PlayerClimbWal();
         }
         else
