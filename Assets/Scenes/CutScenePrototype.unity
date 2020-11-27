@@ -166,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216758930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 26d3dd61f84217a4da1a289c2829e8c5, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -598,10 +598,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1481275964}
-  - component: {fileID: 1481275965}
-  - component: {fileID: 1481275966}
-  - component: {fileID: 1481275967}
   - component: {fileID: 1481275968}
+  - component: {fileID: 1481275965}
   m_Layer: 0
   m_Name: Cutscene
   m_TagString: Untagged
@@ -635,54 +633,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e9b9d83981f134e9747ee318f6fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundIndex: 0
+  sequenceIndex: 0
+  dialogueText: {fileID: 1754176735}
+  bubbleTalkImg: {fileID: 216758932}
+  sequencesArray:
+  - chosenbackGround: {fileID: 21300000, guid: d19a751d04b4cc54287af6a12340f93b, type: 3}
+    chosenBubbleTalk: {fileID: 21300000, guid: c5819f640af8ed5459312d49ddf0814b, type: 3}
+  - chosenbackGround: {fileID: 21300000, guid: 962dc78a23e389446a36305223c4aea0, type: 3}
+    chosenBubbleTalk: {fileID: 21300000, guid: 26d3dd61f84217a4da1a289c2829e8c5, type: 3}
+  - chosenbackGround: {fileID: 21300000, guid: 2cac778e4566de741bb54139c69b0802, type: 3}
+    chosenBubbleTalk: {fileID: 21300000, guid: 569e1d2865feea0429ace95e5e07b16e, type: 3}
+  - chosenbackGround: {fileID: 21300000, guid: 8e3465348f24d164dada93f7c51c682b, type: 3}
+    chosenBubbleTalk: {fileID: 21300000, guid: 9f8ea82df6e961d4daa836931ff97d26, type: 3}
   dialogue:
     sentences:
-    - back ground 2
-    - back ground 3
-    - ' back ground 4'
-  counter: 0
-  backgroundArray:
-  - {fileID: 21300000, guid: d19a751d04b4cc54287af6a12340f93b, type: 3}
-  - {fileID: 21300000, guid: 962dc78a23e389446a36305223c4aea0, type: 3}
-  - {fileID: 21300000, guid: 2cac778e4566de741bb54139c69b0802, type: 3}
-  - {fileID: 21300000, guid: 8e3465348f24d164dada93f7c51c682b, type: 3}
-  - {fileID: 21300000, guid: 9e910a0d549acbd429e0c77db2ea45e1, type: 3}
-  - {fileID: 21300000, guid: fedd36a841f59b745aa300ec2af3cdee, type: 3}
-  - {fileID: 21300000, guid: 3dd689c821e894f4684e90f576e2f5b0, type: 3}
-  spriteRenderer: {fileID: 0}
---- !u!114 &1481275966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481275963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7511b01255580f843b4e9bb82871a498, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: {fileID: 1754176735}
---- !u!114 &1481275967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481275963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 258181b9ea3f7314d8d6b25edbd247b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bubbleTalkImg: {fileID: 216758932}
-  spriteArray:
-  - {fileID: 21300000, guid: 0cb0393411aafd341a12d4c14d09759b, type: 3}
-  - {fileID: 21300000, guid: c5819f640af8ed5459312d49ddf0814b, type: 3}
-  - {fileID: 21300000, guid: 9f8ea82df6e961d4daa836931ff97d26, type: 3}
-  - {fileID: 21300000, guid: 26d3dd61f84217a4da1a289c2829e8c5, type: 3}
-  - {fileID: 21300000, guid: 569e1d2865feea0429ace95e5e07b16e, type: 3}
+    - hello
+    - amigo
+    - sou casa
+    - me casa
 --- !u!212 &1481275968
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -722,7 +690,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d19a751d04b4cc54287af6a12340f93b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -730,7 +698,7 @@ SpriteRenderer:
   m_Size: {x: 10.46, y: 6.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1754176733
@@ -789,7 +757,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: back ground 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -858,13 +826,13 @@ MonoBehaviour:
   m_margin: {x: 74.715576, y: 0, z: 658.7689, w: 46.293777}
   m_textInfo:
     textComponent: {fileID: 1754176735}
-    characterCount: 13
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
