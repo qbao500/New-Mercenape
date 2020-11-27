@@ -24,8 +24,8 @@ public class LoadGameManager : MonoBehaviour
     {
         SetTextRef();
 
-        IsAvailableSLot();
         this.SetButtonsActive();
+        IsAvailableSLot();
 
         nextArrow = levelsHolder.transform.parent.gameObject.transform.parent.Find("Next Arrow").GetComponent<Button>();
         backArrow = levelsHolder.transform.parent.gameObject.transform.parent.Find("Back Arrow").GetComponent<Button>();

@@ -17,10 +17,12 @@ public class TooltipSystem : MonoBehaviour
     {
         current.tooltip.SetText(content, header);
         current.tooltip.gameObject.SetActive(true);
+        Cursor.visible = false;
     }
 
     public static void Hide()
     {
         current.tooltip.gameObject.SetActive(false);
+        Cursor.visible = true;
     }
 }
