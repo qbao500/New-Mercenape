@@ -36,7 +36,7 @@ public class SetUpShop : SetUpScreens
             weaponStatTexts[7].text = "";
             weaponStatTexts[8].text = "";
 
-            costText.text = "Cost: " + 0;
+            costText.text = " " + 0;
             upgradeText.text = playerCurrency.speedUpgrades.ToString();
 
             for(int i = 0; i < arrowButtons.Count; i++) { arrowButtons[i].SetActive(false); }
@@ -54,7 +54,7 @@ public class SetUpShop : SetUpScreens
             weaponStatTexts[8].text = weapon.GetStaggerDuration().ToString();
 
             cost = weaponsShop[buyWeapons.GetWeaponID()].GetCost();
-            costText.text = "Cost: " + cost;
+            costText.text = cost.ToString();
             upgradeText.text = playerCurrency.speedUpgrades.ToString();
         }
     }

@@ -25,7 +25,7 @@ public class SetUpForge : SetUpScreens
         weaponStatTexts[7].text = weapon.GetBleedDuration().ToString();
         weaponStatTexts[8].text = weapon.GetStaggerDuration().ToString();
 
-        costText.text = "Cost: " + cost;
+        costText.text = cost.ToString();
         upgradeText.text = playerCurrency.speedUpgrades.ToString();
     }
 
