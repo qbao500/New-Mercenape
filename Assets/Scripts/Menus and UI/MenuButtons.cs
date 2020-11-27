@@ -11,7 +11,8 @@ public class MenuButtons : MonoBehaviour
 
     void Start()
     {
-        load = GetComponent<LoadGameManager>();
+        load = GetComponent<LoadGameManager>();       
+
         ToMainPanel();       
     }
 
@@ -58,17 +59,11 @@ public class MenuButtons : MonoBehaviour
 
     public void GoTolevel1()
     {
-        int slotAvailable = load.IsAvailableSLot();
-
-        if (slotAvailable != -1)
+        if (load.IsAvailableSLot() != -1)
         {
-            SaveManager.ShiftSlotPath(slotAvailable);
+            SaveManager.ShiftSlotPath(load.IsAvailableSLot());
             SceneManager.LoadScene("NewLV1Test");
-        }
-        else
-        {
-            print("There's no more slot to save!");
-        }      
+        }           
     }  
 
     public void QuitGame()

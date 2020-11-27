@@ -15,7 +15,7 @@ public class DamagePopUp : MonoBehaviour
         return staticPopUp;
     }
 
-    public void Setup(float damage, Color color, int size)
+    private void Setup(float damage, Color color, int size)
     {
         textMesh.SetText(damage.ToString());
         textMesh.fontSize = size;
@@ -23,6 +23,27 @@ public class DamagePopUp : MonoBehaviour
         if(color == Color.clear) { textMesh.color = textColor; }
         else { textMesh.color = color; }
        
+        sortingOrder++;
+        textMesh.sortingOrder = sortingOrder;
+    }
+
+    public static DamagePopUp Create(Vector3 pos, string text, Color color, int size)
+    {
+        ObjectPooler.Instance.SpawnFromPool("DamagePopUp", pos, Quaternion.identity);
+
+        staticPopUp.Setup(text, color, size);
+
+        return staticPopUp;
+    }
+
+    private void Setup(string text, Color color, int size)
+    {
+        textMesh.SetText(text);
+        textMesh.fontSize = size;
+
+        if (color == Color.clear) { textMesh.color = textColor; }
+        else { textMesh.color = color; }
+
         sortingOrder++;
         textMesh.sortingOrder = sortingOrder;
     }

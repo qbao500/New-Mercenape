@@ -258,6 +258,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1403600876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5296866466669300728, guid: abd5edf636aafbd4a9307832f3a873d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5296866466245433696}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1610466379 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6931998348344599032, guid: e673366906282fa40b837be3d1536573,
@@ -460,6 +472,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1610466382}
+    - target: {fileID: 1109940908997315740, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109940908997315740, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109940908997315740, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1124571953429049468, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -660,10 +687,25 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -9.392334
       objectReference: {fileID: 0}
+    - target: {fileID: 4607879594079824483, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296866465517799832, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5296866465517799833, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296866465517799833, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5296866465776018772, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
@@ -699,6 +741,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296866467176246861, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5296866467176246862, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
@@ -1199,6 +1246,11 @@ PrefabInstance:
       propertyPath: levelsHolder
       value: 
       objectReference: {fileID: 2041880445}
+    - target: {fileID: 6931998348344599032, guid: e673366906282fa40b837be3d1536573,
+        type: 3}
+      propertyPath: newLevelButton
+      value: 
+      objectReference: {fileID: 1403600876}
     - target: {fileID: 6931998348344599033, guid: e673366906282fa40b837be3d1536573,
         type: 3}
       propertyPath: m_Name
@@ -1259,6 +1311,11 @@ PrefabInstance:
       propertyPath: panels.Array.data[4]
       value: 
       objectReference: {fileID: 849374612}
+    - target: {fileID: 6931998348344599037, guid: e673366906282fa40b837be3d1536573,
+        type: 3}
+      propertyPath: lv1Button
+      value: 
+      objectReference: {fileID: 2146560463}
     - target: {fileID: 6931998348344599039, guid: e673366906282fa40b837be3d1536573,
         type: 3}
       propertyPath: m_LocalPosition.x

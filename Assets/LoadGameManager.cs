@@ -18,6 +18,8 @@ public class LoadGameManager : MonoBehaviour
     private Button backArrow;
     private int levelCounter = 1;
 
+    public Button newLevelButton;
+
     private void Start()
     {
         SetTextRef();
@@ -40,6 +42,7 @@ public class LoadGameManager : MonoBehaviour
         SaveManager.ShiftSlotPath(deleteButton.transform.GetSiblingIndex());
         SaveManager.DeleteSavedPath();
         this.SetButtonsActive();
+        IsAvailableSLot();
     }
 
     public int IsAvailableSLot()
@@ -48,9 +51,12 @@ public class LoadGameManager : MonoBehaviour
         {
             if (!slotButtons[i].interactable)
             {
+                newLevelButton.interactable = true;
                 return i;
             }
         }
+
+        newLevelButton.interactable = false;
         return -1;
     }
 
@@ -73,6 +79,8 @@ public class LoadGameManager : MonoBehaviour
 
         if (levelCounter >= levelsHolder.transform.childCount) { nextArrow.interactable = false; }
         else { nextArrow.interactable = true; }
+
+        if (IsAvailableSLot() == -1) {  }
     }
 
     private IEnumerator LevelAnim(float distance)
