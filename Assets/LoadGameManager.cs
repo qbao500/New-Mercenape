@@ -35,7 +35,7 @@ public class LoadGameManager : MonoBehaviour
     public void LoadGameChosen(Button loadButton)
     {
         SaveManager.ShiftSlotPath(loadButton.transform.GetSiblingIndex());
-        SceneManager.LoadScene("NewLV1Test");
+        LevelLoader.instace.LoadLevel(2);
     }
 
     public void DeleteSavedGame(Button deleteButton)

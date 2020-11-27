@@ -39,7 +39,7 @@ public class LoadScene : MonoBehaviour
     {
         Time.timeScale = 1;
         SaveManager.SaveCurrency(playerCurrency);
-        SceneManager.LoadScene("mainMenu");
+        LevelLoader.instace.LoadLevel(1);
     }
 
     public void QuitGame()
