@@ -11,31 +11,36 @@ using TMPro;
 //Prototype made by thuyet to handle cutscenes
 public class CutSence : MonoBehaviour
 {
-    public int backgroundIndex;
-    public int counter = 0;
-   
- 
-
-    public Sprite[] backgroundArray;
-    SpriteRenderer spriteRenderer;
-
-    public Sprite[] bubbleTalkArray;
-    public Image bubbleTalkImg;
-
+    public int sequenceIndex=0;
+    
     //public Animator animator;
     public TextMeshProUGUI dialogueText;
+    SpriteRenderer spriteRenderer;
+    public Image bubbleTalkImg;
+
     private Queue<string> sentences;
 
+    //class contain background and bubbletalk
     [System.Serializable]
     public class Sequences
     {
-        public int backGroundIndex;
-        public int[] bubbleTalkIndex;
+        public Sprite chosenbackGround;
+        public Sprite chosenBubbleTalk;
+        
+    }
+    public Sequences[] sequencesArray;
+    //end of class declaration
+
+    //class contain dialogues
+    [System.Serializable]
+    public class Dialogue
+    {
         [TextArea(3, 10)]
         public string[] sentences;
     }
-    public Sequences[] sequencesArray;
-    
+    public Dialogue dialogue;
+    //end of class declaration
+
 
     void Awake()
     {
@@ -55,53 +60,71 @@ public class CutSence : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            backgroundIndex++;
 
-            spriteRenderer.sprite = backgroundArray[backgroundIndex];
-
-
-            if (counter == 0)
+            if (sequenceIndex >= sequencesArray.Length)
             {
-               StartDialogue(sequencesArray[counter]);
-                counter++;
+                Scene currentScene = SceneManager.GetActiveScene();
+                int buildIndex = currentScene.buildIndex;
+                SceneManager.LoadScene(buildIndex + 1);
             }
             else
             {
-               DisplayNextSentence();
-                counter++;
-            }
-            if (counter %2 == 1)
-            {
-                setBubbleTalk(3);
-            }else if(counter % 2 == 0)
-            {
-               setBubbleTalk(4);
+
+                setBackGround(sequencesArray[sequenceIndex].chosenbackGround);
+                setBubbleTalk(sequencesArray[sequenceIndex].chosenBubbleTalk);
+
+                if (sequenceIndex == 0)
+                {
+                    StartDialogue(dialogue);
+                }
+                else
+                {
+                    DisplayNextSentence();
+                }
+                sequenceIndex++;
             }
            
+
         }
-        if(backgroundIndex >= backgroundArray.Length || Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Scene currentScene = SceneManager.GetActiveScene();
             int buildIndex = currentScene.buildIndex;
-            SceneManager.LoadScene(buildIndex+1);
+            SceneManager.LoadScene(buildIndex + 1);
         }
     }
 
 
-    public void setBubbleTalk(int bubbleTalkIndex)
+    public void setBubbleTalk(Sprite chosenBubbleTalk)
     {
-        if (bubbleTalkIndex < bubbleTalkArray.Length)
+        if (chosenBubbleTalk != null)
         {
-            bubbleTalkImg.sprite = bubbleTalkArray[bubbleTalkIndex];
+            bubbleTalkImg.sprite = chosenBubbleTalk;
         }
         else
         {
-            print("out of array");
+            bubbleTalkImg.sprite = null;
+
+               print("no bubble talk");
         }
 
     }
 
-    public void StartDialogue(Sequences dialogue)
+    public void setBackGround(Sprite chosenbackGround)
+    {
+        if (chosenbackGround != null)
+        {
+            spriteRenderer.sprite = chosenbackGround;
+        }
+        else
+        {
+            spriteRenderer.sprite = null;
+            print("no background");
+        }
+    }
+
+
+    public void StartDialogue(Dialogue dialogue)
     {
         //animator.SetBool("IsOpen", true);
 
