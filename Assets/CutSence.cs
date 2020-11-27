@@ -52,6 +52,7 @@ public class CutSence : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+        StartCoroutine(Wait(0.5f));
     }
 
 
@@ -166,6 +167,27 @@ public class CutSence : MonoBehaviour
     {
         //animator.SetBool("IsOpen", false);
         dialogueText.SetText("");
+    }
+
+
+    IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        bubbleTalkImg.enabled=true;
+
+        setBackGround(sequencesArray[sequenceIndex].chosenbackGround);
+        setBubbleTalk(sequencesArray[sequenceIndex].chosenBubbleTalk);
+
+        if (sequenceIndex == 0)
+        {
+            StartDialogue(dialogue);
+        }
+        else
+        {
+            DisplayNextSentence();
+        }   
+        sequenceIndex++;
+
     }
 
 }
