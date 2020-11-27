@@ -13,14 +13,14 @@ public abstract class SetUpScreens : MonoBehaviour
 
     protected List<AbstractWeapon> weapons, weaponsShop;
 
-    [SerializeField] protected List<GameObject> weaponInventory, weaponImages, chooseButtons;
+    [SerializeField] protected List<GameObject> weaponInventory, weaponImages, chooseButtons, weaponNames;
     [SerializeField] protected List<Text> weaponStatTexts;
     
     protected Text costText, upgradeText;
 
     public int amountOfTexts;
 
-    public string weaponHolderTag, chosenWeaponTag, costTag, upgradeTag, weaponStatsTag, chooseButtonTag;
+    public string weaponHolderTag, chosenWeaponTag, costTag, upgradeTag, weaponStatsTag, chooseButtonTag, weaponNameTag;
 
     [SerializeField] protected int weaponID, cost;
 
@@ -42,6 +42,7 @@ public abstract class SetUpScreens : MonoBehaviour
         weaponInventory.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponHolderTag));
         weaponImages.InsertRange(0, GameObject.FindGameObjectsWithTag(chosenWeaponTag));
         chooseButtons.InsertRange(0, GameObject.FindGameObjectsWithTag(chooseButtonTag));
+        weaponNames.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponNameTag));
 
         costText = GameObject.FindGameObjectWithTag(costTag).GetComponent<Text>();
         upgradeText = GameObject.FindGameObjectWithTag(upgradeTag).GetComponent<Text>();
@@ -49,12 +50,10 @@ public abstract class SetUpScreens : MonoBehaviour
         GameObject[] statTextObjects = GameObject.FindGameObjectsWithTag(weaponStatsTag);
         Text[] statTexts = new Text[amountOfTexts];
 
-        for(int i = 0; i < statTextObjects.Length; i++)
-        {
-            statTexts[i] = statTextObjects[i].GetComponent<Text>();
-        }
-    
+        for(int i = 0; i < statTextObjects.Length; i++) { statTexts[i] = statTextObjects[i].GetComponent<Text>(); }
         weaponStatTexts.InsertRange(0, statTexts);
+
+        for(int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
     }
 
     public virtual void SetScreen(int ID)

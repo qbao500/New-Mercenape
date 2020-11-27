@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewLV1Test.unity
     guid: 7494c4a2a62a8324f9c49aec69ef0454
-  - enabled: 0
-    path: Assets/Scenes/Forge.unity
-    guid: 6876dfd1f509aa9479da99457334856f
   m_configObjects: {}

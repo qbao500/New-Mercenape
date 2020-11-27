@@ -15,15 +15,17 @@ public class SetUpForge : SetUpScreens
     {
         AbstractWeapon weapon = weapons[weaponID];
 
-        weaponStatTexts[0].text = weapon.GetName();
-        weaponStatTexts[1].text = weapon.GetDescription();
-        weaponStatTexts[2].text = weapon.GetWeight().ToString();
-        weaponStatTexts[3].text = weapon.GetSpeed().ToString();
-        weaponStatTexts[4].text = weaponStates.GetWeaponSpeedForge().ToString();
-        weaponStatTexts[5].text = weaponStates.GetWeaponImpactDamageForge().ToString();
-        weaponStatTexts[6].text = weapon.GetBleedDamage().ToString();
-        weaponStatTexts[7].text = weapon.GetBleedDuration().ToString();
-        weaponStatTexts[8].text = weapon.GetStaggerDuration().ToString();
+        for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
+        weaponNames[weaponID].SetActive(true);
+
+        weaponStatTexts[0].text = weapon.GetDescription();
+        weaponStatTexts[1].text = weapon.GetWeight().ToString();
+        weaponStatTexts[2].text = weapon.GetSpeed().ToString();
+        weaponStatTexts[3].text = weaponStates.GetWeaponSpeedForge().ToString();
+        weaponStatTexts[4].text = weaponStates.GetWeaponImpactDamageForge().ToString();
+        weaponStatTexts[5].text = weapon.GetBleedDamage().ToString();
+        weaponStatTexts[6].text = weapon.GetBleedDuration().ToString();
+        weaponStatTexts[7].text = weapon.GetStaggerDuration().ToString();
 
         costText.text = cost.ToString();
         upgradeText.text = playerCurrency.speedUpgrades.ToString();

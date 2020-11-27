@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Created by Arttu Paldán on 13.11.2020: 
 public class SetUpShop : SetUpScreens
@@ -24,8 +25,10 @@ public class SetUpShop : SetUpScreens
         AbstractWeapon weapon = weaponsShop[buyWeapons.GetWeaponID()];
         List<bool> boughtWeapons = weaponStates.GetBoughtWeapons();
         
-        if (boughtWeapons[0] && boughtWeapons[1] && boughtWeapons[2])
+        if (boughtWeapons[0])
         {
+            //for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
+
             weaponStatTexts[0].text = "Out of Stock!";
             weaponStatTexts[1].text = "Our apologies, we have run out of new weapons.";
             weaponStatTexts[2].text = "";
@@ -34,24 +37,25 @@ public class SetUpShop : SetUpScreens
             weaponStatTexts[5].text = "";
             weaponStatTexts[6].text = "";
             weaponStatTexts[7].text = "";
-            weaponStatTexts[8].text = "";
 
             costText.text = " " + 0;
             upgradeText.text = playerCurrency.speedUpgrades.ToString();
 
-            for(int i = 0; i < arrowButtons.Count; i++) { arrowButtons[i].SetActive(false); }
+            // for(int i = 0; i < arrowButtons.Count; i++) { arrowButtons[i].SetActive(false); }
         }
         else
-        { 
-            weaponStatTexts[0].text = weapon.GetName();
-            weaponStatTexts[1].text = weapon.GetDescription();
-            weaponStatTexts[2].text = weapon.GetWeight().ToString();
-            weaponStatTexts[3].text = weapon.GetSpeed().ToString();
-            weaponStatTexts[4].text = weaponStates.GetWeaponSpeedShop().ToString();
-            weaponStatTexts[5].text = weaponStates.GetWeaponImpactDamageShop().ToString();
-            weaponStatTexts[6].text = weapon.GetBleedDamage().ToString();
-            weaponStatTexts[7].text = weapon.GetBleedDuration().ToString();
-            weaponStatTexts[8].text = weapon.GetStaggerDuration().ToString();
+        {
+            for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
+            weaponNames[weaponID].SetActive(true);
+
+            weaponStatTexts[0].text = weapon.GetDescription();
+            weaponStatTexts[1].text = weapon.GetWeight().ToString();
+            weaponStatTexts[2].text = weapon.GetSpeed().ToString();
+            weaponStatTexts[3].text = weaponStates.GetWeaponSpeedShop().ToString();
+            weaponStatTexts[4].text = weaponStates.GetWeaponImpactDamageShop().ToString();
+            weaponStatTexts[5].text = weapon.GetBleedDamage().ToString();
+            weaponStatTexts[6].text = weapon.GetBleedDuration().ToString();
+            weaponStatTexts[7].text = weapon.GetStaggerDuration().ToString();
 
             cost = weaponsShop[buyWeapons.GetWeaponID()].GetCost();
             costText.text = cost.ToString();
@@ -90,4 +94,6 @@ public class SetUpShop : SetUpScreens
             }
         }
     }
+
+    public Text GetStatText() { return weaponStatTexts[0]; }
 }

@@ -20,21 +20,14 @@ public class BuyWeapons : MonoBehaviour
 
     private bool cantBuy;
 
-    private float counterStart, originalStart;
+    [SerializeField] private float counterStart, originalStart;
     public float counterEnd;
 
-    void Awake()
-    {
-        SetUpImportantComponents();
-    }
+    Text weaponStat;
 
-    void Update()
-    {
-        if (cantBuy)
-        {
-            CantBuyCounter();
-        }
-    }
+    void Awake() { SetUpImportantComponents(); }
+
+    void Start() {  weaponStat = setUpShop.GetStatText(); }
 
     void SetUpImportantComponents()
     {
@@ -66,10 +59,6 @@ public class BuyWeapons : MonoBehaviour
             weaponID = weaponID + 1;
             CheckID();
             setUpShop.SetScreen(weaponID);
-        }
-        else
-        {
-            cantBuy = true;
         }
     }
 
@@ -113,21 +102,6 @@ public class BuyWeapons : MonoBehaviour
         if (boughtWeapons[0]) { weaponID = 1; }
         if (boughtWeapons[1]) { weaponID = 2; }
         if (boughtWeapons[2]) { weaponID = 0; }
-    }
-
-    // Function that announces, that player can't buy component and keeps this message going for couple of frames. 
-    void CantBuyCounter()
-    {
-        //weaponDescription.text = "Don't have enough money for this component";
-
-        counterStart += Time.deltaTime;
-        if (counterStart >= counterEnd)
-        {
-            cantBuy = false;
-
-            // weaponDescription.text = weapons[weaponID].GetDescription();
-            counterStart = originalStart;
-        }
     }
 
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
