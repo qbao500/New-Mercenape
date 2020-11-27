@@ -1431,7 +1431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4182432193612666067
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6653,7 +6653,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 1ab9b77e86bce4f478553e0057e4741d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -7028,7 +7028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5296866466642160896
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7260,6 +7260,7 @@ GameObject:
   - component: {fileID: 5296866466669300729}
   - component: {fileID: 5296866466669300728}
   - component: {fileID: 316697339}
+  - component: {fileID: 5557797859627577463}
   m_Layer: 5
   m_Name: New Game
   m_TagString: Untagged
@@ -7389,6 +7390,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5f4e775d03f694790955c8316bb25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5557797859627577463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296866466669300726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d443443a42f8ed046b35d2e9049f7e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: Go to Load Game and delete some
+  header: No more slots!
 --- !u!1 &5296866466692025918
 GameObject:
   m_ObjectHideFlags: 0
@@ -11662,7 +11677,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 1ab9b77e86bce4f478553e0057e4741d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
