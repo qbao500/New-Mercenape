@@ -71,6 +71,7 @@ public class ShredBehaviour : EnemyBehaviour
         if (isAttacking) { return; }
 
         KnockPlayerDown();
+        TempCamScript.Instance.ShakeCamera(2.5f, 10f);
 
         StartCoroutine("Attacking");
         playerHealth.PlayerTakeDamage(stat.Damage);

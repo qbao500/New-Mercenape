@@ -268,6 +268,7 @@ public class MowerBehaviour : EnemyBehaviour
         while (currentCount < damageCount)
         {
             playerHealth.PlayerTakeDamage(damageAmount);
+            TempCamScript.Instance.ShakeCamera(5f, .0000001f);
             yield return new WaitForSeconds(1f);
             currentCount++;
         }
