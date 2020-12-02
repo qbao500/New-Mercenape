@@ -12,7 +12,7 @@ public class WeaponStates: MonoBehaviour
     private List<AbstractWeapon> weapons;
     [SerializeField] private List<bool> ownedWeaponsList, boughtWeaponsList, upgradedWeaponsList;
     [SerializeField] private List<int> savedSpeedAmountsList;
-    [SerializeField] private List<GameObject> weaponModels;
+    [SerializeField] private List<WeaponInUse> weaponModels;
 
     private int weaponID;
 
@@ -89,9 +89,9 @@ public class WeaponStates: MonoBehaviour
     {
         weaponModels = assetManager.GetWeaponModels();
 
-        for (int i = 0; i < weaponModels.Count; i++) { weaponModels[i].SetActive(false); }
+        for (int i = 0; i < weaponModels.Count; i++) { weaponModels[i].gameObject.SetActive(false); }
 
-        weaponModels[weaponID].SetActive(true);
+        weaponModels[weaponID].gameObject.SetActive(true);
     }
 
     // Function for loading necessary data.

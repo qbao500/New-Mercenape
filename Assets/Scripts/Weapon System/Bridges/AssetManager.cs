@@ -24,7 +24,7 @@ public class AssetManager : MonoBehaviour
     [SerializeField] private List<Sprite> upgradeImages;
 
     // MeshRenrerer lists
-    [SerializeField] private List<GameObject> weaponModels;
+    public List<WeaponInUse> weaponModels;
 
     //Sound effect array
     public SoundAudioClip[] soundAudioclipArray;
@@ -66,12 +66,7 @@ public class AssetManager : MonoBehaviour
         upgradeImages.InsertRange(0, new List<Sprite>(Resources.LoadAll<Sprite>("Upgrades")));
     }
 
-    public void SetUpModels()
-    {
-        weaponModels.InsertRange(0, new List<GameObject>(GameObject.FindGameObjectsWithTag("WeaponInUse")));
-
-        foreach (GameObject weapon in weaponModels) { weapon.SetActive(false); }
-    }
+    public void SetUpModels() { foreach (WeaponInUse weapon in weaponModels) { weapon.gameObject.SetActive(false); } }
 
     // Constructs weapons and upgrades and adds them to their own lists. 
     void SetUpWeaponsAndUpgrades()
@@ -101,5 +96,5 @@ public class AssetManager : MonoBehaviour
         if(useUpgrades != null) { useUpgrades.SetUpgradeList(upgrades); }
     }
 
-    public List<GameObject> GetWeaponModels() { return weaponModels; }
+    public List<WeaponInUse> GetWeaponModels() { return weaponModels; }
 }

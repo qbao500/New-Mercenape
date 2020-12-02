@@ -12,7 +12,7 @@ public abstract class AbstractWeapon
     protected int weaponID, weaponCost;
 
     // Weapon images
-    protected GameObject weaponModel;
+    protected WeaponInUse weaponModel;
 
     // Weapon stats
     protected float weaponSpeed, weaponWeight, staggerDuration;
@@ -28,7 +28,7 @@ public abstract class AbstractWeapon
     public string GetDescription() { return weaponDescription;}
     public int GetID() { return weaponID;}
     public int GetCost() { return weaponCost;}
-    public GameObject GetWeaponModel() { return weaponModel; }
+    public WeaponInUse GetWeaponModel() { return weaponModel; }
 
     // Fetch functios for stats
     public float GetSpeed() { return weaponSpeed;}
@@ -47,7 +47,7 @@ public abstract class AbstractWeapon
 public class TestWeapon : AbstractWeapon
 {
     // This is used to create this object in the scripts. 
-    public TestWeapon(string name, string description, int id, int cost, float speed, float weight, int damage, int bleedDam, int bleedDur, int ticks, float staggerDur, Vector3 location, Vector3 size, GameObject model)
+    public TestWeapon(string name, string description, int id, int cost, float speed, float weight, int damage, int bleedDam, int bleedDur, int ticks, float staggerDur, Vector3 location, Vector3 size, WeaponInUse model)
     {
         weaponName = name;
         weaponDescription = description;
