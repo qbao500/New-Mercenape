@@ -183,9 +183,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void ForgeButton()
     {
-        Time.timeScale = 1;
-        SaveManager.SaveCurrency(playerCurrency);
-        SceneManager.LoadScene("Forge");
+        FindObjectOfType<Menu>().ToForge();
+        completeWaveScreen.SetActive(false);
     }
 
     public void NextLevelButton()

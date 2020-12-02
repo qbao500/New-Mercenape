@@ -70,16 +70,7 @@ public class Menu : MonoBehaviour
             if (!isPaused)
             {
                 //Pause the game
-                if (currentPanel != null)
-                {
-                    returnPanel(currentPanel);
-                }
-                pausepanel.transform.position = mainCanvas.transform.position;
-                cameras[0].SetActive(false);
-                cameras[1].SetActive(true);
-                isPaused = true;
-                Time.timeScale = 0;
-                currentPanel = pausepanel;
+                PauseGame();
             }
             else
             {
@@ -94,6 +85,20 @@ public class Menu : MonoBehaviour
                 weaponStates.SetUpWeapon();
             }
         }
+    }
+
+    private void PauseGame()
+    {
+        if (currentPanel != null)
+        {
+            returnPanel(currentPanel);
+        }
+        pausepanel.transform.position = mainCanvas.transform.position;
+        cameras[0].SetActive(false);
+        cameras[1].SetActive(true);
+        isPaused = true;
+        Time.timeScale = 0;
+        currentPanel = pausepanel;
     }
 
     public void switchPanel(GameObject newPanel)
@@ -115,8 +120,7 @@ public class Menu : MonoBehaviour
         }
         else if(buttonName == "weapon")
         {
-            switchPanel(panels[3]);
-            setUpForge.SetScreen(setUpForge.GetWeaponID());
+            ToForge();
         }
         else if(buttonName == "ToShop")
         {
@@ -127,9 +131,15 @@ public class Menu : MonoBehaviour
         }
         else if(buttonName == "ToForge")
         {
-            switchPanel(panels[3]);
-            setUpForge.SetScreen(setUpForge.GetWeaponID());
+            ToForge();
         }
+    }
+
+    public void ToForge()
+    {
+        PauseGame();
+        switchPanel(panels[3]);
+        setUpForge.SetScreen(setUpForge.GetWeaponID());
     }
 
     public void backButton()

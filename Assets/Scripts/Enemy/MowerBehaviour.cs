@@ -283,6 +283,8 @@ public class MowerBehaviour : EnemyBehaviour
 
     protected override void PlayerUp()
     {
+        base.PlayerUp();
+
         // Stop dealing damage
         StopCoroutine("Attacking");
         if (dmgCoroutine != null) { StopCoroutine(dmgCoroutine); }
@@ -293,9 +295,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (enemyID != GetInstanceID()) { return; }
         
         // Push player up 
-        playerMovement.PlayerRigid2d.velocity = Vector3.up * 50;
-
-        base.PlayerUp();
+        playerMovement.PlayerRigid2d.velocity = Vector3.up * 50;       
     }
 
     void ReturnPhysics()

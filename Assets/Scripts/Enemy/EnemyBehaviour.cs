@@ -33,8 +33,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private EnemyLootDrop enemyLoot;
 
-    //public event Action OnEnemyDie = delegate { };
-
     protected virtual void Awake()
     {       
         enemyRotation = transform.rotation.eulerAngles;
@@ -193,12 +191,16 @@ public class EnemyBehaviour : MonoBehaviour
         playerMovement.animator.ResetTrigger("Attack");
         playerMovement.animator.SetTrigger("KnockDown");
         playerMovement.isKnockDown = true;
+        playerHealth.spaceTextGrid.gameObject.SetActive(true);
 
         playerMovement.getUpCount = 0;
         playerHealth.SetCurrentSpace(playerMovement.getUpCount);        
     }
 
-    protected virtual void PlayerUp() { }   // Mainly for Mower now
+    protected virtual void PlayerUp()
+    {
+        playerHealth.spaceTextGrid.gameObject.SetActive(false);
+    }
     
     protected IEnumerator EnemyDeath()
     {        

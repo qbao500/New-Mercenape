@@ -85,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
         playerHealth = transform.GetComponent<PlayerHealth>();
         playerAttack = transform.GetComponent<PlayerAttackTrigger>();
         PlayerRigid2d = transform.GetComponent<Rigidbody>();
-        //PlayerAnimator = transform.GetComponent<Animator>();
         boxCollider = transform.GetComponent<BoxCollider>();
         capsuleCollider = transform.GetComponent<CapsuleCollider>();
         PlayerRigid2d.centerOfMass = Vector3.zero;
@@ -560,9 +559,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrabWall = false;
            
-            animator.SetBool(knockedDown_animBool, true);
-
-            playerHealth.spaceTextGrid.gameObject.SetActive(true);
+            animator.SetBool(knockedDown_animBool, true);           
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -586,8 +583,6 @@ public class PlayerMovement : MonoBehaviour
         getUpCount = 0;
         getUpNeed = 0;
         playerHealth.SetCurrentSpace(getUpCount);
-
-        playerHealth.spaceTextGrid.gameObject.SetActive(false);
 
         OnBounceUp();
     }
