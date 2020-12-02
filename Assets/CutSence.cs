@@ -44,8 +44,8 @@ public class CutSence : MonoBehaviour
 
     void Awake()
     {
-        //CanvasUI = GameObject.FindGameObjectWithTag("CanvasUI").transform;
-        CanvasUI = this.transform;
+        CanvasUI = GameObject.FindGameObjectWithTag("CanvasUI").transform;
+        //CanvasUI = this.transform;
         if (CanvasUI == null)
         {
             print("null canvas");
