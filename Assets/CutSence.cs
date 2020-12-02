@@ -53,13 +53,16 @@ public class CutSence : MonoBehaviour
         }
         else
         {
-            previousButton = CanvasUI.GetChild(1).GetComponent<Button>();
-            pauseButton = CanvasUI.GetChild(2).GetComponent<Button>();
-            continueButton = CanvasUI.GetChild(3).GetComponent<Button>();
-            skipButton = CanvasUI.GetChild(4).GetComponent<Button>();
-            hint = CanvasUI.GetChild(5).GetComponent<TextMeshProUGUI>();
-            dialogueText = CanvasUI.GetChild(6).GetComponent<TextMeshProUGUI>();
-            backGroundImg = CanvasUI.GetChild(7).GetComponent<Image>();
+            backGroundImg = CanvasUI.GetChild(0).GetComponent<Image>();
+            dialogueText = CanvasUI.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+            previousButton = CanvasUI.GetChild(3).GetComponent<Button>();
+            pauseButton = CanvasUI.GetChild(4).GetComponent<Button>();
+            continueButton = CanvasUI.GetChild(5).GetComponent<Button>();
+            skipButton = CanvasUI.GetChild(6).GetComponent<Button>();
+
+
+            hint = CanvasUI.GetChild(7).GetComponent<TextMeshProUGUI>();
             pauseText = CanvasUI.GetChild(8).GetComponent<TextMeshProUGUI>();
         }
         SetActiveUIs(false);
