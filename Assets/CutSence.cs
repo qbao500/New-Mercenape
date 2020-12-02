@@ -12,29 +12,22 @@ using TMPro;
 public class CutSence : MonoBehaviour
 {
     public int sequenceIndex=-1;
-    
-    //public Animator animator;
-  
-    SpriteRenderer spriteRenderer;
-
+   
     Image backGroundImg;
     Transform CanvasUI;
     Button continueButton, previousButton, pauseButton, skipButton;
     TextMeshProUGUI hint;
     TextMeshProUGUI dialogueText;
 
-   // private Queue<string> sentences;
-
-    public float initWaitTime;
+    public float initWaitTime=0.5f;
     public float betweenLetterTime=0.02f;
-
-    public float betweenSequenceWaitTime = 3f;
+    public float betweenSequenceWaitTime = 5f;
     public float deltaTime;
     float startSequenceTime;
     bool isPause=true;
 
 
-    //class contain background and bubbletalk
+    //class contain background and dialogue
     [System.Serializable]
     public class Sequences
     {
@@ -69,7 +62,6 @@ public class CutSence : MonoBehaviour
         }
         SetActiveUIs(false);
         
-
 
     }
 
