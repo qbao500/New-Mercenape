@@ -63,13 +63,13 @@ public class MenuButtons : MonoBehaviour
         {
             SaveManager.ShiftSlotPath(load.IsAvailableSLot());
 
-            if (load.IsEmpty())
+            if (load.IsEmpty())     // No slot is saved
             {
-                LevelLoader.instace.LoadLevel(1);
+                LevelLoader.instace.LoadLevel(1);   // Cut scene
             }
             else
             {
-                LevelLoader.instace.LoadLevel(2);
+                LevelLoader.instace.LoadLevel(2);   // Level 1
             }
         }           
     }  

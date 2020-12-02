@@ -40,8 +40,8 @@ public class SpawnerDataSO : ScriptableObject
     public void PrepareGroup()
     {
         CurrentGroup++;
-        GroupText.SetText("Group " + CurrentGroup);
-        WaveText.SetText("Wave " + CurrentWave);
+        GroupText.SetText(CurrentGroup.ToString());
+        WaveText.SetText(CurrentWave.ToString());
 
         MakeSpawnList();
     }
