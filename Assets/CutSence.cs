@@ -16,7 +16,7 @@ public class CutSence : MonoBehaviour
     Image backGroundImg;
     Transform CanvasUI;
     Button continueButton, previousButton, pauseButton, skipButton;
-    TextMeshProUGUI hint;
+    TextMeshProUGUI hint, pauseText;
     TextMeshProUGUI dialogueText;
 
     public float initWaitTime=0.5f;
@@ -32,6 +32,7 @@ public class CutSence : MonoBehaviour
     public class Sequences
     {
         public Sprite chosenbackGround;
+        
         [TextArea(3, 10)]
         public string sentences;
 
@@ -59,9 +60,10 @@ public class CutSence : MonoBehaviour
             hint = CanvasUI.GetChild(5).GetComponent<TextMeshProUGUI>();
             dialogueText = CanvasUI.GetChild(6).GetComponent<TextMeshProUGUI>();
             backGroundImg = CanvasUI.GetChild(7).GetComponent<Image>();
+            pauseText = CanvasUI.GetChild(8).GetComponent<TextMeshProUGUI>();
         }
         SetActiveUIs(false);
-        
+        pauseText.gameObject.SetActive(false);
 
     }
 
@@ -136,7 +138,11 @@ public class CutSence : MonoBehaviour
         if (isPause == false)
         {
             startSequenceTime = Time.time;
-            print("pause");
+            pauseText.gameObject.SetActive(false);
+        }
+        else
+        {
+            pauseText.gameObject.SetActive(true);
         }
        
         
