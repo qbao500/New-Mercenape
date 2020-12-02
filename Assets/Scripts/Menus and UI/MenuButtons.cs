@@ -62,7 +62,15 @@ public class MenuButtons : MonoBehaviour
         if (load.IsAvailableSLot() != -1)
         {
             SaveManager.ShiftSlotPath(load.IsAvailableSLot());
-            LevelLoader.instace.LoadLevel(1);
+
+            if (load.IsEmpty())
+            {
+                LevelLoader.instace.LoadLevel(1);
+            }
+            else
+            {
+                LevelLoader.instace.LoadLevel(2);
+            }
         }           
     }  
 

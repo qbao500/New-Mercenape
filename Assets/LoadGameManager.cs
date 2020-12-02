@@ -63,6 +63,19 @@ public class LoadGameManager : MonoBehaviour
         return -1;
     }
 
+    public bool IsEmpty()
+    {
+        for (int i = 0; i < slotButtons.Length; i++)
+        {
+            if (slotButtons[i].interactable)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void NextArrow()
     {
         levelCounter++;

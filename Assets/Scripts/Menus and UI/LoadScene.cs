@@ -39,7 +39,7 @@ public class LoadScene : MonoBehaviour
     {
         Time.timeScale = 1;
         SaveManager.SaveCurrency(playerCurrency);
-        LevelLoader.instace.LoadLevel(1);
+        LevelLoader.instace.LoadLevel(0);
     }
 
     public void QuitGame()
