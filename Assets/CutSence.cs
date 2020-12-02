@@ -150,9 +150,7 @@ public class CutSence : MonoBehaviour
 
     public void NextBuiltScene()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        int buildIndex = currentScene.buildIndex;
-        SceneManager.LoadScene(buildIndex + 1);
+        LevelLoader.instace.LoadLevel(2);
     }
 
     IEnumerator Type()
