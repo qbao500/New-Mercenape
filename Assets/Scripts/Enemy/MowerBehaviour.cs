@@ -172,9 +172,9 @@ public class MowerBehaviour : EnemyBehaviour
 
         if (IsActive)
         {
-            // Field Generator will damage back the player and push upward
+            // Field Generator will damage back the player and push player
             playerHealth.PlayerTakeDamage(mowerStat.FieldDamage);
-            playerMovement.PlayerRigid2d.AddForce(new Vector3(Mathf.Sign(player.transform.localScale.x) * -2000, 100), ForceMode.Impulse);
+            PushPlayer();
         }
     }
 
@@ -185,6 +185,7 @@ public class MowerBehaviour : EnemyBehaviour
 
         fieldHP -= playerDmg;
         fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);
+        PushPlayer();
 
         DamagePopUp.Create(PopUpPos(backside), playerDmg, Color.clear, 14);
 
@@ -192,6 +193,11 @@ public class MowerBehaviour : EnemyBehaviour
         {
             Destroyed();
         }
+    }
+
+    private void PushPlayer()
+    {
+        playerMovement.PlayerRigid2d.AddExplosionForce(200000f, backside.position, 50f, 10f);
     }
 
     public override void ApplyBleeding(float damage, float duration, int ticks, Collider selfCol)
