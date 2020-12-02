@@ -14,21 +14,26 @@ public class CutSence : MonoBehaviour
     public int sequenceIndex=0;
     
     //public Animator animator;
-    public TextMeshProUGUI dialogueText;
+  
     SpriteRenderer spriteRenderer;
-    public Image bubbleTalkImg;
-    
-    public Button continueButton;
-    public TextMeshProUGUI hint;
+
+    Transform CanvasUI;
+    Button continueButton, previousButton, pauseButton, skipButton;
+    TextMeshProUGUI hint;
+    TextMeshProUGUI dialogueText;
 
     private Queue<string> sentences;
+
+    public float initWaitTime;
+
+    
+
 
     //class contain background and bubbletalk
     [System.Serializable]
     public class Sequences
     {
         public Sprite chosenbackGround;
-        public Sprite chosenBubbleTalk;
         
     }
     public Sequences[] sequencesArray;
@@ -47,11 +52,26 @@ public class CutSence : MonoBehaviour
 
     void Awake()
     {
+        CanvasUI = GameObject.FindGameObjectWithTag("CanvasUI").transform;
+        if (CanvasUI == null)
+        {
+            print("null");
+        }
+        else
+        {
+            previousButton = CanvasUI.GetChild(1).GetComponent<Button>();
+            pauseButton = CanvasUI.GetChild(2).GetComponent<Button>();
+            continueButton = CanvasUI.GetChild(3).GetComponent<Button>();
+            skipButton = CanvasUI.GetChild(4).GetComponent<Button>();
+            hint = CanvasUI.GetChild(5).GetComponent<TextMeshProUGUI>();
+            dialogueText = CanvasUI.GetChild(6).GetComponent<TextMeshProUGUI>();
+        }
+
+
         spriteRenderer = this.GetComponent<SpriteRenderer>();
-        bubbleTalkImg.enabled = false;
         spriteRenderer.sprite = null;
-        continueButton.gameObject.SetActive(false);
-        hint.gameObject.SetActive(false);
+        setActiveUIs(false);
+        
 
 
     }
@@ -59,7 +79,7 @@ public class CutSence : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
-        StartCoroutine(Wait(0.5f));
+        StartCoroutine(FirstWait(initWaitTime));
         
     }
 
@@ -73,26 +93,38 @@ public class CutSence : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Scene currentScene = SceneManager.GetActiveScene();
-            int buildIndex = currentScene.buildIndex;
-            SceneManager.LoadScene(buildIndex + 1);
+            NextBuiltScene();
         }
     }
 
+
+    void setActiveUIs(bool arg)
+    {
+        continueButton.gameObject.SetActive(arg);
+        pauseButton.gameObject.SetActive(arg);
+        previousButton.gameObject.SetActive(arg);
+        skipButton.gameObject.SetActive(arg);
+        hint.gameObject.SetActive(arg);
+        dialogueText.gameObject.SetActive(arg);
+    }
+
+    void NextBuiltScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        int buildIndex = currentScene.buildIndex;
+        SceneManager.LoadScene(buildIndex + 1);
+    }
 
     public void setNextSequence()
     {
         if (sequenceIndex >= sequencesArray.Length)
         {
-            Scene currentScene = SceneManager.GetActiveScene();
-            int buildIndex = currentScene.buildIndex;
-            SceneManager.LoadScene(buildIndex + 1);
+            NextBuiltScene();
         }
         else
         {
 
             setBackGround(sequencesArray[sequenceIndex].chosenbackGround);
-            setBubbleTalk(sequencesArray[sequenceIndex].chosenBubbleTalk);
 
             if (sequenceIndex == 0)
             {
@@ -107,22 +139,6 @@ public class CutSence : MonoBehaviour
     }
 
 
-
-     void setBubbleTalk(Sprite chosenBubbleTalk)
-    {
-        if (chosenBubbleTalk != null)
-        {
-            bubbleTalkImg.sprite = chosenBubbleTalk;
-        }
-        else
-        {
-            bubbleTalkImg.sprite = null;
-
-               print("no bubble talk");
-        }
-
-    }
-
      void setBackGround(Sprite chosenbackGround)
     {
         if (chosenbackGround != null)
@@ -135,6 +151,8 @@ public class CutSence : MonoBehaviour
             print("no background");
         }
     }
+
+    
 
 
      void StartDialogue(Dialogue dialogue)
@@ -182,14 +200,13 @@ public class CutSence : MonoBehaviour
     }
 
 
-    IEnumerator Wait(float time)
+    IEnumerator FirstWait(float time)
     {
         yield return new WaitForSeconds(time);
-        bubbleTalkImg.enabled=true;
 
+        setActiveUIs(true);
         setNextSequence();
-        continueButton.gameObject.SetActive(true);
-        hint.gameObject.SetActive(true);
+        
     }
 
 }

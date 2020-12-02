@@ -64,6 +64,7 @@ TagManager:
   - ArrowButton
   - WeaponNameForge
   - WeaponNameShop
+  - CanvasUI
   layers:
   - Default
   - TransparentFX

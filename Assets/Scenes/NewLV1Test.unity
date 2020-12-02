@@ -217,7 +217,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponModels.Array.data[0]
       value: 
-      objectReference: {fileID: 1970141272}
+      objectReference: {fileID: 0}
     - target: {fileID: 3417982164426582269, guid: 753b99c18b998f84bb3a5c86508776e5,
         type: 3}
       propertyPath: weaponModels.Array.data[1]
@@ -941,7 +941,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1394, y: 409}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &224537330
@@ -5159,8 +5159,8 @@ MonoBehaviour:
   howToClimb: '"Using W to Grab the vines then W/S to move up or down"'
   cameraScroll: '"With mouse scroll I can change the camera view. It''s a neat trick
     I use to outmaneuver my enemies."'
-  startMessageWait: 3
-  waitBetweenMessages: 3
+  startMessageWait: 5
+  waitBetweenMessages: 5
 --- !u!114 &1097010490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7981,12 +7981,12 @@ PrefabInstance:
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2565174
+      value: 0.25651932
       objectReference: {fileID: 0}
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.4002814
+      value: 6.399566
       objectReference: {fileID: 0}
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
@@ -8174,16 +8174,17 @@ MonoBehaviour:
       m_Calls: []
   m_text: '"I attack enemies by pressing Mouse 1, wink wink"'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 40efdace50ebec24796d6faecbc45a77, type: 2}
+  m_sharedMaterial: {fileID: -1163104837709895145, guid: 40efdace50ebec24796d6faecbc45a77,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4289380811
+  m_fontColor: {r: 0.79607844, g: 0.75686276, b: 0.6666667, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -8246,7 +8247,7 @@ MonoBehaviour:
     spaceCount: 8
     wordCount: 9
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -8790,12 +8791,6 @@ RectTransform:
   m_AnchoredPosition: {x: -71.25456, y: -42.3}
   m_SizeDelta: {x: 345.10913, y: 27.570358}
   m_Pivot: {x: 0, y: 0.5}
---- !u!1 &1970141272 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6221219441059373007, guid: 68b0754ba15f8744a8d1c6c6649a986d,
-    type: 3}
-  m_PrefabInstance: {fileID: 630555029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1988294284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4982974658056170130, guid: a0d8f50a39f10d1468a05ca8b3c5126b,
@@ -9508,7 +9503,7 @@ PrefabInstance:
     - target: {fileID: 2064109958804527168, guid: a0d8f50a39f10d1468a05ca8b3c5126b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3876.9998
+      value: -3877
       objectReference: {fileID: 0}
     - target: {fileID: 2064109958820900151, guid: a0d8f50a39f10d1468a05ca8b3c5126b,
         type: 3}
