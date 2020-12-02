@@ -96,33 +96,11 @@ public class Menu : MonoBehaviour
         }
     }
 
-    void switchPanel(GameObject newPanel)
+    public void switchPanel(GameObject newPanel)
     {
-        if (newPanel.name.Contains("options") || newPanel.name.Contains("level"))
-        {
-            GameObject backBtn = newPanel.transform.Find("back").gameObject;
-            menuButton btnScript;
-            if (backBtn != null)
-            {
-                btnScript = backBtn.GetComponent<menuButton>();
-                if (btnScript != null)
-                {
-                    Debug.Log("Back script found");
-                    if (isPaused)
-                    {
-                        //Back button will now open the Pause Panel (panels[1])
-                        btnScript.paneltoOpen = panels[1];
-                    }
-                    else
-                    {
-                        //Back button will open Main panel, panels[0].
-                        btnScript.paneltoOpen = panels[0];
-                    }
-                }
-            }
-        }
-        newPanel.transform.position = mainCanvas.transform.position;
         returnPanel(currentPanel);
+        newPanel.transform.position = mainCanvas.transform.position;
+        
         currentPanel = newPanel;
     }
 
@@ -133,6 +111,7 @@ public class Menu : MonoBehaviour
         if(buttonName == "options")
         {
             switchPanel(panels[2]);
+            Debug.Log("Options pressed");
         }
         else if(buttonName == "weapon")
         {
@@ -155,13 +134,15 @@ public class Menu : MonoBehaviour
 
     public void backButton()
     {
-        returnPanel(currentPanel);
+        
         for (int i = 0; i < panels.Length; i++)
         {
             if (panels[i] == currentPanel.transform.parent.gameObject)
             {
+                returnPanel(currentPanel);
                 panels[i].transform.position = mainCanvas.transform.position;
                 currentPanel = panels[i];
+
                 break;
             }
         }
