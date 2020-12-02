@@ -78,7 +78,8 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public float bounceBuffer = 1;
 
-    public event Action OnBounceUp;
+    public event Action OnBounceUp = delegate { };
+    public event Action OnKnockDown = delegate { };
 
     void Awake()
     {
@@ -574,6 +575,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void GetKnockDown()
+    {
+        animator.ResetTrigger("Attack");
+        animator.SetTrigger("KnockDown");
+        isKnockDown = true;
+        
+        getUpCount = 0;
+        playerHealth.SetCurrentSpace(getUpCount);
+        playerHealth.spaceTextGrid.gameObject.SetActive(true);
+
+        OnKnockDown();
+    }
+
     public void PlayerBounceUp()
     {       
         isKnockDown = false;
@@ -583,6 +597,7 @@ public class PlayerMovement : MonoBehaviour
         getUpCount = 0;
         getUpNeed = 0;
         playerHealth.SetCurrentSpace(getUpCount);
+        playerHealth.spaceTextGrid.gameObject.SetActive(false);
 
         OnBounceUp();
     }

@@ -298,6 +298,16 @@ public class MowerBehaviour : EnemyBehaviour
         playerMovement.PlayerRigid2d.velocity = Vector3.up * 50;       
     }
 
+    protected override void PlayerDown()
+    {
+        base.PlayerDown();
+        
+        if (Physics.Raycast(frontDetection.position + (Vector3.down * 5), transform.right, 100f, LayerMask.GetMask("Player"))) { return; }
+
+        ChangeDirection();
+        if (!IsGenerating || !IsActive) { animatorMower.Play("Turning"); }
+    }
+
     void ReturnPhysics()
     {
         boxCollier.isTrigger = false;
@@ -311,15 +321,13 @@ public class MowerBehaviour : EnemyBehaviour
     {
         base.Movement();
 
-        animatorMower.SetFloat("MovementSpeed", speed / stat.RunningSpeed);
+        animatorMower.SetFloat("MovementSpeed", speed / stat.RunningSpeed);       
+    }
 
-        if (isNewBorn) { return; }
-
-        // Also turn healthbar of the generator
-        if (!groundInfo || wallInfo)
-        {
-            fieldBarHealth.ScaleLeftUI(rb);
-        }
+    protected override void ChangeDirection()
+    {
+        base.ChangeDirection();
+        fieldBarHealth.ScaleLeftUI(rb);       
     }
 
     protected override Vector3 PopUpPos(Transform trans)

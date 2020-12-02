@@ -54,7 +54,8 @@ public class EnemyBehaviour : MonoBehaviour
         playerMovement.playerAttack.OnBleedEnemy += ApplyBleeding;
         playerMovement.playerAttack.StaggerEnemy += WeaponStagger;
         playerMovement.OnBounceUp += PlayerUp;
-    }
+        playerMovement.OnKnockDown += PlayerDown;
+    }   
 
     protected virtual void OnEnable()
     {
@@ -93,13 +94,15 @@ public class EnemyBehaviour : MonoBehaviour
 
         groundInfo = Physics.Raycast(frontDetection.position, Vector3.down, 15f, LayerMask.GetMask("Ground"));
         wallInfo = Physics.Raycast(frontDetection.position, transform.right, 4.25f, LayerMask.GetMask("Wall", "Border"));
-       
-        if (!groundInfo || wallInfo)
-        {
-            enemyRotation += new Vector3(0, -(Mathf.Sign(rb.velocity.x)) * 180, 0);
-            transform.rotation = Quaternion.Euler(0, enemyRotation.y, 0);
-            barHealth.ScaleRightUI(rb);
-        }        
+
+        if (!groundInfo || wallInfo) { ChangeDirection(); }                  
+    }
+
+    protected virtual void ChangeDirection()
+    {
+        enemyRotation += new Vector3(0, -(Mathf.Sign(rb.velocity.x)) * 180, 0);
+        transform.rotation = Quaternion.Euler(0, enemyRotation.y, 0);
+        barHealth.ScaleRightUI(rb);
     }
 
     #region Take damage and bleed
@@ -188,20 +191,19 @@ public class EnemyBehaviour : MonoBehaviour
         // If player is already knocked down, don't do anything
         if (playerMovement.isKnockDown) { return; }
 
-        playerMovement.animator.ResetTrigger("Attack");
-        playerMovement.animator.SetTrigger("KnockDown");
-        playerMovement.isKnockDown = true;
-        playerHealth.spaceTextGrid.gameObject.SetActive(true);
-
-        playerMovement.getUpCount = 0;
-        playerHealth.SetCurrentSpace(playerMovement.getUpCount);        
+        playerMovement.GetKnockDown();
     }
 
     protected virtual void PlayerUp()
     {
-        playerHealth.spaceTextGrid.gameObject.SetActive(false);
+        // Mainly for Mower rn
     }
-    
+
+    protected virtual void PlayerDown()
+    {
+        // Mainly for Mower rn
+    }
+
     protected IEnumerator EnemyDeath()
     {        
         speed = 0;
