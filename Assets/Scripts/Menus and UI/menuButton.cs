@@ -6,16 +6,21 @@ using UnityEngine.SceneManagement;
 public class menuButton : MonoBehaviour
 {
     public GameObject paneltoOpen, sceneToload;
-
+    Menu menu;
     // Start is called before the first frame update
-    
+
+    private void Start()
+    {
+        menu = GameObject.Find("GameManager").GetComponent<Menu>();
+        if (menu != null)
+        {
+            Debug.Log("Menu script found");
+        }
+    }
+
     public void changePanel()
     {
-        Menu menu = transform.parent.transform.parent.GetComponent<Menu>();
-        if(menu != null)
-        {       
-            // menu.switchPanel(paneltoOpen);
-        }
+        menu.switchPanel(paneltoOpen);
     }
 
 
