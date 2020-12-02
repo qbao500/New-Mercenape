@@ -56,6 +56,8 @@ public class CutSence : MonoBehaviour
             backGroundImg = CanvasUI.GetChild(0).GetComponent<Image>();
             dialogueText = CanvasUI.GetChild(1).GetComponent<TextMeshProUGUI>();
 
+            // layout is child index # 2
+
             previousButton = CanvasUI.GetChild(3).GetComponent<Button>();
             pauseButton = CanvasUI.GetChild(4).GetComponent<Button>();
             continueButton = CanvasUI.GetChild(5).GetComponent<Button>();
