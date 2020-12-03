@@ -15,8 +15,8 @@ public class CutSence : MonoBehaviour
    
     Image backGroundImg;
     Transform CanvasUI;
-    Button continueButton, previousButton, pauseButton, skipButton;
-    TextMeshProUGUI hint, pauseText;
+   
+    TextMeshProUGUI autoText;
     TextMeshProUGUI dialogueText;
 
     public float initWaitTime=0.5f;
@@ -24,8 +24,8 @@ public class CutSence : MonoBehaviour
     public float betweenSequenceWaitTime = 5f;
     public float deltaTime;
     float startSequenceTime;
-    bool isPause=true;
-
+    bool isAuto=false;
+    Menu menu;
 
     //class contain background and dialogue
     [System.Serializable]
@@ -55,20 +55,14 @@ public class CutSence : MonoBehaviour
         {
             backGroundImg = CanvasUI.GetChild(0).GetComponent<Image>();
             dialogueText = CanvasUI.GetChild(1).GetComponent<TextMeshProUGUI>();
-
-            // layout is child index # 2
-
-            previousButton = CanvasUI.GetChild(3).GetComponent<Button>();
-            pauseButton = CanvasUI.GetChild(4).GetComponent<Button>();
-            continueButton = CanvasUI.GetChild(5).GetComponent<Button>();
-            skipButton = CanvasUI.GetChild(6).GetComponent<Button>();
-
-
-            hint = CanvasUI.GetChild(7).GetComponent<TextMeshProUGUI>();
-            pauseText = CanvasUI.GetChild(8).GetComponent<TextMeshProUGUI>();
+            autoText = CanvasUI.GetChild(8).GetComponent<TextMeshProUGUI>();
+            menu = this.GetComponent<Menu>();
         }
-        SetActiveUIs(false);
-        pauseText.gameObject.SetActive(false);
+       
+        int[] excludedChild = { 2 };
+        SetActiveUIs(false, excludedChild);
+        
+        autoText.gameObject.SetActive(false);
 
     }
 
@@ -87,20 +81,29 @@ public class CutSence : MonoBehaviour
         {
           SetNextSequence();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            NextBuiltScene();
-        }
+      
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             SetLastSequence();
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SetPause();
-        }   
+            SetAuto();
+        }
 
-        if (isPause == false)
+        if (menu != null)
+        {
+           if(menu.isPaused)
+            {
+                CanvasUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                CanvasUI.gameObject.SetActive(true);
+            }
+        }
+
+        if (isAuto == true)
         {
             deltaTime = Time.time - startSequenceTime;
             if (deltaTime >= betweenSequenceWaitTime)
@@ -108,18 +111,33 @@ public class CutSence : MonoBehaviour
                 SetNextSequence();
             }
         }
+
+
+
     }
 
 
-    void SetActiveUIs(bool var)
+    void SetActiveUIs(bool var, int[] excludedChild)
     {
-        continueButton.gameObject.SetActive(var);
+        /*continueButton.gameObject.SetActive(var);
         pauseButton.gameObject.SetActive(var);
         previousButton.gameObject.SetActive(var);
         skipButton.gameObject.SetActive(var);
         hint.gameObject.SetActive(var);
         dialogueText.gameObject.SetActive(var);
-        backGroundImg.gameObject.SetActive(var);
+        backGroundImg.gameObject.SetActive(var);*/
+        
+        for (int i=0; i< CanvasUI.childCount; i++)
+        { if (excludedChild.Length !=0)
+            {for (int j=0;j< excludedChild.Length; j++)
+                {
+                    if (i != excludedChild[j]) { CanvasUI.GetChild(i).gameObject.SetActive(var); }
+                }
+               
+            }
+
+        }
+
     }
 
     
@@ -137,17 +155,17 @@ public class CutSence : MonoBehaviour
         }
     }
 
-    public void SetPause()
+    public void SetAuto()
     {
-        isPause = !isPause;
-        if (isPause == false)
+        isAuto = !isAuto;
+        if (isAuto)
         {
             startSequenceTime = Time.time;
-            pauseText.gameObject.SetActive(false);
+            autoText.gameObject.SetActive(true);
         }
         else
         {
-            pauseText.gameObject.SetActive(true);
+            autoText.gameObject.SetActive(false);
         }
        
         
@@ -200,11 +218,13 @@ public class CutSence : MonoBehaviour
 
     IEnumerator FirstWait(float time)
     {
+        int[] excludedChild = { 8 };
         yield return new WaitForSeconds(time);
         
-        SetActiveUIs(true);
+        SetActiveUIs(true, excludedChild);
         SetNextSequence();
-        isPause = false;
+        isAuto = false;
+        
     }
 
 }
