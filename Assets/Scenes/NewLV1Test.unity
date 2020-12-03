@@ -3140,6 +3140,11 @@ PrefabInstance:
       propertyPath: PlayerClimbSpeed
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 7007741340744387837, guid: 68b0754ba15f8744a8d1c6c6649a986d,
+        type: 3}
+      propertyPath: PlayerJumpPow
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7007741340744387839, guid: 68b0754ba15f8744a8d1c6c6649a986d,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -5140,7 +5145,7 @@ MonoBehaviour:
   - {fileID: 1988294284}
   startPos: []
   currentPanel: {fileID: 0}
-  pausepanel: {fileID: 0}
+  pausepanel: {fileID: 2087933276}
   cameras:
   - {fileID: 503203412}
   - {fileID: 391642197}
@@ -10291,6 +10296,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7052803, y: 69.96177, z: 4.906606}
   m_Center: {x: 0.5229397, y: 29.752605, z: 1.9533031}
+--- !u!1 &2087933276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3851863382624704264, guid: f93036b307a85ce41a9309d1aab1bdaa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1193375481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2128716944 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4982974656217726747, guid: a0d8f50a39f10d1468a05ca8b3c5126b,
