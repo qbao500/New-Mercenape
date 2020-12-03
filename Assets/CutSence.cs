@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-
-
-
 //Prototype made by thuyet to handle cutscenes
 public class CutSence : MonoBehaviour
 {
@@ -16,8 +13,9 @@ public class CutSence : MonoBehaviour
     Image backGroundImg;
     Transform CanvasUI;
    
-    TextMeshProUGUI autoText;
-    TextMeshProUGUI dialogueText;
+    TextMeshProUGUI autoText, dialogueText;
+    Button continueButton, previousButton;
+    Menu menu;
 
     public float initWaitTime=0.5f;
     public float betweenLetterTime=0.02f;
@@ -25,9 +23,9 @@ public class CutSence : MonoBehaviour
     public float deltaTime;
     float startSequenceTime;
     bool isAuto=false;
-    Menu menu;
+    
 
-    //class contain background and dialogue
+   
     [System.Serializable]
     public class Sequences
     {
@@ -38,11 +36,8 @@ public class CutSence : MonoBehaviour
 
     }
     public Sequences[] sequencesArray;
-    //end of class declaration
 
    
-
-
     void Awake()
     {
         CanvasUI = GameObject.FindGameObjectWithTag("CanvasUI").transform;
@@ -56,6 +51,9 @@ public class CutSence : MonoBehaviour
             backGroundImg = CanvasUI.GetChild(0).GetComponent<Image>();
             dialogueText = CanvasUI.GetChild(1).GetComponent<TextMeshProUGUI>();
             autoText = CanvasUI.GetChild(8).GetComponent<TextMeshProUGUI>();
+            
+            previousButton = CanvasUI.GetChild(3).GetComponent<Button>();
+            continueButton = CanvasUI.GetChild(5).GetComponent<Button>();
             menu = this.GetComponent<Menu>();
         }
        
@@ -77,15 +75,7 @@ public class CutSence : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.D))
-        {
-          SetNextSequence();
-        }
-      
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            SetLastSequence();
-        }
+       
         if (Input.GetKeyDown(KeyCode.Return))
         {
             SetAuto();
@@ -110,8 +100,39 @@ public class CutSence : MonoBehaviour
             {
                 SetNextSequence();
             }
+
         }
 
+        if (sequenceIndex == 0)
+        {
+            if (dialogueText.text == sequencesArray[sequenceIndex].sentences)
+            {
+                continueButton.interactable = true;
+                previousButton.interactable = false;
+                if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+                {
+                    SetNextSequence();
+                }
+
+            }
+        }
+        if (sequenceIndex > 0)
+        {
+            if (dialogueText.text == sequencesArray[sequenceIndex].sentences)
+            {
+                continueButton.interactable = true;
+                previousButton.interactable = true;
+                if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+                {
+                    SetNextSequence();
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+                {
+                    SetLastSequence();
+                }
+            }
+        }
 
 
     }
@@ -119,13 +140,6 @@ public class CutSence : MonoBehaviour
 
     void SetActiveUIs(bool var, int[] excludedChild)
     {
-        /*continueButton.gameObject.SetActive(var);
-        pauseButton.gameObject.SetActive(var);
-        previousButton.gameObject.SetActive(var);
-        skipButton.gameObject.SetActive(var);
-        hint.gameObject.SetActive(var);
-        dialogueText.gameObject.SetActive(var);
-        backGroundImg.gameObject.SetActive(var);*/
         
         for (int i=0; i< CanvasUI.childCount; i++)
         { if (excludedChild.Length !=0)
@@ -188,6 +202,8 @@ public class CutSence : MonoBehaviour
     {
         if (sequenceIndex< sequencesArray.Length - 1)
         {
+            continueButton.interactable = false;
+            previousButton.interactable = false; 
             startSequenceTime = Time.time;
             sequenceIndex++;
             dialogueText.text = "";
@@ -207,6 +223,8 @@ public class CutSence : MonoBehaviour
     {
         if (sequenceIndex > 0)
         {
+            continueButton.interactable = false;
+            previousButton.interactable = false;
             sequenceIndex--;
             dialogueText.text = "";
             StartCoroutine(Type());
