@@ -189,10 +189,7 @@ public class MowerBehaviour : EnemyBehaviour
 
         DamagePopUp.Create(PopUpPos(backside), playerDmg, Color.clear, 14);
 
-        if (fieldHP <= 0)
-        {
-            Destroyed();
-        }
+        if (fieldHP <= 0) { Destroyed(); }       
     }
 
     private void PushPlayer()
@@ -209,7 +206,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (!isBackSideHit) { return; }
 
         // Only bleed when Inactive or Destroyed
-        if (IsInactive|| IsDestroyed)
+        if (IsInactive || IsDestroyed)
         {
             base.ApplyBleeding(damage, duration, ticks, selfCol);
         }
@@ -305,7 +302,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (Physics.Raycast(frontDetection.position + (Vector3.down * 5), transform.right, 100f, LayerMask.GetMask("Player"))) { return; }
 
         ChangeDirection();
-        if (!IsGenerating || !IsActive) { animatorMower.Play("Turning"); }
+        if (!IsGenerating && !IsActive) { animatorMower.Play("Turning"); }
     }
 
     void ReturnPhysics()
