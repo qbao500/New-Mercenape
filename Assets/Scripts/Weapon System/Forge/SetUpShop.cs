@@ -8,29 +8,23 @@ public class SetUpShop : SetUpScreens
 {
     BuyWeapons buyWeapons;
 
-    [SerializeField] List<GameObject> arrowButtons;
-
-    protected override void Awake() { base.Awake(); buyWeapons = GetComponent<BuyWeapons>(); arrowButtons.InsertRange(0, GameObject.FindGameObjectsWithTag("ArrowButton")); }
+    protected override void Awake() { base.Awake(); buyWeapons = GetComponent<BuyWeapons>(); }
 
     protected override void Start() { base.Start(); }
 
-    protected override void UpdateWeaponStats()
-    {
-        statsCalculator.SetRequestFromShop(true);
-        base.UpdateWeaponStats();
-    }
+    protected override void UpdateWeaponStats() { statsCalculator.SetRequestFromShop(true); base.UpdateWeaponStats(); }
 
     protected override void UpdateTexts()
     {
         AbstractWeapon weapon = weaponsShop[buyWeapons.GetWeaponID()];
         List<bool> boughtWeapons = weaponStates.GetBoughtWeapons();
         
-        if (boughtWeapons[0])
+        if (boughtWeapons[0] && boughtWeapons[1])
         {
-            //for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
+            for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
 
             weaponStatTexts[0].text = "Out of Stock!";
-            weaponStatTexts[1].text = "Our apologies, we have run out of new weapons.";
+            weaponStatTexts[1].text = "";
             weaponStatTexts[2].text = "";
             weaponStatTexts[3].text = "";
             weaponStatTexts[4].text = "";
@@ -40,8 +34,6 @@ public class SetUpShop : SetUpScreens
 
             costText.text = " " + 0;
             upgradeText.text = playerCurrency.speedUpgrades.ToString();
-
-            // for(int i = 0; i < arrowButtons.Count; i++) { arrowButtons[i].SetActive(false); }
         }
         else
         {
@@ -81,12 +73,23 @@ public class SetUpShop : SetUpScreens
             }
         }
 
+        for (int i = 0; i < chooseButtons.Count; i++)
+        {
+            switch (boughtWeapons[i])
+            {
+                case true:
+                    chooseButtons[i].SetActive(false);
+                    break;
+
+                case false:
+                    chooseButtons[i].SetActive(true);
+                    break;
+            }
+        }
+
         for (int i = 0; i < weaponImages.Count; i++)
         {
-            if (boughtWeapons[0] && boughtWeapons[1] && boughtWeapons[2])
-            {
-                weaponImages[i].SetActive(false);
-            }
+            if (boughtWeapons[0] && boughtWeapons[1]) { weaponImages[i].SetActive(false); }
             else
             {
                 weaponImages[i].SetActive(false);

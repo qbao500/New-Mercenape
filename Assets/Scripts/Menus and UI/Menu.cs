@@ -125,7 +125,6 @@ public class Menu : MonoBehaviour
         else if(buttonName == "ToShop")
         {
             switchPanel(panels[4]);
-            buyWeapons.CheckID();
             setUpForge.ResetSpeedUpgrades();
             setUpShop.SetScreen(buyWeapons.GetWeaponID());
         }
@@ -144,7 +143,6 @@ public class Menu : MonoBehaviour
 
     public void backButton()
     {
-        
         for (int i = 0; i < panels.Length; i++)
         {
             if (panels[i] == currentPanel.transform.parent.gameObject)
@@ -158,13 +156,7 @@ public class Menu : MonoBehaviour
         }
     }
 
-    public void WipeWeaponMemory()
-    {
-        SaveManager.DeleteWeapons();
-    }
+    public void WipeWeaponMemory() { SaveManager.DeleteWeapons(); }
 
-    public void WipeCurrencyMemory()
-    {
-        SaveManager.DeleteCurrency();
-    }
+    public void WipeCurrencyMemory() { SaveManager.DeleteCurrency(); }
 }

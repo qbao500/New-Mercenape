@@ -5,11 +5,7 @@ using UnityEngine;
 // Created by Arttu Paldán on 13.11.2020: 
 public class SetUpForge : SetUpScreens
 {
-    protected override void UpdateWeaponStats()
-    {
-        statsCalculator.SetRequestFromForge(true);
-        base.UpdateWeaponStats();
-    }
+    protected override void UpdateWeaponStats() { statsCalculator.SetRequestFromForge(true); base.UpdateWeaponStats(); }
 
     protected override void UpdateTexts()
     {
