@@ -12,7 +12,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        transform.localScale = normalScale * 1.2f;
+        transform.localScale = normalScale * 1.3f;
     }
 
     public void OnPointerUp(PointerEventData eventData)
