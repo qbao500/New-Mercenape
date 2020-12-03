@@ -9,6 +9,8 @@ public class EnemySpawnerScript : MonoBehaviour
 {
     public SpawnerDataSO spawnerData;
 
+    private Material material;
+
     public enum SpawnState { Spawning, Waiting, Counting }
     public SpawnState state;
     
@@ -21,14 +23,12 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private void Start()
     {
-        SetTextRef();
+        SetRef();
 
         LoadSpawner();
         spawnerData.SetupEnemyStats();
 
-        state = SpawnState.Counting;
-
-        playerCurrency = FindObjectOfType<PlayerCurrency>();
+        ToCountingState();      
 
         groupCountdown = spawnerData.TimeBetweenGroups;
 
@@ -66,6 +66,54 @@ public class EnemySpawnerScript : MonoBehaviour
               
     }
 
+    #region State Changing
+    private void ToCountingState()
+    {
+        state = SpawnState.Counting;
+        StartCoroutine(NoSpawningEffect());
+    }
+
+    private void ToSpawningState()
+    {
+        state = SpawnState.Spawning;
+        StartCoroutine(SpawningEffect());
+    }
+
+    private void ToWaitingState()
+    {
+        state = SpawnState.Waiting;
+        StartCoroutine(NoSpawningEffect());
+    }
+
+    private IEnumerator SpawningEffect()
+    {
+        float elapsed = 0f;
+        
+        while (elapsed < .5f)
+        {
+            elapsed += Time.deltaTime;
+            material.SetFloat("_Scale", Mathf.Lerp(0.5f, 2f, elapsed / .5f));
+            material.SetFloat("_Speed", Mathf.Lerp(0.3f, 0.5f, elapsed / .5f));
+            material.SetFloat("_Dissolve", Mathf.Lerp(5f, 2.5f, elapsed / .5f));
+            yield return null;
+        }
+    }
+
+    private IEnumerator NoSpawningEffect()
+    {
+        float elapsed = 0f;
+
+        while (elapsed < 1f)
+        {
+            elapsed += Time.deltaTime;
+            material.SetFloat("_Scale", Mathf.Lerp(2f, 0.5f, elapsed / .5f));
+            material.SetFloat("_Speed", Mathf.Lerp(0.5f, 0.3f, elapsed / .5f));
+            material.SetFloat("_Dissolve", Mathf.Lerp(2.5f, 5f, elapsed / .5f));
+            yield return null;
+        }
+    }
+    #endregion
+
     // Check if enemies are still alive
     private bool EnemyIsAlive()
     {
@@ -85,11 +133,12 @@ public class EnemySpawnerScript : MonoBehaviour
     // Group completed and prepare new group
     private void GroupCompleted()
     {
-        state = SpawnState.Counting;
+        ToCountingState();
+
         groupCountdown = spawnerData.TimeBetweenGroups;
 
         CheckWaveEnd();
-        
+
         spawnerData.PrepareGroup();
     }
 
@@ -119,23 +168,23 @@ public class EnemySpawnerScript : MonoBehaviour
     // Spawn enemies one by one with rate
     private IEnumerator SpawnWave()
     {
-        state = SpawnState.Spawning;
+        ToSpawningState();
 
         for (int i = 0; i < spawnerData.SpawnList.Count; i++)
         {
             if (spawnerData.SpawnList[i] == spawnerData.EnemyInfo[0].name) // Shred
             {
-                SpawnEnemy(spawnerData.SpawnList[i], transform.position + (Vector3.left * 8));
+                SpawnEnemy(spawnerData.SpawnList[i], transform.position + (Vector3.left * 5));
                 yield return new WaitForSeconds(1f / RandomSpawnRate);
             }
             else // Mower
             {
-                SpawnEnemy(spawnerData.SpawnList[i], transform.position + (Vector3.left * 20));
-                yield return new WaitForSeconds(5f);
+                SpawnEnemy(spawnerData.SpawnList[i], transform.position + (Vector3.left * 10));
+                yield return new WaitForSeconds(7f);
             }
         }
 
-        state = SpawnState.Waiting; // Move to Waiting state after finishing spawning
+        ToWaitingState(); // Move to Waiting state after finishing spawning
 
         yield break;
     }
@@ -163,10 +212,12 @@ public class EnemySpawnerScript : MonoBehaviour
         SaveManager.SaveSpawner(this);  // Then save (useful for fist time)
     }
 
-    private void SetTextRef()
+    private void SetRef()
     {
         spawnerData.WaveText = transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         spawnerData.GroupText = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+        playerCurrency = FindObjectOfType<PlayerCurrency>();
+        material = transform.GetChild(1).GetComponent<MeshRenderer>().material;
     }
 
     #region Buttons
