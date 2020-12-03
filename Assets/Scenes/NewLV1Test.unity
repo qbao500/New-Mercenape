@@ -5745,11 +5745,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTalk: {fileID: 0}
   bubbleTalkArray: []
-  howToAttack: '"I can attack by pressing Mouse 1, wink wink."'
-  howToBlock: '"Here''s a hint: by holding Mouse 2, I can block enemy attacks." '
-  howToClimb: '"Using W to Grab the vines then W/S to move up or down"'
-  cameraScroll: '"With mouse scroll I can change the camera view. It''s a neat trick
-    I use to outmaneuver my enemies."'
+  howToAttack: '"You can attack by pressing Mouse 1, wink wink."'
+  howToBlock: '"Here''s a hint: by holding Mouse 2, you can block enemy attacks." '
+  howToClimb: '"Use W to grab onto a vine. W moves you up on the vine and S down.'
+  cameraScroll: '"Use mouse wheel to scroll the camera view."'
   startMessageWait: 5
   waitBetweenMessages: 5
 --- !u!114 &1097010490
@@ -6265,6 +6264,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 792839507}
     m_Modifications:
+    - target: {fileID: 292923110, guid: f93036b307a85ce41a9309d1aab1bdaa, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3851863382559976301, guid: f93036b307a85ce41a9309d1aab1bdaa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
