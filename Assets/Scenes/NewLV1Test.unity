@@ -5139,8 +5139,8 @@ MonoBehaviour:
   mainCanvas: {fileID: 22354652}
   panels:
   - {fileID: 1827671740}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2087933276}
+  - {fileID: 1502133400}
   - {fileID: 6449757330892850271}
   - {fileID: 1988294284}
   startPos: []
@@ -7843,6 +7843,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1502133400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 292923109, guid: f93036b307a85ce41a9309d1aab1bdaa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1193375481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1505822430
 GameObject:
   m_ObjectHideFlags: 0
