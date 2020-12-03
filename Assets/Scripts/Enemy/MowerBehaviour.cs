@@ -12,6 +12,7 @@ public class MowerBehaviour : EnemyBehaviour
     private ForceFieldState currentState;
 
     [SerializeField] private Transform backside;
+    private GameObject forceShield;
 
     private float fieldHP;
 
@@ -40,6 +41,7 @@ public class MowerBehaviour : EnemyBehaviour
 
         capsuleCollider = backside.GetComponent<CapsuleCollider>();
         generatorCollider = backside.GetComponent<SphereCollider>();
+        forceShield = backside.GetChild(1).gameObject;
 
         animatorMower = GetComponent<Animator>();
     }
@@ -73,6 +75,7 @@ public class MowerBehaviour : EnemyBehaviour
 
         ChangeToGenerating();
         animatorMower.SetTrigger("Generating");
+        forceShield.SetActive(true);
 
         fieldSprite.color = Color.yellow;
         speed = 0;
@@ -100,6 +103,7 @@ public class MowerBehaviour : EnemyBehaviour
 
         ChangeToInactive();
         animatorMower.SetBool("IsActive", false);
+        forceShield.SetActive(false);
 
         fieldSprite.color = Color.white;
     }
@@ -109,6 +113,7 @@ public class MowerBehaviour : EnemyBehaviour
         ChangeToDestroyed();
         animatorMower.SetBool("IsDestroyed", true);
 
+        forceShield.SetActive(false);
         speed = stat.RunningSpeed;
         fieldSprite.enabled = false;
         generatorCollider.enabled = false;

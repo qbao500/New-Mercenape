@@ -170,6 +170,8 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         ToSpawningState();
 
+        yield return new WaitForSeconds(1f);
+
         for (int i = 0; i < spawnerData.SpawnList.Count; i++)
         {
             if (spawnerData.SpawnList[i] == spawnerData.EnemyInfo[0].name) // Shred
