@@ -801,7 +801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0cb0393411aafd341a12d4c14d09759b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3dc02b9b2b90ef043bfc6b74401f145a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5314,7 +5314,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleTalk: {fileID: 0}
-  bubbleTalkArray: []
+  bubbleTalkArray:
+  - {fileID: 21300000, guid: 93a686a89ea191b4aafde7f6ef8ab4be, type: 3}
+  - {fileID: 21300000, guid: 3dc02b9b2b90ef043bfc6b74401f145a, type: 3}
   howToAttack: '"You can attack by pressing Mouse 1, wink wink."'
   howToBlock: '"Here''s a hint: by holding Mouse 2, you can block enemy attacks." '
   howToClimb: '"Use W to grab onto a vine. W moves you up on the vine and S down.'
@@ -9689,8 +9691,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282013283
-  m_fontColor: {r: 0.38679248, g: 0.33869222, b: 0.2280616, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -9714,7 +9716,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0

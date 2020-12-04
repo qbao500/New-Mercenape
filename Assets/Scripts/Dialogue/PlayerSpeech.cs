@@ -72,7 +72,7 @@ public class PlayerSpeech: MonoBehaviour
         bubbleTalk.enabled = true;
         if (bubbleTalkArray.Length != 0)
         {
-            bubbleTalk.sprite = bubbleTalkArray[0];
+            bubbleTalk.sprite = bubbleTalkArray[1];
         }
 
         yield return new WaitForSeconds(time);
@@ -87,7 +87,7 @@ public class PlayerSpeech: MonoBehaviour
         bubbleTalk.enabled = true;
         if (bubbleTalkArray.Length != 0)
         {
-            bubbleTalk.sprite = bubbleTalkArray[2];
+            bubbleTalk.sprite = bubbleTalkArray[0];
         }
 
         yield return new WaitForSeconds(time);
