@@ -17,6 +17,8 @@ public static class soundManager
         SFX_enemyAttack,
         SFX_enemyDie,
         SFX_heal,
+        SFX_runnerSpawn,
+        SFX_mowerSpawn,
 
         //Audio/Voice lines
         Audio_playerHurt,
@@ -25,7 +27,12 @@ public static class soundManager
 
         //Music
         Music_Menu,
-        Music_Level
+        Music_Level,
+
+        // UI sounds
+        UI_buttonPress,
+        UI_buttonBack,
+        UI_Quit,
     }
 
     //This is for sound we want to play at different intervals such as footsteps

@@ -112,8 +112,8 @@ public class Menu : MonoBehaviour
     public void ButtonPress()
     {
         string buttonName = EventSystem.current.currentSelectedGameObject.name;
-
-        if(buttonName == "options")
+        soundManager.PlaySound(soundManager.Sound.UI_buttonPress, transform.position);
+        if (buttonName == "options")
         {
             switchPanel(panels[2]);
         }
@@ -141,6 +141,7 @@ public class Menu : MonoBehaviour
         }
     }
 
+
     public void ToForge()
     {
         PauseGame();
@@ -157,6 +158,7 @@ public class Menu : MonoBehaviour
                 returnPanel(currentPanel);
                 panels[i].transform.position = mainCanvas.transform.position;
                 currentPanel = panels[i];
+                soundManager.PlaySound(soundManager.Sound.UI_buttonBack, transform.position);
 
                 break;
             }
