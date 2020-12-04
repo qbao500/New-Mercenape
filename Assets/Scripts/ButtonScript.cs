@@ -16,7 +16,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        transform.localScale = normalScale * 1.3f;
+        transform.localScale = normalScale * clickRate;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -26,7 +26,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.localScale = normalScale * 1.1f;
+        transform.localScale = normalScale * enterRate;
     }
 
     public void OnPointerExit(PointerEventData eventData)
