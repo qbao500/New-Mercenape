@@ -16,9 +16,12 @@ public class SetUpShop : SetUpScreens
 
     protected override void UpdateTexts()
     {
-        AbstractWeapon weapon = weaponsShop[buyWeapons.GetWeaponID()];
+        AbstractWeapon weapon;
         List<bool> boughtWeapons = weaponStates.GetBoughtWeapons();
-        
+
+        if (boughtWeapons[0] && boughtWeapons[1]) { weapon = weaponsShop[2]; }
+        else { weapon = weaponsShop[buyWeapons.GetWeaponID()]; }
+      
         for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
 
         if (boughtWeapons[0] && boughtWeapons[1]) { for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); } }
@@ -27,8 +30,18 @@ public class SetUpShop : SetUpScreens
         weaponStatTexts[0].text = weapon.GetDescription();
         weaponStatTexts[1].text = weapon.GetWeight().ToString();
         weaponStatTexts[2].text = weapon.GetSpeed().ToString();
-        weaponStatTexts[3].text = weaponStates.GetWeaponSpeedShop().ToString();
-        weaponStatTexts[4].text = weaponStates.GetWeaponImpactDamageShop().ToString();
+
+        if(boughtWeapons[0] && boughtWeapons[1]) 
+        { 
+            weaponStatTexts[3].text = weapon.GetSpeed().ToString();
+            weaponStatTexts[4].text = weapon.GetImpactDamage().ToString();
+        }
+        else
+        {
+            weaponStatTexts[3].text = weaponStates.GetWeaponSpeedShop().ToString();
+            weaponStatTexts[4].text = weaponStates.GetWeaponImpactDamageShop().ToString();
+        }
+        
         weaponStatTexts[5].text = weapon.GetBleedDamage().ToString();
         weaponStatTexts[6].text = weapon.GetBleedDuration().ToString();
         weaponStatTexts[7].text = weapon.GetStaggerDuration().ToString();
