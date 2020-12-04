@@ -3775,6 +3775,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5186242401137796571, guid: 0ec01022eb00a404eb858d936bdba09b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 344.40002
+      objectReference: {fileID: 0}
     - target: {fileID: 5212130609511221529, guid: 0ec01022eb00a404eb858d936bdba09b,
         type: 3}
       propertyPath: m_IsActive
@@ -8402,12 +8407,12 @@ PrefabInstance:
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7692165
+      value: 0.25652504
       objectReference: {fileID: 0}
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.4019732
+      value: 6.4002833
       objectReference: {fileID: 0}
     - target: {fileID: 365395727278933755, guid: f8d630087f35ae145ada0fa115c6eb71,
         type: 3}
@@ -9186,6 +9191,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelectUpgradeComponentsAmount
+      objectReference: {fileID: 0}
+    - target: {fileID: 114030732124477290, guid: 1f0572d6297448a47a0a23df81e8f630,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3876.9998
       objectReference: {fileID: 0}
     - target: {fileID: 114030732190076100, guid: 1f0572d6297448a47a0a23df81e8f630,
         type: 3}
@@ -9988,6 +9998,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 487910516}
     m_Modifications:
+    - target: {fileID: 39405344431976381, guid: 1ef1b201a3367b1479db9b184712a677,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 993461445}
     - target: {fileID: 1009075717142670536, guid: 1ef1b201a3367b1479db9b184712a677,
         type: 3}
       propertyPath: m_LocalPosition.x

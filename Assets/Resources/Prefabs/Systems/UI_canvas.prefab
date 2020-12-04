@@ -673,7 +673,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!114 &3851863383310878658
 MonoBehaviour:
@@ -832,8 +832,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3851863383310878656, guid: f93036b307a85ce41a9309d1aab1bdaa,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_MethodName: switchPanel
         m_Mode: 1
         m_Arguments:
