@@ -14,10 +14,11 @@ public class MowerBehaviour : EnemyBehaviour
     [SerializeField] private Transform backside;
     private GameObject forceShield;
     private Material shieldMat;
+    private GameObject generator;
+    private Material generatorMat;
 
     private float fieldHP;
 
-    private SpriteRenderer fieldSprite;
     private EnemyHealthBar fieldBarHealth;
 
     private Coroutine dmgCoroutine;
@@ -36,12 +37,15 @@ public class MowerBehaviour : EnemyBehaviour
         mowerStat = (MowerStatsSO)stat;
 
         fieldBarHealth = backside.GetChild(0).GetComponent<EnemyHealthBar>();
-        fieldSprite = backside.GetComponent<SpriteRenderer>();
-
-        capsuleCollider = backside.GetComponent<CapsuleCollider>();
-        generatorCollider = backside.GetComponent<SphereCollider>();
+        
         forceShield = backside.GetChild(1).gameObject;
         shieldMat = forceShield.GetComponent<MeshRenderer>().material;
+
+        generator = backside.GetChild(2).gameObject;
+        generatorMat = generator.GetComponent<MeshRenderer>().material;
+
+        capsuleCollider = backside.GetComponent<CapsuleCollider>();
+        generatorCollider = generator.GetComponent<SphereCollider>();
     }
 
     protected override void OnEnable()
@@ -58,7 +62,7 @@ public class MowerBehaviour : EnemyBehaviour
 
         animator.SetBool("IsDestroyed", false); ;
 
-        fieldSprite.enabled = true;
+        generator.SetActive(true);
         generatorCollider.enabled = true;
         capsuleCollider.enabled = true;
         fieldBarHealth.gameObject.SetActive(false);
@@ -76,8 +80,9 @@ public class MowerBehaviour : EnemyBehaviour
 
         forceShield.SetActive(true);
         mowerStat.ShieldGenerating(shieldMat);
+        mowerStat.FieldGenerating(generatorMat);
+        StartCoroutine(mowerStat.ForceEye(generatorMat, 0.15f));
 
-        fieldSprite.color = Color.yellow;
         speed = 0;
         isGenerating = false;
 
@@ -92,8 +97,9 @@ public class MowerBehaviour : EnemyBehaviour
         animator.SetBool("IsActive", true);
 
         mowerStat.ShieldOn(shieldMat);
+        mowerStat.FieldActive(generatorMat);
+        StartCoroutine(mowerStat.ForceEye(generatorMat, 15f));
 
-        fieldSprite.color = Color.red;
         speed = stat.RunningSpeed;
 
         Invoke("Inactive", 5f);
@@ -107,7 +113,8 @@ public class MowerBehaviour : EnemyBehaviour
         animator.SetBool("IsActive", false);
         forceShield.SetActive(false);
 
-        fieldSprite.color = Color.white;
+        mowerStat.FieldInactive(generatorMat);
+        StartCoroutine(mowerStat.ForceEye(generatorMat, 0.5f));
     }
 
     private void Destroyed()
@@ -117,7 +124,7 @@ public class MowerBehaviour : EnemyBehaviour
 
         forceShield.SetActive(false);
         speed = stat.RunningSpeed;
-        fieldSprite.enabled = false;
+        generator.SetActive(false);
         generatorCollider.enabled = false;
         fieldBarHealth.gameObject.SetActive(false);
     }

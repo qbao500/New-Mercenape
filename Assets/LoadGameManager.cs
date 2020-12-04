@@ -103,7 +103,7 @@ public class LoadGameManager : MonoBehaviour
         nextArrow.interactable = false;
 
         float startPoint = levelsHolder.transform.localPosition.x;
-        float destination = levelsHolder.transform.localPosition.x + distance;
+        float destination = (levelsHolder.transform.localPosition.x + distance) * levelsHolder.transform.localScale.x;
         float elapsed = 0f;
 
         while (elapsed < .2f)

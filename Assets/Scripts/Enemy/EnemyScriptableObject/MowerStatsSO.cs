@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Mower", menuName = "Enemy Stats/Mower Stats")]
 public class MowerStatsSO : EnemyStatsSO
 {
+    public Color fieldDmgColor;
+
     [Header("Generator stats")]
     [SerializeField] private AnimationCurve fieldHPEachWave;
     [SerializeField] private AnimationCurve fieldDamageEachWave;
@@ -12,7 +14,6 @@ public class MowerStatsSO : EnemyStatsSO
     [Header("Shield colors")]
     [ColorUsage(true, true)] public Color shieldNormal;
     [ColorUsage(true, true)] public Color shieldDamage;
-    public Color fieldDmgColor;
 
     public float FieldMaxHP { get; private set; }
     public int FieldDamage { get; private set; }
@@ -100,4 +101,37 @@ public class MowerStatsSO : EnemyStatsSO
         mat.SetColor("_Emission", shieldNormal);
     }
 
+    public void FieldInactive(Material mat)
+    {
+        mat.SetFloat("_ElecAmount", 3f);
+        mat.SetFloat("_ElecScale", 10f);
+        mat.SetFloat("_ElecThickness", 0f);
+    }
+
+    public void FieldGenerating(Material mat)
+    {
+        mat.SetFloat("_ElecAmount", 4f);
+        mat.SetFloat("_ElecScale", 20f);
+        mat.SetFloat("_ElecThickness", 0.5f);
+    }
+
+    public void FieldActive(Material mat)
+    {
+        mat.SetFloat("_ElecAmount", 5f);
+        mat.SetFloat("_ElecScale", 30f);
+        mat.SetFloat("_ElecThickness", 1f);
+    }
+
+    public IEnumerator ForceEye(Material mat, float fresnel)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < 1.5f)
+        {
+            elapsed += Time.deltaTime;
+            mat.SetFloat("_FresnelPow", Mathf.Lerp(mat.GetFloat("_FresnelPow"), fresnel, elapsed / 1.5f));          
+            yield return null;
+        }
+    }
+   
 }

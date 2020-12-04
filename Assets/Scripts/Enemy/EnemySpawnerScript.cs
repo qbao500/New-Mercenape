@@ -147,9 +147,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         if (playerCurrency.karma >= spawnerData.MaxKarma)
         {
-            Invoke("ShowScreen", 1.5f);
-            spawnerData.GroupText.gameObject.SetActive(false);
-            spawnerData.WaveText.gameObject.SetActive(false);
+            Invoke("ShowScreen", 1.5f);          
 
             spawnerData.SetWave(spawnerData.CurrentWave + 1);
             SaveManager.SaveSpawner(this);
@@ -227,9 +225,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         Time.timeScale = 1;
         completeWaveScreen.SetActive(false);
-        spawnerData.GroupText.gameObject.SetActive(true);
-        spawnerData.WaveText.gameObject.SetActive(true);
-
+        
         playerCurrency.SetKarmaBar();
         SaveManager.SaveCurrency(playerCurrency);
     }
