@@ -9,7 +9,7 @@ public class WeaponStates: MonoBehaviour
     private StatsCalculator calculator;
     private PlayerAttackTrigger playerAttack;
 
-    private List<AbstractWeapon> weapons;
+    private List<AbstractWeapon> weapons, weaponsShop;
     [SerializeField] private List<bool> ownedWeaponsList, boughtWeaponsList, upgradedWeaponsList;
     [SerializeField] private List<int> savedSpeedAmountsList;
     [SerializeField] private List<WeaponInUse> weaponModels;
@@ -36,7 +36,7 @@ public class WeaponStates: MonoBehaviour
     void SetUpBoolLists()
     {
         ownedWeaponsList = new List<bool>(new bool[weapons.Count]);
-        boughtWeaponsList = new List<bool>(new bool[3]);
+        boughtWeaponsList = new List<bool>(new bool[weaponsShop.Count]);
         upgradedWeaponsList = new List<bool>(new bool[weapons.Count]);
         savedSpeedAmountsList = new List<int>(new int[weapons.Count]);
 
@@ -111,6 +111,7 @@ public class WeaponStates: MonoBehaviour
 
     // Set functions
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
+    public void SetWeaponsForShop(List<AbstractWeapon> list) { weaponsShop = list; }
     public void SetChosenWeaponID(int id) { weaponID = id; }
     public void SetSavedSpeeds (List<int> list){ savedSpeedAmountsList = list; }
 

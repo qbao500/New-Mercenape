@@ -84,7 +84,7 @@ public class AssetManager : MonoBehaviour
     // Basically this sends the weapons and upgrade lists to the scripts that use them. 
     public void SetUpListsForOtherScripts() 
     { 
-        if (weaponStates != null) { weaponStates.SetWeaponList(weapons); }
+        if (weaponStates != null) { weaponStates.SetWeaponList(weapons); weaponStates.SetWeaponsForShop(weaponsShop); }
         if (buyWeapons != null) { buyWeapons.SetWeaponList(weaponsShop); }
         if (calculator != null) { calculator.SetWeaponList(weapons, weaponsShop); }
         if (chooseWeapon != null) { chooseWeapon.SetWeaponList(weapons); }
