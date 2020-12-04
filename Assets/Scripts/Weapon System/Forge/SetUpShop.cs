@@ -59,20 +59,6 @@ public class SetUpShop : SetUpScreens
     {
         List<bool> boughtWeapons = weaponStates.GetBoughtWeapons();
 
-        for (int i = 0; i < weaponInventory.Count; i++)
-        {
-            switch (boughtWeapons[i])
-            {
-                case true:
-                    weaponInventory[i].SetActive(false);
-                    break;
-
-                case false:
-                    weaponInventory[i].SetActive(true);
-                    break;
-            }
-        }
-
         for (int i = 0; i < chooseButtons.Count; i++)
         {
             switch (boughtWeapons[i])

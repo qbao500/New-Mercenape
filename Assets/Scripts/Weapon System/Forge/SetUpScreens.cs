@@ -13,7 +13,7 @@ public abstract class SetUpScreens : MonoBehaviour
 
     protected List<AbstractWeapon> weapons, weaponsShop;
 
-    public List<GameObject> weaponInventory, weaponImages, chooseButtons, weaponNames;
+    public List<GameObject> chooseButtons, weaponNames, weaponImages;
     [SerializeField] protected List<Text> weaponStatTexts;
     
     protected Text costText, upgradeText;
@@ -39,7 +39,6 @@ public abstract class SetUpScreens : MonoBehaviour
 
     protected void GetRequiredComponents()
     {
-        // weaponInventory.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponHolderTag));
         // weaponImages.InsertRange(0, GameObject.FindGameObjectsWithTag(chosenWeaponTag));
         // chooseButtons.InsertRange(0, GameObject.FindGameObjectsWithTag(chooseButtonTag));
         // weaponNames.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponNameTag));
@@ -71,10 +70,7 @@ public abstract class SetUpScreens : MonoBehaviour
         useUpgrades.amountText.text = "" + 0;
     }
 
-    protected virtual void UpdateWeaponStats()
-    {
-        statsCalculator.CalculateStats();
-    }
+    protected virtual void UpdateWeaponStats() { statsCalculator.CalculateStats(); }
 
     protected abstract void UpdateTexts();
 

@@ -31,20 +31,6 @@ public class SetUpForge : SetUpScreens
     {
         List<bool> ownedWeapons = weaponStates.GetOwnedWeapons();
 
-        for(int i = 0; i < weaponInventory.Count; i++)
-        {
-            switch (ownedWeapons[i])
-            {
-                case true:
-                    weaponInventory[i].SetActive(true);
-                    break;
-
-                case false:
-                    weaponInventory[i].SetActive(false);
-                    break;
-            }
-        }
-
         for(int i = 0; i < chooseButtons.Count; i++)
         {
             switch (ownedWeapons[i])

@@ -5025,18 +5025,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2831acbeb0b7f8a419b45286f5bb464c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponInventory:
-  - {fileID: 0}
-  - {fileID: 0}
-  weaponImages:
-  - {fileID: 539650794}
-  - {fileID: 1218397237}
   chooseButtons:
   - {fileID: 1317947923}
   - {fileID: 1958271045}
   weaponNames:
   - {fileID: 1721637396}
   - {fileID: 1173669373}
+  weaponImages:
+  - {fileID: 539650794}
+  - {fileID: 1218397237}
   weaponStatTexts:
   - {fileID: 1421887154}
   - {fileID: 4982974656218979372}
@@ -5160,14 +5157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54394c044bc89347a6c44eb019c0981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponInventory:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  weaponImages:
-  - {fileID: 245412208}
-  - {fileID: 935653363}
-  - {fileID: 1823727204}
   chooseButtons:
   - {fileID: 1875677067}
   - {fileID: 145178202}
@@ -5176,6 +5165,10 @@ MonoBehaviour:
   - {fileID: 559362476}
   - {fileID: 1275294612}
   - {fileID: 438553232}
+  weaponImages:
+  - {fileID: 245412208}
+  - {fileID: 935653363}
+  - {fileID: 1823727204}
   weaponStatTexts:
   - {fileID: 179164495}
   - {fileID: 4982974656218979365}
