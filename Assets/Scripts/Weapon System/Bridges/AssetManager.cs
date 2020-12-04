@@ -77,6 +77,7 @@ public class AssetManager : MonoBehaviour
 
         weaponsShop.Add(new TestWeapon("Mace", "Does things", 1, 25, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
         weaponsShop.Add(new TestWeapon("BigSword", "Does things", 2, 100, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
+        weaponsShop.Add(new TestWeapon("Out of stock!", "Out of stock!", 3, 0, 0, 0, 0, 0, 0, 0, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
 
         upgrades.Add(new TestUpgrade("Speed Upgrade", "Increases the Speed of your attacks", 0, 25, upgradeImages[0]));
     }
