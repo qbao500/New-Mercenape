@@ -3613,8 +3613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSpeed: 40
-  PlayerJumpPow: 45
-  MidAirSpeed: 35
+  PlayerJumpPow: 50
+  MidAirSpeed: 25
   groundlayermask:
     serializedVersion: 2
     m_Bits: 1280
@@ -3632,7 +3632,7 @@ MonoBehaviour:
   PlayerUnderPos: {fileID: 7007741340943696650}
   PlayerAbovePos: {fileID: 7007741339604969432}
   CheckRadius: 0.3
-  PlayerClimbSpeed: 25
+  PlayerClimbSpeed: 40
   isPlayerBlock: 0
   isKnockDown: 0
   getUpCount: 0
