@@ -16,7 +16,6 @@ public class BuyWeapons : MonoBehaviour
     private List<bool> boughtWeapons;
 
     [SerializeField] private int weaponID;
-    [SerializeField] private List<int> forbiddenID;
 
     Text weaponStat;
 
@@ -48,7 +47,7 @@ public class BuyWeapons : MonoBehaviour
             SaveManager.SaveWeapons(weaponStates);
             SaveManager.SaveCurrency(playerCurrency);
 
-            if(boughtWeapons[0] && boughtWeapons[1] ) { weaponID = -1; }
+            if(boughtWeapons[0] && boughtWeapons[1] ) { weaponID = 2; }
             else if(boughtWeapons[0] && boughtWeapons[1] == false) { weaponID = 1; }
             else if(boughtWeapons[0] == false && boughtWeapons[1]){ weaponID = 0;}
             

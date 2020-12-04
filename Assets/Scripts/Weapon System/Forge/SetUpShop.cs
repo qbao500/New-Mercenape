@@ -19,40 +19,23 @@ public class SetUpShop : SetUpScreens
         AbstractWeapon weapon = weaponsShop[buyWeapons.GetWeaponID()];
         List<bool> boughtWeapons = weaponStates.GetBoughtWeapons();
         
-        if (boughtWeapons[0] && boughtWeapons[1])
-        {
-            for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
+        for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
 
-            weaponStatTexts[0].text = "Out of Stock!";
-            weaponStatTexts[1].text = "";
-            weaponStatTexts[2].text = "";
-            weaponStatTexts[3].text = "";
-            weaponStatTexts[4].text = "";
-            weaponStatTexts[5].text = "";
-            weaponStatTexts[6].text = "";
-            weaponStatTexts[7].text = "";
+        if (boughtWeapons[0] && boughtWeapons[1]) { for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); } }
+        else { weaponNames[weaponID].SetActive(true); }   
+       
+        weaponStatTexts[0].text = weapon.GetDescription();
+        weaponStatTexts[1].text = weapon.GetWeight().ToString();
+        weaponStatTexts[2].text = weapon.GetSpeed().ToString();
+        weaponStatTexts[3].text = weaponStates.GetWeaponSpeedShop().ToString();
+        weaponStatTexts[4].text = weaponStates.GetWeaponImpactDamageShop().ToString();
+        weaponStatTexts[5].text = weapon.GetBleedDamage().ToString();
+        weaponStatTexts[6].text = weapon.GetBleedDuration().ToString();
+        weaponStatTexts[7].text = weapon.GetStaggerDuration().ToString();
 
-            costText.text = " " + 0;
-            upgradeText.text = playerCurrency.speedUpgrades.ToString();
-        }
-        else
-        {
-            for (int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
-            weaponNames[weaponID].SetActive(true);
-
-            weaponStatTexts[0].text = weapon.GetDescription();
-            weaponStatTexts[1].text = weapon.GetWeight().ToString();
-            weaponStatTexts[2].text = weapon.GetSpeed().ToString();
-            weaponStatTexts[3].text = weaponStates.GetWeaponSpeedShop().ToString();
-            weaponStatTexts[4].text = weaponStates.GetWeaponImpactDamageShop().ToString();
-            weaponStatTexts[5].text = weapon.GetBleedDamage().ToString();
-            weaponStatTexts[6].text = weapon.GetBleedDuration().ToString();
-            weaponStatTexts[7].text = weapon.GetStaggerDuration().ToString();
-
-            cost = weaponsShop[buyWeapons.GetWeaponID()].GetCost();
-            costText.text = cost.ToString();
-            upgradeText.text = playerCurrency.speedUpgrades.ToString();
-        }
+        cost = weaponsShop[buyWeapons.GetWeaponID()].GetCost();
+        costText.text = cost.ToString();
+        upgradeText.text = playerCurrency.speedUpgrades.ToString();
     }
 
     protected override void SwitchModels()
