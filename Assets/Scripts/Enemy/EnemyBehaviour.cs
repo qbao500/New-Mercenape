@@ -22,6 +22,7 @@ public class EnemyBehaviour : MonoBehaviour
     protected int bleedTicks, currentBleedTicks;
 
     private Vector3 enemyRotation;
+    protected Animator animator;
     protected Rigidbody rb;
     protected BoxCollider boxCollier;
     [SerializeField] protected Transform frontDetection;
@@ -38,7 +39,8 @@ public class EnemyBehaviour : MonoBehaviour
         enemyRotation = transform.rotation.eulerAngles;
 
         barHealth = transform.GetChild(1).GetComponent<EnemyHealthBar>();
-            
+
+        animator = GetComponent<Animator>();
         boxCollier = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
@@ -135,13 +137,7 @@ public class EnemyBehaviour : MonoBehaviour
         currentHP -= bleedDmg;
         barHealth.UpdateHealthBar(currentHP, stat.MaxHP);
 
-        DamagePopUp.Create(PopUpPos(transform), bleedDmg, Color.magenta, 10);
-
-        // If dead
-        if (currentHP <= 0)
-        {          
-            StartCoroutine("EnemyDeath");
-        }
+        DamagePopUp.Create(PopUpPos(transform), bleedDmg, Color.magenta, 10);     
     }
 
     public virtual void ApplyBleeding(float damage, float duration, int ticks, Collider selfCol)
@@ -165,8 +161,15 @@ public class EnemyBehaviour : MonoBehaviour
         while (currentBleedTicks <= bleedTicks)
         {
             TakeBleedDammage(weaponBleedDamage);
+
+            if (currentHP <= 0)  // If dead while bleeding
+            {
+                StartCoroutine("EnemyDeath");
+                yield break;
+            }
+
             yield return new WaitForSeconds(weaponBleedDuration);
-            currentBleedTicks++;
+            currentBleedTicks++;          
         }
     }
 
@@ -205,7 +208,8 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     protected IEnumerator EnemyDeath()
-    {        
+    {
+        animator.SetTrigger("Death");
         speed = 0;
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
