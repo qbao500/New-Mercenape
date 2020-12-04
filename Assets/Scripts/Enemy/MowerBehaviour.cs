@@ -29,8 +29,6 @@ public class MowerBehaviour : EnemyBehaviour
     private CapsuleCollider capsuleCollider;
     private SphereCollider generatorCollider;
 
-    private Animator animatorMower;
-
     protected override void Awake()
     {
         base.Awake();
@@ -44,8 +42,6 @@ public class MowerBehaviour : EnemyBehaviour
         generatorCollider = backside.GetComponent<SphereCollider>();
         forceShield = backside.GetChild(1).gameObject;
         shieldMat = forceShield.GetComponent<MeshRenderer>().material;
-
-        animatorMower = GetComponent<Animator>();
     }
 
     protected override void OnEnable()
@@ -58,9 +54,9 @@ public class MowerBehaviour : EnemyBehaviour
         isAttacking = false; isGenerating = false;
 
         fieldHP = mowerStat.FieldMaxHP;
-        fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);       
+        fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);
 
-        animatorMower.SetBool("IsDestroyed", false); ;
+        animator.SetBool("IsDestroyed", false); ;
 
         fieldSprite.enabled = true;
         generatorCollider.enabled = true;
@@ -76,7 +72,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (IsDestroyed) { return; }
 
         ChangeToGenerating();
-        animatorMower.SetTrigger("Generating");
+        animator.SetTrigger("Generating");
 
         forceShield.SetActive(true);
         mowerStat.ShieldGenerating(shieldMat);
@@ -93,7 +89,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (IsDestroyed) { return; }
 
         ChangeToActive();
-        animatorMower.SetBool("IsActive", true);
+        animator.SetBool("IsActive", true);
 
         mowerStat.ShieldOn(shieldMat);
 
@@ -108,7 +104,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (IsDestroyed) { return; }
 
         ChangeToInactive();
-        animatorMower.SetBool("IsActive", false);
+        animator.SetBool("IsActive", false);
         forceShield.SetActive(false);
 
         fieldSprite.color = Color.white;
@@ -117,7 +113,7 @@ public class MowerBehaviour : EnemyBehaviour
     private void Destroyed()
     {
         ChangeToDestroyed();
-        animatorMower.SetBool("IsDestroyed", true);
+        animator.SetBool("IsDestroyed", true);
 
         forceShield.SetActive(false);
         speed = stat.RunningSpeed;
@@ -164,8 +160,7 @@ public class MowerBehaviour : EnemyBehaviour
             {
                 capsuleCollider.enabled = false;
 
-                animatorMower.SetBool("IsDestroyed", false);
-                animatorMower.SetTrigger("Death");
+                animator.SetBool("IsDestroyed", false);              
             }
 
             if (!isGenerating)
@@ -315,7 +310,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (Physics.Raycast(frontDetection.position + (Vector3.down * 5), transform.right, 100f, LayerMask.GetMask("Player"))) { return; }
 
         ChangeDirection();
-        if (!IsGenerating && !IsActive) { animatorMower.Play("Turning"); }
+        if (!IsGenerating && !IsActive) { animator.Play("Turning"); }
     }
 
     void ReturnPhysics()
@@ -331,7 +326,7 @@ public class MowerBehaviour : EnemyBehaviour
     {
         base.Movement();
 
-        animatorMower.SetFloat("MovementSpeed", speed / stat.RunningSpeed);       
+        animator.SetFloat("MovementSpeed", speed / stat.RunningSpeed);       
     }
 
     protected override void ChangeDirection()
