@@ -70,7 +70,6 @@ public class EnemySpawnerScript : MonoBehaviour
     private void ToCountingState()
     {
         state = SpawnState.Counting;
-        StartCoroutine(NoSpawningEffect());
     }
 
     private void ToSpawningState()
@@ -232,8 +231,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void ForgeButton()
     {
-        FindObjectOfType<Menu>().ToForge();
         completeWaveScreen.SetActive(false);
+        FindObjectOfType<Menu>().ToForge();
     }
 
     public void NextLevelButton()
