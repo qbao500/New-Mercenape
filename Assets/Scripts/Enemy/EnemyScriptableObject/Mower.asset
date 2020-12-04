@@ -197,3 +197,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  shieldNormal: {r: 0.36221784, g: 0, b: 1.9766746, a: 0}
+  shieldDamage: {r: 1.9766746, g: 0.124188974, b: 0, a: 0}

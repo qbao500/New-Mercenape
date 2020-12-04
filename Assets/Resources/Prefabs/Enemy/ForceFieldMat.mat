@@ -34,4 +34,4 @@ Material:
     - _Offset: 1.5
     - _ScrollSpeed: 0.3
     m_Colors:
-    - _Emission: {r: 0.36424828, g: 0, b: 2, a: 0}
+    - _Emission: {r: 0.36221787, g: 0, b: 1.9766747, a: 0}

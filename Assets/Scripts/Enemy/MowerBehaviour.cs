@@ -13,6 +13,7 @@ public class MowerBehaviour : EnemyBehaviour
 
     [SerializeField] private Transform backside;
     private GameObject forceShield;
+    private Material shieldMat;
 
     private float fieldHP;
 
@@ -42,6 +43,7 @@ public class MowerBehaviour : EnemyBehaviour
         capsuleCollider = backside.GetComponent<CapsuleCollider>();
         generatorCollider = backside.GetComponent<SphereCollider>();
         forceShield = backside.GetChild(1).gameObject;
+        shieldMat = forceShield.GetComponent<MeshRenderer>().material;
 
         animatorMower = GetComponent<Animator>();
     }
@@ -75,7 +77,9 @@ public class MowerBehaviour : EnemyBehaviour
 
         ChangeToGenerating();
         animatorMower.SetTrigger("Generating");
+
         forceShield.SetActive(true);
+        mowerStat.ShieldGenerating(shieldMat);
 
         fieldSprite.color = Color.yellow;
         speed = 0;
@@ -90,6 +94,8 @@ public class MowerBehaviour : EnemyBehaviour
 
         ChangeToActive();
         animatorMower.SetBool("IsActive", true);
+
+        mowerStat.ShieldOn(shieldMat);
 
         fieldSprite.color = Color.red;
         speed = stat.RunningSpeed;
@@ -180,6 +186,8 @@ public class MowerBehaviour : EnemyBehaviour
             // Field Generator will damage back the player and push player
             playerHealth.PlayerTakeDamage(mowerStat.FieldDamage);
             PushPlayer();
+            TempCamScript.Instance.ShakeCamera(5f, .0000001f);
+            StartCoroutine(mowerStat.ShieldReflect(shieldMat));
         }
     }
 

@@ -9,6 +9,10 @@ public class MowerStatsSO : EnemyStatsSO
     [SerializeField] private AnimationCurve fieldHPEachWave;
     [SerializeField] private AnimationCurve fieldDamageEachWave;
 
+    [Header("Shield colors")]
+    [ColorUsage(true, true)] public Color shieldNormal;
+    [ColorUsage(true, true)] public Color shieldDamage;
+
     public float FieldMaxHP { get; private set; }
     public int FieldDamage { get; private set; }
 
@@ -72,6 +76,27 @@ public class MowerStatsSO : EnemyStatsSO
     {
         fieldDamageEachWave.AddKey(1, 20);      // Start with 20 damage (double scale of Mower damage)
         fieldDamageEachWave.AddKey(100, 2000);  // +20 each wave
+    }
+
+    public void ShieldGenerating(Material mat)
+    {
+        mat.SetFloat("_FresnelPower", 10f);
+        mat.SetFloat("_ScrollSpeed", 0.1f);
+    }
+
+    public void ShieldOn(Material mat)
+    {
+        mat.SetFloat("_FresnelPower", 2.5f);
+        mat.SetFloat("_ScrollSpeed", 0.3f);
+    }  
+
+    public IEnumerator ShieldReflect(Material mat)
+    {
+        mat.SetColor("_Emission", shieldDamage);
+
+        yield return new WaitForSeconds(.2f);
+
+        mat.SetColor("_Emission", shieldNormal);
     }
 
 }
