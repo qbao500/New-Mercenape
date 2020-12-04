@@ -14,15 +14,14 @@ public class UseUpgrades : MonoBehaviour
    
     List<AbstractUpgrades> upgrades;
 
-    [SerializeField] int upgradeID, upgradeCost;
+    int upgradeID, upgradeCost;
+    public int upgradeLimit;
 
     public Text amountText;
 
-    void Awake()
-    {
-        SetUpScripts();
-        upgradeID = upgrades[0].GetID();
-    }
+    void Awake() { SetUpScripts(); upgradeID = upgrades[0].GetID(); }
+
+    void Start() { amountText.text = calculator.GetSpeedAmount().ToString(); }
 
     void SetUpScripts()
     {
@@ -45,7 +44,7 @@ public class UseUpgrades : MonoBehaviour
             amountText.text = "" + speedAmount;
             upgradeCost = upgrades[upgradeID].GetUpgradeCost() * speedAmount;
             setUpForge.SetUpgradeCost(upgradeCost);
-            playerCurrency.speedUpgrades--;
+            playerCurrency.speedUpgrades = playerCurrency.speedUpgrades - 1;
         }
         else if (arrowButtonName == "Arrow2" && speedAmount > 0)
         {
@@ -65,10 +64,12 @@ public class UseUpgrades : MonoBehaviour
     // Confirm button function for confirming the updates. 
     public void ConfirmUpgrade()
     {
+        List<int> savedSpeeds = weaponStates.GetSavedSpeeds();
+
         int weaponID = weaponStates.GetChosenWeaponID();
         int currency = money.GetCurrentCurrency();
 
-        if(currency >= upgradeCost)
+        if(currency >= upgradeCost && savedSpeeds[weaponID] < upgradeLimit)
         {
             money.ChangeCurrencyAmount(upgradeCost);
             weaponStates.WhatWeaponWasUpgraded(weaponID);

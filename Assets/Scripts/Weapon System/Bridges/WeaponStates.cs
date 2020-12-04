@@ -28,10 +28,7 @@ public class WeaponStates: MonoBehaviour
         LoadWeaponData();
     }
 
-    void Start()
-    {
-        SetUpWeapon();
-    }
+    void Start() { SetUpWeapon(); }
 
     void SetUpBoolLists()
     {
@@ -46,21 +43,9 @@ public class WeaponStates: MonoBehaviour
     // Function for setting the ownership status of a weapon.
     public void WhatWeaponWasBought(int id) 
     {
-        if(id == 0)
-        {
-            boughtWeaponsList[0] = true;
-            ownedWeaponsList[1] = true;
-        }
-        else if (id == 1)
-        {
-            boughtWeaponsList[1] = true;
-            ownedWeaponsList[2] = true;
-        }
-        else if (id == 2)
-        {
-            boughtWeaponsList[2] = true;
-            ownedWeaponsList[3] = true;
-        }
+        if(id == 0) { boughtWeaponsList[0] = true; ownedWeaponsList[1] = true; }
+        else if (id == 1) { boughtWeaponsList[1] = true; ownedWeaponsList[2] = true; }
+        else if (id == 2) { boughtWeaponsList[2] = true; ownedWeaponsList[3] = true; }
     }
 
     // Function for setting the upgrade status of a weapon. 

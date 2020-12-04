@@ -35,6 +35,7 @@ public class PlayerCurrency : MonoBehaviour
     {
         SetTexts();
         SetKarmaBar();
+        speedUpgrades = 6;
     }
 
     void SetTexts()

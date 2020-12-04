@@ -30,11 +30,7 @@ public class AssetManager : MonoBehaviour
     public SoundAudioClip[] soundAudioclipArray;
 
     [System.Serializable]
-    public class SoundAudioClip
-    {
-        public soundManager.Sound sound;
-        public AudioClip audioclip;
-    }
+    public class SoundAudioClip { public soundManager.Sound sound; public AudioClip audioclip; }
 
     void Awake()
     {
@@ -61,22 +57,19 @@ public class AssetManager : MonoBehaviour
     }
 
     // Function for setting up images from the editor menu.
-    void SetUpSprites()
-    {
-        upgradeImages.InsertRange(0, new List<Sprite>(Resources.LoadAll<Sprite>("Upgrades")));
-    }
+    void SetUpSprites() { upgradeImages.InsertRange(0, new List<Sprite>(Resources.LoadAll<Sprite>("Upgrades"))); }
 
     public void SetUpModels() { foreach (WeaponInUse weapon in weaponModels) { weapon.gameObject.SetActive(false); } }
 
     // Constructs weapons and upgrades and adds them to their own lists. 
     void SetUpWeaponsAndUpgrades()
     {
-        weapons.Add(new TestWeapon("Sword", "Does things", 0, 0, 1.5f, 5, 5, 1, 2, 1, 0, new Vector3(0, 3, 4), new Vector3(2, 0.5f, 1), weaponModels[0]));
-        weapons.Add(new TestWeapon("Mace", "Does things", 1, 25, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
-        weapons.Add(new TestWeapon("Big Sword", "Does things", 2, 100, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(3, 0.5f, 1), weaponModels[2]));
+        weapons.Add(new TestWeapon("Sword", "Standard issue katana that can cause minor bleeding founds on unarmored enemies.", 0, 0, 1.5f, 5, 5, 1, 2, 1, 0, new Vector3(0, 3, 4), new Vector3(2, 0.5f, 1), weaponModels[0]));
+        weapons.Add(new TestWeapon("Mace", "Extremely heavy mace which can stagger smaller enemies.", 1, 5000, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
+        weapons.Add(new TestWeapon("Big Sword", "Very big and sharp sword which causes heavy founds on unarmored enemies.", 2, 5000, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(3, 0.5f, 1), weaponModels[2]));
 
-        weaponsShop.Add(new TestWeapon("Mace", "Does things", 1, 25, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
-        weaponsShop.Add(new TestWeapon("BigSword", "Does things", 2, 100, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
+        weaponsShop.Add(new TestWeapon("Mace", "Extremely heavy mace which can stagger smaller enemies.", 1, 5000, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
+        weaponsShop.Add(new TestWeapon("BigSword", "Very big and sharp sword which causes heavy founds on unarmored enemies.", 2, 5000, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
         weaponsShop.Add(new TestWeapon("Out of stock!", "Out of stock!", 3, 0, 0, 0, 0, 0, 0, 0, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
 
         upgrades.Add(new TestUpgrade("Speed Upgrade", "Increases the Speed of your attacks", 0, 25, upgradeImages[0]));
