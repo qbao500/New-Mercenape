@@ -14,7 +14,7 @@ using System;
 //Sorting Layer drop down menu, bold text on prefab override, revert to prefab and instant update on Order change functionality by 5argon
 
 [CustomEditor(typeof(MeshRenderer))]
-
+[CanEditMultipleObjects]
 public class MeshRendererSortingLayersEditor : Editor
 {
     public override void OnInspectorGUI()
