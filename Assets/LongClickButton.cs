@@ -29,7 +29,7 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	{
 		pointerDown = true;
 		fillImage.gameObject.SetActive(true);
-		highlightBackground.gameObject.SetActive(false);
+		//highlightBackground.gameObject.SetActive(false);
 		Debug.Log("OnPointerDown");
 
 	}
@@ -38,7 +38,7 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	{
 		Reset();
 		fillImage.gameObject.SetActive(false);
-		highlightBackground.gameObject.SetActive(true);
+		//highlightBackground.gameObject.SetActive(true);
 		Debug.Log("OnPointerUp");
 	}
 
