@@ -5,6 +5,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 {
     private Vector3 normalScale;
 
+    public float enterRate = 1.1f;
+    public float clickRate = 1.3f;
+
+
     private void Awake()
     {
         normalScale = transform.localScale;
