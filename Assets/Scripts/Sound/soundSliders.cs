@@ -12,9 +12,9 @@ public class soundSliders : MonoBehaviour
 
     private void Start()
     {
-        Master.value = PlayerPrefs.GetFloat("masterVolume", 0);
+        // Master.value = PlayerPrefs.GetFloat("masterVolume", 0);
         SFX.value = PlayerPrefs.GetFloat("sfxVolume", 0);
-        Audio.value = PlayerPrefs.GetFloat("audioVolume", 0);
+        // Audio.value = PlayerPrefs.GetFloat("audioVolume", 0);
         // Music.value = PlayerPrefs.GetFloat("musicVolume", 0);
     }
 

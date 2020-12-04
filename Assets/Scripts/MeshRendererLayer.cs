@@ -17,10 +17,8 @@ using System;
 
 public class MeshRendererSortingLayersEditor : Editor
 {
-
     public override void OnInspectorGUI()
     {
-
         base.OnInspectorGUI();
 
         serializedObject.Update();
