@@ -19,10 +19,17 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	[SerializeField]
 	private Image highlightBackground;
 
+	void Awake()
+    {
+		fillImage.gameObject.SetActive(false);
+    }
+
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		pointerDown = true;
+		fillImage.gameObject.SetActive(true);
+		highlightBackground.gameObject.SetActive(false);
 		Debug.Log("OnPointerDown");
 
 	}
@@ -30,6 +37,8 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	public void OnPointerUp(PointerEventData eventData)
 	{
 		Reset();
+		fillImage.gameObject.SetActive(false);
+		highlightBackground.gameObject.SetActive(true);
 		Debug.Log("OnPointerUp");
 	}
 

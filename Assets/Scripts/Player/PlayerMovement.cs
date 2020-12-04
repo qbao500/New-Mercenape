@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrabWall = false;
     public bool isJumping = false;
 
-    TextMeshProUGUI climbPrompt;
     bool isCollidePlatform;
     bool canLedgeClimb = true;
     Vector3 playerClimbPos;
@@ -89,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
         boxCollider = transform.GetComponent<BoxCollider>();
         capsuleCollider = transform.GetComponent<CapsuleCollider>();
         PlayerRigid2d.centerOfMass = Vector3.zero;
-        climbPrompt = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("climbPrompt").GetComponent<TextMeshProUGUI>();
 
 
         //HashID animator parameters for performances
@@ -155,15 +153,7 @@ public class PlayerMovement : MonoBehaviour
             TimePressButton();
             PlayerMove();
         }
-        if (isCollideWall && !isGrabWall && !isKnockDown)
-        {
-            climbPrompt.gameObject.SetActive(true);
-           // climbPrompt.SetText("Press W to Grab the Vine");
-        }
-        else
-        {
-            climbPrompt.gameObject.SetActive(false);
-        }
+       
 
         if (!isCollidePlatform && !CheckOnTop())
         {
@@ -179,7 +169,6 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerRigid2d.useGravity = false;
             PlayerRigid2d.rotation = Quaternion.Euler(5, 90, 0);
-            climbPrompt.gameObject.SetActive(true);
             //climbPrompt.SetText("Press W or S to Move Up or Down");
             PlayerClimbWal();
         }
