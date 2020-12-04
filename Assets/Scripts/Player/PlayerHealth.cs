@@ -59,11 +59,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isBleed)
         {
-            DamagePopUp.Create(PopUpPos(3.5f), enemyDamage, Color.red, 15);
+            DamagePopUp.Create(PopUpPos(3.5f), enemyDamage, Color.red, 25);
         }
         else
         {
-            DamagePopUp.Create(PopUpPos(2.5f), enemyDamage, Color.yellow, 10);
+            DamagePopUp.Create(PopUpPos(2.5f), enemyDamage, Color.yellow, 18);
         }
         PlayerHP -= enemyDamage;
         SetCurrentHP(PlayerHP);

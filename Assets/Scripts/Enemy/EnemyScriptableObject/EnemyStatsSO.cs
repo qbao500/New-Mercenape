@@ -8,6 +8,8 @@ public class EnemyStatsSO : ScriptableObject
     [Header("Base stats")]
     public new string name;   
     public int spaceToGetUp;
+    public Color damageColor;
+    public Color bleedColor;
 
     // Pattern for waves
     [SerializeField] protected AnimationCurve damageEachWave;

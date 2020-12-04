@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -956,16 +956,31 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5296866465776018771, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -310.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5296866465776018772, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1610466382}
+    - target: {fileID: 5296866466115407639, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -191.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5296866466115407640, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1610466382}
+    - target: {fileID: 5296866466549238394, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -520
+      objectReference: {fileID: 0}
     - target: {fileID: 5296866466549238395, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -976,11 +991,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1610466379}
+    - target: {fileID: 5296866466642160959, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5296866466669300728, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1610466382}
+    - target: {fileID: 5296866466754479060, guid: abd5edf636aafbd4a9307832f3a873d8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -428
+      objectReference: {fileID: 0}
     - target: {fileID: 5296866466754479061, guid: abd5edf636aafbd4a9307832f3a873d8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

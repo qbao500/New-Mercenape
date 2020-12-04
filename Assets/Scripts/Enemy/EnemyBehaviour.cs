@@ -122,7 +122,7 @@ public class EnemyBehaviour : MonoBehaviour
         currentHP -= playerDamage;
         barHealth.UpdateHealthBar(currentHP, stat.MaxHP);
 
-        DamagePopUp.Create(PopUpPos(transform), playerDamage, Color.clear, 15); 
+        DamagePopUp.Create(PopUpPos(transform), playerDamage, stat.damageColor, 25); 
 
         // If dead
         if (currentHP <= 0)
@@ -137,7 +137,7 @@ public class EnemyBehaviour : MonoBehaviour
         currentHP -= bleedDmg;
         barHealth.UpdateHealthBar(currentHP, stat.MaxHP);
 
-        DamagePopUp.Create(PopUpPos(transform), bleedDmg, Color.magenta, 10);     
+        DamagePopUp.Create(PopUpPos(transform), bleedDmg, stat.bleedColor, 18);     
     }
 
     public virtual void ApplyBleeding(float damage, float duration, int ticks, Collider selfCol)

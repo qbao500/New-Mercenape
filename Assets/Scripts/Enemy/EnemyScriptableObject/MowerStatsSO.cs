@@ -12,6 +12,7 @@ public class MowerStatsSO : EnemyStatsSO
     [Header("Shield colors")]
     [ColorUsage(true, true)] public Color shieldNormal;
     [ColorUsage(true, true)] public Color shieldDamage;
+    public Color fieldDmgColor;
 
     public float FieldMaxHP { get; private set; }
     public int FieldDamage { get; private set; }
