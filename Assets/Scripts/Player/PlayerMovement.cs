@@ -564,7 +564,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void GetKnockDown()
+    public void GetKnockDown(bool isMower)
     {
         animator.ResetTrigger("Attack");
         animator.SetTrigger("KnockDown");
@@ -574,7 +574,7 @@ public class PlayerMovement : MonoBehaviour
         playerHealth.SetCurrentSpace(getUpCount);
         playerHealth.spaceTextGrid.gameObject.SetActive(true);
 
-        OnKnockDown();
+        if (!isMower) { OnKnockDown(); }
     }
 
     public void PlayerBounceUp()

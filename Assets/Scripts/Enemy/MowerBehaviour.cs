@@ -59,6 +59,7 @@ public class MowerBehaviour : EnemyBehaviour
 
         fieldHP = mowerStat.FieldMaxHP;
         fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);
+        fieldBarHealth.ScaleLeftUI(rb);
 
         animator.SetBool("IsDestroyed", false); ;
 
@@ -340,6 +341,13 @@ public class MowerBehaviour : EnemyBehaviour
     {
         base.ChangeDirection();
         fieldBarHealth.ScaleLeftUI(rb);       
+    }
+
+    protected override void KnockPlayerDown()
+    {
+        base.KnockPlayerDown();
+
+        playerMovement.GetKnockDown(true);
     }
 
     protected override Vector3 PopUpPos(Transform trans)

@@ -158,6 +158,13 @@ public class ShredBehaviour : EnemyBehaviour
         animator.Play("Armature|StaggeredTakeHit", 0, 0f);      
     }
 
+    protected override void KnockPlayerDown()
+    {
+        base.KnockPlayerDown();
+
+        playerMovement.GetKnockDown(false);
+    }
+
     #region Hit Boxes
     private void NormalHitBox()
     {

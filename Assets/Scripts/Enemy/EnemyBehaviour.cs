@@ -179,7 +179,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     #endregion
 
-    protected void KnockPlayerDown()
+    protected virtual void KnockPlayerDown()
     {
         // Don't knock player down again when bouncing back
         if (playerMovement.animator.GetCurrentAnimatorStateInfo(0).IsTag("BounceBack")) { return; }
@@ -191,10 +191,8 @@ public class EnemyBehaviour : MonoBehaviour
             enemyID = GetInstanceID();
         }
 
-        // If player is already knocked down, don't do anything
+        // If player is already knocked down, don't do anything. Continue with child scripts
         if (playerMovement.isKnockDown) { return; }
-
-        playerMovement.GetKnockDown();
     }
 
     protected virtual void PlayerUp()

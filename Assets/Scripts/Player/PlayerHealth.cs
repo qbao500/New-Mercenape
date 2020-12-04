@@ -66,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
             DamagePopUp.Create(PopUpPos(2.5f), enemyDamage, Color.yellow, 18);
         }
         PlayerHP -= enemyDamage;
+        PlayerHP = Mathf.Clamp(PlayerHP, 0, PlayerMaxHP);
         SetCurrentHP(PlayerHP);
         CheckPlayerDeath();
     }
