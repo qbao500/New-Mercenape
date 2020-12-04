@@ -72,7 +72,7 @@ public class AssetManager : MonoBehaviour
         weaponsShop.Add(new TestWeapon("BigSword", "Very big and sharp sword which causes heavy founds on unarmored enemies.", 2, 5000, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
         weaponsShop.Add(new TestWeapon("Out of stock!", "Out of stock!", 3, 0, 0, 0, 0, 0, 0, 0, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
 
-        upgrades.Add(new TestUpgrade("Speed Upgrade", "Increases the Speed of your attacks", 0, 25, upgradeImages[0]));
+        upgrades.Add(new TestUpgrade("Speed Upgrade", "Increases the Speed of your attacks", 0, 1000, upgradeImages[0]));
     }
 
     // Basically this sends the weapons and upgrade lists to the scripts that use them. 
