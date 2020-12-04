@@ -116,7 +116,6 @@ public class Menu : MonoBehaviour
         if(buttonName == "options")
         {
             switchPanel(panels[2]);
-            Debug.Log("Options pressed");
         }
         else if(buttonName == "weapon")
         {
@@ -131,6 +130,14 @@ public class Menu : MonoBehaviour
         else if(buttonName == "ToForge")
         {
             ToForge();
+        }
+        else if(buttonName == "QuitForge")
+        {
+            switchPanel(panels[1]);
+        }
+        else if(buttonName == "QuitShop")
+        {
+            switchPanel(panels[1]);
         }
     }
 
