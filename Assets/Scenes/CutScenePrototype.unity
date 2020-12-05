@@ -5458,7 +5458,7 @@ MonoBehaviour:
   betweenLetterTime: 0.02
   betweenSequenceWaitTime: 2
   deltaTime: 0
-  characterAutoplayTime: 0.04
+  characterAutoplayTime: 0.035
   sequencesArray:
   - chosenbackGround: {fileID: 21300000, guid: 33e66f5deb7f62c40b449c9e5a808ede, type: 3}
     sentences: A long-forgotten planet is being approached by curious minds... The
