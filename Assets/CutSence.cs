@@ -19,7 +19,7 @@ public class CutSence : MonoBehaviour
 
     public float initWaitTime=0.5f;
     public float betweenLetterTime=0.02f;
-    public float betweenSequenceWaitTime = 5f;
+    public float betweenSequenceWaitTime = 3f;
     public float deltaTime;
     float startSequenceTime;
     bool isAuto=false;
@@ -49,7 +49,7 @@ public class CutSence : MonoBehaviour
         else
         {
             backGroundImg = CanvasUI.GetChild(0).GetComponent<Image>();
-            dialogueText = CanvasUI.GetChild(1).GetComponent<TextMeshProUGUI>();
+            dialogueText = CanvasUI.GetChild(2).GetComponent<TextMeshProUGUI>();
             autoText = CanvasUI.GetChild(8).GetComponent<TextMeshProUGUI>();
             
             previousButton = CanvasUI.GetChild(3).GetComponent<Button>();
@@ -57,7 +57,7 @@ public class CutSence : MonoBehaviour
             menu = this.GetComponent<Menu>();
         }
        
-        int[] excludedChild = { 2 };
+        int[] excludedChild = { 1 };
         SetActiveUIs(false, excludedChild);
         
         autoText.gameObject.SetActive(false);
@@ -195,6 +195,7 @@ public class CutSence : MonoBehaviour
         foreach (char letter in sequencesArray[sequenceIndex].sentences.ToCharArray())
         {
             dialogueText.text += letter;
+            betweenSequenceWaitTime = betweenSequenceWaitTime + 0.01f;
             yield return new WaitForSeconds(betweenLetterTime);
         }
     }
@@ -202,6 +203,7 @@ public class CutSence : MonoBehaviour
     {
         if (sequenceIndex< sequencesArray.Length - 1)
         {
+            betweenSequenceWaitTime = 3f;
             continueButton.interactable = false;
             previousButton.interactable = false; 
             startSequenceTime = Time.time;

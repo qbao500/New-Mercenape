@@ -5353,6 +5353,7 @@ GameObject:
   - component: {fileID: 2056757891}
   - component: {fileID: 2056757890}
   - component: {fileID: 2056757896}
+  - component: {fileID: 2056757897}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5455,33 +5456,116 @@ MonoBehaviour:
   sequenceIndex: -1
   initWaitTime: 0.5
   betweenLetterTime: 0.02
-  betweenSequenceWaitTime: 3
+  betweenSequenceWaitTime: 2
   deltaTime: 0
   sequencesArray:
-  - chosenbackGround: {fileID: 21300000, guid: d19a751d04b4cc54287af6a12340f93b, type: 3}
-    sentences: BG 1 the brown fox jumped over the lazy dog 0123456789
-  - chosenbackGround: {fileID: 21300000, guid: 962dc78a23e389446a36305223c4aea0, type: 3}
-    sentences: Bg 2 the brown fox jumped over the lazy dog 0123456789
-  - chosenbackGround: {fileID: 21300000, guid: 8e3465348f24d164dada93f7c51c682b, type: 3}
-    sentences: 'no bg3
-
-      Bg4
-
-      the brown fox jumped over the lazy dog 0123456789'
-  - chosenbackGround: {fileID: 21300000, guid: 9e910a0d549acbd429e0c77db2ea45e1, type: 3}
-    sentences: 'Bg 5
-
-      the brown fox jumped over the lazy dog 0123456789
-
-      the
-      brown fox jumped over the lazy dog 0123456789'
-  - chosenbackGround: {fileID: 21300000, guid: 2cac778e4566de741bb54139c69b0802, type: 3}
-    sentences: 'Bg 3
-
-      the brown fox jumped over the lazy dog
-
-      the brown
-      fox jumped over the lazy dog'
+  - chosenbackGround: {fileID: 21300000, guid: 33e66f5deb7f62c40b449c9e5a808ede, type: 3}
+    sentences: A long-forgotten planet is being approached by curious minds... The
+      Star Apes.
+  - chosenbackGround: {fileID: 21300000, guid: 8627dc5e9f618c143be068a6cf7d415e, type: 3}
+    sentences: 'Emperor Leonir: Hahahahaha... Finally!'
+  - chosenbackGround: {fileID: 21300000, guid: 5dbfc8d55c3510648bda7bef3cde98fc, type: 3}
+    sentences: 'Emperor Leonir: ...The Lost Planet! The greatest hub of civilization
+      within Star Ape history! Empty and in ruins today...'
+  - chosenbackGround: {fileID: 21300000, guid: 6ecd19d5e84c8bf42bf45959d9953872, type: 3}
+    sentences: 'Emperor Leonir: ...So the secrets within in will be unraveled by
+      I, Leonir 3rd! My achievements shall prove to everyone that I am GREAT! The
+      greatest leader within this lineage! Ahahahahah!'
+  - chosenbackGround: {fileID: 21300000, guid: 77790345aa5536146bdd4d79eeb6646b, type: 3}
+    sentences: 'General Aurok: What is it that we''re looking for?'
+  - chosenbackGround: {fileID: 21300000, guid: 77790345aa5536146bdd4d79eeb6646b, type: 3}
+    sentences: 'Emperor Leonir: Supreme military technology!'
+  - chosenbackGround: {fileID: 21300000, guid: c8c42ad81473a9740a7636c8a2516bd8, type: 3}
+    sentences: 'Emperor: I trust you with establishing our first base on the surface,
+      General. Failure will cost you your status... And perhaps even your head, if
+      it''s really embarrassing for me.'
+  - chosenbackGround: {fileID: 21300000, guid: c8c42ad81473a9740a7636c8a2516bd8, type: 3}
+    sentences: 'General: As you command, your majesty'
+  - chosenbackGround: {fileID: 21300000, guid: af3479273eb15b34eb3d3cbad34092d2, type: 3}
+    sentences: The Emperor's troops set foot on the Lost Planet...
+  - chosenbackGround: {fileID: 21300000, guid: b5a144936bccfd6439c4d5d1d3b65712, type: 3}
+    sentences: They expected a quiet, peaceful world.
+  - chosenbackGround: {fileID: 21300000, guid: be07b9ca50511b1468013ce2cab03acb, type: 3}
+    sentences: ...But they found something else.
+  - chosenbackGround: {fileID: 21300000, guid: fd821b107f5490b4389c89a37f3a9701, type: 3}
+    sentences: During the following weeks, many gave their lives fighting a useless
+      battle. The losses began making the situation look hopeless.
+  - chosenbackGround: {fileID: 21300000, guid: 23565c50504a1474f870f48c0d326a1a, type: 3}
+    sentences: 'General''s Assistant: W-what are we going to do...?!?!'
+  - chosenbackGround: {fileID: 21300000, guid: 23565c50504a1474f870f48c0d326a1a, type: 3}
+    sentences: 'General: I... I don''t know.'
+  - chosenbackGround: {fileID: 21300000, guid: 9f3dd5274e925c549a0cbbb4af79268a, type: 3}
+    sentences: The Emperor and those in his command weren't the only curious apes
+      around. A cunning pair of eyes observed the desperate situation of the Emperor's
+      army from their humble red spaceship.
+  - chosenbackGround: {fileID: 21300000, guid: c1502a7903da09947bc188e852471c18, type: 3}
+    sentences: 
+  - chosenbackGround: {fileID: 21300000, guid: 2497edd8b2198d941a6058b3b9795f0b, type: 3}
+    sentences: 
+  - chosenbackGround: {fileID: 21300000, guid: c4e875a3ec07b444d99e23b4c76127e1, type: 3}
+    sentences: 'Captain Volkrel: It looks like the Supreme General of the Golden
+      Empire is in BIG trouble..!!'
+  - chosenbackGround: {fileID: 21300000, guid: af6f294499482f44bbd803c3937bb997, type: 3}
+    sentences: 'Captain Volkrel: A great oppoturnity is at hand'
+  - chosenbackGround: {fileID: 21300000, guid: ea9dcf8a8d055ed439c0cfd72dbb04dd, type: 3}
+    sentences: 'Weapon Mechanic: ...For what, fullfilling your fantasy of killing
+      him?'
+  - chosenbackGround: {fileID: 21300000, guid: cfe7d2b19196d4b4c949e1dae0cf6b6d, type: 3}
+    sentences: 'Captain Volkrel: Even better... Humiliating him'
+  - chosenbackGround: {fileID: 21300000, guid: c463bb86f69a60a4da7ed2ff24712423, type: 3}
+    sentences: 'Weapon Mechanic: Rrriiiiight...'
+  - chosenbackGround: {fileID: 21300000, guid: cc8c4d51abc20574aab561d7dbe28c99, type: 3}
+    sentences: Apes of The Freelancer Mercenary Society... We're about to have our
+      best-paying customer in ages. The eternal thorn by my side, - General Aurok
+      himself!
+  - chosenbackGround: {fileID: 21300000, guid: 5c596c43215596d409e01575a9d6b578, type: 3}
+    sentences: 'Merc Kesh: ...So, care to explain how is this guy going to throw
+      money at OUR services? The last time I checked, he doesn''t like us.'
+  - chosenbackGround: {fileID: 21300000, guid: 5c3db2d1a3038d04abc0e081f29e8c70, type: 3}
+    sentences: 'Captain: He needs more skilled fighters on board, that''s how'
+  - chosenbackGround: {fileID: 21300000, guid: 4fb9415dab9034d429e82bd2397f8e31, type: 3}
+    sentences: 
+  - chosenbackGround: {fileID: 21300000, guid: b6378026ce5f9234fb1bbd40b00808d3, type: 3}
+    sentences: 'Captain: Long time no see, good ol'' grump!'
+  - chosenbackGround: {fileID: 21300000, guid: b6378026ce5f9234fb1bbd40b00808d3, type: 3}
+    sentences: 'General: ...You!'
+  - chosenbackGround: {fileID: 21300000, guid: 86210d641b688724290e6b8456b8abec, type: 3}
+    sentences: 'Captain: We just figured that you''re in quite the trouble, judging
+      by what your precious emperor likes to do with FAILURES... So ---'
+  - chosenbackGround: {fileID: 21300000, guid: 0d30fd3d7f890e947ad27a724da2b84b, type: 3}
+    sentences: 'General: Just what do you want, you carbage-riding heap of RUBBLE?'
+  - chosenbackGround: {fileID: 21300000, guid: 28f2cc8ca98e9844eb14a924f8890666, type: 3}
+    sentences: 'Captain: Ouch! Big words coming from the guy about to become "rubble"
+      himself...'
+  - chosenbackGround: {fileID: 21300000, guid: 28f2cc8ca98e9844eb14a924f8890666, type: 3}
+    sentences: I was about to say, you've been losing fighters. A whole lot of them.
+      And what I have... Is some notoriously skilled fighters on board!
+  - chosenbackGround: {fileID: 21300000, guid: be5731f18668f024496ff5d2dc5f308b, type: 3}
+    sentences: 'Captain: ...We don''t discriminate against anyone who needs us and
+      has the money, was what I wanted to tell you!'
+  - chosenbackGround: {fileID: 21300000, guid: 0d874dfbb9ad78e41bd7db6f4b2e917c, type: 3}
+    sentences: 'General''s Assistant: TAKE OUR MONEY ALREADY!!'
+  - chosenbackGround: {fileID: 21300000, guid: 67dea3a80cb4bc941a09683c66e60185, type: 3}
+    sentences: 'General: Fine... Hiring mercenaries approved.'
+  - chosenbackGround: {fileID: 21300000, guid: 67dea3a80cb4bc941a09683c66e60185, type: 3}
+    sentences: 'Captain: ...Your advisor is a bright one! Give him a raise, maybe?'
+  - chosenbackGround: {fileID: 21300000, guid: d34fba9968d7be84a8a4bdee0d3ab45a, type: 3}
+    sentences: 
+  - chosenbackGround: {fileID: 21300000, guid: 19163b40017c22f4f8041ba7d64903b6, type: 3}
+    sentences: 'Merc Kesh: Hey, man... I know this whole situation sucks. That guy
+      hanging over there, he probably loved to talk to you about his kids waiting
+      for him at home or something... I''m so sorry. I don''t really condone to my
+      Captain''s treatment of you at a time like this.'
+  - chosenbackGround: {fileID: 21300000, guid: 7f0e821611bc86840bb759d71ecad2fc, type: 3}
+    sentences: 'General: We''re all just meat, in a big ol'' meatgrinder... Don''t
+      think too hard of it.'
+  - chosenbackGround: {fileID: 21300000, guid: 331e37b0753c9274db224d38e68643e5, type: 3}
+    sentences: 'Merc Kesh: ...'
+  - chosenbackGround: {fileID: 21300000, guid: 405f5c9905e1ad9408ee93afa234b7f4, type: 3}
+    sentences: 'Merc Kesh: You don''t actually think that. That''s your cope. Right?'
+  - chosenbackGround: {fileID: 21300000, guid: 730d8364ca4b9aa468bdf98bfc78b348, type: 3}
+    sentences: 'General: Just shut that baboon face of yours up and do your job.
+      I can hear them nasties coming already...'
 --- !u!114 &2056757895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5522,6 +5606,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642cab6a2db41604ebda80301d23bd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &2056757897
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056757889}
+  m_CullTransparentMesh: 0
 --- !u!1 &2081750614 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1783551427038621516, guid: 3ad92912ac3b9304f9328e1f3a48a373,
