@@ -2232,7 +2232,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 774599996}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2615,8 +2615,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1236185924}
-  - {fileID: 670084654}
   - {fileID: 810649583}
+  - {fileID: 670084654}
   - {fileID: 391072327}
   - {fileID: 471469699}
   - {fileID: 178105173}
@@ -2722,7 +2722,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 774599996}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5456,7 +5456,7 @@ MonoBehaviour:
   sequenceIndex: -1
   initWaitTime: 0.5
   betweenLetterTime: 0.02
-  betweenSequenceWaitTime: 2
+  betweenSequenceWaitTime: 3
   deltaTime: 0
   sequencesArray:
   - chosenbackGround: {fileID: 21300000, guid: 33e66f5deb7f62c40b449c9e5a808ede, type: 3}
@@ -5506,12 +5506,12 @@ MonoBehaviour:
     sentences: 'Captain Volkrel: It looks like the Supreme General of the Golden
       Empire is in BIG trouble..!!'
   - chosenbackGround: {fileID: 21300000, guid: af6f294499482f44bbd803c3937bb997, type: 3}
-    sentences: 'Captain Volkrel: A great oppoturnity is at hand'
+    sentences: 'Captain Volkrel: A great oppoturnity is at hand.'
   - chosenbackGround: {fileID: 21300000, guid: ea9dcf8a8d055ed439c0cfd72dbb04dd, type: 3}
     sentences: 'Weapon Mechanic: ...For what, fullfilling your fantasy of killing
       him?'
   - chosenbackGround: {fileID: 21300000, guid: cfe7d2b19196d4b4c949e1dae0cf6b6d, type: 3}
-    sentences: 'Captain Volkrel: Even better... Humiliating him'
+    sentences: 'Captain Volkrel: Even better... Humiliating him!'
   - chosenbackGround: {fileID: 21300000, guid: c463bb86f69a60a4da7ed2ff24712423, type: 3}
     sentences: 'Weapon Mechanic: Rrriiiiight...'
   - chosenbackGround: {fileID: 21300000, guid: cc8c4d51abc20574aab561d7dbe28c99, type: 3}
@@ -5522,7 +5522,7 @@ MonoBehaviour:
     sentences: 'Merc Kesh: ...So, care to explain how is this guy going to throw
       money at OUR services? The last time I checked, he doesn''t like us.'
   - chosenbackGround: {fileID: 21300000, guid: 5c3db2d1a3038d04abc0e081f29e8c70, type: 3}
-    sentences: 'Captain: He needs more skilled fighters on board, that''s how'
+    sentences: 'Captain: He needs more skilled fighters on board, that''s how!'
   - chosenbackGround: {fileID: 21300000, guid: 4fb9415dab9034d429e82bd2397f8e31, type: 3}
     sentences: 
   - chosenbackGround: {fileID: 21300000, guid: b6378026ce5f9234fb1bbd40b00808d3, type: 3}
