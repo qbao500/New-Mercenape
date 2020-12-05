@@ -19,7 +19,7 @@ public class CutSence : MonoBehaviour
 
     public float initWaitTime=0.5f;
     public float betweenLetterTime=0.02f;
-    public float betweenSequenceWaitTime = 3f;
+    public float betweenSequenceWaitTime = 1f;
     public float deltaTime;
     float startSequenceTime;
     bool isAuto=false;
@@ -195,7 +195,7 @@ public class CutSence : MonoBehaviour
         foreach (char letter in sequencesArray[sequenceIndex].sentences.ToCharArray())
         {
             dialogueText.text += letter;
-            betweenSequenceWaitTime = betweenSequenceWaitTime + 0.01f;
+            betweenSequenceWaitTime = betweenSequenceWaitTime + 0.03f;
             yield return new WaitForSeconds(betweenLetterTime);
         }
     }
@@ -203,7 +203,7 @@ public class CutSence : MonoBehaviour
     {
         if (sequenceIndex< sequencesArray.Length - 1)
         {
-            betweenSequenceWaitTime = 3f;
+            betweenSequenceWaitTime = 1f;
             continueButton.interactable = false;
             previousButton.interactable = false; 
             startSequenceTime = Time.time;

@@ -5480,7 +5480,7 @@ MonoBehaviour:
       General. Failure will cost you your status... And perhaps even your head, if
       it''s really embarrassing for me.'
   - chosenbackGround: {fileID: 21300000, guid: c8c42ad81473a9740a7636c8a2516bd8, type: 3}
-    sentences: 'General: As you command, your majesty'
+    sentences: 'General: As you command, your majesty.'
   - chosenbackGround: {fileID: 21300000, guid: af3479273eb15b34eb3d3cbad34092d2, type: 3}
     sentences: The Emperor's troops set foot on the Lost Planet...
   - chosenbackGround: {fileID: 21300000, guid: b5a144936bccfd6439c4d5d1d3b65712, type: 3}
