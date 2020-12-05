@@ -6,22 +6,22 @@ using UnityEngine;
 public class AssetManager : MonoBehaviour
 {
     // Scripts
-    private WeaponStates weaponStates;
-    private SetUpForge setUpForge;
-    private SetUpShop setUpShop;
-    private BuyWeapons buyWeapons;
-    private StatsCalculator calculator;
-    private ChooseWeapon chooseWeapon;
-    private PlayerAttackTrigger playerAttack;
-    private UseUpgrades useUpgrades;
+    WeaponStates weaponStates;
+    SetUpForge setUpForge;
+    SetUpShop setUpShop;
+    BuyWeapons buyWeapons;
+    StatsCalculator calculator;
+    ChooseWeapon chooseWeapon;
+    PlayerAttackTrigger playerAttack;
+    UseUpgrades useUpgrades;
 
     // Abstract object lists
-    private List<AbstractWeapon> weapons = new List<AbstractWeapon>();
-    private List<AbstractWeapon> weaponsShop = new List<AbstractWeapon>();
-    private List<AbstractUpgrades> upgrades = new List<AbstractUpgrades>();
+    List<AbstractWeapon> weapons = new List<AbstractWeapon>();
+    List<AbstractWeapon> weaponsShop = new List<AbstractWeapon>();
+    List<AbstractUpgrades> upgrades = new List<AbstractUpgrades>();
 
     // Sprite lists
-    [SerializeField] private List<Sprite> upgradeImages;
+    [SerializeField] List<Sprite> upgradeImages;
 
     // MeshRenrerer lists
     public List<WeaponInUse> weaponModels;
@@ -65,11 +65,11 @@ public class AssetManager : MonoBehaviour
     void SetUpWeaponsAndUpgrades()
     {
         weapons.Add(new TestWeapon("Sword", "Standard issue katana that can cause minor bleeding founds on unarmored enemies.", 0, 0, 1.5f, 5, 5, 1, 2, 1, 0, new Vector3(0, 3, 4), new Vector3(2, 0.5f, 1), weaponModels[0]));
-        weapons.Add(new TestWeapon("Mace", "Extremely heavy mace which can stagger smaller enemies.", 1, 5000, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
-        weapons.Add(new TestWeapon("Big Sword", "Very big and sharp sword which causes heavy founds on unarmored enemies.", 2, 5000, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(3, 0.5f, 1), weaponModels[2]));
+        weapons.Add(new TestWeapon("Mace", "Extremely heavy mace which can stagger smaller enemies.", 1, 300, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
+        weapons.Add(new TestWeapon("Big Sword", "Very big and sharp sword which causes heavy founds on unarmored enemies.", 2, 800, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(3, 0.5f, 1), weaponModels[2]));
 
-        weaponsShop.Add(new TestWeapon("Mace", "Extremely heavy mace which can stagger smaller enemies.", 1, 5000, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
-        weaponsShop.Add(new TestWeapon("BigSword", "Very big and sharp sword which causes heavy founds on unarmored enemies.", 2, 5000, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
+        weaponsShop.Add(new TestWeapon("Mace", "Extremely heavy mace which can stagger smaller enemies.", 1, 300, 1.5f, 10, 10, 0, 0, 0, 1, new Vector3(0, 3, 4), new Vector3(1, 0.7f, 0.5f), weaponModels[1]));
+        weaponsShop.Add(new TestWeapon("BigSword", "Very big and sharp sword which causes heavy founds on unarmored enemies.", 2, 800, 1.5f, 10, 5, 3, 3, 3, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
         weaponsShop.Add(new TestWeapon("Out of stock!", "Out of stock!", 3, 0, 0, 0, 0, 0, 0, 0, 0, new Vector3(0, 3, 4), new Vector3(4, 1, 2), weaponModels[2]));
 
         upgrades.Add(new TestUpgrade("Speed Upgrade", "Increases the Speed of your attacks", 0, 1000, upgradeImages[0]));

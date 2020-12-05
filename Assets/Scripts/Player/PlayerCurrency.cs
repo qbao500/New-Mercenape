@@ -28,15 +28,9 @@ public class PlayerCurrency : MonoBehaviour
         karmaText = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("karmaImage").transform.Find("karmaText").GetComponent<TextMeshProUGUI>();
         moneyText = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("moneyImage").transform.Find("moneyText").GetComponent<TextMeshProUGUI>();
         upgradeText = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("upgradeImage").transform.Find("upgradeText").GetComponent<TextMeshProUGUI>();
-
     }
 
-    void Start()
-    {
-        SetTexts();
-        SetKarmaBar();
-        speedUpgrades = 6;
-    }
+    void Start(){ SetTexts(); SetKarmaBar(); }
 
     void SetTexts()
     {
@@ -45,11 +39,7 @@ public class PlayerCurrency : MonoBehaviour
         upgradeText.SetText(speedUpgrades.ToString());
     }
 
-    public void SetKarmaBar()
-    {
-        karmaBar.maxValue = spawner.MaxKarma;
-        karmaBar.value = karma;
-    }
+    public void SetKarmaBar() { karmaBar.maxValue = spawner.MaxKarma; karmaBar.value = karma; }
 
     public void AddGold(int amount)
     {
@@ -75,24 +65,11 @@ public class PlayerCurrency : MonoBehaviour
         upgradeText.SetText(speedUpgrades.ToString());
     }
 
-    public void LoseGold(int amount)
-    {
-        gold -= amount;
-        moneyText.SetText(gold.ToString());
-    }
+    public void LoseGold(int amount) { gold -= amount; moneyText.SetText(gold.ToString()); }
 
-    public void LoseKarma(int amount)
-    {
-        karma -= amount;
-        karmaText.SetText(karma.ToString());
-    }
+    public void LoseKarma(int amount) { karma -= amount; karmaText.SetText(karma.ToString()); }
 
-
-    public void UpdateCurrencies()
-    {
-        karmaText.SetText(karma.ToString());
-        SetTexts();
-    }
+    public void UpdateCurrencies() { karmaText.SetText(karma.ToString()); SetTexts(); }
 
     void LoadSaveFile()
     {

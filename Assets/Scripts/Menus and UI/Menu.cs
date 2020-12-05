@@ -113,32 +113,18 @@ public class Menu : MonoBehaviour
     {
         string buttonName = EventSystem.current.currentSelectedGameObject.name;
         soundManager.PlaySound(soundManager.Sound.UI_buttonPress, transform.position);
-        if (buttonName == "options")
-        {
-            switchPanel(panels[2]);
-        }
-        else if(buttonName == "weapon")
-        {
-            ToForge();
-        }
+        if (buttonName == "options") { switchPanel(panels[2]); }
+        else if(buttonName == "weapon") { ToForge(); }
         else if(buttonName == "ToShop")
         {
             switchPanel(panels[4]);
             setUpForge.ResetSpeedUpgrades();
             setUpShop.SetScreen(buyWeapons.GetWeaponID());
         }
-        else if(buttonName == "ToForge")
-        {
-            ToForge();
-        }
-        else if(buttonName == "QuitForge")
-        {
-            switchPanel(panels[1]);
-        }
-        else if(buttonName == "QuitShop")
-        {
-            switchPanel(panels[1]);
-        }
+        else if(buttonName == "ToForge") { ToForge(); }
+        else if(buttonName == "QuitForge") { switchPanel(panels[1]); }
+        else if(buttonName == "QuitShop") { switchPanel(panels[1]); }
+        else if(buttonName == "BackButton") { switchPanel(panels[1]); }
     }
 
 

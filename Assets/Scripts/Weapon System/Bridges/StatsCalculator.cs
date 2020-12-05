@@ -20,11 +20,7 @@ public class StatsCalculator : MonoBehaviour
 
     private float actualWeaponSpeed, actualWeaponImpactDamage;
 
-    void Awake()
-    {
-        weaponStates = GetComponent<WeaponStates>();
-        buyWeapons = GetComponent<BuyWeapons>();
-    }
+    void Awake() { weaponStates = GetComponent<WeaponStates>(); buyWeapons = GetComponent<BuyWeapons>(); }
 
     // Public function that other scripts can call to handle the weapon stat calculations.
     public void CalculateStats()
