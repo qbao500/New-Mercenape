@@ -1396,7 +1396,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2056757895}
+      - m_Target: {fileID: 0}
         m_MethodName: pauseGame
         m_Mode: 1
         m_Arguments:
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2056757895}
+      - m_Target: {fileID: 0}
         m_MethodName: pauseGame
         m_Mode: 1
         m_Arguments:
@@ -2922,7 +2922,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2938,7 +2938,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1750984380}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5040,7 +5040,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2056757895}
+      - m_Target: {fileID: 0}
         m_MethodName: ButtonPress
         m_Mode: 1
         m_Arguments:
@@ -5348,7 +5348,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2056757893}
   - component: {fileID: 2056757894}
-  - component: {fileID: 2056757895}
   - component: {fileID: 2056757892}
   - component: {fileID: 2056757891}
   - component: {fileID: 2056757890}
@@ -5570,34 +5569,6 @@ MonoBehaviour:
   - chosenbackGround: {fileID: 21300000, guid: 7755933af5e3eb64bbdffa74040df7ed, type: 3}
     sentences: 'Merc Kesh: Sure, sure... That was none of my business, I''m here
       to swing my sword. Right. '
---- !u!114 &2056757895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2056757889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb73df0b472084c42861d98e404b08e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setUpForge: {fileID: 0}
-  setUpShop: {fileID: 0}
-  buyWeapons: {fileID: 0}
-  weaponStates: {fileID: 0}
-  isPaused: 0
-  mainCanvas: {fileID: 2056757892}
-  panels:
-  - {fileID: 1886422726}
-  - {fileID: 1177212866}
-  - {fileID: 2081750614}
-  startPos: []
-  currentPanel: {fileID: 0}
-  pausepanel: {fileID: 1177212866}
-  cameras:
-  - {fileID: 328648422}
-  - {fileID: 1750984378}
 --- !u!114 &2056757896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5618,12 +5589,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056757889}
   m_CullTransparentMesh: 0
---- !u!1 &2081750614 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1783551427038621516, guid: 3ad92912ac3b9304f9328e1f3a48a373,
-    type: 3}
-  m_PrefabInstance: {fileID: 730902111}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5406663952605642599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5730,7 +5695,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2056757895}
+      objectReference: {fileID: 0}
     - target: {fileID: 9114376824331913968, guid: 98eb13ceca978154ab79812a5f120f81,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5765,6 +5730,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 268
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114376824395609738, guid: 98eb13ceca978154ab79812a5f120f81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9114376824538325311, guid: 98eb13ceca978154ab79812a5f120f81,
         type: 3}
@@ -5805,7 +5775,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2056757895}
+      objectReference: {fileID: 0}
     - target: {fileID: 9114376824547919680, guid: 98eb13ceca978154ab79812a5f120f81,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6035,6 +6005,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ReferenceResolution.y
       value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114376826123019840, guid: 98eb13ceca978154ab79812a5f120f81,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9114376826123019843, guid: 98eb13ceca978154ab79812a5f120f81,
         type: 3}
