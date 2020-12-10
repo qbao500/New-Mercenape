@@ -59,11 +59,14 @@ public class MenuButtons : MonoBehaviour
 
     public void GoTolevel1()
     {
-        if (load.IsAvailableSLot() != -1)
+        int slot = load.IsAvailableSLot();
+
+        if (slot != -1)
         {
-            SaveManager.ShiftSlotPath(load.IsAvailableSLot());
-            LevelLoader.instace.LoadLevel(2);
-        }           
+            SaveManager.ShiftSlotPath(slot);
+
+            LevelLoader.instace.LoadLevel(1);   // Cut scene first
+        }        
     }  
 
     public void QuitGame()

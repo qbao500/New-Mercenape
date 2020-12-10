@@ -65,13 +65,19 @@ public class SoundObject : MonoBehaviour
             {
                 //Debug.Log("Audio found");
                 audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("Audio")[0];
-                audioSource.spatialBlend = 0f;
+                audioSource.spatialBlend = 1f;
             }
             else if (soundManager.chosenSound.ToString().Contains("Music"))
             {
                 audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("Music")[0];
                 audioSource.spatialBlend = 0f;
                // Debug.Log("Music found");
+            }
+            else if (soundManager.chosenSound.ToString().Contains("UI_"))
+            {
+                audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("UI")[0];
+                audioSource.spatialBlend = 0f;
+                Debug.Log("UI sound.");
             }
             this.PlayObject();
         }

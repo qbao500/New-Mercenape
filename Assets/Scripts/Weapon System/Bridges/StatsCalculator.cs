@@ -20,11 +20,7 @@ public class StatsCalculator : MonoBehaviour
 
     private float actualWeaponSpeed, actualWeaponImpactDamage;
 
-    void Awake()
-    {
-        weaponStates = GetComponent<WeaponStates>();
-        buyWeapons = GetComponent<BuyWeapons>();
-    }
+    void Awake() { weaponStates = GetComponent<WeaponStates>(); buyWeapons = GetComponent<BuyWeapons>(); }
 
     // Public function that other scripts can call to handle the weapon stat calculations.
     public void CalculateStats()
@@ -135,23 +131,24 @@ public class StatsCalculator : MonoBehaviour
         {
             case 0:
                 savedSpeedsList[0] = savedSpeedsList[0] + amountOfSpeed;
+                weaponStates.SetSavedSpeeds(savedSpeedsList);
                 break;
 
             case 1:
                 savedSpeedsList[1] = savedSpeedsList[1] + amountOfSpeed;
+                weaponStates.SetSavedSpeeds(savedSpeedsList);
                 break;
 
             case 2:
                 savedSpeedsList[2] = savedSpeedsList[2] + amountOfSpeed;
+                weaponStates.SetSavedSpeeds(savedSpeedsList);
                 break;
 
             case 3:
+                weaponStates.SetSavedSpeeds(savedSpeedsList);
                 savedSpeedsList[3] = savedSpeedsList[3] + amountOfSpeed;
                 break;
         }
-
-        weaponStates.SetSavedSpeeds(savedSpeedsList);
-        SaveManager.SaveWeapons(weaponStates);
     }
 
     // Function for loading the amount of upgrades. 

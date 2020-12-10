@@ -5,9 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Mower", menuName = "Enemy Stats/Mower Stats")]
 public class MowerStatsSO : EnemyStatsSO
 {
+    public Color fieldDmgColor;
+
     [Header("Generator stats")]
     [SerializeField] private AnimationCurve fieldHPEachWave;
     [SerializeField] private AnimationCurve fieldDamageEachWave;
+
+    [Header("Shield colors")]
+    [ColorUsage(true, true)] public Color shieldNormal;
+    [ColorUsage(true, true)] public Color shieldDamage;
 
     public float FieldMaxHP { get; private set; }
     public int FieldDamage { get; private set; }
@@ -74,4 +80,58 @@ public class MowerStatsSO : EnemyStatsSO
         fieldDamageEachWave.AddKey(100, 2000);  // +20 each wave
     }
 
+    public void ShieldGenerating(Material mat)
+    {
+        mat.SetFloat("_FresnelPower", 10f);
+        mat.SetFloat("_ScrollSpeed", 0.1f);
+    }
+
+    public void ShieldOn(Material mat)
+    {
+        mat.SetFloat("_FresnelPower", 2.5f);
+        mat.SetFloat("_ScrollSpeed", 0.3f);
+    }  
+
+    public IEnumerator ShieldReflect(Material mat)
+    {
+        mat.SetColor("_Emission", shieldDamage);
+
+        yield return new WaitForSeconds(.2f);
+
+        mat.SetColor("_Emission", shieldNormal);
+    }
+
+    public void FieldInactive(Material mat)
+    {
+        mat.SetFloat("_ElecAmount", 3f);
+        mat.SetFloat("_ElecScale", 10f);
+        mat.SetFloat("_ElecThickness", 0f);
+    }
+
+    public void FieldGenerating(Material mat)
+    {
+        mat.SetFloat("_ElecAmount", 4f);
+        mat.SetFloat("_ElecScale", 20f);
+        mat.SetFloat("_ElecThickness", 0.5f);
+    }
+
+    public void FieldActive(Material mat)
+    {
+        mat.SetFloat("_ElecAmount", 5f);
+        mat.SetFloat("_ElecScale", 30f);
+        mat.SetFloat("_ElecThickness", 1f);
+    }
+
+    public IEnumerator ForceEye(Material mat, float fresnel)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < 1.5f)
+        {
+            elapsed += Time.deltaTime;
+            mat.SetFloat("_FresnelPow", Mathf.Lerp(mat.GetFloat("_FresnelPow"), fresnel, elapsed / 1.5f));          
+            yield return null;
+        }
+    }
+   
 }

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shred
   spaceToGetUp: 5
+  damageColor: {r: 1, g: 0.7045615, b: 0, a: 0}
+  bleedColor: {r: 0.30696863, g: 0.10849059, b: 1, a: 0}
   damageEachWave:
     serializedVersion: 2
     m_Curve:

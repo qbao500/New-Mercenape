@@ -18,17 +18,9 @@ public class ChooseWeapon : MonoBehaviour
 
     [SerializeField] private List<GameObject> ownedWeapons;
 
-    void Awake()
-    {
-        SetUpScripts();
-    }
+    void Awake() { SetUpScripts(); }
 
-
-    void SetUpScripts()
-    {
-        setUpForge = GetComponent<SetUpForge>();
-        weaponStates = GetComponent<WeaponStates>();
-    }
+    void SetUpScripts() { setUpForge = GetComponent<SetUpForge>(); weaponStates = GetComponent<WeaponStates>(); }
 
 
     // Button function, which detects which button has been pressed and gives us the chosenWeaponID based on that. 
@@ -38,22 +30,10 @@ public class ChooseWeapon : MonoBehaviour
 
         List<bool> ownedWeaponsList = weaponStates.GetOwnedWeapons();
 
-        if (buttonName == "ChooseButton1" && ownedWeaponsList[0])
-        {
-            chosenWeaponID = weapons[0].GetID();
-        }
-        else if (buttonName == "ChooseButton2" && ownedWeaponsList[1])
-        {
-            chosenWeaponID = weapons[1].GetID();
-        }
-        else if (buttonName == "ChooseButton3" && ownedWeaponsList[2])
-        {
-            chosenWeaponID = weapons[2].GetID();
-        }
-        else if (buttonName == "ChooseButton4" && ownedWeaponsList[3])
-        {
-            chosenWeaponID = weapons[3].GetID();
-        }
+        if (buttonName == "ChooseButton1" && ownedWeaponsList[0]) { chosenWeaponID = weapons[0].GetID(); }
+        else if (buttonName == "ChooseButton2" && ownedWeaponsList[1]) { chosenWeaponID = weapons[1].GetID(); }
+        else if (buttonName == "ChooseButton3" && ownedWeaponsList[2]) { chosenWeaponID = weapons[2].GetID(); }
+        else if (buttonName == "ChooseButton4" && ownedWeaponsList[3]) { chosenWeaponID = weapons[3].GetID(); }
 
         weaponStates.SetChosenWeaponID(chosenWeaponID);
         weaponStates.SetUpWeapon();

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Mower
   spaceToGetUp: 9
+  damageColor: {r: 1, g: 0.7058824, b: 0, a: 0}
+  bleedColor: {r: 0.30588236, g: 0.10980392, b: 1, a: 0}
   damageEachWave:
     serializedVersion: 2
     m_Curve:
@@ -197,3 +199,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  shieldNormal: {r: 0.36221784, g: 0, b: 1.9766746, a: 0}
+  shieldDamage: {r: 1.9766746, g: 0.124188974, b: 0, a: 0}
+  fieldDmgColor: {r: 0, g: 1, b: 0.78681874, a: 0}

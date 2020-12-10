@@ -12,10 +12,13 @@ public class MowerBehaviour : EnemyBehaviour
     private ForceFieldState currentState;
 
     [SerializeField] private Transform backside;
+    private GameObject forceShield;
+    private Material shieldMat;
+    private GameObject generator;
+    private Material generatorMat;
 
     private float fieldHP;
 
-    private SpriteRenderer fieldSprite;
     private EnemyHealthBar fieldBarHealth;
 
     private Coroutine dmgCoroutine;
@@ -27,8 +30,6 @@ public class MowerBehaviour : EnemyBehaviour
     private CapsuleCollider capsuleCollider;
     private SphereCollider generatorCollider;
 
-    private Animator animatorMower;
-
     protected override void Awake()
     {
         base.Awake();
@@ -36,12 +37,15 @@ public class MowerBehaviour : EnemyBehaviour
         mowerStat = (MowerStatsSO)stat;
 
         fieldBarHealth = backside.GetChild(0).GetComponent<EnemyHealthBar>();
-        fieldSprite = backside.GetComponent<SpriteRenderer>();
+        
+        forceShield = backside.GetChild(1).gameObject;
+        shieldMat = forceShield.GetComponent<MeshRenderer>().material;
+
+        generator = backside.GetChild(2).gameObject;
+        generatorMat = generator.GetComponent<MeshRenderer>().material;
 
         capsuleCollider = backside.GetComponent<CapsuleCollider>();
-        generatorCollider = backside.GetComponent<SphereCollider>();
-
-        animatorMower = GetComponent<Animator>();
+        generatorCollider = generator.GetComponent<SphereCollider>();
     }
 
     protected override void OnEnable()
@@ -54,11 +58,12 @@ public class MowerBehaviour : EnemyBehaviour
         isAttacking = false; isGenerating = false;
 
         fieldHP = mowerStat.FieldMaxHP;
-        fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);       
+        fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);
+        fieldBarHealth.ScaleLeftUI(rb);
 
-        animatorMower.SetBool("IsDestroyed", false); ;
+        animator.SetBool("IsDestroyed", false); ;
 
-        fieldSprite.enabled = true;
+        generator.SetActive(true);
         generatorCollider.enabled = true;
         capsuleCollider.enabled = true;
         fieldBarHealth.gameObject.SetActive(false);
@@ -72,9 +77,13 @@ public class MowerBehaviour : EnemyBehaviour
         if (IsDestroyed) { return; }
 
         ChangeToGenerating();
-        animatorMower.SetTrigger("Generating");
+        animator.SetTrigger("Generating");
 
-        fieldSprite.color = Color.yellow;
+        forceShield.SetActive(true);
+        mowerStat.ShieldGenerating(shieldMat);
+        mowerStat.FieldGenerating(generatorMat);
+        StartCoroutine(mowerStat.ForceEye(generatorMat, 0.15f));
+
         speed = 0;
         isGenerating = false;
 
@@ -86,9 +95,12 @@ public class MowerBehaviour : EnemyBehaviour
         if (IsDestroyed) { return; }
 
         ChangeToActive();
-        animatorMower.SetBool("IsActive", true);
+        animator.SetBool("IsActive", true);
 
-        fieldSprite.color = Color.red;
+        mowerStat.ShieldOn(shieldMat);
+        mowerStat.FieldActive(generatorMat);
+        StartCoroutine(mowerStat.ForceEye(generatorMat, 15f));
+
         speed = stat.RunningSpeed;
 
         Invoke("Inactive", 5f);
@@ -99,18 +111,21 @@ public class MowerBehaviour : EnemyBehaviour
         if (IsDestroyed) { return; }
 
         ChangeToInactive();
-        animatorMower.SetBool("IsActive", false);
+        animator.SetBool("IsActive", false);
+        forceShield.SetActive(false);
 
-        fieldSprite.color = Color.white;
+        mowerStat.FieldInactive(generatorMat);
+        StartCoroutine(mowerStat.ForceEye(generatorMat, 0.5f));
     }
 
     private void Destroyed()
     {
         ChangeToDestroyed();
-        animatorMower.SetBool("IsDestroyed", true);
+        animator.SetBool("IsDestroyed", true);
 
+        forceShield.SetActive(false);
         speed = stat.RunningSpeed;
-        fieldSprite.enabled = false;
+        generator.SetActive(false);
         generatorCollider.enabled = false;
         fieldBarHealth.gameObject.SetActive(false);
     }
@@ -153,8 +168,7 @@ public class MowerBehaviour : EnemyBehaviour
             {
                 capsuleCollider.enabled = false;
 
-                animatorMower.SetBool("IsDestroyed", false);
-                animatorMower.SetTrigger("Death");
+                animator.SetBool("IsDestroyed", false);              
             }
 
             if (!isGenerating)
@@ -172,9 +186,11 @@ public class MowerBehaviour : EnemyBehaviour
 
         if (IsActive)
         {
-            // Field Generator will damage back the player and push upward
+            // Field Generator will damage back the player and push player
             playerHealth.PlayerTakeDamage(mowerStat.FieldDamage);
-            playerMovement.PlayerRigid2d.AddForce(new Vector3(Mathf.Sign(player.transform.localScale.x) * -2000, 100), ForceMode.Impulse);
+            PushPlayer();
+            TempCamScript.Instance.ShakeCamera(5f, .0000001f);
+            StartCoroutine(mowerStat.ShieldReflect(shieldMat));
         }
     }
 
@@ -185,13 +201,16 @@ public class MowerBehaviour : EnemyBehaviour
 
         fieldHP -= playerDmg;
         fieldBarHealth.UpdateHealthBar(fieldHP, mowerStat.FieldMaxHP);
+        PushPlayer();
 
-        DamagePopUp.Create(PopUpPos(backside), playerDmg, Color.clear, 14);
+        DamagePopUp.Create(PopUpPos(backside), playerDmg, mowerStat.fieldDmgColor, 22);
 
-        if (fieldHP <= 0)
-        {
-            Destroyed();
-        }
+        if (fieldHP <= 0) { Destroyed(); }       
+    }
+
+    private void PushPlayer()
+    {
+        playerMovement.PlayerRigid2d.AddExplosionForce(200000f, backside.position, 50f, 10f);
     }
 
     public override void ApplyBleeding(float damage, float duration, int ticks, Collider selfCol)
@@ -203,7 +222,7 @@ public class MowerBehaviour : EnemyBehaviour
         if (!isBackSideHit) { return; }
 
         // Only bleed when Inactive or Destroyed
-        if (IsInactive|| IsDestroyed)
+        if (IsInactive || IsDestroyed)
         {
             base.ApplyBleeding(damage, duration, ticks, selfCol);
         }
@@ -277,6 +296,8 @@ public class MowerBehaviour : EnemyBehaviour
 
     protected override void PlayerUp()
     {
+        base.PlayerUp();
+
         // Stop dealing damage
         StopCoroutine("Attacking");
         if (dmgCoroutine != null) { StopCoroutine(dmgCoroutine); }
@@ -287,9 +308,17 @@ public class MowerBehaviour : EnemyBehaviour
         if (enemyID != GetInstanceID()) { return; }
         
         // Push player up 
-        playerMovement.PlayerRigid2d.velocity = Vector3.up * 50;
+        playerMovement.PlayerRigid2d.velocity = Vector3.up * 50;       
+    }
 
-        base.PlayerUp();
+    protected override void PlayerDown()
+    {
+        base.PlayerDown();
+        
+        if (Physics.Raycast(frontDetection.position + (Vector3.down * 5), transform.right, 100f, LayerMask.GetMask("Player"))) { return; }
+
+        ChangeDirection();
+        if (!IsGenerating && !IsActive) { animator.Play("Turning"); }
     }
 
     void ReturnPhysics()
@@ -305,15 +334,20 @@ public class MowerBehaviour : EnemyBehaviour
     {
         base.Movement();
 
-        animatorMower.SetFloat("MovementSpeed", speed / stat.RunningSpeed);
+        animator.SetFloat("MovementSpeed", speed / stat.RunningSpeed);       
+    }
 
-        if (isNewBorn) { return; }
+    protected override void ChangeDirection()
+    {
+        base.ChangeDirection();
+        fieldBarHealth.ScaleLeftUI(rb);       
+    }
 
-        // Also turn healthbar of the generator
-        if (!groundInfo || wallInfo)
-        {
-            fieldBarHealth.ScaleLeftUI(rb);
-        }
+    protected override void KnockPlayerDown()
+    {
+        base.KnockPlayerDown();
+
+        playerMovement.GetKnockDown(true);
     }
 
     protected override Vector3 PopUpPos(Transform trans)

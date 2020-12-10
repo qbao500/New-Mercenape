@@ -5,6 +5,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 {
     private Vector3 normalScale;
 
+    public float enterRate = 1.1f;
+    public float clickRate = 1.3f;
+
+
     private void Awake()
     {
         normalScale = transform.localScale;
@@ -12,7 +16,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        transform.localScale = normalScale * 1.2f;
+        transform.localScale = normalScale * clickRate;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -22,7 +26,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.localScale = normalScale * 1.1f;
+        transform.localScale = normalScale * enterRate;
     }
 
     public void OnPointerExit(PointerEventData eventData)

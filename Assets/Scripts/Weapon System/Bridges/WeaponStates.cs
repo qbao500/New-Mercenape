@@ -9,10 +9,10 @@ public class WeaponStates: MonoBehaviour
     private StatsCalculator calculator;
     private PlayerAttackTrigger playerAttack;
 
-    private List<AbstractWeapon> weapons;
+    private List<AbstractWeapon> weapons, weaponsShop;
     [SerializeField] private List<bool> ownedWeaponsList, boughtWeaponsList, upgradedWeaponsList;
     [SerializeField] private List<int> savedSpeedAmountsList;
-    [SerializeField] private List<GameObject> weaponModels;
+    [SerializeField] private List<WeaponInUse> weaponModels;
 
     private int weaponID;
 
@@ -28,15 +28,12 @@ public class WeaponStates: MonoBehaviour
         LoadWeaponData();
     }
 
-    void Start()
-    {
-        SetUpWeapon();
-    }
+    void Start() { SetUpWeapon(); }
 
     void SetUpBoolLists()
     {
         ownedWeaponsList = new List<bool>(new bool[weapons.Count]);
-        boughtWeaponsList = new List<bool>(new bool[3]);
+        boughtWeaponsList = new List<bool>(new bool[weaponsShop.Count]);
         upgradedWeaponsList = new List<bool>(new bool[weapons.Count]);
         savedSpeedAmountsList = new List<int>(new int[weapons.Count]);
 
@@ -46,21 +43,9 @@ public class WeaponStates: MonoBehaviour
     // Function for setting the ownership status of a weapon.
     public void WhatWeaponWasBought(int id) 
     {
-        if(id == 0)
-        {
-            boughtWeaponsList[0] = true;
-            ownedWeaponsList[1] = true;
-        }
-        else if (id == 1)
-        {
-            boughtWeaponsList[1] = true;
-            ownedWeaponsList[2] = true;
-        }
-        else if (id == 2)
-        {
-            boughtWeaponsList[2] = true;
-            ownedWeaponsList[3] = true;
-        }
+        if(id == 0) { boughtWeaponsList[0] = true; ownedWeaponsList[1] = true; }
+        else if (id == 1) { boughtWeaponsList[1] = true; ownedWeaponsList[2] = true; }
+        else if (id == 2) { boughtWeaponsList[2] = true; ownedWeaponsList[3] = true; }
     }
 
     // Function for setting the upgrade status of a weapon. 
@@ -89,9 +74,9 @@ public class WeaponStates: MonoBehaviour
     {
         weaponModels = assetManager.GetWeaponModels();
 
-        for (int i = 0; i < weaponModels.Count; i++) { weaponModels[i].SetActive(false); }
+        for (int i = 0; i < weaponModels.Count; i++) { weaponModels[i].gameObject.SetActive(false); }
 
-        weaponModels[weaponID].SetActive(true);
+        weaponModels[weaponID].gameObject.SetActive(true);
     }
 
     // Function for loading necessary data.
@@ -111,6 +96,7 @@ public class WeaponStates: MonoBehaviour
 
     // Set functions
     public void SetWeaponList(List<AbstractWeapon> list) { weapons = list; }
+    public void SetWeaponsForShop(List<AbstractWeapon> list) { weaponsShop = list; }
     public void SetChosenWeaponID(int id) { weaponID = id; }
     public void SetSavedSpeeds (List<int> list){ savedSpeedAmountsList = list; }
 

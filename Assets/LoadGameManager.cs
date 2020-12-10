@@ -63,6 +63,19 @@ public class LoadGameManager : MonoBehaviour
         return -1;
     }
 
+    public bool IsEmpty()
+    {
+        for (int i = 0; i < slotButtons.Length; i++)
+        {
+            if (slotButtons[i].interactable)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void NextArrow()
     {
         levelCounter++;
@@ -90,7 +103,7 @@ public class LoadGameManager : MonoBehaviour
         nextArrow.interactable = false;
 
         float startPoint = levelsHolder.transform.localPosition.x;
-        float destination = levelsHolder.transform.localPosition.x + distance;
+        float destination = (levelsHolder.transform.localPosition.x + distance) * levelsHolder.transform.localScale.x;
         float elapsed = 0f;
 
         while (elapsed < .2f)

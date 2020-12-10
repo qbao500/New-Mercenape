@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrabWall = false;
     public bool isJumping = false;
 
-    TextMeshProUGUI climbPrompt;
     bool isCollidePlatform;
     bool canLedgeClimb = true;
     Vector3 playerClimbPos;
@@ -78,18 +77,17 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public float bounceBuffer = 1;
 
-    public event Action OnBounceUp;
+    public event Action OnBounceUp = delegate { };
+    public event Action OnKnockDown = delegate { };
 
     void Awake()
     {
         playerHealth = transform.GetComponent<PlayerHealth>();
         playerAttack = transform.GetComponent<PlayerAttackTrigger>();
         PlayerRigid2d = transform.GetComponent<Rigidbody>();
-        //PlayerAnimator = transform.GetComponent<Animator>();
         boxCollider = transform.GetComponent<BoxCollider>();
         capsuleCollider = transform.GetComponent<CapsuleCollider>();
         PlayerRigid2d.centerOfMass = Vector3.zero;
-        climbPrompt = GameObject.FindGameObjectWithTag("PlayerUI").transform.Find("climbPrompt").GetComponent<TextMeshProUGUI>();
 
 
         //HashID animator parameters for performances
@@ -155,15 +153,7 @@ public class PlayerMovement : MonoBehaviour
             TimePressButton();
             PlayerMove();
         }
-        if (isCollideWall && !isGrabWall && !isKnockDown)
-        {
-            climbPrompt.gameObject.SetActive(true);
-           // climbPrompt.SetText("Press W to Grab the Vine");
-        }
-        else
-        {
-            climbPrompt.gameObject.SetActive(false);
-        }
+       
 
         if (!isCollidePlatform && !CheckOnTop())
         {
@@ -179,7 +169,6 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerRigid2d.useGravity = false;
             PlayerRigid2d.rotation = Quaternion.Euler(5, 90, 0);
-            climbPrompt.gameObject.SetActive(true);
             //climbPrompt.SetText("Press W or S to Move Up or Down");
             PlayerClimbWal();
         }
@@ -560,9 +549,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrabWall = false;
            
-            animator.SetBool(knockedDown_animBool, true);
-
-            playerHealth.spaceTextGrid.gameObject.SetActive(true);
+            animator.SetBool(knockedDown_animBool, true);           
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -577,6 +564,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void GetKnockDown(bool isMower)
+    {
+        animator.ResetTrigger("Attack");
+        animator.SetTrigger("KnockDown");
+        isKnockDown = true;
+        
+        getUpCount = 0;
+        playerHealth.SetCurrentSpace(getUpCount);
+        playerHealth.spaceTextGrid.gameObject.SetActive(true);
+
+        if (!isMower) { OnKnockDown(); }
+    }
+
     public void PlayerBounceUp()
     {       
         isKnockDown = false;
@@ -586,7 +586,6 @@ public class PlayerMovement : MonoBehaviour
         getUpCount = 0;
         getUpNeed = 0;
         playerHealth.SetCurrentSpace(getUpCount);
-
         playerHealth.spaceTextGrid.gameObject.SetActive(false);
 
         OnBounceUp();

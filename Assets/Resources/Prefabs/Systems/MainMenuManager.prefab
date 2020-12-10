@@ -49,6 +49,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6931998348344599032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,3 +74,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  dateTexts: []
+  waveTexts: []
+  levelsHolder: {fileID: 0}
+  newLevelButton: {fileID: 0}

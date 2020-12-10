@@ -70,16 +70,7 @@ public class Menu : MonoBehaviour
             if (!isPaused)
             {
                 //Pause the game
-                if (currentPanel != null)
-                {
-                    returnPanel(currentPanel);
-                }
-                pausepanel.transform.position = mainCanvas.transform.position;
-                cameras[0].SetActive(false);
-                cameras[1].SetActive(true);
-                isPaused = true;
-                Time.timeScale = 0;
-                currentPanel = pausepanel;
+                PauseGame();
             }
             else
             {
@@ -96,84 +87,71 @@ public class Menu : MonoBehaviour
         }
     }
 
-    void switchPanel(GameObject newPanel)
+    private void PauseGame()
     {
-        if (newPanel.name.Contains("options") || newPanel.name.Contains("level"))
+        if (currentPanel != null)
         {
-            GameObject backBtn = newPanel.transform.Find("back").gameObject;
-            menuButton btnScript;
-            if (backBtn != null)
-            {
-                btnScript = backBtn.GetComponent<menuButton>();
-                if (btnScript != null)
-                {
-                    Debug.Log("Back script found");
-                    if (isPaused)
-                    {
-                        //Back button will now open the Pause Panel (panels[1])
-                        btnScript.paneltoOpen = panels[1];
-                    }
-                    else
-                    {
-                        //Back button will open Main panel, panels[0].
-                        btnScript.paneltoOpen = panels[0];
-                    }
-                }
-            }
+            returnPanel(currentPanel);
         }
-        newPanel.transform.position = mainCanvas.transform.position;
+        pausepanel.transform.position = mainCanvas.transform.position;
+        cameras[0].SetActive(false);
+        cameras[1].SetActive(true);
+        isPaused = true;
+        Time.timeScale = 0;
+        currentPanel = pausepanel;
+    }
+
+    public void switchPanel(GameObject newPanel)
+    {
         returnPanel(currentPanel);
+        newPanel.transform.position = mainCanvas.transform.position;
+        
         currentPanel = newPanel;
     }
 
     public void ButtonPress()
     {
         string buttonName = EventSystem.current.currentSelectedGameObject.name;
-
-        if(buttonName == "options")
-        {
-            switchPanel(panels[2]);
-        }
-        else if(buttonName == "weapon")
-        {
-            switchPanel(panels[3]);
-            setUpForge.SetScreen(setUpForge.GetWeaponID());
-        }
+        soundManager.PlaySound(soundManager.Sound.UI_buttonPress, transform.position);
+        if (buttonName == "options") { switchPanel(panels[2]); }
+        else if(buttonName == "weapon") { ToForge(); }
         else if(buttonName == "ToShop")
         {
             switchPanel(panels[4]);
-            buyWeapons.CheckID();
             setUpForge.ResetSpeedUpgrades();
             setUpShop.SetScreen(buyWeapons.GetWeaponID());
         }
-        else if(buttonName == "ToForge")
-        {
-            switchPanel(panels[3]);
-            setUpForge.SetScreen(setUpForge.GetWeaponID());
-        }
+        else if(buttonName == "ToForge") { ToForge(); }
+        else if(buttonName == "QuitForge") { switchPanel(panels[1]); }
+        else if(buttonName == "QuitShop") { switchPanel(panels[1]); }
+        else if(buttonName == "BackButton") { switchPanel(panels[1]); }
+    }
+
+
+    public void ToForge()
+    {
+        PauseGame();
+        switchPanel(panels[3]);
+        setUpForge.SetScreen(setUpForge.GetWeaponID());
     }
 
     public void backButton()
     {
-        returnPanel(currentPanel);
         for (int i = 0; i < panels.Length; i++)
         {
             if (panels[i] == currentPanel.transform.parent.gameObject)
             {
+                returnPanel(currentPanel);
                 panels[i].transform.position = mainCanvas.transform.position;
                 currentPanel = panels[i];
+                soundManager.PlaySound(soundManager.Sound.UI_buttonBack, transform.position);
+
                 break;
             }
         }
     }
 
-    public void WipeWeaponMemory()
-    {
-        SaveManager.DeleteWeapons();
-    }
+    public void WipeWeaponMemory() { SaveManager.DeleteWeapons(); }
 
-    public void WipeCurrencyMemory()
-    {
-        SaveManager.DeleteCurrency();
-    }
+    public void WipeCurrencyMemory() { SaveManager.DeleteCurrency(); }
 }

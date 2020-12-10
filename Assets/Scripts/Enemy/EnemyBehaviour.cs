@@ -22,6 +22,7 @@ public class EnemyBehaviour : MonoBehaviour
     protected int bleedTicks, currentBleedTicks;
 
     private Vector3 enemyRotation;
+    protected Animator animator;
     protected Rigidbody rb;
     protected BoxCollider boxCollier;
     [SerializeField] protected Transform frontDetection;
@@ -33,14 +34,13 @@ public class EnemyBehaviour : MonoBehaviour
 
     private EnemyLootDrop enemyLoot;
 
-    //public event Action OnEnemyDie = delegate { };
-
     protected virtual void Awake()
     {       
         enemyRotation = transform.rotation.eulerAngles;
 
         barHealth = transform.GetChild(1).GetComponent<EnemyHealthBar>();
-            
+
+        animator = GetComponent<Animator>();
         boxCollier = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
@@ -56,7 +56,8 @@ public class EnemyBehaviour : MonoBehaviour
         playerMovement.playerAttack.OnBleedEnemy += ApplyBleeding;
         playerMovement.playerAttack.StaggerEnemy += WeaponStagger;
         playerMovement.OnBounceUp += PlayerUp;
-    }
+        playerMovement.OnKnockDown += PlayerDown;
+    }   
 
     protected virtual void OnEnable()
     {
@@ -95,13 +96,15 @@ public class EnemyBehaviour : MonoBehaviour
 
         groundInfo = Physics.Raycast(frontDetection.position, Vector3.down, 15f, LayerMask.GetMask("Ground"));
         wallInfo = Physics.Raycast(frontDetection.position, transform.right, 4.25f, LayerMask.GetMask("Wall", "Border"));
-       
-        if (!groundInfo || wallInfo)
-        {
-            enemyRotation += new Vector3(0, -(Mathf.Sign(rb.velocity.x)) * 180, 0);
-            transform.rotation = Quaternion.Euler(0, enemyRotation.y, 0);
-            barHealth.ScaleRightUI(rb);
-        }        
+
+        if (!groundInfo || wallInfo) { ChangeDirection(); }                  
+    }
+
+    protected virtual void ChangeDirection()
+    {
+        enemyRotation += new Vector3(0, -(Mathf.Sign(rb.velocity.x)) * 180, 0);
+        transform.rotation = Quaternion.Euler(0, enemyRotation.y, 0);
+        barHealth.ScaleRightUI(rb);
     }
 
     #region Take damage and bleed
@@ -119,7 +122,7 @@ public class EnemyBehaviour : MonoBehaviour
         currentHP -= playerDamage;
         barHealth.UpdateHealthBar(currentHP, stat.MaxHP);
 
-        DamagePopUp.Create(PopUpPos(transform), playerDamage, Color.clear, 15); 
+        DamagePopUp.Create(PopUpPos(transform), playerDamage, stat.damageColor, 25); 
 
         // If dead
         if (currentHP <= 0)
@@ -134,13 +137,7 @@ public class EnemyBehaviour : MonoBehaviour
         currentHP -= bleedDmg;
         barHealth.UpdateHealthBar(currentHP, stat.MaxHP);
 
-        DamagePopUp.Create(PopUpPos(transform), bleedDmg, Color.magenta, 10);
-
-        // If dead
-        if (currentHP <= 0)
-        {          
-            StartCoroutine("EnemyDeath");
-        }
+        DamagePopUp.Create(PopUpPos(transform), bleedDmg, stat.bleedColor, 18);     
     }
 
     public virtual void ApplyBleeding(float damage, float duration, int ticks, Collider selfCol)
@@ -164,8 +161,15 @@ public class EnemyBehaviour : MonoBehaviour
         while (currentBleedTicks <= bleedTicks)
         {
             TakeBleedDammage(weaponBleedDamage);
+
+            if (currentHP <= 0)  // If dead while bleeding
+            {
+                StartCoroutine("EnemyDeath");
+                yield break;
+            }
+
             yield return new WaitForSeconds(weaponBleedDuration);
-            currentBleedTicks++;
+            currentBleedTicks++;          
         }
     }
 
@@ -175,7 +179,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     #endregion
 
-    protected void KnockPlayerDown()
+    protected virtual void KnockPlayerDown()
     {
         // Don't knock player down again when bouncing back
         if (playerMovement.animator.GetCurrentAnimatorStateInfo(0).IsTag("BounceBack")) { return; }
@@ -187,21 +191,23 @@ public class EnemyBehaviour : MonoBehaviour
             enemyID = GetInstanceID();
         }
 
-        // If player is already knocked down, don't do anything
+        // If player is already knocked down, don't do anything. Continue with child scripts
         if (playerMovement.isKnockDown) { return; }
-
-        playerMovement.animator.ResetTrigger("Attack");
-        playerMovement.animator.SetTrigger("KnockDown");
-        playerMovement.isKnockDown = true;
-
-        playerMovement.getUpCount = 0;
-        playerHealth.SetCurrentSpace(playerMovement.getUpCount);        
     }
 
-    protected virtual void PlayerUp() { }   // Mainly for Mower now
-    
+    protected virtual void PlayerUp()
+    {
+        // Mainly for Mower rn
+    }
+
+    protected virtual void PlayerDown()
+    {
+        // Mainly for Mower rn
+    }
+
     protected IEnumerator EnemyDeath()
-    {        
+    {
+        animator.SetTrigger("Death");
         speed = 0;
         rb.velocity = Vector3.zero;
         rb.useGravity = false;

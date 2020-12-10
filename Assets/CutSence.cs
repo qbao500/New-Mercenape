@@ -5,61 +5,70 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-
-
-
 //Prototype made by thuyet to handle cutscenes
 public class CutSence : MonoBehaviour
 {
-    public int sequenceIndex=0;
-    
-    //public Animator animator;
-    public TextMeshProUGUI dialogueText;
-    SpriteRenderer spriteRenderer;
-    public Image bubbleTalkImg;
-    
-    public Button continueButton;
-    public TextMeshProUGUI hint;
+    public int sequenceIndex=-1;
+   
+    Image backGroundImg;
+    Transform CanvasUI;
+   
+    TextMeshProUGUI autoText, dialogueText;
+    Button continueButton, previousButton;
+    Menu menu;
 
-    private Queue<string> sentences;
+    public float initWaitTime=0.5f;
+    public float betweenLetterTime=0.02f;
+    public float betweenSequenceWaitTime = 2f;
+    public float deltaTime;
+    public float characterAutoplayTime = 0.035f;
+    float startSequenceTime;
+    bool isAuto=false;
+    
 
-    //class contain background and bubbletalk
+   
     [System.Serializable]
     public class Sequences
     {
         public Sprite chosenbackGround;
-        public Sprite chosenBubbleTalk;
         
+        [TextArea(3, 10)]
+        public string sentences;
+
     }
     public Sequences[] sequencesArray;
-    //end of class declaration
 
-    //class contain dialogues
-    [System.Serializable]
-    public class Dialogue
-    {
-        [TextArea(3, 10)]
-        public string[] sentences;
-    }
-    public Dialogue dialogue;
-    //end of class declaration
-
-
+   
     void Awake()
     {
-        spriteRenderer = this.GetComponent<SpriteRenderer>();
-        bubbleTalkImg.enabled = false;
-        spriteRenderer.sprite = null;
-        continueButton.gameObject.SetActive(false);
-        hint.gameObject.SetActive(false);
-
+        CanvasUI = GameObject.FindGameObjectWithTag("CanvasUI").transform;
+        //CanvasUI = this.transform;
+        if (CanvasUI == null)
+        {
+            print("null canvas");
+        }
+        else
+        {
+            backGroundImg = CanvasUI.GetChild(0).GetComponent<Image>();
+            dialogueText = CanvasUI.GetChild(2).GetComponent<TextMeshProUGUI>();
+            autoText = CanvasUI.GetChild(8).GetComponent<TextMeshProUGUI>();
+            
+            previousButton = CanvasUI.GetChild(3).GetComponent<Button>();
+            continueButton = CanvasUI.GetChild(5).GetComponent<Button>();
+            menu = this.GetComponent<Menu>();
+        }
+       
+        int[] excludedChild = { 1 };
+        SetActiveUIs(false, excludedChild);
+        
+        autoText.gameObject.SetActive(false);
 
     }
 
     void Start()
     {
-        sentences = new Queue<string>();
-        StartCoroutine(Wait(0.5f));
+      
+        StartCoroutine(FirstWait(initWaitTime));
         
     }
 
@@ -67,129 +76,176 @@ public class CutSence : MonoBehaviour
 
     void Update()
     {
+       
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            setNextSequence();
+            SetAuto();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+        if (menu != null)
         {
-            Scene currentScene = SceneManager.GetActiveScene();
-            int buildIndex = currentScene.buildIndex;
-            SceneManager.LoadScene(buildIndex + 1);
-        }
-    }
-
-
-    public void setNextSequence()
-    {
-        if (sequenceIndex >= sequencesArray.Length)
-        {
-            Scene currentScene = SceneManager.GetActiveScene();
-            int buildIndex = currentScene.buildIndex;
-            SceneManager.LoadScene(buildIndex + 1);
-        }
-        else
-        {
-
-            setBackGround(sequencesArray[sequenceIndex].chosenbackGround);
-            setBubbleTalk(sequencesArray[sequenceIndex].chosenBubbleTalk);
-
-            if (sequenceIndex == 0)
+           if(menu.isPaused)
             {
-                StartDialogue(dialogue);
+                CanvasUI.gameObject.SetActive(false);
             }
             else
             {
-                DisplayNextSentence();
+                CanvasUI.gameObject.SetActive(true);
             }
-            sequenceIndex++;
         }
+
+        if (isAuto == true)
+        {
+            deltaTime = Time.time - startSequenceTime;
+            if (deltaTime >= betweenSequenceWaitTime)
+            {
+                SetNextSequence();
+            }
+
+        }
+
+        if (sequenceIndex == 0)
+        {
+            if (dialogueText.text == sequencesArray[sequenceIndex].sentences)
+            {
+                continueButton.interactable = true;
+                previousButton.interactable = false;
+                if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+                {
+                    SetNextSequence();
+                }
+
+            }
+        }
+        if (sequenceIndex > 0)
+        {
+            if (dialogueText.text == sequencesArray[sequenceIndex].sentences)
+            {
+                continueButton.interactable = true;
+                previousButton.interactable = true;
+                if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+                {
+                    SetNextSequence();
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+                {
+                    SetLastSequence();
+                }
+            }
+        }
+
+
     }
 
 
-
-     void setBubbleTalk(Sprite chosenBubbleTalk)
+    void SetActiveUIs(bool var, int[] excludedChild)
     {
-        if (chosenBubbleTalk != null)
-        {
-            bubbleTalkImg.sprite = chosenBubbleTalk;
-        }
-        else
-        {
-            bubbleTalkImg.sprite = null;
+        
+        for (int i=0; i< CanvasUI.childCount; i++)
+        { if (excludedChild.Length !=0)
+            {for (int j=0;j< excludedChild.Length; j++)
+                {
+                    if (i != excludedChild[j]) { CanvasUI.GetChild(i).gameObject.SetActive(var); }
+                }
+               
+            }
 
-               print("no bubble talk");
         }
 
     }
 
-     void setBackGround(Sprite chosenbackGround)
+    
+
+    void SetBackGround(Sprite chosenbackGround)
     {
         if (chosenbackGround != null)
         {
-            spriteRenderer.sprite = chosenbackGround;
+            backGroundImg.sprite = chosenbackGround;
         }
         else
         {
-            spriteRenderer.sprite = null;
+            backGroundImg.sprite = null;
             print("no background");
         }
     }
 
-
-     void StartDialogue(Dialogue dialogue)
+    public void SetAuto()
     {
-        //animator.SetBool("IsOpen", true);
-
-
-        sentences.Clear();
-
-        foreach (string sentence in dialogue.sentences)
+        isAuto = !isAuto;
+        if (isAuto)
         {
-            sentences.Enqueue(sentence);
+            startSequenceTime = Time.time;
+            autoText.gameObject.SetActive(true);
         }
-
-        DisplayNextSentence();
+        else
+        {
+            autoText.gameObject.SetActive(false);
+        }
+       
+        
     }
 
-     void DisplayNextSentence()
+    public void NextBuiltScene()
     {
-        if (sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
-
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        LevelLoader.instace.LoadLevel(2);
     }
 
-    IEnumerator TypeSentence(string sentence)
+    IEnumerator Type()
     {
-        dialogueText.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        foreach (char letter in sequencesArray[sequenceIndex].sentences.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return null;
+            betweenSequenceWaitTime = betweenSequenceWaitTime + characterAutoplayTime;
+            yield return new WaitForSeconds(betweenLetterTime);
+        }
+    }
+    public void SetNextSequence()
+    {
+        if (sequenceIndex< sequencesArray.Length - 1)
+        {
+            betweenSequenceWaitTime = 2f;
+            continueButton.interactable = false;
+            previousButton.interactable = false; 
+            startSequenceTime = Time.time;
+            sequenceIndex++;
+            dialogueText.text = "";
+            StartCoroutine(Type());
+            SetBackGround(sequencesArray[sequenceIndex].chosenbackGround);
+
+        }
+        else
+        {
+            dialogueText.text = "";
+            NextBuiltScene();
+
         }
     }
 
-    void EndDialogue()
+    public void SetLastSequence()
     {
-        //animator.SetBool("IsOpen", false);
-        dialogueText.SetText("");
+        if (sequenceIndex > 0)
+        {
+            continueButton.interactable = false;
+            previousButton.interactable = false;
+            sequenceIndex--;
+            dialogueText.text = "";
+            StartCoroutine(Type());
+            SetBackGround(sequencesArray[sequenceIndex].chosenbackGround);
+        }
     }
 
+  
 
-    IEnumerator Wait(float time)
+    IEnumerator FirstWait(float time)
     {
+        int[] excludedChild = { 8 };
         yield return new WaitForSeconds(time);
-        bubbleTalkImg.enabled=true;
-
-        setNextSequence();
-        continueButton.gameObject.SetActive(true);
-        hint.gameObject.SetActive(true);
+        
+        SetActiveUIs(true, excludedChild);
+        SetNextSequence();
+        isAuto = false;
+        
     }
 
 }

@@ -10,8 +10,6 @@ public class ShredBehaviour : EnemyBehaviour
 
     private Coroutine co;
 
-    private Animator animatorShred;
-
     private bool isStaggering, isAttacking;
 
     [SerializeField] private float staggerTime;
@@ -21,8 +19,6 @@ public class ShredBehaviour : EnemyBehaviour
         base.Awake();
 
         shredStat = (ShredStatsSO)stat;
-
-        animatorShred = GetComponent<Animator>();
     }
 
     protected override void OnEnable()
@@ -122,7 +118,7 @@ public class ShredBehaviour : EnemyBehaviour
     private IEnumerator StaggerShred()
     {
         isStaggering = true;
-        animatorShred.SetBool("Staggering", isStaggering);
+        animator.SetBool("Staggering", isStaggering);
 
         speed = -stat.RunningSpeed / 1.5f;
 
@@ -135,7 +131,7 @@ public class ShredBehaviour : EnemyBehaviour
         yield return new WaitForSeconds(staggerTime = shredStat.staggerDuration + staggerTime);
 
         isStaggering = false;
-        animatorShred.SetBool("Staggering", isStaggering);
+        animator.SetBool("Staggering", isStaggering);
 
         yield return new WaitForSeconds(0.15f);
 
@@ -159,13 +155,14 @@ public class ShredBehaviour : EnemyBehaviour
     {
         base.TakeDamage(playerDamage);
 
-        animatorShred.Play("Armature|StaggeredTakeHit", 0, 0f);
+        animator.Play("Armature|StaggeredTakeHit", 0, 0f);      
+    }
 
-        // If Shred is dead
-        if (currentHP <= 0)
-        {
-            animatorShred.SetTrigger("Death");
-        }
+    protected override void KnockPlayerDown()
+    {
+        base.KnockPlayerDown();
+
+        playerMovement.GetKnockDown(false);
     }
 
     #region Hit Boxes

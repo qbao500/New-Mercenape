@@ -7,12 +7,10 @@ using UnityEngine.SceneManagement;
 public class LoadScene : MonoBehaviour
 {
     private PlayerCurrency playerCurrency;
-    private EnemySpawnerScript spawner;
 
     void Awake()
     {
-        playerCurrency = GetComponent<PlayerCurrency>();
-        spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawnerScript>();
+        playerCurrency = GetComponent<PlayerCurrency>();  
     }
 
     public void GoTolevel1()
@@ -20,26 +18,12 @@ public class LoadScene : MonoBehaviour
         SceneManager.LoadScene("NewLV1Test");
     }
 
-    public void GoToForge()
-    { //check if player have enough karma
-        if (playerCurrency.karma >= spawner.spawnerData.MaxKarma && spawner.state == EnemySpawnerScript.SpawnState.Counting)
-        {
-            Time.timeScale = 1;
-            SaveManager.SaveCurrency(playerCurrency);
-            SceneManager.LoadScene("Forge");
-        }
-        //place holder
-        else 
-        { 
-            print("cant go"); 
-        }
-    }
 
     public void GoToMainMenu()
     {
         Time.timeScale = 1;
         SaveManager.SaveCurrency(playerCurrency);
-        LevelLoader.instace.LoadLevel(1);
+        LevelLoader.instace.LoadLevel(0);
     }
 
     public void QuitGame()

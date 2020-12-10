@@ -13,7 +13,7 @@ public abstract class SetUpScreens : MonoBehaviour
 
     protected List<AbstractWeapon> weapons, weaponsShop;
 
-    [SerializeField] protected List<GameObject> weaponInventory, weaponImages, chooseButtons, weaponNames;
+    public List<GameObject> chooseButtons, weaponNames, weaponImages;
     [SerializeField] protected List<Text> weaponStatTexts;
     
     protected Text costText, upgradeText;
@@ -39,19 +39,18 @@ public abstract class SetUpScreens : MonoBehaviour
 
     protected void GetRequiredComponents()
     {
-        weaponInventory.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponHolderTag));
-        weaponImages.InsertRange(0, GameObject.FindGameObjectsWithTag(chosenWeaponTag));
-        chooseButtons.InsertRange(0, GameObject.FindGameObjectsWithTag(chooseButtonTag));
-        weaponNames.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponNameTag));
+        // weaponImages.InsertRange(0, GameObject.FindGameObjectsWithTag(chosenWeaponTag));
+        // chooseButtons.InsertRange(0, GameObject.FindGameObjectsWithTag(chooseButtonTag));
+        // weaponNames.InsertRange(0, GameObject.FindGameObjectsWithTag(weaponNameTag));
 
         costText = GameObject.FindGameObjectWithTag(costTag).GetComponent<Text>();
         upgradeText = GameObject.FindGameObjectWithTag(upgradeTag).GetComponent<Text>();
 
-        GameObject[] statTextObjects = GameObject.FindGameObjectsWithTag(weaponStatsTag);
-        Text[] statTexts = new Text[amountOfTexts];
+        // GameObject[] statTextObjects = GameObject.FindGameObjectsWithTag(weaponStatsTag);
+        // Text[] statTexts = new Text[amountOfTexts];
 
-        for(int i = 0; i < statTextObjects.Length; i++) { statTexts[i] = statTextObjects[i].GetComponent<Text>(); }
-        weaponStatTexts.InsertRange(0, statTexts);
+        //for(int i = 0; i < statTextObjects.Length; i++) { statTexts[i] = statTextObjects[i].GetComponent<Text>(); }
+        //weaponStatTexts.InsertRange(0, statTexts);
 
         for(int i = 0; i < weaponNames.Count; i++) { weaponNames[i].SetActive(false); }
     }
@@ -71,10 +70,7 @@ public abstract class SetUpScreens : MonoBehaviour
         useUpgrades.amountText.text = "" + 0;
     }
 
-    protected virtual void UpdateWeaponStats()
-    {
-        statsCalculator.CalculateStats();
-    }
+    protected virtual void UpdateWeaponStats() { statsCalculator.CalculateStats(); }
 
     protected abstract void UpdateTexts();
 

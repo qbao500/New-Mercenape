@@ -40,8 +40,8 @@ public class SpawnerDataSO : ScriptableObject
     public void PrepareGroup()
     {
         CurrentGroup++;
-        GroupText.SetText("Group " + CurrentGroup);
-        WaveText.SetText("Wave " + CurrentWave);
+        GroupText.SetText(CurrentGroup.ToString());
+        WaveText.SetText(CurrentWave.ToString());
 
         MakeSpawnList();
     }
@@ -72,7 +72,7 @@ public class SpawnerDataSO : ScriptableObject
         if (CurrentWave > wavesInfo.Count || CurrentGroup > wavesInfo[CurrentWave - 1].groups.Count)
         {
             // It current wave/group is not in pattern, randomize spawn
-            ShredCount = Random.Range(4, 6 + 1);
+            ShredCount = Random.Range(7, 10 + 1);
             MowerCount = RandomMower;
             return;
         }

@@ -5,11 +5,7 @@ using UnityEngine;
 // Created by Arttu Paldán on 13.11.2020: 
 public class SetUpForge : SetUpScreens
 {
-    protected override void UpdateWeaponStats()
-    {
-        statsCalculator.SetRequestFromForge(true);
-        base.UpdateWeaponStats();
-    }
+    protected override void UpdateWeaponStats() { statsCalculator.SetRequestFromForge(true); base.UpdateWeaponStats(); }
 
     protected override void UpdateTexts()
     {
@@ -34,20 +30,6 @@ public class SetUpForge : SetUpScreens
     protected override void SwitchModels()
     {
         List<bool> ownedWeapons = weaponStates.GetOwnedWeapons();
-
-        for(int i = 0; i < weaponInventory.Count; i++)
-        {
-            switch (ownedWeapons[i])
-            {
-                case true:
-                    weaponInventory[i].SetActive(true);
-                    break;
-
-                case false:
-                    weaponInventory[i].SetActive(false);
-                    break;
-            }
-        }
 
         for(int i = 0; i < chooseButtons.Count; i++)
         {
